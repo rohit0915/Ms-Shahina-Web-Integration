@@ -1,0 +1,98 @@
+/** @format */
+
+.Backward_Heading {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+.Backward_Heading img {
+  width: 50px;
+  cursor: pointer;
+}
+.Backward_Heading p {
+  color: #042b26;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  width: 95%;
+}
+
+.Appointment_Selection {
+  background: #042b26;
+  padding: 50px;
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.Appointment_Selection .title {
+  margin: 0;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 25px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.Appointment_Selection .boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.Appointment_Selection .boxes .Item {
+  width: 30%;
+  background: #e5d896;
+  padding: 20px;
+}
+
+.Appointment_Selection .boxes .Item img {
+  width: 100px;
+  display: block;
+  margin: auto;
+}
+.Appointment_Selection .boxes .Item p {
+  color: #042b26;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  margin-top: 20px;
+}
+
+.Indivisual-Appointment {
+  background: #042b26;
+  padding: 50px;
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.Indivisual-Appointment .title {
+  color: #e5d896;
+  font-family: Poppins;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+}
+
+.Indivisual-Appointment form {
+    width: 85%;
+    margin: auto;
+    padding: 20px;
+}
