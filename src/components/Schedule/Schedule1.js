@@ -198,7 +198,7 @@ const Schedule1 = () => {
             </div>
           </div>
 
-          <button className="book">BOOK NOW</button>
+          <button className="book" onClick={() => navigate('/schedule2')} >BOOK NOW</button>
 
           <div className="border-collapsed"></div>
 

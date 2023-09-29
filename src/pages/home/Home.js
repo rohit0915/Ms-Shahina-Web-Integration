@@ -25,7 +25,7 @@ const Home = () => {
       <LatestNews />
       <Pictures />
       <div className="fixed bottom-5 max-md:hidden w-[26rem] h-[8rem]  right-10 z-[100]">
-        <OfferCard />
+        <OfferCard setBanner={setBanner} />
       </div>
       {isBanner && (
         <div className="fixed bottom-0 w-full h-[23rem] z-[200]">

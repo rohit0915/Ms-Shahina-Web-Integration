@@ -6,6 +6,19 @@
 @import 'tailwindcss/utilities';
 
 
+html{
+  font-family: Poppins !important;
+}
+body{
+  font-family:  Poppins !important;
+}
+code{
+  font-family:  Poppins !important;
+}
+*{
+  font-family:  Poppins !important;
+}
+
 
 @layer utilities {
 

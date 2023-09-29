@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/** @format */
+
+import React, { useEffect, useState } from "react";
 import { Header } from "../../utils/helpingComponent";
 import PaymentType from "./PaymentType";
 import { PAYMENT_TYpes, financialSituation } from "../../constants/constant";
@@ -9,6 +11,10 @@ import MoreQuestions from "./MoreQuestions";
 
 const PaymentPlan = () => {
   const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <section>

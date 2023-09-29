@@ -1,4 +1,7 @@
+/** @format */
+
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { partners } from "../../constants/constant";
 
 const DescriptionView = ({
@@ -10,7 +13,10 @@ const DescriptionView = ({
   btnName,
   styles,
   reverse,
+  link,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={`flex ${reverse} flex-shrink-0`}>
       {title === "Our Partners" ? (
@@ -52,7 +58,10 @@ const DescriptionView = ({
           )}
         </div>
         {btnName && (
-          <button className="w-96 py-3 mb-14 text-primary bg-secondary  text-2xl font-semibold">
+          <button
+            className="w-96 py-3 mb-14 text-primary bg-secondary  text-2xl font-semibold"
+            onClick={() => navigate(link)}
+          >
             {btnName}
           </button>
         )}

@@ -1,6 +1,8 @@
+/** @format */
+
 import React from "react";
 
-const OfferCard = () => {
+const OfferCard = ({ setBanner }) => {
   return (
     <div className="flex gap-5 bg-secondary items-center justify-between px-3  rounded-md h-full">
       <div className="w-44 xl:w-48 p-2">
@@ -10,7 +12,12 @@ const OfferCard = () => {
         <h5 className="text-center text-xs font-bold">
           Get $50 OFF on your First Visit
         </h5>
-        <h5 className="cursor-pointer font-bold">{"CLICK TO VIEW MORE >"}</h5>
+        <h5
+          className="cursor-pointer font-bold"
+          onClick={() => setBanner(true)}
+        >
+          {"CLICK TO VIEW MORE"}
+        </h5>
       </div>
     </div>
   );
