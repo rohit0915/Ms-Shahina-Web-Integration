@@ -50,7 +50,7 @@ const LogIn = () => {
         </div>
         <div className="text-2xl ">
           <span className="text-white mr-1 font-bold">Forgot Password?</span>
-          <Link className="font-bold underline underline-offset-2 ">
+          <Link className="font-bold underline underline-offset-2" to='/forget-password'>
             CLICK HERE
           </Link>
         </div>

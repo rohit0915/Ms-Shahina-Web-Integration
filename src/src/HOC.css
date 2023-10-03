@@ -1,0 +1,10 @@
+.kuch-bhi{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+  }
+  .wcom{
+    overflow-y: scroll;
+    height: 92vh;
+
+  }
