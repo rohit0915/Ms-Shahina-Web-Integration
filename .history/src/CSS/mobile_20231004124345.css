@@ -1,0 +1,9 @@
+@media (max-width : 768px) {
+    .Nav_Bar .left {
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+}

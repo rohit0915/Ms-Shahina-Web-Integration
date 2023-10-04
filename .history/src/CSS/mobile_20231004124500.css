@@ -1,0 +1,18 @@
+/** @format */
+
+@media (max-width: 768px) {
+    .Nav_Bar 
+  .Nav_Bar .left {
+    width: 120px;
+  }
+  .Nav_Bar .right-container {
+    gap: 10px;
+  }
+  .Nav_Bar .right-container img {
+    width: 24px;
+  }
+  .Nav_Bar .right-container svg{
+    width: 24px;
+    height: 24px;
+  }
+}

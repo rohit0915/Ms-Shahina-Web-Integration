@@ -1,0 +1,77 @@
+/** @format */
+
+@media (max-width: 768px) {
+  .Nav_Bar header {
+    align-items: flex-end;
+    padding-left: 10px;
+  }
+  .Nav_Bar .left {
+    width: 100px;
+  }
+  .Nav_Bar .right-container {
+    gap: 10px;
+  }
+  .Nav_Bar .right-container img {
+    width: 24px;
+  }
+  .Nav_Bar .right-container svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .Nav_Menu_Container{
+    padding: 10px;
+    border: none;
+  }
+  .Nav_Menu_Container ul {
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    align-items: center;
+  }
+  .Nav_Menu_Container ul a{
+    width: 31%;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* ---------------- */
+  .Home_Hero_Section .Hero_Imgl{
+    display: none;
+  }
+  .Home_Hero_Section {
+    padding-left: 20px  ;
+    justify-content: flex-start;
+    height: auto;
+  }
+  .Home_Hero_Section .left-container h1 {
+    font-size: 35px;
+  }
+  .Home_Hero_Section .left-container {
+    justify-content: flex-start;
+  }
+  .Home_Hero_Section .left-container ul li {
+    font-size: 16px;
+  }
+  .Home_Hero_Section .left-container button {
+    font-size: 16px;
+    margin-top: 40px;
+    margin-left: 0;
+  }
+  /* ---------------------------- */
+  .Service_Glass_Section .Heading {
+    text-align: center;
+    color: rgb(4 43 38);
+    font-weight: 500;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: rgb(229 216 150);
+    width: 34rem;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}

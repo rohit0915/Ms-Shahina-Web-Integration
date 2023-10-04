@@ -1,0 +1,7 @@
+/** @format */
+
+@media (max-width: 768px) {
+  .Nav_Bar .left {
+    width: 100px;
+  }
+}

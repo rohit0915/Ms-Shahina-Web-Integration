@@ -1,0 +1,21 @@
+/** @format */
+
+@media (max-width: 768px) {
+  .Nav_Bar header {
+    align-items: flex-end;
+    padding-left: 20px;
+  }
+  .Nav_Bar .left {
+    width: 100px;
+  }
+  .Nav_Bar .right-container {
+    gap: 10px;
+  }
+  .Nav_Bar .right-container img {
+    width: 24px;
+  }
+  .Nav_Bar .right-container svg {
+    width: 24px;
+    height: 24px;
+  }
+}
