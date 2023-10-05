@@ -9,7 +9,7 @@ const Pictures = () => {
   const [hover, sethover] = useState(null);
 
   return (
-    <div className="w-full MaxComponent" >
+    <div className="w-full" >
       <div className="grid grid-flow-col overflow-x-scroll no-scrollbar ">
         {pictures.map((picture, index) => (
           <div
