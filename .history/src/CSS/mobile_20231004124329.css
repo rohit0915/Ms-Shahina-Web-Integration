@@ -1,8 +1,0 @@
-@media (max-width : 768px) {
-    .Nav_Bar header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-    
-}

@@ -38,9 +38,10 @@ const OfferDrawer = ({ open, onClose }) => {
             </p>
             <Link to="/paymentplan">CLICK TO LEARN MORE</Link>
 
-            <Link to="/services/Hair%20Loss">
-              <button>VIEW MORE</button>
-            </Link>
+      <Link to='/services/Hair%20Loss'>
+
+            <button>VIEW MORE</button>
+            <
           </div>
 
           <div className="Items">
