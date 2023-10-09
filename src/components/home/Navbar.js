@@ -47,6 +47,12 @@ const Navbar = () => {
           </Link>
           {isLoggedIn === true ? (
             <div className="prof-container">
+              <img
+                src="/asessts/navbar/profile.png"
+                alt=""
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/my-profile")}
+              />
               <span
                 className="text-secondary font-medium cursor-pointer"
                 onClick={() => LogoutHandler()}

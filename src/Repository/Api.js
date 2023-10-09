@@ -1218,6 +1218,20 @@ const updateProfile = async (payload) => {
   } catch {}
 };
 
+const removeAddress = async (payload) => {
+  try {
+    const response = await axios.delete(
+      `${Baseurl}api/v1/user/address/${payload}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      }
+    );
+
+  } catch {}
+};
+
 export {
   getServiceMenu,
   getServiceProduct,
@@ -1276,5 +1290,6 @@ export {
   orderSuccess,
   orderFailed,
   updateAddress,
-  updateProfile
+  updateProfile ,
+  removeAddress
 };

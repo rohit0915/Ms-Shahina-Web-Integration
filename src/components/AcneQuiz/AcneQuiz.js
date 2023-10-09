@@ -1,9 +1,12 @@
-import React from "react";
+/** @format */
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { openQuiz } from "../../store/quizSlice";
 import { useDispatch } from "react-redux";
 
 const AcneQuiz = () => {
+  const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   return (
     <div className="fixed flex flex-col items-center justify-center top-0 w-screen h-screen bg-white z-[1000]">
@@ -15,12 +18,23 @@ const AcneQuiz = () => {
           className="w-[50rem] py-5 px-14 border border-black "
           type="text"
           placeholder="Enter your Email"
+          onChange={(e) => setEmail(e.target.value)}
         />{" "}
-        <Link onClick={() => dispatch(openQuiz())} to={"/acnequiz"}>
-          <button className="w-[31rem] bg-primary text-darkSecondary text-2xl font-bold py-5">
+        {email ? (
+          <Link onClick={() => dispatch(openQuiz())} to={"/acnequiz"}>
+            <button className="w-[31rem] bg-primary text-darkSecondary text-2xl font-bold py-5">
+              NEXT
+            </button>
+          </Link>
+        ) : (
+          <button
+            className="w-[31rem]  text-darkSecondary text-2xl font-bold py-5"
+            style={{ background: "rgb(235, 235, 228)" }}
+            disabled
+          >
             NEXT
           </button>
-        </Link>
+        )}
       </div>
       <div className="w-12 h-8  absolute top-3 right-11">
         <img

@@ -16,16 +16,20 @@ const PaymentPlan = () => {
     window.scroll(0, 0);
   }, []);
 
- 
   return (
     <section>
       <Header heading={"Payment Plans"} />
       <div className="w-[49rem] h-[49rem] mx-auto">
-        <img
-          className="object-cover w-full h-full"
-          alt="payment cover"
-          src="https://s3-alpha-sig.figma.com/img/338b/7bcb/d8c24e20bd3b348d9ac8e024514dc6a6?Expires=1696809600&Signature=LRY67yekA6wCyBWe7tj9guOYoS8iDN5VnJNUQ~gaU4hzVs-aRUkr2e7mSmdfzP2~HvJod4BbeYh8a6rfsyzZOiVDkU-x4OP1wjafVlf2XPaBzwJ2q034Ua9sUYkOn5H6uSUsHRYrZvnpqNVeVqKfqepHRvADnNQ38HLf2JeV~NZdY9dmJYxxvGEb4t1JUg3~mL6E~JddrN63tPBwQY~HHEnBrxbspC0YyxaYtt~-F2QEiqzzOi5r6yK4-9ttFHPvYke6D6p1bhobZUjAKHPhr2vtyJ7dH7dE51NOondVRDaJn24oghNshNFEUilYGMgSLsg5n9utiPL2cedGLCwa5Q__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
-        />
+        <a
+          href="https://pay.withcherry.com/shahinahoja?utm_source=cherrylinks"
+          target="_blank"
+        >
+          <img
+            className="object-cover w-full h-full"
+            alt="payment cover"
+            src="/Image/BODY GIF 1.gif"
+          />
+        </a>
       </div>
       <p className="text-center w-3/5 my-14 mx-auto">
         <span className="text-lg font-bold">Buy Now. Pay Monthly.</span>
