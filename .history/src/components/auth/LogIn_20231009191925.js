@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userLogin } from "../../Repository/Api";
 import { useDispatch } from "react-redux";
+import ReactCountryFlag from "react-country-flag"
 
 
 const LogIn = () => {
@@ -38,6 +39,7 @@ const LogIn = () => {
 
       <div className="forget-password">
         <form onSubmit={submitHandler}>
+        <ReactCountryFlag countryCode="US" />
           <div className="mt-4">
             <p>Phone No.</p>
             <input
