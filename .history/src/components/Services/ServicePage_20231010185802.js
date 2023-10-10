@@ -65,7 +65,7 @@ const ServicePage = () => {
 
         <div className="center_img">
           <img
-            src="/Image/image 252.png"
+            src="/Imag"
             alt=""
           />
         </div>

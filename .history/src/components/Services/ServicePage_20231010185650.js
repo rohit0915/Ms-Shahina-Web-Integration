@@ -65,7 +65,7 @@ const ServicePage = () => {
 
         <div className="center_img">
           <img
-            src="/Image/image 252.png"
+            src="https://s3-alpha-sig.figma.com/img/5118/ea86/a98fb879fd2fac2be4d751c7b0af04d8?Expires=1696809600&Signature=ZND6f6rHW6~hu1y3zlaGZeEAaGrUfdx~IkQQYUPy2IJqNJSuiWXRQHB3uSMjM3npIGso7A-MyKu1WNZOBBM25Awv7WSR4xC6~x8nmCvaqc8UnfSa1SlZrJKbY1oySQR1HItx3llnkq4mgqmrETEhguZGLyXPVT-YemIv8LRMj37-E~G6aFHUCl5sxqyqx4fGOWJyR17qEJpom56V5SuNqwMq~IsAA9zjmYOIXCn-jpUJxSs1Q0LLz4IHglm~bUTce9qtA0z2RfWsi3H9opGp8f2wJjGqn174yYM9p6lWlR798bqKc1Nb-bwJkOCrlhHMEACInrj-IBKTQ-Z32mOuhg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
             alt=""
           />
         </div>
