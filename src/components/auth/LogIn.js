@@ -43,13 +43,16 @@ const LogIn = () => {
             <input
               type="tel"
               onChange={(e) => setPhone(e.target.value)}
-              pattern="[0-9]{10}"
+              minLength={8}
+              maxLength={12}
+              required
             />
           </div>
           <div className="mt-4">
             <p>Password</p>
             <input
               type="password"
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

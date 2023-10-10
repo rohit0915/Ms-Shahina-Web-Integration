@@ -41,7 +41,7 @@ const DescriptionView = ({
           {content && (
             <h4
               className={`text-3xl  font-medium leading-10 content ${
-                styles ? styles : "mb-28"
+                styles ? styles : "mb-6"
               }`}
             >
               {content}

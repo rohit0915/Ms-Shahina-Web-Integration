@@ -57,7 +57,9 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
                 <p className="interes">
                   Pay with interest free installments with Cherry
                 </p>
-                <a>CLICK TO LEARN MORE</a>
+                <Link to='/paymentplan'>
+                CLICK TO LEARN MORE
+                </Link>
 
                 <Link to={`/services/${i._id}`}>
                   <button>VIEW MORE</button>

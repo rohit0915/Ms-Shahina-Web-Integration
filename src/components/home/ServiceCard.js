@@ -38,7 +38,7 @@ const ServiceCard = ({ src, service, id }) => {
             className="w-full h-full object-cover"
           />
           {!isHovered && (
-            <div className="absolute top-0 w-full h-full  bg-black bg-opacity-30">
+            <div className="absolute top-0 w-full h-full">
               <p className="absolute bottom-20 left-0 right-0 text-center text-white text-4xl font-medium">
                 {service}
               </p>

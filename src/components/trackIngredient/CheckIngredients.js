@@ -15,7 +15,8 @@ const CheckIngredients = () => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  const submitHandler = async () => {
+  const submitHandler = async (e) => {
+    e.preventDefault()
     await checkIngredients(name, setMessage);
     setError(true);
   };
@@ -69,30 +70,33 @@ const CheckIngredients = () => {
             Please find the ingredients list of the product that you would like
             to check on the Internet, copy and insert it here :
           </p>
-          <textarea
-            className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl "
-            name=""
-            id=""
-            placeholder="Please insert ingredients here....."
-            cols="30"
-            rows="10"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></textarea>
-          <div className="text-2xl font-semibold flex justify-between items-center my-6">
-            <button
-              onClick={() => submitHandler()}
-              className="w-96 bg-secondary text-primary  rouded-xl py-3 rounded-xl"
-            >
-              Check
-            </button>
-            <button
-              className="w-96 text-secondary border border-secondary rounded-xl py-3"
-              onClick={() => setName("")}
-            >
-              Clear
-            </button>
-          </div>
+          <form onSubmit={submitHandler}>
+            <textarea
+              className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl "
+              name=""
+              id=""
+              placeholder="Please insert ingredients here....."
+              cols="30"
+              rows="10"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></textarea>
+            <div className="text-2xl font-semibold flex justify-between items-center my-6">
+              <button
+                type="submit"
+                className="w-96 bg-secondary text-primary  rouded-xl py-3 rounded-xl"
+              >
+                Check
+              </button>
+              <button
+                className="w-96 text-secondary border border-secondary rounded-xl py-3"
+                onClick={() => setName("")}
+              >
+                Clear
+              </button>
+            </div>
+          </form>
         </div>
         {isEmpty === false && (
           <div className="w-96 bg-secondary text-primary px-5 rounded-xl">

@@ -131,6 +131,7 @@ const paymentCards = [
   "https://s3-alpha-sig.figma.com/img/f558/9e28/02e05f3269fb3187765895bd3c2a3655?Expires=1696809600&Signature=ik-sgpG6mArURsHMmP3Z~8n7zNgtn9gLf8becyZJG2tJwQmyawuHBzTkKZYGJ4yoQCYn17WIVjvyMJsxEIJrU4O-NAFy09RnNau5g8420gobEKjEbPdrF8bUmCmmTjU1GJ5bcV38NVjRC1NIVlIZQek8ZuJuquN1u86k6KaPyV4fowz-7D-gls9wV0a~aHTq~lH7j9v-j0YNSEaIpHU7LmbKMrw~BdL~FDnMdopocJtf58iNwNxnnH3G-OMUJ2-v7ejT2ZjEQQUyfUcAaF1cXnUB3U5-NurjhhJjDvC96p1QbgboN4dbPPkArMzturvhsoOVq-n29jSXtOTb3znY5g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
   "https://s3-alpha-sig.figma.com/img/5d79/9d37/01bf0be10ffc9e331bdab9ffa09487f8?Expires=1696809600&Signature=F3bYTBm8aOROQfNSe3oGkHCnM2l~qftUKhxzgNWKdbTrrHtUHZErnQpDAa2zopzCEHNDp5y3z2J6CWjaZGBEORJaN9B2mDD0KAk4RUGHEMWxbg31L~Xwztqc8n6Y8XTeHVkh6XJ15PuVczeiH0PELnP6bwBJInOrWAxjKfV3iIFLhsf852AWHOYXZcwnRSPUxJ6HYtYaJQCLl9dxwYXke8Kzjufav6oXm8kXJMnmyvD75Gil8zNR9kN-BwqI27N7Cecsl5IGMsumBLjcTuP275iUMzK15QwUsZds2Ebo0la2HpRZ1wjCGgVJjKZslTqWvE96Sy9ozxFjGDrI3w-~NQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
   "https://s3-alpha-sig.figma.com/img/5d79/9d37/01bf0be10ffc9e331bdab9ffa09487f8?Expires=1696809600&Signature=F3bYTBm8aOROQfNSe3oGkHCnM2l~qftUKhxzgNWKdbTrrHtUHZErnQpDAa2zopzCEHNDp5y3z2J6CWjaZGBEORJaN9B2mDD0KAk4RUGHEMWxbg31L~Xwztqc8n6Y8XTeHVkh6XJ15PuVczeiH0PELnP6bwBJInOrWAxjKfV3iIFLhsf852AWHOYXZcwnRSPUxJ6HYtYaJQCLl9dxwYXke8Kzjufav6oXm8kXJMnmyvD75Gil8zNR9kN-BwqI27N7Cecsl5IGMsumBLjcTuP275iUMzK15QwUsZds2Ebo0la2HpRZ1wjCGgVJjKZslTqWvE96Sy9ozxFjGDrI3w-~NQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+  "/Image/Mask group.png"
 ];
 const footerLinks = [
   {
@@ -292,29 +293,29 @@ const galleryImages = [
 const PAYMENT_TYpes = [
   {
     type: "Quick Applications",
-    src: "https://s3-alpha-sig.figma.com/img/5a65/12f2/28ccef67e2fb8ee5d9c5a6164c8af649?Expires=1696809600&Signature=GjNzbHgfuhLbKA9xKlwBe2fuWMdrDrEUiWxa6GxjdONdFUGNPlXFq9EOlWFUXOXtOUfT3r2PcOEa-DAOpL0mR48tf14GOdA9iwk0pRjR6AVMtx601VxfkJ3CmwHx2SDF4EzMnLVxhjtJSweHO0X3lNIVYGHBMT9RfFMOIvls59NP320Fmi2pz~uOUEJ8-i3ZNwjHICzU33uOfutKBbtQVqFc3OewJczIkcOQdbDF9X2Ci7Mo6LN6KhdKEArwz6xRpW8ercmjx~raZAASSSbOyFeCUp8H4xGiMFUopWHHJ0-T8OXWwtHPjYIpQ3FlzSF4MmzqPUh~ubkukeko3XHglQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+    src: "/Image/image 216.png",
   },
   {
     type: "Flexible Payment Options",
-    src: "https://s3-alpha-sig.figma.com/img/67d6/e884/c551c1d32d16263b24e2b2efea2a2003?Expires=1696809600&Signature=LiAzXhVd5furwDtw0SVVsiNdmQzZIhugWJQItGiXsRKwfx3zVgfZ2RKDPJEiwVDezyxX0VP9XRTwjdZoePYDUvXJ0Dr11ShSf29WAUKvvZJGq9hKasdWoJ~pfifvtBksmqZqXrv9t6ZFR0lAmolQ4wnbho9-fJVJ2oRviv1PeYF~7YYRFubUSXlkc7IZ7svN44p4y-D3AN8BwNwlNTcqOXSt2QxzKXDYN-TCZJG7HCzuaK0OeHkH4RNYaM-yh9vlTmy7w~9v45pL-fU2kEe5Bl-pqMVXLZrqMI4k76sEmaXFjRuOH~TVZS372LSPIKf5WrqkQErT1vPW11D-xva8qw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+    src: "/Image/image 217.png",
   },
   {
     type: "No Hard Credit Check",
-    src: "https://s3-alpha-sig.figma.com/img/2481/41b0/351fe0efc07da455ad7e11e2e1386290?Expires=1696809600&Signature=ACDcdLkSBXYquwxXiwGXDWpaIsDQWe8XOEymP-BvmSBh28Sn8HQg~ytfeqkuoQGTI1XuVd7-WNuTsgPMPWfaE6u4PLB9ETRtjH6Nf8DBnTSomt6Pkno31vCUj-NkbnSqZieu0pLyI3Mbh1WiN-Y5lnjdA18oolEuf-EvobuGQNudoOmxbQdy6sFHi~96n1zq9-BqnoN5FKQODR7zZNP-~44Tfe0Av~apaQfHSehieaRpif7kAlWVcPtczYJhIY-3mfUJajoTtyVqhHao~C2CuBRCqBmIBY-uJ8E5jHozHoxK91FZM-braW6WLg1dIKyEswdgBbbecza-oBekDCh-ng__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+    src: "/Image/image 218.png",
   },
   {
     type: "High Approval Rate",
-    src: "https://s3-alpha-sig.figma.com/img/7cdf/39dd/36226ae6544374ca0dd67eab301482c9?Expires=1696809600&Signature=omnrgtbMYZes6vz8T1a04L93iOABwqSOTkKQZJUO-6EuOwQmEoeY1Ii8PCSGvIVEXgrEsrHp9DBYB4UhuLCUGvbgKuHv5V-bqavNjob9103QoS-H-5osxR26wIJw5JgF3cK4F0ckCbexR6rfwudBwJFYLx4nAS5uC4X7nlSf6V-rFQLy0TrZuNQCFFD4S2MYZdSMZiWIGyyu~MirdnGCQTBObnDeFCDD8vMo-V3HcYr7hY2e7Mn2fTQNr8mP-oOsrEDrYLpkZgIG8~tnoGmXNoCHoGKZ43KuQ0KaYiostQT9mTk0zfA-a-XD2fFbQ0TSQoJpKnSLqzK3NHBe3MEotg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
+    src: "/Image/image 220.png",
   },
 ];
 
 const financialSituation = [
-  { icon: <TiTick />, value: "OKAY" },
+  { icon: '/Image/555.png', value: "OKAY" },
   {
-    icon: <BiSolidLike />,
+    icon: '/Image/Mask group (1).png',
     value: "GOOD",
   },
-  { icon: <PiStarFill />, value: "GREAT" },
+  { icon: '/Image/Mask group (2).png', value: "GREAT" },
 ];
 
 const testimonials = [

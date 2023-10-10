@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import {  MAP_IMG, STAR } from "../constants/constant";
+import { MAP_IMG, STAR } from "../constants/constant";
 import { getContactDetails, postQuery } from "../Repository/Api";
 import { BsTelephoneFill } from "react-icons/bs";
 import { HiMail } from "react-icons/hi";
@@ -11,7 +11,12 @@ const Contact = () => {
   const [response, setResponse] = useState({});
   const [query, setQuery] = useState("");
 
-  const payload = { name: "Name", email :"Email@gmail.com" , mobile :"9354241447" , query };
+  const payload = {
+    name: "Name",
+    email: "Email@gmail.com",
+    mobile: "9354241447",
+    query,
+  };
 
   const starArray = Array.from({ length: 5 });
 
@@ -23,10 +28,12 @@ const Contact = () => {
     e.preventDefault();
     postQuery(payload);
   };
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+
   return (
     <section className="contact-us">
       <h1 className="text-5xl text-center font-light text-primary my-10 title ">
@@ -81,10 +88,12 @@ const Contact = () => {
                   <span>{response?.address} </span>
                 </div>
               </div>
-              <button className="flex items-center gap-3 font-semibold text-green justify-center border-2 py-2  border-green">
-                <img className="w-5 h-5" src={MAP_IMG} alt="location" />
-                LOCATE ON GOOGLE MAPS
-              </button>
+              <a href={response?.mapLink} target="_blank">
+                <button className="flex items-center gap-3 font-semibold text-green justify-center border-2 py-2  border-green">
+                  <img className="w-5 h-5" src={MAP_IMG} alt="location" />
+                  LOCATE ON GOOGLE MAPS
+                </button>
+              </a>
             </div>
           </div>
         </section>

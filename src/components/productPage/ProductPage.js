@@ -22,6 +22,7 @@ const ProductPage = () => {
   const [skinCondition, setSkinCondition] = useState([]);
   const [nutrition, setNutrition] = useState([]);
   const { type, id, name } = useParams();
+  const [img, setImg] = useState("");
 
   useEffect(() => {
     getSkinType(setSkinType);
@@ -37,8 +38,6 @@ const ProductPage = () => {
     getAllProducts(setProducts, search, url);
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     productHandler();
     window.scrollTo(0, 0);
@@ -46,10 +45,18 @@ const ProductPage = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (products) {
+      setImg(products?.[0]?.brandId?.image);
+    } else {
+      setImg("/Image/39.jpg");
+    }
+  }, [products]);
+
   return (
     <section>
       <div className="relative_product_container">
-        <img className="full_Image" src="/Image/39.jpg" alt="" />
+        <img className="full_Image" src={img} alt="" />
         <div className="content">
           <h1 className="text-6xl text-white text-center  z-50 font-light">
             {name}

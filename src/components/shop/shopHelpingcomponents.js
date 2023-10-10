@@ -21,6 +21,7 @@ export const SkinType = () => {
   useEffect(() => {
     fetchHandler();
   }, []);
+
   return (
     response && (
       <div className="grid grid-flow-col col-span-4  justify-center gap-10">

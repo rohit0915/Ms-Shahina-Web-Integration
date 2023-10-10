@@ -1,22 +1,30 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getHomePage } from "../../Repository/Api";
 import { isAuthenticated } from "../../store/authSlice";
 
 const HeroSection = () => {
   const isLoggedIn = useSelector(isAuthenticated);
+
+  const [banner, setBanner] = useState([]);
+
+  useEffect(() => {
+    getHomePage(setBanner);
+  }, []);
+
+
   return (
     <div className="Home_Hero_Section ">
       <div className="left-container ">
-        <h1>Shahina Hoja Aesthetics</h1>
+        <h1> {banner?.title} </h1>
+
         <ul>
-          <li>High Acne Clearing Success Rate</li>
-          <li>Trained by Top Doctors in NYC</li>
-          <li>Top & Latest Technology</li>
-          <li>One Time Melasma Treatment</li>
-          <li>High Quality Medical Grade Products</li>
+          {banner?.description?.map((i, index) => (
+            <li key={index}> {i} </li>
+          ))}
         </ul>
 
         {isLoggedIn ? (
@@ -32,7 +40,7 @@ const HeroSection = () => {
       <div className="absolute right-0 bottom-0 w-[40rem] h-[47rem] ">
         <img
           className="w-full h-ful Hero_Imgl"
-          src="/asessts/hero-img.png"
+          src={banner?.bannerImage}
           alt="hero img"
         />
       </div>

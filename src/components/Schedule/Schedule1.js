@@ -121,6 +121,43 @@ const Schedule1 = () => {
             ))}
           </ul>
 
+          <p className="title">Selected Services</p>
+          <div className="Box">
+            {cart?.services?.map((i, index) => (
+              <div className="Item" key={index}>
+                <div></div>
+                <div className="description-box">
+                  <p className="title"> {i?.serviceId?.name} </p>
+                  <p className="desc" style={{ textAlign: "justify" }}>
+                    {i?.serviceId?.description}
+                  </p>
+                </div>
+                <div className="price-Box">
+                  <p className="title">
+                    {" "}
+                    $
+                    {i?.serviceId?.discountActive === true
+                      ? i?.serviceId?.discountPrice
+                      : i?.serviceId?.price}{" "}
+                  </p>
+                </div>
+              </div>
+            ))}
+            {cart?.AddOnservicesSchema?.map((i, index) => (
+              <div className="Item" key={index}>
+                <div></div>
+                <div className="description-box">
+                  <p className="title"> {i?.addOnservicesId?.name} </p>
+                  <p className="desc" style={{ textAlign: "justify" }}>
+                    {i?.addOnservicesId?.description}
+                  </p>
+                </div>
+                <div className="price-Box">
+                  <p className="title"> ${i.addOnservicesId?.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
           <p className="title">Featured Services</p>
 
           <div className="Box">
@@ -196,7 +233,7 @@ const Schedule1 = () => {
             </div>
 
             <a href={contact?.mapLink} target="_blank">
-            <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
+              <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
             </a>
 
             {/* Service */}

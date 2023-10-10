@@ -42,12 +42,22 @@ const PaymentPlan = () => {
         ))}
       </div>
       <div className="flex justify-center my-14 gap-5 text-xl font-semibold ">
-        <button className="w-[31rem] py-2 bg-primary text-secondary border-2 border-primary ">
-          APPLY NOW
-        </button>
-        <button className="w-[31rem] py-2 text-primary border-2 border-primary ">
-          BOOK NOW
-        </button>
+        <a
+          href="https://pay.withcherry.com/shahinahoja?utm_source=cherrylinks"
+          target="_blank"
+        >
+          <button className="w-[31rem] py-2 bg-primary text-secondary border-2 border-primary ">
+            APPLY NOW
+          </button>
+        </a>
+        <a
+          href="https://pay.withcherry.com/shahinahoja?utm_source=cherrylinks"
+          target="_blank"
+        >
+          <button className="w-[31rem] py-2 text-primary border-2 border-primary ">
+            BOOK NOW
+          </button>
+        </a>
       </div>
       <div>
         <h2 className="text-4xl font-medium text-center text-primary mt-32 mb-5">
@@ -79,18 +89,24 @@ const PaymentPlan = () => {
             </span>
             <div className="flex justify-center gap-12 my-8">
               {financialSituation.map((item, index) => (
-                <Card
+                <div
                   key={index}
-                  icon={item.icon}
-                  value={item.value}
-                  setSelected={setSelected}
-                  selected={selected}
-                />
+                  className={`${
+                    item.value === "GOOD"
+                      ? "bg-primary "
+                      : "bg-lightSecondary  border border-secondary"
+                  } w-56 h-72 flex flex-col justify-center items-center text-secondary cursor-pointer `}
+                >
+                  <span className="text-9xl">
+                    <img src={item.icon} alt="" />
+                  </span>
+                  <span className="text-2xl font-semibold">{item.value}</span>
+                </div>
               ))}
             </div>
           </div>
           <p className="text-center w-full mt-14 mx-auto">
-            <span className="text-lg font-bold">GOOD</span>
+            <span className="text-lg font-bold">GOOD </span>
             means a patient may have high credit and no adverse financial
             history, such as recent missed payments.
           </p>
@@ -107,9 +123,15 @@ const PaymentPlan = () => {
           of purchase.
         </p>
         <div className="w-1/3 mx-auto my-14">
-          <button className="text-2xl w-full font-semibold text-center flex justify-center py-6 text-secondary bg-primary">
-            CALCULATE NOW
-          </button>
+          <a
+            href="https://pay.withcherry.com/shahinahoja?utm_source=cherrylinks"
+            target="_blank"
+          >
+            {" "}
+            <button className="text-2xl w-full font-semibold text-center flex justify-center py-6 text-secondary bg-primary">
+              CALCULATE NOW
+            </button>
+          </a>
         </div>
         <Testimonials />
         <Faq />
@@ -121,19 +143,3 @@ const PaymentPlan = () => {
 };
 
 export default PaymentPlan;
-
-const Card = ({ icon, value, setSelected, selected }) => {
-  return (
-    <div
-      onClick={() => setSelected(value)}
-      className={`${
-        selected === value
-          ? "bg-primary "
-          : "bg-lightSecondary  border border-secondary"
-      } w-56 h-72 flex flex-col justify-center items-center text-secondary cursor-pointer `}
-    >
-      <span className="text-9xl"> {icon}</span>
-      <span className="text-2xl font-semibold">{value}</span>
-    </div>
-  );
-};

@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className="prof-container">
               <img src="/asessts/navbar/profile.png" alt="" />
               <Link className="text-secondary font-medium" to={"/login"}  style={{ cursor: "pointer" }}>
-                <span>LOGIN</span>
+                <span style={{fontSize : '20px'}} >LOGIN</span>
               </Link>
             </div>
           )}

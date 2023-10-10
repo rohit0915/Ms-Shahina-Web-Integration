@@ -36,7 +36,7 @@ const ForgetPassword = () => {
           <div className="otp">
             <div>
               <p>Email Address</p>
-              <input type="text" onChange={(e) => setEmail(e.target.value)} />
+              <input type="text" onChange={(e) => setEmail(e.target.value)} required />
             </div>
 
             <button
@@ -53,6 +53,7 @@ const ForgetPassword = () => {
             <input
               type="tel"
               pattern="[0-9]{4}"
+              required
               onChange={(e) => setOtp(e.target.value)}
             />
           </div>
