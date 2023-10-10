@@ -1250,7 +1250,7 @@ const verifySubscription = async (id) => {
     const response = await axios.post(
       `${Baseurl}api/v1/verifySubscription/${id}`,
       {
-        Status: "Paid",
+        Status: "Paid"
       },
       {
         headers: {
@@ -1261,11 +1261,14 @@ const verifySubscription = async (id) => {
   } catch {}
 };
 
-const cancelSubscription = async () => {
+
+const cancelSubscription = async (id) => {
   try {
     const response = await axios.post(
       `${Baseurl}api/v1/cancelMemberShips`,
-      {},
+      {
+        Status: "Paid"
+      },
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
@@ -1335,6 +1338,5 @@ export {
   updateProfile,
   removeAddress,
   takeVerification,
-  verifySubscription,
-  cancelSubscription,
+  verifySubscription
 };

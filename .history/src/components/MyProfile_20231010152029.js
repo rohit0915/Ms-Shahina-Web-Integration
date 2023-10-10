@@ -2,12 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  cancelSubscription,
-  getAddress,
-  getProfile,
-  removeAddress,
-} from "../Repository/Api";
+import { getAddress, getProfile, removeAddress } from "../Repository/Api";
 import AddressModal from "./Drawer/AddressModal";
 import ProfileModal from "./Drawer/ProfileModal";
 
@@ -19,7 +14,6 @@ const MyProfile = () => {
   const [addressType, setAddressType] = useState("");
   const [openProfile, setOpenProfile] = useState(false);
   const [img, setImg] = useState("");
-  const [bg, setBg] = useState("");
 
   const removeHandler = async (id) => {
     await removeAddress(id);
@@ -56,25 +50,13 @@ const MyProfile = () => {
   const billing = address?.filter((i) => i?.addressType === "Billing");
 
   useEffect(() => {
-    if (profile?.subscriptionId?.plan === "SILVER") {
+    if (profile?.subscriptionId === "silver") {
       setImg("/Image/72.png");
-      setBg("silver");
-    } else if (profile?.subscriptionId?.plan === "GOLD") {
-      setImg("/Image/73.png");
-      setBg("gold");
-    } else if (profile?.subscriptionId?.plan === "PLATINUM") {
-      setImg("/Image/74.png");
-      setBg("platinum");
-    } else if (profile?.subscriptionId?.plan === "DIAMOND") {
-      setImg("/Image/75.png");
-      setBg("diamond");
     }
-  }, [profile?.subscriptionId]);
-
-  const cancelHandler = async () => {
-    await cancelSubscription();
-    fechProfile();
-  };
+     else if (profile?.subscriptionId === "gold") {
+      setImg("/Image/73.png");
+    }
+  }, []);
 
   return (
     <>
@@ -215,51 +197,49 @@ const MyProfile = () => {
             <p>My Membership</p>
           </div>
 
-          {profile?.isSubscription === true && (
-            <div className="subscription">
-              <div className="container">
-                <div className={`left ${bg}`}>
-                  <img src={img} alt="" />
-                  <div className="two-sec">
-                    <p className="price">${profile?.subscriptionId?.price}</p>
-                    <p className="name"> {profile?.subscriptionId?.plan} </p>
-                  </div>
+          <div className="subscription">
+            <div className="container">
+              <div className="left">
+                <img src="/Image/73.png" alt="" />
+                <div className="two-sec">
+                  <p className="price">${profile?.subscriptionId?.price}</p>
+                  <p className="name"> {profile?.subscriptionId?.plan} </p>
+                </div>
 
-                  <p className="commintment">
-                    {" "}
-                    {profile?.subscriptionId?.month} MONTH COMMITMENT REQUIRED
-                  </p>
-                </div>
-                <div className="right">
-                  <div className="two-sec">
-                    <p className="strong">Purchased On : </p>
-                    <p> {profile?.subscriptionId?.createdAt?.slice(0, 10)} </p>
-                  </div>
-                  <div className="two-sec">
-                    <p className="strong">Validity : </p>
-                    <p> {profile?.subscriptionId?.month} MONTHS</p>
-                  </div>
-                  <div className="two-sec">
-                    <p className="strong">Details : </p>
-                  </div>
-                  <div className="two-sec">
-                    <ul>
-                      {profile?.subscriptionId?.details?.map((i, index) => (
-                        <li ley={index}> {i} </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <p className="commintment">
+                  {" "}
+                  {profile?.subscriptionId?.month} MONTH COMMITMENT REQUIRED
+                </p>
               </div>
-
-              <div className="two-btn">
-                <Link to="/membership">
-                  <button className="first">UPGRADE PLAN</button>
-                </Link>
-                <button onClick={() => cancelHandler()}>CANCEL PLAN</button>
+              <div className="right">
+                <div className="two-sec">
+                  <p className="strong">Purchased On : </p>
+                  <p> {profile?.subscriptionId?.createdAt?.slice(0, 10)} </p>
+                </div>
+                <div className="two-sec">
+                  <p className="strong">Validity : </p>
+                  <p> {profile?.subscriptionId?.month} MONTHS</p>
+                </div>
+                <div className="two-sec">
+                  <p className="strong">Details : </p>
+                </div>
+                <div className="two-sec">
+                  <ul>
+                    {profile?.subscriptionId?.details?.map((i, index) => (
+                      <li ley={index}> {i} </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-          )}
+
+            <div className="two-btn">
+              <Link to="/membership">
+                <button className="first">UPGRADE PLAN</button>
+              </Link>
+              <button>CANCEL PLAN</button>
+            </div>
+          </div>
         </div>
       </div>
     </>

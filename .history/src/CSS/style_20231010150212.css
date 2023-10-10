@@ -2254,7 +2254,12 @@
 .profile_div .subscription .left {
   width: 25%;
   border-radius: 10px;
-
+  border: 1px solid #e5d896;
+  background: linear-gradient(
+    113deg,
+    rgba(184, 134, 11, 0.9) -3.09%,
+    rgba(236, 189, 0, 0.9) 100%
+  );
   padding: 40px;
 }
 .profile_div .subscription .right{
@@ -2326,30 +2331,19 @@
 
 .profile_div .subscription .two-btn{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
   margin-top: 20px;
 }
-.profile_div .subscription .two-btn a{
-  max-width: 497px;
-  width: 100%;
-}
 .profile_div .subscription .two-btn button{
-  max-width: 497px;
-  width: 100%;
+  width: 50%;
   padding: 10px;
-  color: #042B26;
-  text-align: center;
-  font-family: Roboto;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 143.687%; /* 40.232px */
-  border: 2px solid #042B26;
-  border-radius: 5px;
-}
-.profile_div .subscription .two-btn button.first{
-  background-color: #042B26;
   color: #E5D896;
+text-align: center;
+font-family: Roboto;
+font-size: 28px;
+font-style: normal;
+font-weight: 700;
+line-height: 143.687%; /* 40.232px */
 }
