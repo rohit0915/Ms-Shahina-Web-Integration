@@ -1250,7 +1250,7 @@ const verifySubscription = async (id) => {
     const response = await axios.post(
       `${Baseurl}api/v1/verifySubscription/${id}`,
       {
-        Status: "Paid"
+        "Status": "Paid"
       },
       {
         headers: {
