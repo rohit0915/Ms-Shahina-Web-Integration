@@ -493,7 +493,7 @@ const MyCart = () => {
                       <p className="flex justify-between items-center">
                          Membership Discount{" "}
                         <span className="text-green font-semibold">
-                          ${cart?.membershipDiscount}{" "}
+                          ${cart?.memberShip}{" "}
                         </span>
                       </p>
                     )}

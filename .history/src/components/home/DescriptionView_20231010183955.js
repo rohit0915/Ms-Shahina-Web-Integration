@@ -23,7 +23,7 @@ const DescriptionView = ({
         <div className="w-1/2 h-[44rem] flex-shrink-0 img-container">
           <img className="h-full w-full object-cover" src={src} alt="" />
         </div>
-
+      )}
 
       <div className="flex flex-col items-center justify-between  w-full">
         <h1 className=" bg-secondary w-full text-center  py-4 text-4xl font-medium text-primary title">

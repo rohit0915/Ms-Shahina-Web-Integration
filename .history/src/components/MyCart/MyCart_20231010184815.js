@@ -491,9 +491,9 @@ const MyCart = () => {
                     )}
                     {cart?.membershipDiscount > 0 && (
                       <p className="flex justify-between items-center">
-                         Membership Discount{" "}
+                        Gold Membership {cart?.memberShipPer}% Discount{" "}
                         <span className="text-green font-semibold">
-                          ${cart?.membershipDiscount}{" "}
+                          ${cart?.memberShip}{" "}
                         </span>
                       </p>
                     )}

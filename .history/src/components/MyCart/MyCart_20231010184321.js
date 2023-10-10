@@ -489,11 +489,11 @@ const MyCart = () => {
                         </span>
                       </p>
                     )}
-                    {cart?.membershipDiscount > 0 && (
+                    {cart?.memberShipPer && (
                       <p className="flex justify-between items-center">
-                         Membership Discount{" "}
+                        Gold Membership {cart?.memberShipPer}% Discount{" "}
                         <span className="text-green font-semibold">
-                          ${cart?.membershipDiscount}{" "}
+                          ${cart?.memberShip}{" "}
                         </span>
                       </p>
                     )}
@@ -585,52 +585,14 @@ const MyCart = () => {
                   )}
 
                   {cart?.services?.length > 0 ||
-                  cart?.AddOnservicesSchema?.length > 0 ? (
-                    <>
-                      <h4 className="text-xl my-2 font-bold">
-                        Service Location
-                      </h4>
+              cart?.AddOnservicesSchema?.length > 0 ? (
+                <p className="Title">All Services : </p>
+              ) : (
+                ""
+              )}
 
-                      <div className="Box">
-                        <div className="two-sec">
-                          <img src={contact?.image} alt="" />
-                          <div>
-                            <p className="title"> {contact?.name} </p>
 
-                            <div className="contact-info">
-                              <BsFillTelephoneFill />
-                              <p> {contact?.phone} </p>
-                            </div>
-                            <div className="contact-info">
-                              <GrMail />
-                              <p> {contact?.email} </p>
-                            </div>
-                            <div className="contact-info">
-                              <AiFillInstagram />
-                              <p> {contact?.instagram} </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="two-sec mt-3">
-                          <BiCurrentLocation style={{ fontSize: "20px" }} />
-                          <div>
-                            <p className="title" style={{ fontSize: "16px" }}>
-                              {contact?.address}
-                            </p>
-                          </div>
-                        </div>
-
-                        <a href={contact?.mapLink} target="_blank">
-                          <button className="locate_btn">
-                            LOCATE ON GOOGLE MAPS
-                          </button>
-                        </a>
-                      </div>
-                    </>
-                  ) : (
-                    ""
-                  )}
+                 
 
                   <div className="font-semibold text-2xl flex justify-between border-black border-t-2 py-8 border-b-2 my-8">
                     <span className="">Total Amount</span>

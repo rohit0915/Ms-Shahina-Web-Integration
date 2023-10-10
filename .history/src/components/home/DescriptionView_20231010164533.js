@@ -19,11 +19,19 @@ const DescriptionView = ({
 
   return (
     <div className={`flex ${reverse} flex-shrink-0 Home_Two_Sec `}>
-     
+      {title === "Our Partners" ? (
+        <div className="w-1/2 h-[44rem] flex-shrink-0 grid grid-cols-2 gap-3 justify-items-center items-center py-28 px-16 bg-lightSecondary img-container">
+          {partners.map((src, index) => (
+            <div key={`partner ${index}`}>
+              <img className="w-2/3" src={src} alt="partner" />
+            </div>
+          ))}
+        </div>
+      ) : (
         <div className="w-1/2 h-[44rem] flex-shrink-0 img-container">
           <img className="h-full w-full object-cover" src={src} alt="" />
         </div>
-
+      )}
 
       <div className="flex flex-col items-center justify-between  w-full">
         <h1 className=" bg-secondary w-full text-center  py-4 text-4xl font-medium text-primary title">
