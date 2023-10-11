@@ -16,7 +16,7 @@ const OfferBanner = ({ setBanner }) => {
 
   return (
     response?.[0] && <div className="relative w-full Offer_Banner">
-    <div className="w-4/6 h-[23rem] image_container">
+    <div className="w-4/6 h-[23rem] ">
       <img
         className="w-full h-full object-cover"
         src={response?.[0]?.bannerImage}
@@ -29,9 +29,9 @@ const OfferBanner = ({ setBanner }) => {
       </h1>
     </div>
 
-    <div className="absolute  top-0 right-0 flex flex-col gap-10  justify-center items-center bg-white w-[51rem] h-full rounded-l-full z-[300] Hover_Element">
+    <div className="absolute  top-0 right-0 flex flex-col gap-10  justify-center items-center bg-white w-[51rem] h-full rounded-l-full z-[300]">
       <h1 className="font-medium text-4xl"> {response?.[0]?.title} </h1>
-      <div className="flex items-center store">
+      <div className="flex items-center">
         <div className="w-60 h-30 ">
           <a
             href={response?.[0]?.playstoreLink}

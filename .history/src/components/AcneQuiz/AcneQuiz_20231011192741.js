@@ -36,7 +36,7 @@ const AcneQuiz = () => {
           </button>
         )}
       </div>
-      <div className="w-12 h-8  absolute top-3 right-11 ">
+      <div className="w-12 h-8  absolute top-3 right-11">
         <img
           onClick={() => dispatch(openQuiz())}
           className="w-full h-full object-cover cursor-pointer"

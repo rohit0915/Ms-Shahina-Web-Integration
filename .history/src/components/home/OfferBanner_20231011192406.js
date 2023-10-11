@@ -29,9 +29,9 @@ const OfferBanner = ({ setBanner }) => {
       </h1>
     </div>
 
-    <div className="absolute  top-0 right-0 flex flex-col gap-10  justify-center items-center bg-white w-[51rem] h-full rounded-l-full z-[300] Hover_Element">
+    <div className="absolute  top-0 right-0 flex flex-col gap-10  justify-center items-center bg-white w-[51rem] h-full rounded-l-full z-[300]Hover_Element">
       <h1 className="font-medium text-4xl"> {response?.[0]?.title} </h1>
-      <div className="flex items-center store">
+      <div className="flex items-center">
         <div className="w-60 h-30 ">
           <a
             href={response?.[0]?.playstoreLink}

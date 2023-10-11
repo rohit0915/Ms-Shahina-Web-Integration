@@ -630,35 +630,5 @@
   .profile_div .subscription .two-btn button{
     margin-top: 20px;
   }
-  .Offer_Banner .Hover_Element{
-    width: 100% !important;
-    
-  }
-    .Offer_Banner .Hover_Element h1{
-      font-size: 20px;
-    }
-    .Offer_Banner .Hover_Element .store{
-      display: block;
-    }
-
-    .Quiz_Input_Handler{
-      width: 100%;
-      left: 0;
-    }
-    .Quiz_Input_Handler h1{
-      font-size: 25px;
-    }
-    .Quiz_Input_Handler .Input_Cont{
-      width: 100%;
-      padding: 20px;
-    }
-    .Quiz_Input_Handler .Input_Cont input{
-      width: 100%;
-    }
-    .Quiz_Input_Handler .Input_Cont a{
-      width: 100%;
-    }
-    .Quiz_Input_Handler .Input_Cont button{
-      width: 100%;
-    }
+  .Offer
 }

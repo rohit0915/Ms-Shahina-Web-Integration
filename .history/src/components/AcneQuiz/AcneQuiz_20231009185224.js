@@ -9,11 +9,11 @@ const AcneQuiz = () => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   return (
-    <div className="fixed flex flex-col items-center justify-center top-0 w-screen h-screen bg-white z-[1000] Quiz_Input_Handler ">
+    <div className="fixed flex flex-col items-center justify-center top-0 w-screen h-screen bg-white z-[1000]">
       <h1 className="text-[4rem] font-light text-primary">
         Enter your Email to Start!
       </h1>
-      <div className="flex flex-col gap-32 items-center justify-center mt-44 Input_Cont">
+      <div className="flex flex-col gap-32 items-center justify-center mt-44">
         <input
           className="w-[50rem] py-5 px-14 border border-black "
           type="text"
@@ -36,7 +36,7 @@ const AcneQuiz = () => {
           </button>
         )}
       </div>
-      <div className="w-12 h-8  absolute top-3 right-11 ">
+      <div className="w-12 h-8  absolute top-3 right-11">
         <img
           onClick={() => dispatch(openQuiz())}
           className="w-full h-full object-cover cursor-pointer"
