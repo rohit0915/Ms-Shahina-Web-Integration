@@ -100,24 +100,31 @@ const Sidebar = ({ open, onClose }) => {
     >
       <div className="Sidebar_Menu">
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <AiOutlineClose className="closeIcon" />
+          <AiOutlineClose className="closeIcon" onClick={() => onClose()} />
         </div>
 
-        <div className="profile_View">
-          <img src={profile?.image} alt="" />
+        {isLoggedIn === true && (
+          <>
+            <div className="profile_View">
+              <img src={profile?.image} alt="" />
 
-          <div className="content">
-            <p className="title"> {profile?.firstName + profile?.lastName} </p>
+              <div className="content">
+                <p className="title">
+                  {" "}
+                  {profile?.firstName + profile?.lastName}{" "}
+                </p>
 
-            <p className="email"> {profile?.email} </p>
+                <p className="email"> {profile?.email} </p>
 
-            <Link to="/my-profile" onClick={() => onClose()}>
-              VIEW PROFILE{" "}
-            </Link>
-          </div>
-        </div>
+                <Link to="/my-profile" onClick={() => onClose()}>
+                  VIEW PROFILE{" "}
+                </Link>
+              </div>
+            </div>
 
-        <div className="empty"></div>
+            <div className="empty"></div>
+          </>
+        )}
 
         <ul>
           {menu?.map((i, index) => (
