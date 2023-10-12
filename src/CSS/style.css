@@ -1594,19 +1594,6 @@
 }
 
 @media (max-width: 768px) {
-  .top-header-container .Top_Header {
-    display: block;
-  }
-  .top-header-container .Top_Header .button-container {
-    font-size: 14px;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  .top-header-container .Top_Header .button-container img {
-    width: 20px;
-    height: 20px;
-  }
 }
 .Nav_Bar {
   background-color: #042b26;
@@ -2607,18 +2594,116 @@
   margin-bottom: 5rem;
   justify-content: center;
 }
-.Recommended_Product .tow_links{
+.Recommended_Product .tow_links {
   width: 100%;
 }
-.Recommended_Product .tow_links a{
+.Recommended_Product .tow_links a {
   display: block;
   width: 100%;
   text-align: center;
   margin-top: 20px;
-  color: #FFF;
-text-align: center;
-font-size: 26px;
-font-style: normal;
-font-weight: 700;
-line-height: 143.687%; /* 37.359px */
+  color: #fff;
+  text-align: center;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 143.687%; /* 37.359px */
+}
+
+/*  */
+.Mobile_Bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  display: none;
+}
+.Mobile_Bar .HamberGur {
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+.Mobile_Bar .Logo {
+  width: 100px;
+}
+.Mobile_Bar svg {
+  color: #e5d896;
+}
+
+.sidebar .ant-drawer-wrapper-body {
+  background: #042b26;
+}
+.sidebar .Sidebar_Menu {
+  padding: 20px;
+}
+.sidebar .Sidebar_Menu .profile_View {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.sidebar .Sidebar_Menu .profile_View img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+
+.sidebar .Sidebar_Menu .profile_View .content .title {
+  color: #e5d896;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.sidebar .Sidebar_Menu .profile_View .content .email {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.sidebar .Sidebar_Menu .profile_View .content a {
+  color: #e5d896;
+  text-align: center;
+  font-family: Mulish;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  margin-top: 10px;
+}
+
+.sidebar .Sidebar_Menu .empty {
+  background-color: #e5d896;
+  height: 1px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sidebar .Sidebar_Menu ul {
+  list-style: none;
+}
+.sidebar .Sidebar_Menu ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e5d896;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.sidebar .Sidebar_Menu ul li img {
+  width: 20px;
+}
+
+.sidebar .Sidebar_Menu .closeIcon {
+  font-size: 25px;
+  color: #e5d896;
+  margin-bottom: 20px;
 }

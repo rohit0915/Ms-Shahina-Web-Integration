@@ -7,6 +7,7 @@ import { isAuthenticated, LOGOUT } from "../../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import MenuOptions from "./MenuOptions";
 import { Store } from "react-notifications-component";
+import MobileBar from "../Sidebar/MobileBar";
 
 const Navbar = () => {
   const isLoggedIn = useSelector(isAuthenticated);
@@ -75,10 +76,12 @@ const Navbar = () => {
         </div>
       </header>
       <div
-        className="mx-auto mt-5"
+        className="mx-auto mt-5 bigEmptyLine "
         style={{ backgroundColor: "#E5D896", height: "2px", width: "85%" }}
       ></div>
       <MenuOptions />
+
+      <MobileBar />
     </div>
   );
 };
