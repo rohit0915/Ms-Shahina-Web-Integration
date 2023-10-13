@@ -29,7 +29,7 @@ const SubsModal = ({ open, setOpen, fetchHandler }) => {
         <p>
           Please Provide the Reason for Cancelling your Current Membership Plan
         </p>
-        <img src="/Image/14.png" onClick={() => setOpen(false)} alt="" />
+        <img src="/Image/14.png" onClick={() => set} alt="" />
       </div>
 
       <form onSubmit={cancelHandler}>
