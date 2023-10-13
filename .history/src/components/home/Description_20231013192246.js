@@ -2,12 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import DescriptionView from "./DescriptionView";
-import { getLimitedOffer ,getAboutUs } from "../../Repository/Api";
+import { getLimitedOffer } from "../../Repository/Api";
 
 const Description = () => {
   const [response, setResponse] = useState([]);
   const [ partners , setPartner ] = useState([])
-  const [ aboutus , setabvoutUs] = useState({})
 
   function fetchHandler() {
     getLimitedOffer(setResponse, "product");
@@ -17,8 +16,10 @@ const Description = () => {
   useEffect(() => {
     fetchHandler();
     getLimitedOffer(setPartner, "Partner");
-    getAboutUs(setabvoutUs);
   }, []);
+
+
+  console.log(partners)
 
 
   return (
@@ -34,12 +35,12 @@ const Description = () => {
         />
       )}
 
-      {aboutus && (
+      {partners?.[1] && (
         <DescriptionView
-          src={aboutus?.image}
-          title={aboutus?.title}
-          content={aboutus?.designation}
-          desc={aboutus?.description?.[0]}
+          src={partners?.[1]?.bannerImage}
+          title={partners?.[1]?.bannerName}
+          content={partners?.[1]?.title}
+          desc={partners?.[1]?.desc}
           btnName={"VIEW MORE"}
           styles={"mb-6 text-left"}
           reverse={"flex-row-reverse"}
@@ -47,11 +48,12 @@ const Description = () => {
         />
       )}
 
-      {partners?.[0] && (
+      {response?.[2] && (
         <DescriptionView
-          src={partners?.[0]?.partnerImage?.[0]}
-          title={partners?.[0]?.title}
-          desc1={partners?.[0]?.desc}
+          src={response?.[2]?.bannerImage}
+          title={response?.[2]?.bannerName}
+          desc={response?.[2]?.title}
+          desc1={response?.[2]?.desc}
         />
       )}
     </section>

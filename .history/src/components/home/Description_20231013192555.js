@@ -7,7 +7,7 @@ import { getLimitedOffer ,getAboutUs } from "../../Repository/Api";
 const Description = () => {
   const [response, setResponse] = useState([]);
   const [ partners , setPartner ] = useState([])
-  const [ aboutus , setabvoutUs] = useState({})
+  const [ aboutus , setabvoutUs]
 
   function fetchHandler() {
     getLimitedOffer(setResponse, "product");
@@ -17,8 +17,10 @@ const Description = () => {
   useEffect(() => {
     fetchHandler();
     getLimitedOffer(setPartner, "Partner");
-    getAboutUs(setabvoutUs);
+    getAboutUs(setResponse);
   }, []);
+
+
 
 
   return (
@@ -34,12 +36,12 @@ const Description = () => {
         />
       )}
 
-      {aboutus && (
+      {partners?.[1] && (
         <DescriptionView
-          src={aboutus?.image}
-          title={aboutus?.title}
-          content={aboutus?.designation}
-          desc={aboutus?.description?.[0]}
+          src={partners?.[1]?.bannerImage}
+          title={partners?.[1]?.bannerName}
+          content={partners?.[1]?.title}
+          desc={partners?.[1]?.desc}
           btnName={"VIEW MORE"}
           styles={"mb-6 text-left"}
           reverse={"flex-row-reverse"}

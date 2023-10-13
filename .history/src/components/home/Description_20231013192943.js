@@ -20,6 +20,8 @@ const Description = () => {
     getAboutUs(setabvoutUs);
   }, []);
 
+console.log(aboutus)
+
 
   return (
     <section className="MaxComponent">
@@ -39,7 +41,7 @@ const Description = () => {
           src={aboutus?.image}
           title={aboutus?.title}
           content={aboutus?.designation}
-          desc={aboutus?.description?.[0]}
+          desc={aboutus?.description}
           btnName={"VIEW MORE"}
           styles={"mb-6 text-left"}
           reverse={"flex-row-reverse"}

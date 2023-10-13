@@ -20,6 +20,8 @@ const Description = () => {
     getAboutUs(setabvoutUs);
   }, []);
 
+console.log(aboutus)
+
 
   return (
     <section className="MaxComponent">

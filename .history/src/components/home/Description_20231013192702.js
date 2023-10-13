@@ -20,6 +20,8 @@ const Description = () => {
     getAboutUs(setabvoutUs);
   }, []);
 
+console.log(aboutus)
+
 
   return (
     <section className="MaxComponent">
@@ -34,12 +36,12 @@ const Description = () => {
         />
       )}
 
-      {aboutus && (
+      {aboutus?.[0] && (
         <DescriptionView
-          src={aboutus?.image}
-          title={aboutus?.title}
-          content={aboutus?.designation}
-          desc={aboutus?.description?.[0]}
+          src={image?.[0]?.bannerImage}
+          title={image?.[0]?.bannerName}
+          content={image?.[1]?.title}
+          desc={partners?.[1]?.desc}
           btnName={"VIEW MORE"}
           styles={"mb-6 text-left"}
           reverse={"flex-row-reverse"}
