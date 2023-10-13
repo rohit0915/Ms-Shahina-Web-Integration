@@ -593,7 +593,7 @@ const MyCart = () => {
                             {cart?.deliveryAddresss?.address} ,
                           </>
                         ) : (
-                          <Link to="/my-profile" style={{color : "blue" , textDecoration : 'underline'}} >Add Delivery Address</Link>
+                          <Link to="/my-profile"  >Add Delivery Address</Link>
                         )}{" "}
                       </p>
                     </>
