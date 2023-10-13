@@ -399,7 +399,7 @@ const MyCart = () => {
                       <p className="mrp">
                         $
                         {i.serviceId?.discountActive === true
-                          ? i.serviceId?.price
+                          ? i.serviceId?.discountPrice price
                           : i.serviceId?.discountPrice}
                       </p>
                     </div>

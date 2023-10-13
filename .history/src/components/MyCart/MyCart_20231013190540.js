@@ -398,9 +398,9 @@ const MyCart = () => {
                       </p>
                       <p className="mrp">
                         $
-                        {i.serviceId?.discountActive === true
-                          ? i.serviceId?.price
-                          : i.serviceId?.discountPrice}
+                        {i.serviceId?.discountActive === false
+                          ? i.serviceId?.discountPrice
+                          : i.serviceId?.price}
                       </p>
                     </div>
                   </div>
@@ -487,12 +487,12 @@ const MyCart = () => {
                     cart?.services?.length > 0 ||
                     cart?.AddOnservicesSchema?.length > 0 ? (
                       <>
-                        <p className="flex justify-between items-center ">
+                        {/* <p className="flex justify-between items-center ">
                           Discount
                           <span className="font-semibold ">
                             ${cart?.discount}{" "}
                           </span>
-                        </p>
+                        </p> */}
                         {cart?.shipping > 1 && (
                           <p className="flex justify-between items-center ">
                             Shipping

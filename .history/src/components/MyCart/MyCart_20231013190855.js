@@ -399,8 +399,8 @@ const MyCart = () => {
                       <p className="mrp">
                         $
                         {i.serviceId?.discountActive === true
-                          ? i.serviceId?.price
-                          : i.serviceId?.discountPrice}
+                          ? i.serviceId?.discountPrice
+                          : i.serviceId?.price}
                       </p>
                     </div>
                   </div>
