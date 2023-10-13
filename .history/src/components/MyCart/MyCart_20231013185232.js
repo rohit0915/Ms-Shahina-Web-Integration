@@ -662,7 +662,7 @@ const MyCart = () => {
                     <span>${cart?.grandTotal} </span>
                   </div>
 
-                  {/* <p className="text-base font-semibold text-green">
+                  <p className="text-base font-semibold text-green">
                     {cart?.discount > 0 && (
                       <span>
                         you will save{" "}
@@ -670,7 +670,7 @@ const MyCart = () => {
                         order
                       </span>
                     )}
-                  </p> */}
+                  </p>
                   <div className="flex gap-2 items-center mt-14">
                     <img
                       className="w-6 h-6"

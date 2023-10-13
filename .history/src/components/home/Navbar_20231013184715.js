@@ -7,8 +7,10 @@ import { isAuthenticated, LOGOUT } from "../../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import MenuOptions from "./MenuOptions";
 import { Store } from "react-notifications-component";
+<<<<<<< HEAD
 import { CartItems } from "../../store/cartSlice";
 import { getCart } from "../../Repository/Api";
+=======
 import MobileBar from "../Sidebar/MobileBar";
 const Navbar = () => {
   const isLoggedIn = useSelector(isAuthenticated);

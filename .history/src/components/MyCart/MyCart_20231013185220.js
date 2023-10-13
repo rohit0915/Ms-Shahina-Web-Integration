@@ -487,12 +487,12 @@ const MyCart = () => {
                     cart?.services?.length > 0 ||
                     cart?.AddOnservicesSchema?.length > 0 ? (
                       <>
-                        {/* <p className="flex justify-between items-center ">
+                        <p className="flex justify-between items-center ">
                           Discount
                           <span className="font-semibold ">
                             ${cart?.discount}{" "}
                           </span>
-                        </p> */}
+                        </p>
                         {cart?.shipping > 1 && (
                           <p className="flex justify-between items-center ">
                             Shipping
@@ -502,14 +502,14 @@ const MyCart = () => {
                           </p>
                         )}
 
-                        {/* {cart?.membershipDiscount > 0 && (
+                        {cart?.membershipDiscount > 0 && (
                           <p className="flex justify-between items-center">
                             Membership Discount{" "}
                             <span className="text-green font-semibold">
                               ${cart?.membershipDiscount}{" "}
                             </span>
                           </p>
-                        )} */}
+                        )}
                       </>
                     ) : (
                       ""
@@ -662,7 +662,7 @@ const MyCart = () => {
                     <span>${cart?.grandTotal} </span>
                   </div>
 
-                  {/* <p className="text-base font-semibold text-green">
+                  <p className="text-base font-semibold text-green">
                     {cart?.discount > 0 && (
                       <span>
                         you will save{" "}
@@ -670,7 +670,7 @@ const MyCart = () => {
                         order
                       </span>
                     )}
-                  </p> */}
+                  </p>
                   <div className="flex gap-2 items-center mt-14">
                     <img
                       className="w-6 h-6"

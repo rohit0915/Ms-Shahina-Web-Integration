@@ -1,39 +1,15 @@
 /** @format */
 
 @media (max-width: 768px) {
-  .Nav_Bar header {
-    align-items: flex-end;
-    padding-left: 10px;
+  .Nav_Bar .Header {
+    display: none;
   }
-  .Nav_Bar .left {
-    width: 100px;
-  }
-  .Nav_Bar .right-container {
-    gap: 10px;
-  }
-  .Nav_Bar .right-container img {
-    width: 24px;
-  }
-  .Nav_Bar .right-container svg {
-    width: 24px;
-    height: 24px;
-  }
-
   .Nav_Menu_Container {
-    padding: 10px;
-    border: none;
+    display: none;
   }
-  .Nav_Menu_Container ul {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .Nav_Menu_Container ul a {
-    width: 31%;
-    font-size: 14px;
-    text-align: center;
-  }
-
+.bigEmptyLine{
+  display: none;
+}
   /* ---------------- */
   .Home_Hero_Section .Hero_Imgl {
     display: none;
@@ -472,7 +448,7 @@
   .step_Heading .title {
     width: 100%;
   }
-  .service_details_page{
+  .service_details_page {
     padding: 20px;
   }
   .service_details_page .laser_heading {
@@ -480,15 +456,14 @@
     max-width: 100%;
     display: block;
   }
-  .service_details_page .laser_heading button{
+  .service_details_page .laser_heading button {
     display: block;
     margin: auto;
   }
   .forget-password .otp {
     display: block;
-
   }
-  .forget-password .otp div{
+  .forget-password .otp div {
     width: 100%;
     margin-bottom: 10px;
   }
@@ -496,26 +471,26 @@
     display: block;
     margin-left: auto;
   }
-  .Indivisual-Appointment .title{
+  .Indivisual-Appointment .title {
     display: block;
     text-align: left;
   }
 
-  .indivisual-product{
+  .indivisual-product {
     display: block;
   }
-  .indivisual-product .left{
+  .indivisual-product .left {
     width: 100%;
   }
-  .indivisual-product .right{
+  .indivisual-product .right {
     width: 100%;
     padding: 0;
   }
-  .indivisual-product .Quantity_Container{
+  .indivisual-product .Quantity_Container {
     width: 100% !important;
   }
 
-  .indivisual-product .right .buttons button{
+  .indivisual-product .right .buttons button {
     width: 100% !important;
   }
   .frequently-bought .container {
@@ -524,20 +499,20 @@
   .frequently-bought .container .left {
     width: 100%;
   }
-  .frequently-bought .container .left .Image{
+  .frequently-bought .container .left .Image {
     width: 100px;
   }
-  .frequently-bought .container .right{
+  .frequently-bought .container .right {
     width: 100%;
     margin-top: 20px;
   }
-  .multi-product .Item{
+  .multi-product .Item {
     width: 200px;
     display: block;
     margin: auto;
   }
   /* -------- */
-  .cart-container{
+  .cart-container {
     padding: 20px;
   }
   .cart-container .left-container {
@@ -547,7 +522,7 @@
     display: block;
     margin-top: 10px;
   }
-  .cart-container .left-container .img-container{
+  .cart-container .left-container .img-container {
     width: 100%;
   }
   .cart-container .left-container .content {
@@ -556,38 +531,37 @@
   .cart-container .left-container .price_div {
     width: 100%;
   }
-  .cart-container .right_container{
+  .cart-container .right_container {
     margin-top: 50px;
   }
   .cart-container .left-container .price_div p {
     text-align: left !important;
   }
-  .cart-container .frequently-bought .container{
+  .cart-container .frequently-bought .container {
     padding: 0;
   }
-  .cart-container .FrequentlyInCart{
+  .cart-container .FrequentlyInCart {
     padding: 0 !important;
   }
   .cart-container .FrequentlyInCart .container .right p {
     text-align: left;
   }
-  .cart-container .FrequentlyInCart .container .right  .Quantity {
+  .cart-container .FrequentlyInCart .container .right .Quantity {
     margin-left: 0;
   }
-  .cart-container .FrequentlyInCart .container .right  .Quantity .qty {
+  .cart-container .FrequentlyInCart .container .right .Quantity .qty {
     justify-content: flex-start;
   }
-  .cart-container .frequently-bought .container .delete{
+  .cart-container .frequently-bought .container .delete {
     justify-content: flex-start;
   }
-  .cart-container .delivery_container{
+  .cart-container .delivery_container {
     display: block;
   }
-  
-  .cart-container .delivery_container div{
+
+  .cart-container .delivery_container div {
     margin-top: 20px;
   }
-
 
   .profile_div .heading {
     display: block;
@@ -609,10 +583,10 @@
   .profile_div .two-sec {
     display: block;
   }
-  .profile_div .button_Cont{
+  .profile_div .button_Cont {
     display: block !important;
   }
-  .profile_div .subscription .container{
+  .profile_div .subscription .container {
     display: block;
   }
   .profile_div .subscription .left {
@@ -624,41 +598,48 @@
   .profile_div .subscription .right .two-sec {
     display: block;
   }
-  .profile_div .subscription .two-btn{
+  .profile_div .subscription .two-btn {
     display: block;
   }
-  .profile_div .subscription .two-btn button{
+  .profile_div .subscription .two-btn button {
     margin-top: 20px;
   }
-  .Offer_Banner .Hover_Element{
+  .Offer_Banner .Hover_Element {
     width: 100% !important;
-    
   }
-    .Offer_Banner .Hover_Element h1{
-      font-size: 20px;
-    }
-    .Offer_Banner .Hover_Element .store{
-      display: block;
-    }
+  .Offer_Banner .Hover_Element h1 {
+    font-size: 20px;
+  }
+  .Offer_Banner .Hover_Element .store {
+    display: block;
+  }
 
-    .Quiz_Input_Handler{
-      width: 100%;
-      left: 0;
-    }
-    .Quiz_Input_Handler h1{
-      font-size: 25px;
-    }
-    .Quiz_Input_Handler .Input_Cont{
-      width: 100%;
-      padding: 20px;
-    }
-    .Quiz_Input_Handler .Input_Cont input{
-      width: 100%;
-    }
-    .Quiz_Input_Handler .Input_Cont a{
-      width: 100%;
-    }
-    .Quiz_Input_Handler .Input_Cont button{
-      width: 100%;
-    }
+  .Quiz_Input_Handler {
+    width: 100%;
+    left: 0;
+  }
+  .Quiz_Input_Handler h1 {
+    font-size: 25px;
+  }
+  .Quiz_Input_Handler .Input_Cont {
+    width: 100%;
+    padding: 20px;
+  }
+  .Quiz_Input_Handler .Input_Cont input {
+    width: 100%;
+  }
+  .Quiz_Input_Handler .Input_Cont a {
+    width: 100%;
+  }
+  .Quiz_Input_Handler .Input_Cont button {
+    width: 100%;
+  }
+
+  /*  */
+  .Mobile_Bar {
+    display: flex;
+  }
+  .top-header-container {
+    display: none;
+  }
 }

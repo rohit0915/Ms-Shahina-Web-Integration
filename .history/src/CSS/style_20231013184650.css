@@ -2609,6 +2609,7 @@
   line-height: 143.687%; /* 37.359px */
 }
 
+<<<<<<< HEAD
 .cartCountDiv {
   position: relative;
 }
@@ -2704,7 +2705,8 @@
 .Sub_Modal form .two_btn button.first {
   background: #fc0005;
   color: #e5d896;
-}
+
+=======
 /*  */
 .Mobile_Bar {
   display: flex;
