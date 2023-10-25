@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { userLogin } from "../../Repository/Api";
 import { useDispatch } from "react-redux";
 import { FaEye } from "react-icons/fa6";
-import { PiEyeClosedBold } from 'react-icons/pi'
 
 const LogIn = () => {
   const [phone, setPhone] = useState("");
@@ -60,9 +59,9 @@ const LogIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {show ? (
-                <FaEye onClick={() => setShow(false)} />
+                <FaEye onClick={() => setShow(true)} />
               ) : (
-                <PiEyeClosedBold onClick={() => setShow(true)} />
+                <PiEyeClosedBold onClick={() => setShow(false)} />
               )}
             </div>
           </div>

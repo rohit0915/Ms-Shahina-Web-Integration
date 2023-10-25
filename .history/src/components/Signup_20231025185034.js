@@ -103,6 +103,8 @@ const Signup = () => {
 
           <div>
             <p> New Password</p>
+
+            <div className="forget-password">
               <div className="input-div">
                 <input
                   type={show ? "text" : "password"}
@@ -116,6 +118,7 @@ const Signup = () => {
                 ) : (
                   <PiEyeClosedBold onClick={() => setShow(true)} />
                 )}
+              </div>
             </div>
           </div>
 

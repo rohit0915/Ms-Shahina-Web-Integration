@@ -112,24 +112,6 @@
   font-style: normal;
   font-weight: 500;
 }
-.Indivisual-Appointment .input-div {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background-color: #fff;
-  padding-right: 10px;
-  padding: 10px;
-}
-.Indivisual-Appointment .input-div input {
-  padding: 0;
-  margin-top: 0;
-}
-.Indivisual-Appointment .input-div svg {
-  font-size: 30px;
-  color: #042b26;
-  cursor: pointer;
-}
-
 .Indivisual-Appointment form div input {
   width: 100%;
   padding: 10px;
@@ -290,14 +272,14 @@
 .schedule_1 .left_div .Box .Item .description-box {
   width: 70%;
 }
-.schedule_1 .left_div .Box .Item .description-box .view_more {
+.schedule_1 .left_div .Box .Item .description-box .view_more{
   font-weight: 600;
-  background-color: rgb(229 216 150);
+  background-color: rgb(229 216 150) ;
   color: rgb(4 43 38);
   padding: 10px;
   width: 120px;
   margin-top: 10px;
-}
+} 
 .schedule_1 .left_div .Box .Item .price-Box {
   width: 20%;
   text-align: right;
@@ -1006,17 +988,14 @@
   gap: 20px;
   background-color: #fff;
   padding-right: 10px;
-  padding: 10px;
+
 }
-.forget-password .input-div input {
-  padding: 0;
-  margin-top: 0;
-}
-.forget-password .input-div svg {
-  font-size: 30px;
+.forget-password .input-div svg{
+  font-size: 25px;
   color: #042b26;
   cursor: pointer;
 }
+
 
 /* -------------------------- */
 .giftCart {
@@ -2880,7 +2859,7 @@
   padding: 10px;
 }
 
-.Service_Slider {
+.Service_Slider{
   text-align: center;
   padding: 20px;
 }
@@ -2898,29 +2877,31 @@
   color: #042b26 !important;
   font-weight: 600;
 }
-.Slider_Container {
+.Slider_Container{
   overflow: hidden;
 }
 
-.Hide_Laptop {
+.Hide_Laptop{
   display: none;
 }
 
-.Text_Drawer .close_button {
+
+
+.Text_Drawer .close_button{
   display: flex;
   justify-content: flex-end;
 }
-.Text_Drawer .close_button svg {
+.Text_Drawer .close_button svg{
   font-size: 30px;
   cursor: pointer;
   color: #fff;
 }
 
-.Text_Drawer .desc {
+.Text_Drawer .desc{
   color: #fff;
   font-size: 14px;
 }
-.Text_Drawer .title {
+.Text_Drawer .title{
   font-weight: 500 !important;
   text-transform: uppercase;
   text-align: center;

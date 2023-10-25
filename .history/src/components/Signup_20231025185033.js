@@ -103,20 +103,9 @@ const Signup = () => {
 
           <div>
             <p> New Password</p>
-              <div className="input-div">
-                <input
-                  type={show ? "text" : "password"}
-                  required
-                  placeholder="Enter Your New Password"
-                  name="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {show ? (
-                  <FaEye onClick={() => setShow(false)} />
-                ) : (
-                  <PiEyeClosedBold onClick={() => setShow(true)} />
-                )}
-            </div>
+
+            <div className="forget-password"></div>
+         
           </div>
 
           <div>

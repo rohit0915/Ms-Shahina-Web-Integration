@@ -5,15 +5,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { userLogin } from "../../Repository/Api";
 import { useDispatch } from "react-redux";
 import { FaEye } from "react-icons/fa6";
-import { PiEyeClosedBold } from 'react-icons/pi'
 
 const LogIn = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [show, setShow] = useState(false);
+  const [ show , setShow ] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   const payload = { phone, password };
 
@@ -55,15 +55,12 @@ const LogIn = () => {
             <p>Password</p>
             <div className="input-div">
               <input
-                type={show ? "text" : "password"}
+                type={show ? 'text' : "password"}
                 required
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {show ? (
-                <FaEye onClick={() => setShow(false)} />
-              ) : (
-                <PiEyeClosedBold onClick={() => setShow(true)} />
-              )}
+              
+              <FaEye />
             </div>
           </div>
           <button className="verify" type="submit">

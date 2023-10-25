@@ -121,8 +121,11 @@
   padding: 10px;
 }
 .Indivisual-Appointment .input-div input {
-  padding: 0;
-  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #fff;
+  padding-right: 10px;
 }
 .Indivisual-Appointment .input-div svg {
   font-size: 30px;
@@ -1008,9 +1011,8 @@
   padding-right: 10px;
   padding: 10px;
 }
-.forget-password .input-div input {
+.forget-password .input-div  input {
   padding: 0;
-  margin-top: 0;
 }
 .forget-password .input-div svg {
   font-size: 30px;

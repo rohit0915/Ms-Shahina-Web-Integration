@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegistration } from "../Repository/Api";
 import PhoneInput from "react-phone-input-2";
-import { FaEye } from "react-icons/fa6";
-import { PiEyeClosedBold } from "react-icons/pi";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,7 +13,6 @@ const Signup = () => {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
-  const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
 
@@ -103,20 +100,13 @@ const Signup = () => {
 
           <div>
             <p> New Password</p>
-              <div className="input-div">
-                <input
-                  type={show ? "text" : "password"}
-                  required
-                  placeholder="Enter Your New Password"
-                  name="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {show ? (
-                  <FaEye onClick={() => setShow(false)} />
-                ) : (
-                  <PiEyeClosedBold onClick={() => setShow(true)} />
-                )}
-            </div>
+            <input
+              type="password"
+              placeholder="Enter Your New Password"
+              required
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
 
           <div>

@@ -60,7 +60,7 @@ const LogIn = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {show ? (
-                <FaEye onClick={() => setShow(false)} />
+                <FaEye onClick={() => setShow(true)} />
               ) : (
                 <PiEyeClosedBold onClick={() => setShow(true)} />
               )}

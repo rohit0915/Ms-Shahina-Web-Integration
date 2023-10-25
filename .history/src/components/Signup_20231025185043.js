@@ -116,6 +116,7 @@ const Signup = () => {
                 ) : (
                   <PiEyeClosedBold onClick={() => setShow(true)} />
                 )}
+              </div>
             </div>
           </div>
 
