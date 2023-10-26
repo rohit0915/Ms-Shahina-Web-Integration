@@ -28,6 +28,7 @@ import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
 import { CartItems } from "../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { ApplePayButton } from "react-apple-pay-button";
 
 const MyCart = () => {
   const [modalOpen, setModalOpen] = useState(false);
