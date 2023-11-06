@@ -15,10 +15,11 @@ const Quiz = () => {
   const [answer4, setAnswer4] = useState("");
 
   const submitHandler = () => {
-    if ((answer1 && answer2, answer3, answer4)) {
+    if ((answer1 && answer2 && answer3 &&  answer4)) {
       ReviewQuiz(answer1, answer2, answer3, answer4, navigate);
     }
   };
+
 
   const [items, setItems] = useState([]);
 
@@ -79,6 +80,9 @@ const Quiz = () => {
             query={setAnswer1}
           />
         )}
+
+          
+
         {step === 2 && (
           <Question
             text={items?.[1]?.question}

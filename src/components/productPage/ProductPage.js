@@ -53,9 +53,6 @@ const ProductPage = () => {
     }
   }, [products]);
 
-
-  console.log(products)
-
   return (
     <section>
       <div className="relative_product_container">

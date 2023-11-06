@@ -34,7 +34,10 @@ const Home = () => {
         </p>
         <img src="/asessts/google-review.png" />
       </div>
-      <Testimonials />
+
+      <div style={{ width: "100%", overflow: "hidden" }}>
+        <Testimonials />
+      </div>
       <div className="mb-14"></div>
       <Description />
       <LatestNews />

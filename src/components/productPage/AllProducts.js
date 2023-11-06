@@ -13,7 +13,7 @@ const AllProducts = ({ products }) => {
           src={item?.productImages?.[0]?.image}
           title={item.name}
           quantity={item.quantity}
-          price={item.discountAllow === false ? item.price : item.discount}
+          price={item.multipleSize === false ? item.price : item.sizePrice?.[0]?.price}
         />
       ))}
     </div>
