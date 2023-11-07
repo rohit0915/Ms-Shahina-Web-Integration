@@ -32,13 +32,9 @@ const getServiceProduct = async (setResponse, query, setName) => {
 const getServiceProductAuth = async (setResponse, query, setName) => {
   try {
     const response = await axios.get(
-      `${Baseurl}api/v1/getServiceByTokenFormembership?categoryId=${query}` , {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      }
+      `${Baseurl}api/v1/getServiceByTokenFormembership?categoryId=${query}`
     );
-    const data = response?.data?.data;
+    const data = response?.data?.data?;
     setName(data?.[0]?.categoryId?.name);
     setResponse(data);
   } catch {}
@@ -1594,5 +1590,4 @@ export {
   userLogin2,
   AddToCartInBulk,
   AddServiceBulk,
-  getServiceProductAuth
 };

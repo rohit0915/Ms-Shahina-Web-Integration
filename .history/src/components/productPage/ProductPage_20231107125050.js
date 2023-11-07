@@ -65,6 +65,7 @@ const ProductPage = () => {
     }
   }, [products, img]);
 
+  console.log(img);
 
   return (
     <section>

@@ -10,8 +10,8 @@ import { isAuthenticated } from "../../store/authSlice";
 const ServiceTab = () => {
   const [response, setResponse] = useState([]);
   const navigate = useNavigate();
-
-  const isLoggedIn = useSelector(isAuthenticated);
+  
+  const isLoggedIn = useSelector(isAuthenticated)
 
   useEffect(() => {
     getLimitedOffer(setResponse, "servicePage");
@@ -29,23 +29,23 @@ const ServiceTab = () => {
           <div className="content">
             <h1 className="text-6xl text-white text-center  z-50 font-light">
               BOOK ONLINE
-            </h1>
+              </h1>
 
-            {isLoggedIn ? (
-              <button
-                className="w-52 mx-auto py-2 text-lg font-semibold z-50  bg-secondary text-primary "
-                onClick={() => navigate("/schedule1")}
-              >
-                BOOK ONLINE
-              </button>
-            ) : (
-              <button
-                className="w-52 mx-auto py-2 text-lg font-semibold z-50  bg-secondary text-primary "
-                onClick={() => navigate("/appointment")}
-              >
-                BOOK ONLINE
-              </button>
-            )}
+              {
+                isLoggedIn ?   <button
+              className="w-52 mx-auto py-2 text-lg font-semibold z-50  bg-secondary text-primary "
+              onClick={() => navigate("/schedule1")}
+            >
+              BOOK ONLINE
+            </button>:    <button
+              className="w-52 mx-auto py-2 text-lg font-semibold z-50  bg-secondary text-primary "
+              onClick={() => navigate("/appointment")}
+            >
+              BOOK ONLINE
+            </button>
+              }
+
+          
           </div>
           <div className="Image">
             <img

@@ -47,29 +47,22 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (products) {
-      if (type === "skinTypeId") {
-        setImg(products?.[0]?.skinTypeId?.image);
-      } else if (type === "productTypeId") {
-        setImg(products?.[0]?.productTypeId?.image);
-      } else if (type === "brandId") {
-        setImg(products?.[0]?.brandId?.image);
-      } else if (type === "skinConditionId") {
-        setImg(products?.[0]?.skinConditionId?.image);
-      } else if (type === "nutritionId") {
-        setImg(products?.[0]?.nutritionId?.image);
-      } else {
-        setImg("/Image/39.jpg");
-      }
+      if(type === 'skinTypeId' {
+        
+      })
+      setImg(products?.[0]?.brandId?.image);
     } else {
       setImg("/Image/39.jpg");
     }
-  }, [products, img]);
+  }, [products]);
 
 
+  console.log(products)
+  console.log(type)
   return (
     <section>
       <div className="relative_product_container">
-        <img className="full_Image" src={img ? img : "/Image/39.jpg"} alt="" />
+        <img className="full_Image" src={img} alt="" />
         <div className="content">
           <h1 className="text-6xl text-white text-center  z-50 font-light">
             {name}

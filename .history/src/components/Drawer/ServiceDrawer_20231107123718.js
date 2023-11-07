@@ -14,7 +14,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
   const isLoggedIn = useSelector(isAuthenticated);
 
   const fetchHandler = () => {
-    if (isLoggedIn) {
+    if (isLoggedIn === false) {
       getServiceProductAuth(setResponse, id, setName);
     } else {
       getServiceProduct(setResponse, id, setName);

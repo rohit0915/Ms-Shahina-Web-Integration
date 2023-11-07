@@ -57,19 +57,16 @@ const ProductPage = () => {
         setImg(products?.[0]?.skinConditionId?.image);
       } else if (type === "nutritionId") {
         setImg(products?.[0]?.nutritionId?.image);
-      } else {
-        setImg("/Image/39.jpg");
       }
     } else {
       setImg("/Image/39.jpg");
     }
-  }, [products, img]);
-
+  }, [products , img]);
 
   return (
     <section>
       <div className="relative_product_container">
-        <img className="full_Image" src={img ? img : "/Image/39.jpg"} alt="" />
+        <img className="full_Image" src={img} alt="" />
         <div className="content">
           <h1 className="text-6xl text-white text-center  z-50 font-light">
             {name}

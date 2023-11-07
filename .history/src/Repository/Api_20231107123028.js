@@ -29,20 +29,6 @@ const getServiceProduct = async (setResponse, query, setName) => {
     setResponse(data);
   } catch {}
 };
-const getServiceProductAuth = async (setResponse, query, setName) => {
-  try {
-    const response = await axios.get(
-      `${Baseurl}api/v1/getServiceByTokenFormembership?categoryId=${query}` , {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      }
-    );
-    const data = response?.data?.data;
-    setName(data?.[0]?.categoryId?.name);
-    setResponse(data);
-  } catch {}
-};
 
 
 
@@ -1594,5 +1580,4 @@ export {
   userLogin2,
   AddToCartInBulk,
   AddServiceBulk,
-  getServiceProductAuth
 };

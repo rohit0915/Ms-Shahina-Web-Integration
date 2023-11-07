@@ -63,13 +63,12 @@ const ProductPage = () => {
     } else {
       setImg("/Image/39.jpg");
     }
-  }, [products, img]);
-
+  }, [products]);
 
   return (
     <section>
       <div className="relative_product_container">
-        <img className="full_Image" src={img ? img : "/Image/39.jpg"} alt="" />
+        <img className="full_Image" src={img} alt="" />
         <div className="content">
           <h1 className="text-6xl text-white text-center  z-50 font-light">
             {name}

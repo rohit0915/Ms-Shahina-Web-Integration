@@ -14,7 +14,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
   const isLoggedIn = useSelector(isAuthenticated);
 
   const fetchHandler = () => {
-    if (isLoggedIn) {
+    if (isLoggedIn === true) {
       getServiceProductAuth(setResponse, id, setName);
     } else {
       getServiceProduct(setResponse, id, setName);
@@ -55,12 +55,10 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
               <div className="Items" key={index}>
                 <img src={i.images?.[0]?.img} alt="" />
                 <p className="title"> {i.name} </p>
-                {i.membshipPrice && (
-                  <p className="member">Member Price : ${i.membshipPrice} </p>
-                )}
+                <p className="member">Member Price</p>
                 <span className="price-container">
-                  <span className="selling-price"> ${i.price}</span>
-                  {/* <span className="mrp">${i.price} </span> */}
+                  <span className="selling-price"> ${i.membshipPrice}</span>
+                  <span className="mrp">${i.price} </span>
                 </span>
 
                 <p className="interes">

@@ -11,14 +11,14 @@ import { isAuthenticated } from "../../store/authSlice";
 const ServiceDrawer = ({ open, onClose, title, id }) => {
   const [name, setName] = useState("");
   const [response, setResponse] = useState([]);
-  const isLoggedIn = useSelector(isAuthenticated);
+  const isLoggedIn = useSelector(isAuthenticated)
+
 
   const fetchHandler = () => {
-    if (isLoggedIn) {
-      getServiceProductAuth(setResponse, id, setName);
-    } else {
-      getServiceProduct(setResponse, id, setName);
+    if(isLoggedIn === true) { 
+      getServiceProductAuth(setResponse , id , setName)
     }
+    getServiceProduct(setResponse, id, setName);
   };
 
   useEffect(() => {
@@ -55,12 +55,15 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
               <div className="Items" key={index}>
                 <img src={i.images?.[0]?.img} alt="" />
                 <p className="title"> {i.name} </p>
-                {i.membshipPrice && (
-                  <p className="member">Member Price : ${i.membshipPrice} </p>
-                )}
+                <p className="member">Member Price</p>
                 <span className="price-container">
-                  <span className="selling-price"> ${i.price}</span>
-                  {/* <span className="mrp">${i.price} </span> */}
+                  <span className="selling-price">
+                    {" "}
+                    ${i.discountActive === true ? i.discountPrice : i.price}
+                  </span>
+                  {i.discountActive === true && (
+                    <span className="mrp">${i.price} </span>
+                  )}
                 </span>
 
                 <p className="interes">
