@@ -1,0 +1,875 @@
+/** @format */
+
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AiFillApple, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import CheckoutModal from "../Drawer/CheckoutModal";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import {
+  addFBP,
+  addGiftItem,
+  AddServiceBulk,
+  AddToCartInBulk,
+  checkout,
+  deleteAdOn,
+  deleteFBP,
+  deleteGift,
+  deleteItemCart,
+  deleteServiceCart,
+  getCart,
+  getContactDetails,
+  updateAdOnQuantity,
+  updateDeliveyOpt,
+  updateQuan,
+  updateServiceQuan,
+} from "../../Repository/Api";
+import { AiFillInstagram } from "react-icons/ai";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { GrMail } from "react-icons/gr";
+import { BiCurrentLocation } from "react-icons/bi";
+import { CartItems } from "../../store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { DummyCartItems, removeFromCart } from "../../store/DummyCart";
+import { removeServiceDummy, ServiceItems } from "../../store/DummySerivce";
+
+// Stripe
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+
+const MyCart = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [cart, setCart] = useState({});
+  const [contact, setContact] = useState({});
+  const dummyCart = useSelector(DummyCartItems);
+  const serviceCart = useSelector(ServiceItems);
+  const dispatch = useDispatch();
+  const myCart = useSelector(CartItems);
+  const navigate = useNavigate();
+
+  const handleDeliveyOption = () => {
+    dispatch(updateDeliveyOpt());
+  };
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    setCart(myCart);
+  }, [myCart]);
+
+  useEffect(() => {
+    getContactDetails(setContact);
+  }, []);
+
+  const updatedItemQuan = (id, quantity, size, priceId, sizePrice) => {
+    let payload;
+    if (size && priceId) {
+      payload = {
+        priceId,
+        quantity,
+        size,
+        sizePrice,
+      };
+    } else {
+      payload = {
+        quantity,
+        sizePrice,
+      };
+    }
+    dispatch(updateQuan(id, payload));
+  };
+
+  const DeleteGiftItem = (id) => {
+    dispatch(deleteGift(id));
+  };
+
+  const DeleteFBPItem = (id) => {
+    dispatch(deleteFBP(id));
+  };
+  const deleteItem = (id) => {
+    dispatch(deleteItemCart(id));
+  };
+
+  const updateFBPItem = (id, quantity) => {
+    dispatch(addFBP(id, quantity));
+  };
+
+  const updateGiftQuan = (id, quantity, email) => {
+    dispatch(addGiftItem(id, quantity, navigate, email));
+  };
+
+  const isEmpty = cart !== null && Object.keys(cart).length === 0;
+
+  const DeleteServiceItem = (id) => {
+    dispatch(deleteServiceCart(id));
+  };
+
+  const updateServiceQuantity = (id, quantity) => {
+    dispatch(updateServiceQuan(id, quantity));
+  };
+
+  const deleteAdOnService = (id) => {
+    dispatch(deleteAdOn(id));
+  };
+
+  const updateOnQuan = (id, quantity) => {
+    dispatch(updateAdOnQuantity(id, quantity));
+  };
+
+  const checkoutHandler = () => {
+    checkout();
+  };
+
+  // Cart Before Login
+  const [isPushingItems, setIsPushingItems] = useState(false);
+  const pushItemInApi = async () => {
+    if (isPushingItems) return;
+    setIsPushingItems(true);
+    for (const item of dummyCart) {
+      const ProductId = item?.product?._id;
+      console.log(`Processing ProductId: ${ProductId}`);
+      const quantity = item?.quantity;
+      const sizePrice = item?.sizePrice;
+      let payload;
+      if (item.size) {
+        const size = item?.size;
+        const priceId = item?.priceId;
+        payload = { size, priceId, quantity, sizePrice };
+      } else {
+        payload = { quantity, sizePrice };
+      }
+      await dispatch(AddToCartInBulk(ProductId, payload));
+      let removePayload;
+      if (item.size) {
+        removePayload = item.priceId;
+      } else {
+        removePayload = item.product?._id;
+      }
+      dispatch(removeFromCart(removePayload));
+    }
+    setIsPushingItems(false);
+  };
+
+  const pushDummyService = async () => {
+    const processedProductIds = new Set();
+
+    for (const item of serviceCart) {
+      const ProductId = item.id;
+      if (processedProductIds.has(ProductId)) {
+        continue;
+      }
+      processedProductIds.add(ProductId);
+      const quantity = item.quantity;
+      await dispatch(AddServiceBulk(ProductId, quantity));
+      dispatch(removeServiceDummy(ProductId));
+    }
+  };
+
+  useEffect(() => {
+    if (dummyCart?.length > 0) {
+      pushItemInApi();
+    } else {
+      dispatch(getCart());
+    }
+  }, [dummyCart]);
+
+  useEffect(() => {
+    if (serviceCart?.length > 0) {
+      pushDummyService();
+    } else {
+      dispatch(getCart());
+    }
+  }, [serviceCart]);
+
+  // Apple Pay
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!stripe || !elements) {
+      alert("Stripe.js has not yet loaded.");
+      return;
+    }
+
+    const { error: backendError, clientSecret } = await fetch(
+      "https://checkout.stripe.com/c/pay/cs_test_a11YYufWQzNY63zpQ6QSNRQhkUpVph4WRmzW0zWJO2znZKdVujZ0N0S22u#fidkdWxOYHwnPyd1blpxYHZxWjA0SDdPUW5JbmFMck1wMmx9N2BLZjFEfGRUNWhqTmJ%2FM2F8bUA2SDRySkFdUV81T1BSV0YxcWJcTUJcYW5rSzN3dzBLPUE0TzRKTTxzNFBjPWZEX1NKSkxpNTVjRjN8VHE0YicpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          paymentMethodType: "card",
+          currency: "usd",
+        }),
+      }
+    ).then((r) => r.json());
+
+    if (backendError) {
+      alert(backendError.message);
+      return;
+    }
+
+    alert("Client secret returned");
+
+    const { error: stripeError, paymentIntent } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: "Jenny Rosen",
+          },
+        },
+      });
+
+    if (stripeError) {
+      alert("stripeError.message");
+      return;
+    }
+    alert(`Payment ${paymentIntent.status}: ${paymentIntent.id}`);
+  };
+
+  return (
+    <>
+      <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
+
+      <h1>Card</h1>
+
+      <p>
+        <h4>
+          Try a{" "}
+          <a
+            href="https://stripe.com/docs/testing#cards"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            test card
+          </a>
+          :
+        </h4>
+        <div>
+          <code>4242424242424242</code> (Visa)
+        </div>
+        <div>
+          <code>5555555555554444</code> (Mastercard)
+        </div>
+        <div>
+          <code>4000002500003155</code> (Requires{" "}
+          <a
+            href="https://www.youtube.com/watch?v=2kc-FjU2-mY"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            3DSecure
+          </a>
+          )
+        </div>
+      </p>
+
+      <form id="payment-form" onSubmit={handleSubmit}>
+        <label htmlFor="card">Card</label>
+        <CardElement id="card" />
+
+        <button type="submit">Pay</button>
+      </form>
+
+      <p>
+        {" "}
+        <a href="https://youtu.be/IhvtIbfDZJI" target="_blank">
+          Watch a demo walkthrough
+        </a>{" "}
+      </p>
+
+      <section className="my-14">
+        <div className="Backward_Heading step_Heading">
+          <div>
+            <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />
+          </div>
+          <p className="title">My Cart</p>
+        </div>
+
+        {isEmpty === false ? (
+          <div className="flex gap-10 justify-center cart-container">
+            <div className="left-container">
+              {/* Normal Product */}
+
+              {cart?.frequentlyBuyProductSchema?.length > 0 ||
+              cart?.products?.length > 0 ? (
+                <p className="Title">All Products : </p>
+              ) : (
+                ""
+              )}
+
+              {cart?.products?.map((i, index) => (
+                <div className="Item" key={index}>
+                  <div className="item-container">
+                    <div className="img-container">
+                      <img
+                        src={i.productId?.productImages?.[0]?.image}
+                        alt="product"
+                      />
+                    </div>
+                    <div className="content">
+                      <p className="title"> {i.productId?.name} </p>
+
+                      <div className="Quantity">
+                        <span className="quant">QTY</span>
+
+                        <div className="qty">
+                          <span className="input">
+                            <AiOutlineMinus
+                              onClick={() => {
+                                if (i.quantity > 1) {
+                                  updatedItemQuan(
+                                    i.productId?._id,
+                                    i?.quantity - 1,
+                                    i.size,
+                                    i.priceId,
+                                    i.sizePrice
+                                  );
+                                }
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                          <span className="item"> {i.quantity} </span>
+                          <span className="input">
+                            <AiOutlinePlus
+                              onClick={() => {
+                                updatedItemQuan(
+                                  i.productId?._id,
+                                  i?.quantity + 1,
+                                  i.size,
+                                  i.priceId,
+                                  i.sizePrice
+                                );
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                        </div>
+                      </div>
+
+                      <button onClick={() => deleteItem(i.productId?._id)}>
+                        {" "}
+                        <RiDeleteBin6Fill /> DELETE ITEM
+                      </button>
+                    </div>
+
+                    <div className="price_div">
+                      <p className="sellingPrice"> ${i.subTotal}</p>
+                      {i.size && (
+                        <p
+                          className="sellingPrice"
+                          style={{ fontSize: "20px" }}
+                        >
+                          Size : {i.size}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Frequently Bought Product */}
+              {cart?.frequentlyBuyProductSchema?.map((item, index) => (
+                <div className="frequently-bought FrequentlyInCart" key={index}>
+                  <div className="container">
+                    <div className="left">
+                      {item.frequentlyBuyProductId?.products?.map((i) => (
+                        <>
+                          {" "}
+                          <img
+                            src={i.productImages?.[0]?.image}
+                            className="Image"
+                            alt=""
+                          />
+                          <img src="/Image/96.png" className="plus" alt="" />
+                        </>
+                      ))}
+                    </div>
+                    <div className="right">
+                      <p className="price">${item?.subTotal} </p>
+                      <div className="Quantity">
+                        <div
+                          className="qty"
+                          style={{ justifyContent: "flex-end" }}
+                        >
+                          <span className="input">
+                            <AiOutlineMinus
+                              onClick={() => {
+                                if (item.quantity > 1) {
+                                  updateFBPItem(
+                                    item?.frequentlyBuyProductId?._id,
+                                    item?.quantity - 1
+                                  );
+                                }
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                          <span className="item"> {item.quantity} </span>
+                          <span className="input">
+                            <AiOutlinePlus
+                              onClick={() => {
+                                updateFBPItem(
+                                  item?.frequentlyBuyProductId?._id,
+                                  item?.quantity + 1
+                                );
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        className="delete"
+                        onClick={() => {
+                          DeleteFBPItem(item?.frequentlyBuyProductId?._id);
+                        }}
+                      >
+                        {" "}
+                        <RiDeleteBin6Fill /> DELETE ITEM
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Gift Item */}
+              {cart?.gifts?.length > 0 ? (
+                <p className="Title">All Gift : </p>
+              ) : (
+                ""
+              )}
+              {cart?.gifts?.map((i, index) => (
+                <div className="Item" key={index}>
+                  <div className="item-container">
+                    <div className="img-container">
+                      <img src={i.giftPriceId?.giftId?.image} alt="" />
+                    </div>
+                    <div className="content">
+                      <p className="title"> {i.giftPriceId?.giftId?.name} </p>
+
+                      <div className="Quantity">
+                        <span className="quant">QTY</span>
+
+                        <div className="qty">
+                          <span className="input">
+                            <AiOutlineMinus
+                              onClick={() => {
+                                if (i.quantity > 1) {
+                                  updateGiftQuan(
+                                    i?.giftPriceId?._id,
+                                    i?.quantity - 1,
+                                    i?.email
+                                  );
+                                }
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                          <span className="item"> {i.quantity} </span>
+                          <span className="input">
+                            <AiOutlinePlus
+                              onClick={() => {
+                                updateGiftQuan(
+                                  i?.giftPriceId?._id,
+                                  i?.quantity + 1,
+                                  i?.email
+                                );
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => DeleteGiftItem(i.giftPriceId?._id)}
+                      >
+                        {" "}
+                        <RiDeleteBin6Fill /> DELETE ITEM
+                      </button>
+                    </div>
+
+                    <div className="price_div">
+                      <p className="sellingPrice">${i?.subTotal}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Service Item */}
+              {cart?.services?.length > 0 ||
+              cart?.AddOnservicesSchema?.length > 0 ? (
+                <p className="Title">All Services : </p>
+              ) : (
+                ""
+              )}
+              {cart?.services?.map((i, index) => (
+                <div className="Item" key={index}>
+                  <div className="item-container">
+                    <div className="img-container">
+                      <img src={i.serviceId?.images?.[0]?.img} alt="" />
+                    </div>
+                    <div className="content">
+                      <p className="title"> {i.serviceId?.name} </p>
+
+                      <div className="Quantity">
+                        <span className="quant">QTY</span>
+
+                        <div className="qty">
+                          <span className="input">
+                            <AiOutlineMinus
+                              onClick={() => {
+                                if (i.quantity > 1) {
+                                  updateServiceQuantity(
+                                    i.serviceId?._id,
+                                    i?.quantity - 1
+                                  );
+                                }
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                          <span className="item"> {i.quantity} </span>
+                          <span className="input">
+                            <AiOutlinePlus
+                              onClick={() => {
+                                updateServiceQuantity(
+                                  i.serviceId?._id,
+                                  i?.quantity + 1
+                                );
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => DeleteServiceItem(i.serviceId?._id)}
+                      >
+                        {" "}
+                        <RiDeleteBin6Fill /> DELETE ITEM
+                      </button>
+                    </div>
+
+                    <div className="price_div">
+                      <p className="sellingPrice">
+                        {i?.serviceId?.type === "offer"
+                          ? `$${i.total}`
+                          : `$${i.subTotal}`}{" "}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Ad ON Service Item */}
+              {cart?.AddOnservicesSchema?.map((i, index) => (
+                <div className="Item" key={index}>
+                  <div className="item-container">
+                    <div className="img-container">
+                      <img src={i.serviceId?.images?.[0]?.img} alt="" />
+                    </div>
+                    <div className="content">
+                      <p className="title"> {i.addOnservicesId?.name} </p>
+
+                      <div className="Quantity">
+                        <span className="quant">QTY</span>
+
+                        <div className="qty">
+                          <span className="input">
+                            <AiOutlineMinus
+                              onClick={() => {
+                                if (i.quantity > 1) {
+                                  updateOnQuan(
+                                    i.addOnservicesId?._id,
+                                    i?.quantity - 1
+                                  );
+                                }
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                          <span className="item"> {i.quantity} </span>
+                          <span className="input">
+                            <AiOutlinePlus
+                              onClick={() => {
+                                updateOnQuan(
+                                  i.addOnservicesId?._id,
+                                  i?.quantity + 1
+                                );
+                              }}
+                              style={{ cursor: "pointer" }}
+                            />
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() =>
+                          deleteAdOnService(i.addOnservicesId?._id)
+                        }
+                      >
+                        {" "}
+                        <RiDeleteBin6Fill /> DELETE ITEM
+                      </button>
+                    </div>
+
+                    <div className="price_div">
+                      <p className="sellingPrice">${i.subTotal}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <section className="right_container">
+              <div>
+                <section className="py-6 px-8 border-2 border-black">
+                  <h3 className="font-bold text-primary text-xl ">
+                    PRICE DETAILS
+                  </h3>
+                  <hr className="w-full h-0.5 my-6 bg-black" />
+                  <div className="flex flex-col gap-5 text-lg my-8">
+                    <p className="flex justify-between items-center ">
+                      Sub Total
+                      <span className="font-semibold ">${cart?.subTotal} </span>
+                    </p>
+
+                    {cart?.frequentlyBuyProductSchema?.length > 0 ||
+                    cart?.products?.length > 0 ||
+                    cart?.services?.length > 0 ||
+                    cart?.AddOnservicesSchema?.length > 0 ? (
+                      <>
+                        {cart?.offerDiscount > 0 && (
+                          <p className="flex justify-between items-center ">
+                            Offer Discount
+                            <span className="font-semibold ">
+                              ${cart?.offerDiscount}{" "}
+                            </span>
+                          </p>
+                        )}
+
+                        {cart?.membershipDiscount > 0 && (
+                          <p className="flex justify-between items-center">
+                            Membership Discount{" "}
+                            <span className="text-green font-semibold">
+                              ${cart?.membershipDiscount}{" "}
+                            </span>
+                          </p>
+                        )}
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
+                  {cart?.frequentlyBuyProductSchema?.length > 0 ||
+                  cart?.products?.length > 0 ? (
+                    <>
+                      <h4 className="text-xl my-2 font-bold">
+                        Select Delivery Option for Product
+                      </h4>
+                      <div className="flex justify-between gap-2  my-5 delivery_container">
+                        <div
+                          className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
+                          onClick={handleDeliveyOption}
+                        >
+                          <input
+                            className="absolute top-2 w-6  checked:accent-green h-6 left-2"
+                            type="radio"
+                            name="option"
+                            checked={
+                              cart?.pickupFromStore === false ? true : false
+                            }
+                          />
+                          <label htmlFor="doorstep">
+                            <div className="flex flex-col items-center">
+                              <img
+                                className="w-24 h-12 stroke-green fill-green"
+                                src="/asessts/truck.svg"
+                                alt="truck"
+                              />
+                              <span className="text bold  text-xl font-bold">
+                                Doorstep Delivery
+                              </span>
+                              <p className="text-sm">
+                                *Includes Shipping Charges
+                              </p>
+                            </div>
+                          </label>
+                        </div>
+
+                        <div
+                          className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
+                          onClick={handleDeliveyOption}
+                        >
+                          <input
+                            className="absolute top-2 w-6  checked:accent-green h-6 left-2"
+                            type="radio"
+                            name="option"
+                            checked={
+                              cart?.pickupFromStore === true ? true : false
+                            }
+                          />
+                          <label htmlFor="store">
+                            <div className="flex flex-col items-center">
+                              <img
+                                className="w-24 h-12 stroke-green fill-green"
+                                src="/asessts/store location.svg"
+                                alt="store"
+                              />
+                              <span className="text bold text-xl font-bold">
+                                Pickup from Store
+                              </span>
+                              <p className="text-sm">*No Shipping Charges</p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-medium">
+                        Delivery Location:
+                      </h3>
+                      <p className="text-lg font-normal my-3">
+                        {" "}
+                        {cart?.deliveryAddresss ? (
+                          <>
+                            {cart?.deliveryAddresss?.appartment} ,
+                            {cart?.deliveryAddresss?.city} ,
+                            {cart?.deliveryAddresss?.state} ,
+                            {cart?.deliveryAddresss?.zipCode} ,
+                            {cart?.deliveryAddresss?.address} ,
+                          </>
+                        ) : (
+                          <Link
+                            to="/my-profile"
+                            style={{
+                              color: "blue",
+                              textDecoration: "underline",
+                            }}
+                          >
+                            Add Delivery Address
+                          </Link>
+                        )}{" "}
+                      </p>
+                    </>
+                  ) : (
+                    ""
+                  )}
+
+                  {cart?.services?.length > 0 ||
+                  cart?.AddOnservicesSchema?.length > 0 ? (
+                    <>
+                      <h4 className="text-xl my-2 font-bold">
+                        Service Location
+                      </h4>
+
+                      <div className="Box">
+                        <div className="two-sec">
+                          <img src={contact?.image} alt="" />
+                          <div>
+                            <p className="title"> {contact?.name} </p>
+
+                            <div className="contact-info">
+                              <BsFillTelephoneFill />
+                              <p> {contact?.phone} </p>
+                            </div>
+                            <div className="contact-info">
+                              <GrMail />
+                              <p> {contact?.email} </p>
+                            </div>
+                            <div className="contact-info">
+                              <AiFillInstagram />
+                              <p> {contact?.instagram} </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="two-sec mt-3">
+                          <BiCurrentLocation style={{ fontSize: "20px" }} />
+                          <div>
+                            <p className="title" style={{ fontSize: "16px" }}>
+                              {contact?.address}
+                            </p>
+                          </div>
+                        </div>
+
+                        <a href={contact?.mapLink} target="_blank">
+                          <button className="locate_btn">
+                            LOCATE ON GOOGLE MAPS
+                          </button>
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
+
+                  <div className="font-semibold text-2xl flex justify-between border-black border-t-2 py-8 border-b-2 my-8">
+                    <span className="">Total Amount</span>
+                    <span>${cart?.total} </span>
+                  </div>
+
+                  <div className="flex gap-2 items-center mt-14">
+                    <img
+                      className="w-6 h-6"
+                      src="/asessts/safeAndSecure.svg"
+                      alt="safe and secure"
+                    />
+                    <p>Safe & Secure Payments. 100% Authentic Products.</p>
+                  </div>
+                </section>
+
+                <button
+                  className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => checkoutHandler()}
+                >
+                  Chekout Now
+                </button>
+                <div className="flex justify-center items-center text-lg">
+                  <span className="text-mediumGray">
+                    Pay with interest free installments with{" "}
+                  </span>
+                </div>
+                <Link
+                  className="text-lg flex justify-center my-4 font-bold underline text-primary"
+                  to="/paymentplan"
+                >
+                  CLICK TO LEARN MORE
+                </Link>
+
+                <div className="relative flex items-center justify-center text-xl my-12 font-semibold">
+                  <hr className="w-full h-0.5" />
+                  <span className="absolute  mx-auto px-4 bg-white">OR</span>
+                </div>
+                <div className="">
+                  <h3 className="text-lg font-semibold my-4">
+                    Express Checkout with
+                  </h3>
+
+                  <button className="flex items-center justify-center  text-3xl font-semibold text-white bg-black w-full py-4 ">
+                    <AiFillApple className="text-5xl" type="submit" />
+                    Pay
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+        ) : (
+          <div className="Not-Found">
+            <img src="/Image/empty-cart.png" alt="" />
+            <h5> Your cart is currently empty.</h5>
+          </div>
+        )}
+      </section>
+    </>
+  );
+};
+
+export default MyCart;
