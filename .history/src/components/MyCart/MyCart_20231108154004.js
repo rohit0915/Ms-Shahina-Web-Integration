@@ -31,6 +31,7 @@ import { CartItems } from "../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { DummyCartItems, removeFromCart } from "../../store/DummyCart";
 import { removeServiceDummy, ServiceItems } from "../../store/DummySerivce";
+import { useStripe } from "@stripe/react-stripe-js";
 
 const MyCart = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -175,6 +176,24 @@ const MyCart = () => {
       dispatch(getCart());
     }
   }, [serviceCart]);
+
+  // Apple Pay
+  const stripe = useStripe();
+  const handleClick = async () => {
+    const result = await stripe.createPaymentMethod({
+      type: "card",
+      card: {
+        token: "tok_amex", // Replace with the actual card token
+      },
+    });
+
+    if (result.error) {
+      console.error(result.error);
+    } else {
+      console.log(result.paymentMethod);
+      // Send the payment method to your server for processing
+    }
+  };
 
   return (
     <>

@@ -176,6 +176,24 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
+  // Apple Pay
+  const stripe = useStripe();
+  const handleClick = async () => {
+    const result = await stripe.createPaymentMethod({
+      type: "card",
+      card: {
+        token: "tok_amex", // Replace with the actual card token
+      },
+    });
+
+    if (result.error) {
+      console.error(result.error);
+    } else {
+      console.log(result.paymentMethod);
+      // Send the payment method to your server for processing
+    }
+  };
+
   return (
     <>
       <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
@@ -753,7 +771,10 @@ const MyCart = () => {
                     Express Checkout with
                   </h3>
 
-                  <button className="flex items-center justify-center  text-3xl font-semibold text-white bg-black w-full py-4 ">
+                  <button
+                    className="flex items-center justify-center  text-3xl font-semibold text-white bg-black w-full py-4 apple-pay-button"
+                    onClick={handleClick}
+                  >
                     <AiFillApple className="text-5xl" type="submit" />
                     Pay
                   </button>

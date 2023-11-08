@@ -31,6 +31,7 @@ import { CartItems } from "../../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { DummyCartItems, removeFromCart } from "../../store/DummyCart";
 import { removeServiceDummy, ServiceItems } from "../../store/DummySerivce";
+import { useStripe } from "@stripe/react-stripe-js";
 
 const MyCart = () => {
   const [modalOpen, setModalOpen] = useState(false);
