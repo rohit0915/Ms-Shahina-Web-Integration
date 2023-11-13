@@ -55,11 +55,12 @@ const ChangePassword = () => {
 
           <div className="mt-5">
             <p>Re-Enter Password</p>
-
+         
             <div className="input-div">
               <input
                 type={show ? "text" : "password"}
                 required
+                placeholder="Enter your New Password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               {show ? (

@@ -93,11 +93,11 @@ const Navbar = () => {
   };
 
   const handleToggleOpen = () => {
-    setIsOpen(true);
+    setIsOpen(!isOpen);
   };
 
   return (
-    <div className="Nav_Bar" onMouseLeave={() => setIsOpen(false)}>
+    <div className="Nav_Bar ">
       <header className="Header">
         <div className="left">
           <Link to={"/"}>
@@ -105,7 +105,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="right-container">
+        <div className="right-container" onMouseLeave={() => setIsOpen(false)}>
           <img
             src="/asessts/navbar/search.png"
             style={{ cursor: "pointer" }}

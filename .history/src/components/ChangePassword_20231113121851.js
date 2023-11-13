@@ -55,19 +55,12 @@ const ChangePassword = () => {
 
           <div className="mt-5">
             <p>Re-Enter Password</p>
-
-            <div className="input-div">
-              <input
-                type={show ? "text" : "password"}
-                required
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              {show ? (
-                <FaEye onClick={() => setShow1(false)} />
-              ) : (
-                <PiEyeClosedBold onClick={() => setShow1(true)} />
-              )}
-            </div>
+            <input
+              type="password"
+              placeholder="Enter your New Password"
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </div>
 
           <button className="verify" type="submit">

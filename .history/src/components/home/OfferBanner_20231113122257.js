@@ -35,7 +35,7 @@ const OfferBanner = ({ setBanner }) => {
         <div className="relative w-full Offer_Banner">
           <div className="w-4/6 h-[20rem] image_container">
             <img
-              className="w-full h-full"
+              className="w-full h-full object-cover"
               src={response?.[0]?.bannerImage}
               alt="banner"
             />

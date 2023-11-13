@@ -9,9 +9,25 @@ const SearchHeader = ({ isOpen }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return function (...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  };
+
+  const handleFilter = (searchTerm) => {
+    searchTerm && filterProduct(searchTerm, setFilteredProducts);
+  };
+
+  const debouncedFilter = debounce(handleFilter, 500);
+
   useEffect(() => {
     filterProduct(searchTerm, setFilteredProducts);
-  }, [searchTerm]);
+  }, [searchTerm, debouncedFilter]);
 
   return (
     <motion.div

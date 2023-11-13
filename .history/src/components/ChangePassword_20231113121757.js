@@ -3,15 +3,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userPassword } from "../Repository/Api";
-import { FaEye } from "react-icons/fa6";
-import { PiEyeClosedBold } from "react-icons/pi";
 
 const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [show, setShow] = useState(false);
-  const [show1, setShow1] = useState(false);
-
   const navigate = useNavigate();
   const payload = { newPassword, confirmPassword };
 
@@ -38,7 +34,12 @@ const ChangePassword = () => {
         <form onSubmit={handleSubmit}>
           <div className="mt-5">
             <p>New Password</p>
-
+            <input
+              type="password"
+              placeholder="Enter your New Password"
+              required
+              onChange={(e) => setNewPassword(e.target.value)}
+            />{" "}
             <div className="input-div">
               <input
                 type={show ? "text" : "password"}
@@ -55,19 +56,12 @@ const ChangePassword = () => {
 
           <div className="mt-5">
             <p>Re-Enter Password</p>
-
-            <div className="input-div">
-              <input
-                type={show ? "text" : "password"}
-                required
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              {show ? (
-                <FaEye onClick={() => setShow1(false)} />
-              ) : (
-                <PiEyeClosedBold onClick={() => setShow1(true)} />
-              )}
-            </div>
+            <input
+              type="password"
+              placeholder="Enter your New Password"
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </div>
 
           <button className="verify" type="submit">
