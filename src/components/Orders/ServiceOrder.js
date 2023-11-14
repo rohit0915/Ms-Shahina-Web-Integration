@@ -14,6 +14,8 @@ const ServiceOrder = () => {
     getServiceOrder("Pending", setOrder);
   };
 
+  console.log(order);
+
   useEffect(() => {
     fetchHandler();
   }, []);
@@ -72,7 +74,7 @@ const ServiceOrder = () => {
                         </p>{" "}
                         <p className="title" style={{ fontSize: "24px" }}>
                           {" "}
-                          ${i?.serviceId?.price}
+                          ${i.memberprice ? i.memberprice : i?.serviceId?.price}
                         </p>
                       </div>
                       <p

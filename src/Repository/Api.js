@@ -639,9 +639,9 @@ const updateQuan = (productId, payload) => {
 const deleteGift = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(
+      const response = await axios.put(
         `${Baseurl}api/cart/delete/giftPrice/${id}`,
-
+        {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("Token")}`,
@@ -684,9 +684,9 @@ const deleteGift = (id) => {
 const deleteFBP = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(
+      const response = await axios.put(
         `${Baseurl}api/cart/delete/frequentlyBuyProduct/${id}`,
-
+        {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("Token")}`,
@@ -729,8 +729,9 @@ const deleteFBP = (id) => {
 const deleteItemCart = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(
+      const response = await axios.put(
         `${Baseurl}api/cart/delete/product/${id}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("Token")}`,
@@ -1069,8 +1070,9 @@ const getOnService = async (setResponse) => {
 const deleteAdOn = (payload) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(
+      const response = await axios.put(
         `${Baseurl}api/cart/delete/addOnservices/${payload}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("Token")}`,
