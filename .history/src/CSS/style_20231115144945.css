@@ -3101,10 +3101,6 @@
   color: #fff;
   font-size: 20px;
   font-style: normal;
-  text-align: center;
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
 }
 .mobile-footer .card_container .img_cont {
   display: flex;
@@ -3127,7 +3123,6 @@
 .mobile-footer .Links h4 {
   margin-top: 40px;
   font-size: 20px;
-  text-align: center;
 }
 .mobile-footer .Links ul a {
   width: 30%;
@@ -3145,20 +3140,18 @@
 .mobile-footer .contact h4 {
   font-size: 20px;
   margin-top: 40px;
-  text-align: center;
 }
 
 .mobile-footer .contact .Item {
   display: flex;
   gap: 20px;
-  align-items: center;
   margin-top: 20px;
 }
 .mobile-footer .contact .Item img {
-  width: 20px;
+  width: 30px;
 }
 .mobile-footer .contact .Item span {
-  font-size: 12px;
+  font-size: 16px;
   color: #fff;
 }
 .mobile-footer .Download {

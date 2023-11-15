@@ -3151,14 +3151,13 @@
 .mobile-footer .contact .Item {
   display: flex;
   gap: 20px;
-  align-items: center;
   margin-top: 20px;
 }
 .mobile-footer .contact .Item img {
   width: 20px;
 }
 .mobile-footer .contact .Item span {
-  font-size: 12px;
+  font-size: 16px;
   color: #fff;
 }
 .mobile-footer .Download {
