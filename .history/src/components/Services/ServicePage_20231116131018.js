@@ -177,16 +177,11 @@ const ServicePage = () => {
           <button onClick={() => addToCart()}>Book Now</button>
         </div>
 
-        {limitedOffer?.[0]?.bannerImage && (
-          <div className="Limited_offer">
-            <img
-              src={limitedOffer?.[0]?.bannerImage}
-              alt=""
-              onClick={() => showDrawer()}
-            />
-          </div>
-        )}
-
+        <div className="main_Img " style={{ marginTop: "40px" }}>
+          <Link to="/allproducts">
+            <img src="/Image/24.png" alt="" />
+          </Link>
+        </div>
         <div className="Review_Title_Container ">
           <h1>Client Reviews</h1>
           <p>

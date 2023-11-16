@@ -65,9 +65,8 @@ const OfferDrawer = ({ open, onClose }) => {
                 </p>
                 <Link to="/paymentplan">CLICK TO LEARN MORE</Link>
 
-                <button onClick={() => navigationHandler(i._id)}>
-                  VIEW MORE
-                </button>
+                  <button>VIEW MORE</button>
+          
               </div>
             ))
           )}

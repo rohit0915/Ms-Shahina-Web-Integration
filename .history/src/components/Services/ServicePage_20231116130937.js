@@ -4,11 +4,7 @@ import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Pictures from "../home/Pictures";
-import {
-  addServiceInCart,
-  getLimitedOffer,
-  getSingleService,
-} from "../../Repository/Api";
+import { addServiceInCart, getSingleService } from "../../Repository/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated } from "../../store/authSlice";
 import Testimonials from "../PaymentPlans/Testimonials";
@@ -27,7 +23,6 @@ const ServicePage = () => {
   const [sizePrice, setSizeprice] = useState("");
   const [memberprice, setMemberPrice] = useState("");
   const [open, setOpen] = useState(false);
-  const [limitedOffer, setLimitedOffer] = useState([]);
 
   useEffect(() => {
     getSingleService(id, setResponse);
@@ -79,14 +74,6 @@ const ServicePage = () => {
   const onClose = () => {
     setOpen(false);
   };
-
-  function fetchHandler() {
-    getLimitedOffer(setLimitedOffer, "offer");
-  }
-
-  useEffect(() => {
-    fetchHandler();
-  }, []);
 
   return (
     <>
@@ -177,16 +164,11 @@ const ServicePage = () => {
           <button onClick={() => addToCart()}>Book Now</button>
         </div>
 
-        {limitedOffer?.[0]?.bannerImage && (
-          <div className="Limited_offer">
-            <img
-              src={limitedOffer?.[0]?.bannerImage}
-              alt=""
-              onClick={() => showDrawer()}
-            />
-          </div>
-        )}
-
+        <div className="main_Img " style={{ marginTop: "40px" }}>
+          <Link to="/allproducts">
+            <img src="/Image/24.png" alt="" />
+          </Link>
+        </div>
         <div className="Review_Title_Container ">
           <h1>Client Reviews</h1>
           <p>

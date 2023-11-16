@@ -177,6 +177,12 @@ const ServicePage = () => {
           <button onClick={() => addToCart()}>Book Now</button>
         </div>
 
+        <div className="main_Img " style={{ marginTop: "40px" }}>
+          <Link to="/allproducts">
+            <img src="/Image/24.png" alt="" />
+          </Link>
+        </div>
+
         {limitedOffer?.[0]?.bannerImage && (
           <div className="Limited_offer">
             <img

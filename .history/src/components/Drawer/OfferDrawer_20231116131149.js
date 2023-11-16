@@ -7,7 +7,7 @@ import { getOfferService } from "../../Repository/Api";
 
 const OfferDrawer = ({ open, onClose }) => {
   const [response, setResponse] = useState([]);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function fetchHandler() {
     getOfferService(setResponse);
@@ -19,10 +19,9 @@ const OfferDrawer = ({ open, onClose }) => {
     }
   }, [open]);
 
-  const navigationHandler = (id) => {
-    navigate(`/indi-services/${id}`);
-    onClose();
-  };
+  const navigationHandler = () => {
+    navigate(``)
+  }
 
   return (
     <Drawer
@@ -65,9 +64,9 @@ const OfferDrawer = ({ open, onClose }) => {
                 </p>
                 <Link to="/paymentplan">CLICK TO LEARN MORE</Link>
 
-                <button onClick={() => navigationHandler(i._id)}>
-                  VIEW MORE
-                </button>
+                <Link to={`/indi-services/${i._id}`}>
+                  <button>VIEW MORE</button>
+                </Link>
               </div>
             ))
           )}
