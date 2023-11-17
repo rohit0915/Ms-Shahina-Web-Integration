@@ -743,7 +743,6 @@ const MyCart = () => {
                   ) : (
                     ""
                   )}
-                  <div id="time"></div>
 
                   {cart?.services?.length > 0 ||
                   cart?.AddOnservicesSchema?.length > 0 ? (
@@ -803,7 +802,6 @@ const MyCart = () => {
                           color: "blue",
                           textDecoration: "underline",
                         }}
-                        id="time"
                       >
                         Select Time & Slot first !
                       </Link>
@@ -865,11 +863,15 @@ const MyCart = () => {
                     Chekout Now
                   </button>
                 ) : (
-                  <a href="#time">
-                    <button className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button">
-                      Chekout Now
-                    </button>
-                  </a>
+                  <button
+                    className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+                    style={{
+                      opacity: 0.6,
+                    }}
+                    
+                  >
+                    Chekout Now
+                  </button>
                 )}
 
                 <div className="flex justify-center items-center text-lg">

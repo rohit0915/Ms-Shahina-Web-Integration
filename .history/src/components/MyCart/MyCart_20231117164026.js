@@ -743,7 +743,6 @@ const MyCart = () => {
                   ) : (
                     ""
                   )}
-                  <div id="time"></div>
 
                   {cart?.services?.length > 0 ||
                   cart?.AddOnservicesSchema?.length > 0 ? (
