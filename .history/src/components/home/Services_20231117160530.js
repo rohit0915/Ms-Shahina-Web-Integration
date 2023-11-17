@@ -38,7 +38,7 @@ const Services = ({ name }) => {
       </div>
     </section>
   ) : (
-    <NoData message={"Sorry, we couldn't find any service's"} />
+    <NoData message={""} />
   );
 };
 

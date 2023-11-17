@@ -15,13 +15,12 @@ const ServiceTab = () => {
   const isLoggedIn = useSelector(isAuthenticated);
 
   useEffect(() => {
-    getLimitedOffer(setResponse, "servicePage");
+    // getLimitedOffer(setResponse, "servicePage");
   }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [name]);
-
 
 
 

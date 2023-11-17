@@ -12,7 +12,7 @@ const Services = ({ name }) => {
 
   async function fetchHandler() {
     setLoad(true);
-    await getServiceMenu(setResponse);
+    // await getServiceMenu(setResponse);
     setLoad(false);
   }
 
@@ -38,7 +38,7 @@ const Services = ({ name }) => {
       </div>
     </section>
   ) : (
-    <NoData message={"Sorry, we couldn't find any service's"} />
+    <NoData message={""} />
   );
 };
 

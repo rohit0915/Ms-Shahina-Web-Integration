@@ -22,8 +22,7 @@ const ServiceTab = () => {
     window.scrollTo(0, 0);
   }, [name]);
 
-
-
+  
 
   return (
     <section>

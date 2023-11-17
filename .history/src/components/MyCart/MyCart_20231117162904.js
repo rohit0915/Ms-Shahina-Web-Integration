@@ -792,9 +792,8 @@ const MyCart = () => {
                     ""
                   )}
 
-                  {cart?.date && cart?.time ? (
-                    ""
-                  ) : (
+                    {console.log(cart?.date)}
+                  {cart?.date && cart?.time && (
                     <p className="text-lg font-normal my-3">
                       <Link
                         to="/schedule2"
@@ -854,21 +853,21 @@ const MyCart = () => {
                   </div>
                 </section>
 
-                {cart?.date && cart?.time ? (
-                  <button
-                    className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
-                    onClick={() => checkoutHandler()}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Chekout Now
-                  </button>
-                ) : (
+                {cart?.date?.length === 0 && cart?.time?.length === 0 ? (
                   <button
                     className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
                     style={{
                       opacity: 0.6,
                       cursor: "not-allowed !important",
                     }}
+                  >
+                    Chekout Now
+                  </button>
+                ) : (
+                  <button
+                    className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+                    onClick={() => checkoutHandler()}
+                    style={{ cursor: "pointer" }}
                   >
                     Chekout Now
                   </button>

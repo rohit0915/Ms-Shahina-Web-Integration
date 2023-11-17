@@ -14,8 +14,8 @@ const ServiceTab = () => {
 
   const isLoggedIn = useSelector(isAuthenticated);
 
-  useEffect(() => {
-    getLimitedOffer(setResponse, "servicePage");
+  // useEffect(() => {
+    // getLimitedOffer(setResponse, "servicePage");
   }, []);
 
   useEffect(() => {

@@ -12,7 +12,7 @@ const Services = ({ name }) => {
 
   async function fetchHandler() {
     setLoad(true);
-    await getServiceMenu(setResponse);
+    // await getServiceMenu(setResponse);
     setLoad(false);
   }
 
