@@ -7,8 +7,7 @@ import PhoneInput from "react-phone-input-2";
 import { FaEye } from "react-icons/fa6";
 import { PiEyeClosedBold } from "react-icons/pi";
 
-const IndivisualAppointment = () => {
-  const [show, setShow] = useState(false);
+const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,7 +15,7 @@ const IndivisualAppointment = () => {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
-  const [show2, setShow2] = useState(false);
+  const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
 
@@ -47,12 +46,13 @@ const IndivisualAppointment = () => {
     <>
       <div className="Backward_Heading">
         <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />
-        <p>Individual Appointment</p>
+        <p>Sign-Up</p>
       </div>
 
       <div className="Indivisual-Appointment">
         <p className="title">
-          Enter your Details to continue with Individual Appointment{" "}
+          <img src="/Image/99.png" alt="" />
+          <span>You are One Step away to Become our VIP Member!</span>
         </p>
 
         <form onSubmit={submitHandler}>
@@ -97,39 +97,29 @@ const IndivisualAppointment = () => {
             <input
               type="text"
               name="dob"
-              placeholder="MM/DD/YYYY"
+              placeholder="MM/DD//yyyy"
               onChange={(e) => setDob(e.target.value)}
               required
             />
           </div>
 
-          <div className="check">
-            <input type="checkbox" onClick={() => setShow(!show)} />
-            <div>
-              <p className="title">Create Profile</p>
-              <p className="desc">Mark the Checkbox to Create new Profile </p>
+          <div>
+            <p> New Password</p>
+            <div className="input-div">
+              <input
+                type={show ? "text" : "password"}
+                required
+                placeholder="Enter Your New Password"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {show ? (
+                <FaEye onClick={() => setShow(false)} />
+              ) : (
+                <PiEyeClosedBold onClick={() => setShow(true)} />
+              )}
             </div>
           </div>
-
-          {show && (
-            <div>
-              <p> New Password</p>
-              <div className="input-div">
-                <input
-                  type={show2 ? "text" : "password"}
-                  required
-                  placeholder="Enter Your New Password"
-                  name="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {show2 ? (
-                  <FaEye onClick={() => setShow2(false)} />
-                ) : (
-                  <PiEyeClosedBold onClick={() => setShow2(true)} />
-                )}
-              </div>
-            </div>
-          )}
 
           <div>
             <p>Select your Gender</p>
@@ -181,4 +171,4 @@ const IndivisualAppointment = () => {
   );
 };
 
-export default IndivisualAppointment;
+export default Signup;
