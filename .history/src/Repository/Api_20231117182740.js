@@ -855,12 +855,11 @@ const ReviewQuiz = async (answer1, answer2, answer3, answer4, navigate) => {
     if (response?.data?.data?.productId) {
       product = JSON.stringify(response?.data?.data?.productId);
       localStorage.setItem("QuizSingleProduct", product);
-      localStorage.removeItem("QuizBundeledProduct");
+      localStorage.removeItem("QuizBundeledProduct", product);
       navigate("/acnequiz/recomended");
     } else if (response?.data?.data?.frequentlyBuyProductId) {
       product = JSON.stringify(response?.data?.data?.frequentlyBuyProductId);
       localStorage.setItem("QuizBundeledProduct", product);
-      localStorage.removeItem("QuizSingleProduct");
       navigate("/acnequiz/recomended");
     }
   } catch {}

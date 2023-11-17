@@ -62,46 +62,39 @@ const RecomendedProduct = () => {
         <h1 className="text-4xl font-medium text-center">
           Recommended Product
         </h1>{" "}
-        {singleProduct && (
-          <>
-            <div className="two_sec">
-              <div className="w-[26rem] h-[30rem]">
-                <img
-                  className="w-full h-full object-contain"
-                  src={singleProduct?.productImages?.[0]?.image}
-                  alt=""
-                />
-              </div>
-              <div
-                className="flex  flex-col gap-14"
-                style={{ padding: "20px" }}
-              >
-                <h1 className="text-4xl font-normal title">
-                  {" "}
-                  {singleProduct?.name}{" "}
-                </h1>
-                <p className="w-[29rem] text-xl content ">
-                  {singleProduct?.description}
-                </p>
-              </div>
-            </div>{" "}
-            <div className="tow_links">
-              <Link
-                className="bg-primary py-6"
-                to={`/product/${singleProduct?._id}`}
-              >
-                VIEW PRODUCT
-              </Link>
-              <a
-                href="#"
-                className="bg-primary py-6"
-                onClick={() => cartHandler(singleProduct?._id)}
-              >
-                ADD TO CART
-              </a>
-            </div>
-          </>
-        )}
+        <div className="two_sec">
+          <div className="w-[26rem] h-[30rem]">
+            <img
+              className="w-full h-full object-contain"
+              src={singleProduct?.productImages?.[0]?.image}
+              alt=""
+            />
+          </div>
+          <div className="flex  flex-col gap-14" style={{ padding: "20px" }}>
+            <h1 className="text-4xl font-normal title">
+              {" "}
+              {singleProduct?.name}{" "}
+            </h1>
+            <p className="w-[29rem] text-xl content ">
+              {singleProduct?.description}
+            </p>
+          </div>
+        </div>{" "}
+        <div className="tow_links">
+          <Link
+            className="bg-primary py-6"
+            to={`/product/${singleProduct?._id}`}
+          >
+            VIEW PRODUCT
+          </Link>
+          <a
+            href="#"
+            className="bg-primary py-6"
+            onClick={() => cartHandler(singleProduct?._id)}
+          >
+            ADD TO CART
+          </a>
+        </div>
         {bundeledProduct && (
           <div className="frequently-bought">
             <div className="container">
