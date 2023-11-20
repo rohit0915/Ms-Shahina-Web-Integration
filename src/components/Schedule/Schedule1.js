@@ -170,8 +170,8 @@ const Schedule1 = () => {
           BOOK NOW
         </button>
       );
-      button = <Component />;
     };
+    button = <Component />;
   }
   return (
     <>
