@@ -140,8 +140,9 @@ const Schedule1 = () => {
     }
   }
 
-  let button;
-  if (cart?.services?.length === 0) {
+  console.log(cart?.service?.length);
+  let bookNow;
+  if (cart?.services?.length === 0 || cart?.services?.length === undefined) {
     const Component = () => {
       return (
         <>
@@ -162,7 +163,7 @@ const Schedule1 = () => {
         </>
       );
     };
-    button = <Component />;
+    bookNow = <Component />;
   } else {
     const Component = () => {
       return (
@@ -171,7 +172,7 @@ const Schedule1 = () => {
         </button>
       );
     };
-    button = <Component />;
+    bookNow = <Component />;
   }
   return (
     <>
@@ -390,7 +391,7 @@ const Schedule1 = () => {
               </div>
             ))}
 
-            {button}
+            {bookNow}
           </div>
 
           <div className="border-collapsed"></div>
