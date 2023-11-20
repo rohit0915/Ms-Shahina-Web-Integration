@@ -164,9 +164,14 @@ const Schedule1 = () => {
     };
     button = <Component />;
   } else {
-    <button className="book" onClick={() => navigate("/schedule2")}>
-      BOOK NOW
-    </button>;
+    const Component = () => {
+      return (
+        <button className="book" onClick={() => navigate("/schedule2")}>
+          BOOK NOW
+        </button>
+      );
+      button = <Component />;
+    };
   }
   return (
     <>
