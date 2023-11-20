@@ -766,10 +766,12 @@ const MyCart = () => {
                               <GrMail />
                               <p> {contact?.email} </p>
                             </div>
-                            <div className="contact-info">
-                              <AiFillInstagram />
-                              <p> {contact?.instagram} </p>
-                            </div>
+                            <a href={contact?.instagram}>
+                              <div className="contact-info">
+                                <AiFillInstagram />
+                                <p>nurse.shahina </p>
+                              </div>
+                            </a>
                           </div>
                         </div>
 
@@ -862,12 +864,12 @@ const MyCart = () => {
                     onClick={() => checkoutHandler()}
                     style={{ cursor: "pointer" }}
                   >
-                    Chekout Now
+                    Checkout Now
                   </button>
                 ) : (
                   <a href="#time">
                     <button className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button">
-                      Chekout Now
+                      Checkout Now
                     </button>
                   </a>
                 )}
