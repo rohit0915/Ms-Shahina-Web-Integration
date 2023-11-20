@@ -80,18 +80,18 @@ const Footer = () => {
           title: "TERMS OF USE",
           link: "/terms",
         },
-        {
-          title: "Product Order History",
-          link: "/product-orders",
-        },
-        {
-          title: "Upcoming Service History",
-          link: "/upcoming-orders",
-        },
-        {
-          title: "Past Service History",
-          link: "/past-orders",
-        },
+        // {
+        //   title: "Product Order History",
+        //   link: "/product-orders",
+        // },
+        // {
+        //   title: "Upcoming Service History",
+        //   link: "/upcoming-orders",
+        // },
+        // {
+        //   title: "Past Service History",
+        //   link: "/past-orders",
+        // },
       ],
     },
   ];
@@ -156,7 +156,11 @@ const Footer = () => {
                   </h4>
                   <ul className="list-none mt-5 flex flex-col gap-6">
                     {item.options.map((option, index) => (
-                      <Link to={option?.link} key={`Footer_Links_list${index}`}>
+                      <Link
+                        to={option?.link}
+                        key={`Footer_Links_list${index}`}
+                        style={{ textTransform: "uppercase" }}
+                      >
                         <li
                           className="text-left  font-medium cursor-pointer desc"
                           style={{ textTransform: "uppercase" }}
@@ -211,7 +215,7 @@ const Footer = () => {
                     />
                   </div>
                   <span className="text-xl font-medium desc">
-                    {response?.instagram}
+                    <a href={response?.instagram}>nurse.shahina</a>
                   </span>
                 </div>
 

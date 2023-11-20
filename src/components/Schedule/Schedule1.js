@@ -288,7 +288,10 @@ const Schedule1 = () => {
                 </div>
                 <div className="contact-info">
                   <AiFillInstagram />
-                  <p> {contact?.instagram} </p>
+
+                  <a href={contact?.instagram}>
+                    <p>nurse.shahina </p>
+                  </a>
                 </div>
               </div>
             </div>
@@ -352,11 +355,16 @@ const Schedule1 = () => {
                 </div>
               </div>
             ))}
-          </div>
 
-          <button className="book" onClick={() => navigate("/schedule2")}>
-            BOOK NOW
-          </button>
+            {cart?.services?.length === 0 &&
+            cart?.AddOnservicesSchema?.length === 0 ? (
+              <button className="book">BOOK NOW</button>
+            ) : (
+              <button className="book" onClick={() => navigate("/schedule2")}>
+                BOOK NOW
+              </button>
+            )}
+          </div>
 
           <div className="border-collapsed"></div>
 

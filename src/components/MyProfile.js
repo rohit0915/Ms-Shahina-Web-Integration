@@ -13,6 +13,9 @@ import AddressModal from "./Drawer/AddressModal";
 import ProfileModal from "./Drawer/ProfileModal";
 import SubsModal from "./Drawer/SubsModal";
 import { FaPlus } from "react-icons/fa6";
+import PastServiceOrder from "./Orders/PastServiceOrder";
+import ProductOrder from "./Orders/ProductOrder";
+import ServiceOrder from "./Orders/ServiceOrder";
 
 const MyProfile = () => {
   const [profile, setProfile] = useState({});
@@ -305,6 +308,15 @@ const MyProfile = () => {
               </div>
             </div>
           )}
+        </div>
+        <div className="profile_div">
+          <ProductOrder />
+        </div>
+        <div className="profile_div">
+          <ServiceOrder />
+        </div>
+        <div className="profile_div">
+          <PastServiceOrder />
         </div>
       </div>
     </>
