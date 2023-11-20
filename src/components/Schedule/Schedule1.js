@@ -141,7 +141,7 @@ const Schedule1 = () => {
   }
 
   let button;
-  if (cart?.services?.length === 0 && cart?.AddOnservicesSchema?.length === 0) {
+  if (cart?.services?.length === 0) {
     const Component = () => {
       return (
         <>
