@@ -35,6 +35,7 @@ const Schedule1 = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const dispatch = useDispatch();
+  const [err, setErr] = useState(false);
 
   const myCart = useSelector(CartItems);
 
@@ -358,7 +359,22 @@ const Schedule1 = () => {
 
             {cart?.services?.length === 0 &&
             cart?.AddOnservicesSchema?.length === 0 ? (
-              <button className="book">BOOK NOW</button>
+              <>
+                <button className="book" onClick={() => setErr(true)}>
+                  BOOK NOW
+                </button>
+                {err && (
+                  <p
+                    style={{
+                      textAlign: "center",
+                      color: "#042b26",
+                      marginTop: "10px",
+                    }}
+                  >
+                    Please Select Service first !
+                  </p>
+                )}
+              </>
             ) : (
               <button className="book" onClick={() => navigate("/schedule2")}>
                 BOOK NOW

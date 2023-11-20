@@ -4,12 +4,19 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { paymentCards } from "../constants/constant";
 import { getContactDetails, getServiceMenu } from "../Repository/Api";
+import { useDispatch, useSelector } from "react-redux";
+import { isBannerOpen, openBanner } from "../store/BannerSlice";
 
 const Footer = () => {
   const [response, setResponse] = useState({});
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
-
   const [services, setServices] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const handleOpen = () => {
+    dispatch(openBanner());
+  };
 
   function fetchHandler() {
     getServiceMenu(setServices);
@@ -195,15 +202,20 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-center gap-2 ">
-                  <div className="flex-shrink-0">
+                  <div
+                    className="flex-shrink-0 "
+                    style={{
+                      display: "flex",
+                      gap: "10px",
+                      alignItems: "center",
+                    }}
+                  >
                     <a href={response?.instagram}>
                       <img src="/asessts/footer/instagram.png" alt="contact" />
                     </a>
-                    <a href={response?.instagram}>
-                      <span className="text-xl font-medium desc">
-                        nurse.shahina
-                      </span>
-                    </a>
+                    <span className="text-xl font-medium desc">
+                      <a href={response?.instagram}>nurse.shahina</a>
+                    </span>
                   </div>
                 </div>
 
@@ -234,7 +246,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-30 h-14">
+            <div className="w-30 h-14" onClick={() => handleOpen()}>
               <img
                 className="w-full h-full object-contain"
                 src="/asessts/specialOffer.png"
@@ -259,7 +271,7 @@ const Footer = () => {
               />
               <img
                 className="w-w-full h-8 object-contain"
-                src="/asessts/footer/download (1).png"
+                src="/asessts/footer/download (2).png"
                 alt="download"
               />
             </div>
@@ -373,7 +385,7 @@ const Footer = () => {
 
             <div>
               <img src="/asessts/footer/download (1).png" alt="download" />
-              <img src="/asessts/footer/download (1).png" alt="download" />
+              <img src="/asessts/footer/download (2).png" alt="download" />
             </div>
           </div>
 
