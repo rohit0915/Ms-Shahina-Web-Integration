@@ -14,8 +14,6 @@ const ServiceOrder = () => {
     getServiceOrder("Pending", setOrder);
   };
 
-  console.log(order);
-
   useEffect(() => {
     fetchHandler();
   }, []);
@@ -40,7 +38,7 @@ const ServiceOrder = () => {
 
   return (
     <div className="user_product_order">
-      <div className="title_account_second">Upcoming Service history</div>
+      {/* <div className="title_account_second">Upcoming Service history</div> */}
 
       {order?.length === 0 ? (
         <div className="Not-Found">
@@ -49,7 +47,7 @@ const ServiceOrder = () => {
         </div>
       ) : (
         <>
-          <div className="title_account_second">Regular Service's</div>
+          {/* <div className="title_account_second">Regular Service's</div> */}
           {regularServicePresent === true ? (
             <div className="service-upcoming-order">
               {order?.map((item) =>

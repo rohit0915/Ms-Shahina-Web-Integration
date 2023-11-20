@@ -26,7 +26,7 @@ const ProductOrder = () => {
 
   return (
     <div className="user_product_order">
-      <div className="title_account_second">Product Order history</div>
+      {/* <div className="title_account_second">Product Order history</div> */}
       {order?.length === 0 ? (
         <div className="Not-Found">
           <img src="/Image/out-of-stock.png" alt="" />
