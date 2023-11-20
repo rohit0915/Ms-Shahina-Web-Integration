@@ -140,6 +140,34 @@ const Schedule1 = () => {
     }
   }
 
+  let button;
+  if (cart?.services?.length === 0 && cart?.AddOnservicesSchema?.length === 0) {
+    const Component = () => {
+      return (
+        <>
+          <button className="book" onClick={() => setErr(true)}>
+            BOOK NOW
+          </button>
+          {err && (
+            <p
+              style={{
+                textAlign: "center",
+                color: "#042b26",
+                marginTop: "10px",
+              }}
+            >
+              Please Select Service first !
+            </p>
+          )}
+        </>
+      );
+    };
+    button = <Component />;
+  } else {
+    <button className="book" onClick={() => navigate("/schedule2")}>
+      BOOK NOW
+    </button>;
+  }
   return (
     <>
       <TextDrawer
@@ -357,29 +385,7 @@ const Schedule1 = () => {
               </div>
             ))}
 
-            {cart?.services?.length === 0 &&
-            cart?.AddOnservicesSchema?.length === 0 ? (
-              <>
-                <button className="book" onClick={() => setErr(true)}>
-                  BOOK NOW
-                </button>
-                {err && (
-                  <p
-                    style={{
-                      textAlign: "center",
-                      color: "#042b26",
-                      marginTop: "10px",
-                    }}
-                  >
-                    Please Select Service first !
-                  </p>
-                )}
-              </>
-            ) : (
-              <button className="book" onClick={() => navigate("/schedule2")}>
-                BOOK NOW
-              </button>
-            )}
+            {button}
           </div>
 
           <div className="border-collapsed"></div>

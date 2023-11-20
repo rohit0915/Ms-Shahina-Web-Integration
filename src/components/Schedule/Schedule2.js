@@ -27,7 +27,6 @@ const Schedule2 = () => {
     getAllSlot(setResponse);
   };
 
-  console.log(response)
 
   useEffect(() => {
     getHandler();
