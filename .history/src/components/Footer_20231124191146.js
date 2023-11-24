@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { paymentCards } from "../constants/constant";
 import { getContactDetails, getServiceMenu } from "../Repository/Api";
 import { Mail } from "./Helping/Mail";
-import { useDispatch, useSelector } from "react-redux";
-import { isBannerOpen, openBanner } from "../store/BannerSlice";
+import { useDispatch } from 'react-redux'
 
 
 const Footer = () => {

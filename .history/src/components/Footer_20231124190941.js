@@ -4,10 +4,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { paymentCards } from "../constants/constant";
 import { getContactDetails, getServiceMenu } from "../Repository/Api";
-import { Mail } from "./Helping/Mail";
-import { useDispatch, useSelector } from "react-redux";
-import { isBannerOpen, openBanner } from "../store/BannerSlice";
-
 
 const Footer = () => {
   const [response, setResponse] = useState({});
@@ -277,7 +273,6 @@ const Footer = () => {
               <img
                 className="w-w-full h-8 object-contain"
                 src="/asessts/footer/download (2).png"
-                src="/asessts/footer/download (2).png"
                 alt="download"
               />
             </div>
@@ -399,7 +394,6 @@ const Footer = () => {
 
             <div>
               <img src="/asessts/footer/download (1).png" alt="download" />
-              <img src="/asessts/footer/download (2).png" alt="download" />
               <img src="/asessts/footer/download (2).png" alt="download" />
             </div>
           </div>
