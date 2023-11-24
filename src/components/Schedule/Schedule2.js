@@ -27,6 +27,7 @@ const Schedule2 = () => {
     getAllSlot(setResponse);
   };
 
+
   useEffect(() => {
     getHandler();
   }, []);
@@ -143,8 +144,12 @@ const Schedule2 = () => {
                   <p> {contact?.email} </p>
                 </div>
                 <div className="contact-info">
-                  <AiFillInstagram />
-                  <p> {contact?.instagram} </p>
+                  <a href={contact?.instagram}>
+                    <AiFillInstagram />
+                  </a>
+                  <a href={contact?.instagram}>
+                    <p> @nurse.shahina </p>
+                  </a>
                 </div>
               </div>
             </div>

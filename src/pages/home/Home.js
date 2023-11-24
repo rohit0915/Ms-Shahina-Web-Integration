@@ -11,9 +11,14 @@ import OfferCard from "../../components/home/OfferCard";
 import OfferBanner from "../../components/home/OfferBanner";
 import Testimonials from "../../components/PaymentPlans/Testimonials";
 import GallarySlider from "../../components/Sliders/GallarySlider";
+import { useSelector } from "react-redux";
+import { isBannerOpen } from "../../store/BannerSlice";
 
 const Home = () => {
   const [isBanner, setBanner] = useState(false);
+
+  const isOpen = useSelector(isBannerOpen);
+
   useEffect(() => {
     setBanner(true);
   }, []);
@@ -46,9 +51,9 @@ const Home = () => {
         <OfferCard setBanner={setBanner} />
       </div>
       <GallarySlider />
-      {isBanner && (
+      {isOpen && (
         <div className="fixed bottom-0 w-full h-[20rem] z-[200] Bootom_Cormer">
-          <OfferBanner setBanner={setBanner} />
+          <OfferBanner />
         </div>
       )}
     </div>

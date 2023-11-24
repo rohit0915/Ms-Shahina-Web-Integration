@@ -38,7 +38,7 @@ const PastServiceOrder = () => {
 
   return (
     <div className="user_product_order">
-      <div className="title_account_second">Past Service history</div>
+      {/* <div className="title_account_second">Past Service history</div> */}
       {order?.length === 0 ? (
         <div className="Not-Found">
           <img src="/Image/out-of-stock.png" alt="" />
@@ -46,7 +46,7 @@ const PastServiceOrder = () => {
         </div>
       ) : (
         <>
-          <div className="title_account_second">Regular Service's</div>
+          {/* <div className="title_account_second">Regular Service's</div> */}
           {regularServicePresent === true ? (
             <div className="service-upcoming-order">
               {order?.map((item) =>

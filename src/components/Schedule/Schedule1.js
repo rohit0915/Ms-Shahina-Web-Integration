@@ -35,6 +35,7 @@ const Schedule1 = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const dispatch = useDispatch();
+  const [err, setErr] = useState(false);
 
   const myCart = useSelector(CartItems);
 
@@ -139,6 +140,40 @@ const Schedule1 = () => {
     }
   }
 
+  console.log(cart?.service?.length);
+  let bookNow;
+  if (cart?.services?.length === 0 || cart?.services?.length === undefined) {
+    const Component = () => {
+      return (
+        <>
+          <button className="book" onClick={() => setErr(true)}>
+            BOOK NOW
+          </button>
+          {err && (
+            <p
+              style={{
+                textAlign: "center",
+                color: "#042b26",
+                marginTop: "10px",
+              }}
+            >
+              Please Select Service first !
+            </p>
+          )}
+        </>
+      );
+    };
+    bookNow = <Component />;
+  } else {
+    const Component = () => {
+      return (
+        <button className="book" onClick={() => navigate("/schedule2")}>
+          BOOK NOW
+        </button>
+      );
+    };
+    bookNow = <Component />;
+  }
   return (
     <>
       <TextDrawer
@@ -288,7 +323,10 @@ const Schedule1 = () => {
                 </div>
                 <div className="contact-info">
                   <AiFillInstagram />
-                  <p> {contact?.instagram} </p>
+
+                  <a href={contact?.instagram}>
+                    <p>nurse.shahina </p>
+                  </a>
                 </div>
               </div>
             </div>
@@ -352,11 +390,9 @@ const Schedule1 = () => {
                 </div>
               </div>
             ))}
-          </div>
 
-          <button className="book" onClick={() => navigate("/schedule2")}>
-            BOOK NOW
-          </button>
+            {bookNow}
+          </div>
 
           <div className="border-collapsed"></div>
 

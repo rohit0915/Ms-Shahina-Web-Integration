@@ -28,7 +28,7 @@ const Sidebar = ({ open, onClose }) => {
       title: "SHOP",
     },
     {
-      link: "/services",
+      link: "/services/services",
       title: "SERVICES",
     },
     {

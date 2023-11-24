@@ -3,10 +3,17 @@
 import React, { useEffect, useState } from "react";
 import { getLimitedOffer } from "../../Repository/Api";
 import { GrClose } from "react-icons/gr";
+import { useDispatch } from "react-redux";
+import { closeBanner } from "../../store/BannerSlice";
 
 const OfferBanner = ({ setBanner }) => {
   const [response, setResponse] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
+  const dispatch = useDispatch();
+
+  const handleClose = () => {
+    dispatch(closeBanner());
+  };
 
   function fetchHandler() {
     getLimitedOffer(setResponse, "Promotion");
@@ -84,10 +91,10 @@ const OfferBanner = ({ setBanner }) => {
             </div>
             <div className="w-8 h-4  absolute top-3 right-11 close_btn ">
               <img
-                onClick={() => setBanner(false)}
                 className="object-cover cursor-pointer"
                 src="/Image/14.png"
                 alt=""
+                onClick={() => handleClose()}
               />
             </div>
           </div>
@@ -99,7 +106,7 @@ const OfferBanner = ({ setBanner }) => {
     const MyComponent = () => {
       return (
         <div className="Promotional_Banner_Mobile">
-          <GrClose className="close_button" onClick={() => setBanner(false)} />
+          <GrClose className="close_button" onClick={() => handleClose()} />
           <div className="content">
             <img src={response?.[0]?.bannerImage} alt="" />
             <h1>{response?.[0]?.desc}</h1>

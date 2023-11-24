@@ -11,6 +11,12 @@ const Footer = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [services, setServices] = useState([]);
 
+  const dispatch = useDispatch();
+
+  const handleOpen = () => {
+    dispatch(openBanner());
+  };
+
   function fetchHandler() {
     getServiceMenu(setServices);
   }
@@ -80,18 +86,6 @@ const Footer = () => {
           title: "TERMS OF USE",
           link: "/terms",
         },
-        {
-          title: "Product Order History",
-          link: "/product-orders",
-        },
-        {
-          title: "Upcoming Service History",
-          link: "/upcoming-orders",
-        },
-        {
-          title: "Past Service History",
-          link: "/past-orders",
-        },
       ],
     },
   ];
@@ -156,7 +150,11 @@ const Footer = () => {
                   </h4>
                   <ul className="list-none mt-5 flex flex-col gap-6">
                     {item.options.map((option, index) => (
-                      <Link to={option?.link} key={`Footer_Links_list${index}`}>
+                      <Link
+                        to={option?.link}
+                        key={`Footer_Links_list${index}`}
+                        style={{ textTransform: "uppercase" }}
+                      >
                         <li
                           className="text-left  font-medium cursor-pointer desc"
                           style={{ textTransform: "uppercase" }}
@@ -206,16 +204,21 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-center gap-2 ">
-                  <div className="flex-shrink-0">
-                    <img
-                      className="w-full h-full object-contain "
-                      src="/asessts/footer/instagram.png"
-                      alt="contact"
-                    />
+                  <div
+                    className="flex-shrink-0 "
+                    style={{
+                      display: "flex",
+                      gap: "10px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <a href={response?.instagram}>
+                      <img src="/asessts/footer/instagram.png" alt="contact" />
+                    </a>
+                    <span className="text-xl font-medium desc">
+                      <a href={response?.instagram}>nurse.shahina</a>
+                    </span>
                   </div>
-                  <span className="text-xl font-medium desc">
-                    {response?.instagram}
-                  </span>
                 </div>
 
                 <div className="flex items-center gap-2 ">
@@ -243,19 +246,18 @@ const Footer = () => {
                 ></iframe>
               </div>
             </div>
-
-            <div className="max-lg:hidden absolute bottom-0 flex items-center gap-3">
-              <div className="w-30 h-14">
-                <img
-                  className="w-full h-full object-contain"
-                  src="/asessts/specialOffer.png"
-                  alt="offer"
-                />
-              </div>
-              <h6 className="w-56 text-xl font-medium">
-                Get 50$ OFF on your First Visit when you Book through our App.
-              </h6>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-30 h-14" onClick={() => handleOpen()}>
+              <img
+                className="w-full h-full object-contain"
+                src="/asessts/specialOffer.png"
+                alt="offer"
+              />
             </div>
+            <h6 className="w-56 text-xl font-medium">
+              Get 50$ OFF on your First Visit when you Book through our App.
+            </h6>
           </div>
 
           <div className="Down_Div">
@@ -271,6 +273,7 @@ const Footer = () => {
               />
               <img
                 className="w-w-full h-8 object-contain"
+                src="/asessts/footer/download (2).png"
                 src="/asessts/footer/download (2).png"
                 alt="download"
               />
@@ -322,7 +325,11 @@ const Footer = () => {
                 </h4>
                 <ul>
                   {item.options.map((option, index) => (
-                    <Link to={option?.link} key={`mobile_footer_list${index}`}>
+                    <Link
+                      to={option?.link}
+                      key={`mobile_footer_list${index}`}
+                      style={{ textTransform: "uppercase" }}
+                    >
                       <li className="text-left  font-medium cursor-pointer desc">{` ${option?.title}`}</li>
                     </Link>
                   ))}
@@ -354,11 +361,12 @@ const Footer = () => {
               </span>
             </div>
             <div className="Item">
-              <img src="/asessts/footer/instagram.png" alt="contact" />
-
-              <span className="text-xl font-medium desc">
-                {response?.instagram}
-              </span>
+              <a href={response?.instagram}>
+                <img src="/asessts/footer/instagram.png" alt="contact" />
+              </a>
+              <a href={response?.instagram}>
+                <span className="text-xl font-medium desc">nurse.shahina</span>
+              </a>
             </div>
             <div className="Item">
               <img src="/asessts/footer/contact (3).png" alt="contact" />
@@ -388,6 +396,7 @@ const Footer = () => {
 
             <div>
               <img src="/asessts/footer/download (1).png" alt="download" />
+              <img src="/asessts/footer/download (2).png" alt="download" />
               <img src="/asessts/footer/download (2).png" alt="download" />
             </div>
           </div>

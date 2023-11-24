@@ -27,10 +27,14 @@
     font-size: 14px;
   }
   .Home_Hero_Section .left-container button {
+  
     font-size: 16px;
     margin-top: 40px;
     margin-left: 0;
     width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   .Home_Hero_Section .left-container ul {
     line-height: normal;
@@ -750,25 +754,25 @@
   .user_product_order .Items .content .orderId {
     text-align: center;
   }
-  .Spec{
+  .Spec {
     justify-content: center !important;
-    gap: 10px  !important;
+    gap: 10px !important;
   }
   .user_product_order .Items .content .button-container button {
     display: block;
     margin: auto;
   }
-  .user_product_order .title_account_second{
+  .user_product_order .title_account_second {
     text-align: center;
   }
-  .More-Question{
+  .More-Question {
     display: block;
   }
-  .More-Question .left{
+  .More-Question .left {
     max-width: 100%;
     margin-top: 20px;
   }
-  .Indivisual-Appointment form .gender_selection button p{
+  .Indivisual-Appointment form .gender_selection button p {
     font-size: 12px;
   }
   .product-reviews .container .giveReview button{
