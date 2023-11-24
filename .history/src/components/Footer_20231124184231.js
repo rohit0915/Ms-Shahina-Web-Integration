@@ -271,7 +271,7 @@ const Footer = () => {
               />
               <img
                 className="w-w-full h-8 object-contain"
-                src="/asessts/footer/download (2).png"
+                src="/asessts/footer/download (1).png"
                 alt="download"
               />
             </div>
@@ -314,10 +314,7 @@ const Footer = () => {
           <div className="Links">
             {footerLinks.map((item, index) => (
               <div key={`mobile_footer_Links${index}`} className="Linkss">
-                <h4
-                  className=" text-secondary font-medium Title"
-                  style={{ textTransform: "uppercase" }}
-                >
+                <h4 className=" text-secondary font-medium Title" style={{textTransform : 'uppercase'}} >
                   {item.title}
                 </h4>
                 <ul>
@@ -332,12 +329,7 @@ const Footer = () => {
           </div>
 
           <div className="contact">
-            <h4
-              className=" text-secondary font-medium Title"
-              style={{ textTransform: "uppercase" }}
-            >
-              Contact
-            </h4>
+            <h4 className=" text-secondary font-medium Title">Contact</h4>
 
             <div className="Item">
               <img src="/asessts/footer/contact (1).png" alt="contact" />
@@ -388,7 +380,7 @@ const Footer = () => {
 
             <div>
               <img src="/asessts/footer/download (1).png" alt="download" />
-              <img src="/asessts/footer/download (2).png" alt="download" />
+              <img src="/asessts/footer/download (1).png" alt="download" />
             </div>
           </div>
 

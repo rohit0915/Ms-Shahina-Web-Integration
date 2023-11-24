@@ -388,7 +388,7 @@ const Footer = () => {
 
             <div>
               <img src="/asessts/footer/download (1).png" alt="download" />
-              <img src="/asessts/footer/download (2).png" alt="download" />
+              <img src="/asessts/footer/download (1).png" alt="download" />
             </div>
           </div>
 

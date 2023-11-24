@@ -1964,7 +1964,6 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  justify-content: center;
 }
 .Footer-Container .upper_div .right-container .img-cont img {
   width: 50px;

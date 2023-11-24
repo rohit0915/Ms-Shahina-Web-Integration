@@ -19,6 +19,7 @@ const Failed = () => {
     <div className="Thanks_Container">
       <p className="title">Failed !</p>
       <p className="desc">Order Failes due to Technical issue</p>
+      <img src={"/Image/12.gif"} alt="" />
       <Link to="/" style={{ cursor: "pointer" }}>
         <button>RETURN TO HOMEPAGE</button>
       </Link>

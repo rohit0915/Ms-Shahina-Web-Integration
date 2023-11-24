@@ -4,12 +4,23 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { paymentCards } from "../constants/constant";
 import { getContactDetails, getServiceMenu } from "../Repository/Api";
-import { Mail } from "./Helping/Mail";
 
 const Footer = () => {
   const [response, setResponse] = useState({});
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [services, setServices] = useState([]);
+
+  const recipientEmail = "react1@flyweis.technology";
+  const subject = "Subject of the email"; // You can change this as needed
+  const body = "Body of the email"; // You can change this as needed
+
+  const handleMailClick = () => {
+    console.log("handleMailClick triggered");
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${response?.email}&su=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = gmailUrl;
+  };
 
   function fetchHandler() {
     getServiceMenu(setServices);
@@ -113,6 +124,7 @@ const Footer = () => {
     const MyComponent = () => {
       return (
         <section className="Footer-Container">
+          <button onClick={() => handleMailClick()}>Click Me</button>
           <div className="upper_div">
             <div className="left-container">
               <span className="follow_us">FOLLOW US</span>
@@ -189,10 +201,7 @@ const Footer = () => {
                   </span>
                 </div>
 
-                <div
-                  className="flex items-center gap-2"
-                  onClick={() => Mail(response?.email)}
-                >
+                <div className="flex items-center gap-2">
                   <div className="flex-shrink-0">
                     <img
                       className="w-full h-full object-contain "
@@ -271,7 +280,7 @@ const Footer = () => {
               />
               <img
                 className="w-w-full h-8 object-contain"
-                src="/asessts/footer/download (2).png"
+                src="/asessts/footer/download (1).png"
                 alt="download"
               />
             </div>
@@ -314,10 +323,7 @@ const Footer = () => {
           <div className="Links">
             {footerLinks.map((item, index) => (
               <div key={`mobile_footer_Links${index}`} className="Linkss">
-                <h4
-                  className=" text-secondary font-medium Title"
-                  style={{ textTransform: "uppercase" }}
-                >
+                <h4 className=" text-secondary font-medium Title">
                   {item.title}
                 </h4>
                 <ul>
@@ -332,12 +338,7 @@ const Footer = () => {
           </div>
 
           <div className="contact">
-            <h4
-              className=" text-secondary font-medium Title"
-              style={{ textTransform: "uppercase" }}
-            >
-              Contact
-            </h4>
+            <h4 className=" text-secondary font-medium Title">Contact</h4>
 
             <div className="Item">
               <img src="/asessts/footer/contact (1).png" alt="contact" />
@@ -346,7 +347,7 @@ const Footer = () => {
                 {response?.phone}
               </span>
             </div>
-            <div className="Item" onClick={() => Mail(response?.email)}>
+            <div className="Item">
               <img src="/asessts/footer/contact (2).png" alt="contact" />
 
               <span className="text-xl font-medium desc">
@@ -388,7 +389,7 @@ const Footer = () => {
 
             <div>
               <img src="/asessts/footer/download (1).png" alt="download" />
-              <img src="/asessts/footer/download (2).png" alt="download" />
+              <img src="/asessts/footer/download (1).png" alt="download" />
             </div>
           </div>
 

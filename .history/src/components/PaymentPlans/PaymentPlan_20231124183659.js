@@ -21,8 +21,8 @@ const PaymentPlan = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrol
+  })
 
   return (
     <section>
@@ -238,12 +238,12 @@ const PaymentPlan = () => {
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-4">
                       <span style={{ fontWeight: "bold" }}>
-                        Monday through Friday : {response?.paymentplan}{" "}
+                        Monday through Friday : {response?.paymentplan} {" "}
                       </span>
                     </div>
                     <div className="flex items-center gap-4">
                       <span style={{ fontWeight: "bold" }}>
-                        Saturday : {response?.saturday}{" "}
+                        Saturday : {response?.saturday} {" "}
                       </span>
                     </div>
                     <div className="flex items-center gap-4">
@@ -267,8 +267,7 @@ const PaymentPlan = () => {
         </div>
 
         <div className="payment-copywright">
-          Copyright © 2020-2023 Cherry Technologies Inc. NMLS #2061234, 2
-          Embarcadero Center, 8th Floor, San Francisco, CA 94111.
+        Copyright © 2020-2023 Cherry Technologies Inc. NMLS #2061234, 2 Embarcadero Center, 8th Floor, San Francisco, CA 94111.
         </div>
       </div>
     </section>

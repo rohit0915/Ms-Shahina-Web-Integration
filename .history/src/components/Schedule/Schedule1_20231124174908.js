@@ -362,7 +362,7 @@ const Schedule1 = () => {
 
           <div className="Box">
             <div className="search-div">
-              <input type="search" placeholder="AdOn Services" />
+              <input type="search" placeholder="Search Services" />
             </div>
 
             {adOnService?.map((i, index) => (
