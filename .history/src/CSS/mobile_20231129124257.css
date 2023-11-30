@@ -27,6 +27,7 @@
     font-size: 14px;
   }
   .Home_Hero_Section .left-container button {
+  
     font-size: 16px;
     margin-top: 40px;
     margin-left: 0;
@@ -181,7 +182,7 @@
   }
   /* -------------- */
   .relative_product_container {
-    height: 300px;
+    height: ;
   }
   .relative_product_container .full_Image {
     height: 300px;
@@ -192,9 +193,7 @@
   .relative_product_container .Image img {
     width: 40px;
   }
-  .indivisual-product .left .multi-Images {
-    justify-content: flex-start;
-  }
+
   /* ------------------- */
   .Category_Product_Container .Main {
     display: block;
@@ -780,12 +779,12 @@
   .Indivisual-Appointment form .gender_selection button p {
     font-size: 12px;
   }
-  .product-reviews .container .giveReview button {
+  .product-reviews .container .giveReview button{
     display: block;
     margin: auto;
     margin-top: 20px;
   }
-  .cartCountDiv span {
+  .cartCountDiv span{
     width: 20px;
     height: 20px;
   }

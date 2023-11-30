@@ -33,10 +33,7 @@ const ProductPage = () => {
     getSkinCondition(setSkinCondition);
     getAllNutrition(setNutrition);
   }, []);
-  
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  window.scr
 
   const url = `&${type}=${id}`;
 
@@ -51,15 +48,10 @@ const ProductPage = () => {
     }
   };
 
-  console.log(products);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   useEffect(() => {
     productHandler();
-  }, [id]);
+    window.scrollTo(0, 0);
+  }, [search, id]);
 
   const navigate = useNavigate();
 
@@ -82,11 +74,6 @@ const ProductPage = () => {
       setImg("/Image/39.jpg");
     }
   }, [products, img]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    getAllProducts();
-  };
 
   const Component = () => {
     return (
@@ -116,14 +103,12 @@ const ProductPage = () => {
             </h1>
             <div className=" flex gap-5 items-center text-xl border-b-2 pb-2   w-80 border-b-primary text-primary">
               <BiSearch className="text-3xl" />
-              <form onSubmit={submitHandler}>
-                <input
-                  className="px-2"
-                  type="search"
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search Products...."
-                />
-              </form>
+              <input
+                className="px-2"
+                type="text"
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search Products...."
+              />
             </div>
           </div>
 

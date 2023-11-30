@@ -33,7 +33,6 @@ const ProductPage = () => {
     getSkinCondition(setSkinCondition);
     getAllNutrition(setNutrition);
   }, []);
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -83,10 +82,9 @@ const ProductPage = () => {
     }
   }, [products, img]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    getAllProducts();
-  };
+  const submitHandler = () => {
+    
+  }
 
   const Component = () => {
     return (
@@ -116,7 +114,7 @@ const ProductPage = () => {
             </h1>
             <div className=" flex gap-5 items-center text-xl border-b-2 pb-2   w-80 border-b-primary text-primary">
               <BiSearch className="text-3xl" />
-              <form onSubmit={submitHandler}>
+              <form>
                 <input
                   className="px-2"
                   type="search"

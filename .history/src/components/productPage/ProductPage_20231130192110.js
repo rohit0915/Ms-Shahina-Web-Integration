@@ -33,7 +33,6 @@ const ProductPage = () => {
     getSkinCondition(setSkinCondition);
     getAllNutrition(setNutrition);
   }, []);
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

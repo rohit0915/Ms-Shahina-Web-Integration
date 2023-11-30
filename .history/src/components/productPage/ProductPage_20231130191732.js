@@ -33,12 +33,34 @@ const ProductPage = () => {
     getSkinCondition(setSkinCondition);
     getAllNutrition(setNutrition);
   }, []);
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const url = `&${type}=${id}`;
+
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  };
+
+  const delayedProductHandler = debounce(async () => {
+    try {
+      setLoad(true);
+      await getAllProducts(setProducts, search, url);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoad(false);
+    }
+  }, 500); 
 
   const productHandler = async () => {
     try {
@@ -51,15 +73,16 @@ const ProductPage = () => {
     }
   };
 
-  console.log(products);
+  console.log(products)
 
   useEffect(() => {
+    
     window.scrollTo(0, 0);
-  }, []);
+  })
 
   useEffect(() => {
-    productHandler();
-  }, [id]);
+    delayedProductHandler();
+  }, [search, id]);
 
   const navigate = useNavigate();
 
@@ -82,11 +105,6 @@ const ProductPage = () => {
       setImg("/Image/39.jpg");
     }
   }, [products, img]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    getAllProducts();
-  };
 
   const Component = () => {
     return (
@@ -116,14 +134,12 @@ const ProductPage = () => {
             </h1>
             <div className=" flex gap-5 items-center text-xl border-b-2 pb-2   w-80 border-b-primary text-primary">
               <BiSearch className="text-3xl" />
-              <form onSubmit={submitHandler}>
-                <input
-                  className="px-2"
-                  type="search"
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search Products...."
-                />
-              </form>
+              <input
+                className="px-2"
+                type="text"
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search Products...."
+              />
             </div>
           </div>
 
