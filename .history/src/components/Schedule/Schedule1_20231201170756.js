@@ -428,7 +428,7 @@ const Schedule1 = () => {
           <div className="border-collapsed"></div>
 
           <div className="Box">
-            <p style={{ fontWeight: "bold" , fontSize : '22px' }}>Add On Services</p>
+          <p>Add On Service</p>
             {/* <div className="search-div">
               <input type="search" placeholder="AdOn Services" />
             </div> */}

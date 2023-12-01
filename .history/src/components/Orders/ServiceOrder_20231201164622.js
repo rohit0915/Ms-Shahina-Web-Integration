@@ -38,6 +38,7 @@ const ServiceOrder = () => {
 
   return (
     <div className="user_product_order">
+   
       {order?.length === 0 ? (
         <div className="Not-Found">
           <img src="/Image/out-of-stock.png" alt="" />
@@ -45,7 +46,7 @@ const ServiceOrder = () => {
         </div>
       ) : (
         <>
-          {regularServicePresent === true ? (
+       {regularServicePresent === true ? (
             <div className="service-upcoming-order">
               {order?.map((item) =>
                 item?.services?.map((i, index) => (
@@ -117,12 +118,7 @@ const ServiceOrder = () => {
               <h5> No regular services are present.</h5>
             </div>
           )}
-          <div
-            className="title_account_second"
-            style={{ textTransform: "capitalize" }}
-          >
-            AddOn Service's
-          </div>
+          <div className="title_account_second"  >AddOn Service's</div>
           {addOnServicePresent === true ? (
             <div className="service-upcoming-order">
               {order?.map((item) =>

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { userSendOtp, verifyOtp } from "../Repository/Api";
 
 const ForgetPassword = () => {
@@ -26,21 +26,17 @@ const ForgetPassword = () => {
   return (
     <>
       <div className="Backward_Heading step_Heading">
-        <p style={{ width: "100%" }}>Forgot Password?</p>
+        <p>Forgot Password?</p>
       </div>
 
       <div className="forget-password">
-        <p className="title">Please Enter the following Details to Verify </p>
+        <p className="title" sty >Please Enter the following Details to Verify </p>
 
         <form onSubmit={handleSubmit}>
           <div className="otp">
             <div>
               <p>Email Address</p>
-              <input
-                type="text"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <input type="text" onChange={(e) => setEmail(e.target.value)} required />
             </div>
 
             <button

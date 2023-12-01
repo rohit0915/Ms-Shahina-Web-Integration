@@ -314,14 +314,14 @@ const MyProfile = () => {
         </div>
         <div className="profile_div">
           <div className="heading">
-            <p>Upcoming Service </p>
+            <p>Upcoming Service SERVICE </p>
           </div>
 
           <ServiceOrder />
         </div>
         <div className="profile_div">
           <div className="heading">
-            <p>Past Services </p>
+            <p>PAST SERVICE HISTORY </p>
           </div>
 
           <PastServiceOrder />

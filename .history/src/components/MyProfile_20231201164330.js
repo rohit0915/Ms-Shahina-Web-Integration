@@ -321,7 +321,7 @@ const MyProfile = () => {
         </div>
         <div className="profile_div">
           <div className="heading">
-            <p>Past Services </p>
+            <p>PAST SERVICE HISTORY </p>
           </div>
 
           <PastServiceOrder />
