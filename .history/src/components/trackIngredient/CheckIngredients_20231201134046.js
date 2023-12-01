@@ -108,7 +108,7 @@ const CheckIngredients = () => {
               <span className="text-lg font-semibold">Full List</span>
               <BiSearch className="text-4xl " />
             </div>
-
+           
             <div className="font-semibold text-sm">
               {response?.map((list, index) => (
                 <p
