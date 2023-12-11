@@ -244,6 +244,7 @@ const appRouter = createBrowserRouter([
         path: "/card_saver",
         element: LazyComponent(<CardSaver />),
       },
+
       {
         path: ".well-known/apple-developer-merchantid-domain-association",
         element: <DomainVerify />,

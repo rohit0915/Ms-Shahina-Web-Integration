@@ -58,7 +58,6 @@ import ProductOrder from "./components/Orders/ProductOrder";
 import ServiceOrder from "./components/Orders/ServiceOrder";
 import PastServiceOrder from "./components/Orders/PastServiceOrder";
 import CardSaver from "./components/Card/CardSaver";
-import DomainVerify from "./File/DomainVerify";
 
 const LazyComponent = (Component) => {
   return <Suspense fallback={<div></div>}>{Component}</Suspense>;
@@ -244,10 +243,11 @@ const appRouter = createBrowserRouter([
         path: "/card_saver",
         element: LazyComponent(<CardSaver />),
       },
-      {
-        path: ".well-known/apple-developer-merchantid-domain-association",
-        element: <DomainVerify />,
-      },
+
+      // {
+      //   path : ".well-known/apple-developer-merchantid-domain-association" , 
+      //   element : 
+      // }
     ],
   },
 ]);
