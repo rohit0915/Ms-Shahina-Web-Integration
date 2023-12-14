@@ -216,6 +216,7 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
+ 
   return (
     <>
       <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
@@ -227,6 +228,7 @@ const MyCart = () => {
       />
 
       <section className="my-14">
+        
         <div className="Backward_Heading step_Heading">
           <div>
             <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />
@@ -883,4 +885,4 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default injectStripe(MyCart);

@@ -216,6 +216,7 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
+ 
   return (
     <>
       <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
@@ -227,6 +228,15 @@ const MyCart = () => {
       />
 
       <section className="my-14">
+        <Elements stripe={stripePromise}>
+          <form onSubmit={handleSubmit}>
+            <CardElement />
+            <div id="payment-request-button"></div>
+            <button type="submit">Pay</button>
+            <div id="google-pay-button"></div>
+          </form>
+        </Elements>
+
         <div className="Backward_Heading step_Heading">
           <div>
             <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />
@@ -883,4 +893,4 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default injectStripe(MyCart);

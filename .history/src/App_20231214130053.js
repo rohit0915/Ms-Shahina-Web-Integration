@@ -59,7 +59,6 @@ import ServiceOrder from "./components/Orders/ServiceOrder";
 import PastServiceOrder from "./components/Orders/PastServiceOrder";
 import CardSaver from "./components/Card/CardSaver";
 import DomainVerify from "./File/DomainVerify";
-import Chek from "./components/MyCart/Chek";
 
 const LazyComponent = (Component) => {
   return <Suspense fallback={<div></div>}>{Component}</Suspense>;
@@ -247,7 +246,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/pay",
-        element: LazyComponent(<Chek />),
+        element: LazyComponent(<Che />),
       },
     ],
   },

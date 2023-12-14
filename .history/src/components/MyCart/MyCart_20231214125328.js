@@ -34,6 +34,7 @@ import { DummyCartItems, removeFromCart } from "../../store/DummyCart";
 import { removeServiceDummy, ServiceItems } from "../../store/DummySerivce";
 import TextDrawer from "../Drawer/TextDrawer";
 import { Mail } from "../Helping/Mail";
+import { CardElement, injectStripe } from 'react-stripe-elements';
 
 const MyCart = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -216,6 +217,79 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
+  // Apple Pay Integration
+
+  const stripe = useStrip
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { token } = await stripe.createToken();
+    // Handle the token (send it to your server)
+  };
+
+  useEffect(() => {
+    if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable any submit buttons until Stripe.js has loaded.
+      return;
+    }
+
+    const paymentRequest = stripe.paymentRequest({
+      country: 'US',
+      currency: 'usd',
+      total: {
+        label: 'Your Total',
+        amount: 1000, // Amount in cents
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+      requestPayerPhone: true,
+      requestShipping: true,
+      shippingOptions: [
+        // Define your shipping options
+      ],
+    });
+
+    const cardElement = elements.create('card');
+
+    paymentRequest.on('paymentmethod', async (event) => {
+      // Handle the payment method from Apple Pay or Google Pay
+      const { paymentMethod } = event;
+      // Send the paymentMethod.id to your server to complete the payment
+    });
+
+    paymentRequest.canMakePayment().then((result) => {
+      if (result) {
+        // Apple Pay or Google Pay is available
+        const paymentRequestButton = elements.create('paymentRequestButton', {
+          paymentRequest,
+        });
+
+        if (paymentRequestButton.mount) {
+          paymentRequestButton.mount('#payment-request-button');
+        } else {
+          // Initialize Google Pay button
+          const googlePayButton = document.getElementById('google-pay-button');
+          if (googlePayButton) {
+            const paymentsClient = new window.google.payments.api.PaymentsClient({
+              environment: 'PRODUCTION', // Change to 'TEST' for testing
+            });
+
+            googlePayButton.addEventListener('click', async () => {
+              try {
+                const paymentData = await paymentsClient.loadPaymentData(paymentRequest);
+                // Handle the payment data
+                console.log(paymentData);
+              } catch (error) {
+                // Handle errors
+                console.error(error);
+              }
+            });
+          }
+        }
+      }
+    });
+  }, [stripe, elements]);
   return (
     <>
       <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
@@ -227,6 +301,13 @@ const MyCart = () => {
       />
 
       <section className="my-14">
+        <form onSubmit={handleSubmit}>
+          <CardElement />
+          <div id="payment-request-button"></div>
+          <button type="submit">Pay</button>
+          <div id="google-pay-button"></div>
+        </form>
+
         <div className="Backward_Heading step_Heading">
           <div>
             <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />

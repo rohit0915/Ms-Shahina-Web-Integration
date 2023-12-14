@@ -34,6 +34,9 @@ import { DummyCartItems, removeFromCart } from "../../store/DummyCart";
 import { removeServiceDummy, ServiceItems } from "../../store/DummySerivce";
 import TextDrawer from "../Drawer/TextDrawer";
 import { Mail } from "../Helping/Mail";
+import { CardElement, PaymentRequestButtonElement, injectStripe } from 'react-stripe-elements';
+
+
 
 const MyCart = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -216,6 +219,9 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
+  // Apple Pay Integration
+
+
   return (
     <>
       <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
@@ -227,6 +233,7 @@ const MyCart = () => {
       />
 
       <section className="my-14">
+   
         <div className="Backward_Heading step_Heading">
           <div>
             <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />

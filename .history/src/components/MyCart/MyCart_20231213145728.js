@@ -34,6 +34,8 @@ import { DummyCartItems, removeFromCart } from "../../store/DummyCart";
 import { removeServiceDummy, ServiceItems } from "../../store/DummySerivce";
 import TextDrawer from "../Drawer/TextDrawer";
 import { Mail } from "../Helping/Mail";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 
 const MyCart = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -215,6 +217,8 @@ const MyCart = () => {
       dispatch(getCart());
     }
   }, [serviceCart]);
+
+  // Apple Pay Integration
 
   return (
     <>

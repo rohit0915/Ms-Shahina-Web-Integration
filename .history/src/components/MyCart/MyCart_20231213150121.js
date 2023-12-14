@@ -216,6 +216,9 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
+  // Apple Pay Integration
+
+
   return (
     <>
       <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
@@ -227,6 +230,7 @@ const MyCart = () => {
       />
 
       <section className="my-14">
+   
         <div className="Backward_Heading step_Heading">
           <div>
             <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />

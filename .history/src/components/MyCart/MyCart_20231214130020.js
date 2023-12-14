@@ -883,4 +883,4 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default injectStripe(MyCart);
