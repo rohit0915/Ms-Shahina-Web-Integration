@@ -10,7 +10,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
-  "pk_live_51Kr67EJsxpRH9smizUjNERPVsq1hlJBnnJsfCOqNTPL6HKgsG9YTOOcA5yYk38O7Wz2NILGPvIKkxe3rU90iix610049htYt1w"
+  "pk_test_51Kr67EJsxpRH9smiVHbxmogutwO92w8dmTUErkRtIsIo0lR7kyfyeVnULRoQlry9byYbS8Uhk5Mq4xegT2bB9n9F00hv3OFGM5"
 );
 
 const App = () => {
@@ -48,7 +48,7 @@ const App = () => {
       {paymentRequest ? (
         <PaymentRequestButtonElement options={{ paymentRequest }} />
       ) : (
-        "No Present Here"
+        "No Present"
       )}
     </Elements>
   );

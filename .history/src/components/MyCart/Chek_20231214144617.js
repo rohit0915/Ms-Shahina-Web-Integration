@@ -48,7 +48,7 @@ const App = () => {
       {paymentRequest ? (
         <PaymentRequestButtonElement options={{ paymentRequest }} />
       ) : (
-        "No Present Here"
+        "No Present"
       )}
     </Elements>
   );

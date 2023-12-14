@@ -10,9 +10,9 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
-  "pk_live_51Kr67EJsxpRH9smizUjNERPVsq1hlJBnnJsfCOqNTPL6HKgsG9YTOOcA5yYk38O7Wz2NILGPvIKkxe3rU90iix610049htYt1w"
+  "pk_test_51Kr67EJsxpRH9smiVHbxmogutwO92w8dmTUErkRtIsIo0lR7kyfyeVnULRoQlry9byYbS8Uhk5Mq4xegT2bB9n9F00hv3OFGM5"
 );
-
+pk_test_51Kr67EJsxpRH9smiVHbxmogutwO92w8dmTUErkRtIsIo0lR7kyfyeVnULRoQlry9byYbS8Uhk5Mq4xegT2bB9n9F00hv3OFGM5
 const App = () => {
   const stripe = useStripe();
   const element = useElements();
@@ -36,7 +36,7 @@ const App = () => {
     pr.canMakePayment().then((result) => {
       if (result) {
         // Show Some Buttons
-        console.log("REsult");
+        console.log("REsult")
         setPaymentRequest(pr);
       }
     });
@@ -45,11 +45,7 @@ const App = () => {
   return (
     <Elements stripe={stripePromise}>
       <h1>Apple Pay</h1>
-      {paymentRequest ? (
-        <PaymentRequestButtonElement options={{ paymentRequest }} />
-      ) : (
-        "No Present Here"
-      )}
+      {paymentRequest ?  <PaymentRequestButtonElement options={{ paymentRequest }} /> : "No Present"}
     </Elements>
   );
 };
