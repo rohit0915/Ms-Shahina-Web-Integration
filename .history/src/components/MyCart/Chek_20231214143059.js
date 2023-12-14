@@ -16,6 +16,7 @@ const stripePromise = loadStripe(
 const App = () => {
   const stripe = useStripe();
   const element = useElements();
+  const [message, setMessage] = useState("");
   const [paymentRequest, setPaymentRequest] = useState(null);
 
   useEffect(() => {
@@ -45,7 +46,9 @@ const App = () => {
   return (
     <Elements stripe={stripePromise}>
       <h1>Apple Pay</h1>
-      {paymentRequest ?  <PaymentRequestButtonElement options={{ paymentRequest }} /> : "No Present"}
+      {paymentRequest && (
+        <PaymentRequestButtonElement options={{ paymentRequest }} />
+      )}
     </Elements>
   );
 };

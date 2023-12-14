@@ -45,7 +45,9 @@ const App = () => {
   return (
     <Elements stripe={stripePromise}>
       <h1>Apple Pay</h1>
-      {paymentRequest ?  <PaymentRequestButtonElement options={{ paymentRequest }} /> : "No Present"}
+      {paymentRequest && (
+      
+      )}
     </Elements>
   );
 };
