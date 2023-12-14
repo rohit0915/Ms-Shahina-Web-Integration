@@ -1,12 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import {
-  Elements,
-  useElements,
-  useStripe,
-  PaymentRequestButtonElement,
-} from "@stripe/react-stripe-js";
+import { Elements, useStripe } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
@@ -15,14 +10,9 @@ const stripePromise = loadStripe(
 
 const App = () => {
   const stripe = useStripe();
-  const element = useElements();
   const [message, setMessage] = useState("");
-  const [paymentRequest, setPaymentRequest] = useState(null);
 
   useEffect(() => {
-    if (!stripe || !element) {
-      return;
-    }
     const pr = stripe.paymentRequest({
       currency: "usd",
       country: "US",
@@ -33,21 +23,11 @@ const App = () => {
         amount: 999,
       },
     });
-
-    pr.canMakePayment().then((result) => {
-      if (result) {
-        // Show Some Buttons
-        setPaymentRequest(pr);
-      }
-    });
-  }, [stripe, element]);
+  }, [stripe , eleme]);
 
   return (
     <Elements stripe={stripePromise}>
       <h1>Apple Pay</h1>
-      {paymentRequest && (
-        <PaymentRequestButtonElement options={{ paymentRequest }} />
-      )}
     </Elements>
   );
 };

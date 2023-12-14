@@ -1,12 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import {
-  Elements,
-  useElements,
-  useStripe,
-  PaymentRequestButtonElement,
-} from "@stripe/react-stripe-js";
+import { Elements, useElements, useStripe } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
@@ -45,9 +40,7 @@ const App = () => {
   return (
     <Elements stripe={stripePromise}>
       <h1>Apple Pay</h1>
-      {paymentRequest && (
-        <PaymentRequestButtonElement options={{ paymentRequest }} />
-      )}
+      {paymentRequest }
     </Elements>
   );
 };
