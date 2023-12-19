@@ -113,7 +113,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
                 <p className="title"> {i.name} </p>
                 {priceFetcher(i)}
                 <span className="price-container">
-                  <p className="member">Total min</p>
+                  <p className="member">Total</p>
                   <span
                     className="mrp"
                     style={{
@@ -122,7 +122,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
                       textDecoration: "none",
                     }}
                   >
-                  {i.totalTime}
+                    Regular Price{" "}
                   </span>
                 </span>
 

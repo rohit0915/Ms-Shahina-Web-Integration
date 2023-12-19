@@ -113,19 +113,24 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
                 <p className="title"> {i.name} </p>
                 {priceFetcher(i)}
                 <span className="price-container">
-                  <p className="member">Total min</p>
-                  <span
-                    className="mrp"
-                    style={{
-                      fontSize: "16px",
-                      color: "#000",
-                      textDecoration: "none",
-                    }}
-                  >
-                  {i.totalTime}
-                  </span>
-                </span>
-
+            <p className="member">Member Price</p>
+            <span
+              className="mrp"
+              style={{
+                fontSize: "16px",
+                color: "#000",
+                textDecoration: "none",
+              }}
+            >
+              Regular Price{" "}
+            </span>
+          </span>
+          <span className="price-container">
+            <p className="member-price">${i.mPrice} </p>
+            <span className="mrp" style={{ textDecoration: "none" }}>
+              ${i.price}{" "}
+            </span>
+          </span>
                 <p className="interes">
                   Pay with interest free installments with Cherry
                 </p>

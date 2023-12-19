@@ -122,7 +122,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
                       textDecoration: "none",
                     }}
                   >
-                  {i.totalTime}
+                    Regular Price{" "}
                   </span>
                 </span>
 
