@@ -174,32 +174,35 @@ const Schedule2 = () => {
           <p className="title">Select Slot</p>
 
           <div className="Box" style={{ alignItems: "center" }}>
+         
             {response?.length > 0 ? (
-              response?.map((i, index) =>
-                i.isBooked === false ? (
-                  <div className="Item" key={index}>
-                    <input
-                      type="radio"
-                      name="slot"
-                      value={i.from}
-                      onClick={(e) => setTime(e.target.value)}
-                      style={{ marginTop: "5px" }}
-                    />
+              response?.map(
+                (i, index) =>
+                  i.isBooked === false ? (
+                    <div className="Item" key={index}>
+                      <input
+                        type="radio"
+                        name="slot"
+                        value={i.from}
+                        onClick={(e) => setTime(e.target.value)}
+                        style={{ marginTop: "5px" }}
+                      />
 
-                    <div className="description-box" style={{ width: "100%" }}>
-                      <p className="title">
-                        {" "}
-                        {i?.from?.split("T")[1].split(".")[0].slice(0, 5) +
-                          i.fromAmPm}{" "}
-                        -{" "}
-                        {i?.to?.split("T")[1].split(".")[0].slice(0, 5) +
-                          i.toAmPm}
-                      </p>
+                      <div
+                        className="description-box"
+                        style={{ width: "100%" }}
+                      >
+                        <p className="title">
+                          {" "}
+                          {i?.from?.split("T")[1].split(".")[0].slice(0, 5) +
+                            i.fromAmPm}{" "}
+                          -{" "}
+                          {i?.to?.split("T")[1].split(".")[0].slice(0, 5) +
+                            i.toAmPm}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <></>
-                )
+                  )
               )
             ) : (
               <>

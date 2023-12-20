@@ -432,7 +432,7 @@ const Schedule1 = () => {
                   <p className="head"> ${i.addOnservicesId?.price}</p>
                 </div>
                 <div className="two-div">
-                  <p className="desc">  Total Time : ( {i?.addOnservicesId?.totalTime})</p>
+                  <p className="desc">  Total Time : ( {i?.serviceId?.totalTime})</p>
                   <p
                     className="delete cursor-pointer"
                     onClick={() => deleteAnother(i?.addOnservicesId?._id)}

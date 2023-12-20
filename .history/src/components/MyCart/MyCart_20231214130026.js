@@ -764,7 +764,7 @@ const MyCart = () => {
                     ""
                   )}
 
-                  {cart?.date && cart?.timeInMin ? (
+                  {cart?.date && cart?.time ? (
                     ""
                   ) : (
                     <p className="text-lg font-normal my-3">
@@ -827,7 +827,7 @@ const MyCart = () => {
                   </div>
                 </section>
 
-                {cart?.date && cart?.timeInMin ? (
+                {cart?.date && cart?.time ? (
                   <button
                     className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
                     onClick={() => checkoutHandler()}

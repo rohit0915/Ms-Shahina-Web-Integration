@@ -37,9 +37,10 @@ const Schedule2 = () => {
       getHandler();
     }
   }, [date1]);
-  const updatedTime = time?.split("T")[1]?.slice(0, 5);
 
-  const payload = { date: date1, time: updatedTime };
+  const payload = { date: date1, time };
+
+  console.log(time)
 
   const submitHandler = () => {
     if (date1 && time) {
@@ -175,32 +176,28 @@ const Schedule2 = () => {
 
           <div className="Box" style={{ alignItems: "center" }}>
             {response?.length > 0 ? (
-              response?.map((i, index) =>
-                i.isBooked === false ? (
-                  <div className="Item" key={index}>
-                    <input
-                      type="radio"
-                      name="slot"
-                      value={i.from}
-                      onClick={(e) => setTime(e.target.value)}
-                      style={{ marginTop: "5px" }}
-                    />
+              response?.map((i, index) => (
+                <div className="Item" key={index}>
+                  <input
+                    type="radio"
+                    name="slot"
+                    value={i.from}
+                    onClick={(e) => setTime(e.target.value)}
+                    style={{ marginTop: "5px" }}
+                  />
 
-                    <div className="description-box" style={{ width: "100%" }}>
-                      <p className="title">
-                        {" "}
-                        {i?.from?.split("T")[1].split(".")[0].slice(0, 5) +
-                          i.fromAmPm}{" "}
-                        -{" "}
-                        {i?.to?.split("T")[1].split(".")[0].slice(0, 5) +
-                          i.toAmPm}
-                      </p>
-                    </div>
+                  <div className="description-box" style={{ width: "100%" }}>
+                    <p className="title">
+                      {" "}
+                      {i?.from?.split("T")[1].split(".")[0].slice(0, 5) +
+                        i.fromAmPm}{" "}
+                      -{" "}
+                      {i?.to?.split("T")[1].split(".")[0].slice(0, 5) +
+                        i.toAmPm}
+                    </p>
                   </div>
-                ) : (
-                  <></>
-                )
-              )
+                </div>
+              ))
             ) : (
               <>
                 <h5>We're fully booked</h5>
