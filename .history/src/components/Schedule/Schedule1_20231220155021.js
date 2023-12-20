@@ -140,10 +140,8 @@ const Schedule1 = () => {
     }
   }
 
-  console.log(cart?.services?.length , cart?.AddOnservicesSchema?.length)
-
   let bookNow;
-  if (cart?.services?.length === 0) {
+  if (cart?.services?.length === 0 || cart?.AddOnservicesSchema?.length === 0) {
     const Component = () => {
       return (
         <>
@@ -295,7 +293,7 @@ const Schedule1 = () => {
                     <div className="description-box">
                       <p className="title"> {i?.addOnservicesId?.name} </p>
                       <p className="desc" style={{ textAlign: "justify" }}>
-                        Total Time : ( {i?.addOnservicesId?.totalTime})
+                      Total Time : ( {i?.addOnservicesId?.totalTime})
                         {i?.addOnservicesId?.description}
                       </p>
                     </div>

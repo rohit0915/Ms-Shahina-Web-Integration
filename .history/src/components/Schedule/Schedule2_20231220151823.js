@@ -101,15 +101,15 @@ const Schedule2 = () => {
             onChange={(selectedDate) => setDate(formatDate(selectedDate))}
             tileContent={({ date, view }) => {
               if (view === "month") {
-                const formattedDate = formatDate(date);
-                const isSelectedDate = formattedDate === date1;
-                const isNoSlotDate = response.length === 0 && isSelectedDate;
-
                 // const formattedDate = formatDate(date);
                 // const isSelectedDate = formattedDate === date1;
-                // const isCrossDate = crossDates.includes(formattedDate);
+                // const isNoSlotDate = response.length === 0 && isSelectedDate;
 
-                return isNoSlotDate ? (
+                const formattedDate = formatDate(date);
+                const isSelectedDate = formattedDate === date1;
+                const isCrossDate = crossDates.includes(formattedDate);
+
+                return isCrossDate ? (
                   <div
                     style={{
                       position: "relative",

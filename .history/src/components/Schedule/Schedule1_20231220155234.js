@@ -143,7 +143,7 @@ const Schedule1 = () => {
   console.log(cart?.services?.length , cart?.AddOnservicesSchema?.length)
 
   let bookNow;
-  if (cart?.services?.length === 0) {
+  if (cart?.services?.length === 0 ) {
     const Component = () => {
       return (
         <>

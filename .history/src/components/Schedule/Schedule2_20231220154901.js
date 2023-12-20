@@ -109,7 +109,7 @@ const Schedule2 = () => {
                 // const isSelectedDate = formattedDate === date1;
                 // const isCrossDate = crossDates.includes(formattedDate);
 
-                return isNoSlotDate ? (
+                return isCrossDate ? (
                   <div
                     style={{
                       position: "relative",

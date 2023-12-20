@@ -83,7 +83,8 @@ const Schedule2 = () => {
     return `${year}-${month}-${day}`;
   }
 
-  const [crossDates, setCrossDates] = useState(["2023-12-25", "2023-12-31"]);
+   const [crossDates, setCrossDates] = useState(["2023-12-25", "2023-12-31"]);
+ 
 
   return (
     <>
@@ -104,10 +105,6 @@ const Schedule2 = () => {
                 const formattedDate = formatDate(date);
                 const isSelectedDate = formattedDate === date1;
                 const isNoSlotDate = response.length === 0 && isSelectedDate;
-
-                // const formattedDate = formatDate(date);
-                // const isSelectedDate = formattedDate === date1;
-                // const isCrossDate = crossDates.includes(formattedDate);
 
                 return isNoSlotDate ? (
                   <div
