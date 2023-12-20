@@ -1658,8 +1658,8 @@ const getAllSlot = async (setResponse, date) => {
     const data = res?.data?.data;
     if (Array.isArray(data)) {
       setResponse(data);
-    } else {
-      setResponse([]);
+    }else{
+      setResponse([])
     }
   } catch {}
 };
@@ -1699,15 +1699,11 @@ export const getMembership_terms = async (setResponse) => {
   } catch {}
 };
 
-export const getCrossedSlot = async (setResponse, month, year) => {
-  try {
-    const res = await axios.get(
-      `${Baseurl}api/v1/admin/Slot/getAvailableSlotOnwhichDate?year=${year}&month=${month}`
-    );
-    const data = res.data.allSlot;
-    setResponse(data);
-  } catch {}
-};
+export const getCrossedSlot = async () => {
+  try { 
+    const res = await axios.get(`${Baseurl}https://shahina-backend.vercel.app/api/v1/admin/Slot/getAvailableSlotOnwhichDate?year=2024&month=01`)
+  }catch{}
+}
 
 export {
   filterProduct,

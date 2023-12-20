@@ -1699,13 +1699,11 @@ export const getMembership_terms = async (setResponse) => {
   } catch {}
 };
 
-export const getCrossedSlot = async (setResponse, month, year) => {
+export const getCrossedSlot = async () => {
   try {
     const res = await axios.get(
-      `${Baseurl}api/v1/admin/Slot/getAvailableSlotOnwhichDate?year=${year}&month=${month}`
+      `${Baseurl}api/v1/admin/Slot/getAvailableSlotOnwhichDate?year=2024&month=01`
     );
-    const data = res.data.allSlot;
-    setResponse(data);
   } catch {}
 };
 

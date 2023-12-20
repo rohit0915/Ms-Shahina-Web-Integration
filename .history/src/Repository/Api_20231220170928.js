@@ -1704,8 +1704,8 @@ export const getCrossedSlot = async (setResponse, month, year) => {
     const res = await axios.get(
       `${Baseurl}api/v1/admin/Slot/getAvailableSlotOnwhichDate?year=${year}&month=${month}`
     );
-    const data = res.data.allSlot;
-    setResponse(data);
+    const data = res.data.data
+    setResponse()
   } catch {}
 };
 

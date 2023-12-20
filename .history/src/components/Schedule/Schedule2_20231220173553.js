@@ -88,7 +88,6 @@ const Schedule2 = () => {
   }
 
   const [crossDates, setCrossDates] = useState();
-  const [nextAvailableDate, setNextAvailable] = useState();
 
   function getBooked() {
     if (date1) {
@@ -101,26 +100,6 @@ const Schedule2 = () => {
   useEffect(() => {
     getBooked();
   }, [date1]);
-
-  const findNextAvailableDate = (date) => {
-    const nextDay = new Date(date);
-    nextDay.setDate(nextDay.getDate() + 1);
-
-    return nextDay.toISOString().split("T")[0];
-  };
-
-  useEffect(() => {
-    if (crossDates && crossDates.length > 0) {
-      const formattedSelectedDate = formatDate(new Date(date1));
-      const isDateBooked = crossDates.some(
-        (d) => formatDate(new Date(d.date)) === formattedSelectedDate
-      );
-
-      if (isDateBooked) {
-        setNextAvailable(findNextAvailableDate(new Date(date1)));
-      }
-    }
-  }, [crossDates, date1]);
 
   return (
     <>
@@ -144,6 +123,8 @@ const Schedule2 = () => {
                 );
 
                 const isBookedDate = bookedDateInfo?.allBooked === "yes";
+
+                console.log(is)
 
                 return isBookedDate ? (
                   <div
@@ -197,10 +178,7 @@ const Schedule2 = () => {
                 </div>
               ))
             ) : (
-              <>
-                <h5>We're fully booked</h5>
-                <p>but you can book for {nextAvailableDate} </p>
-              </>
+              <p>Full Booked Today</p>
             )}
           </div>
         </div>

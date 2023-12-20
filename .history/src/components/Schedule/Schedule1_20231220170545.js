@@ -457,7 +457,7 @@ const Schedule1 = () => {
               <div className="add-on" key={index}>
                 <input
                   type="checkbox"
-                  checked={isInCart(i._id)}
+                  defaultChecked={isInCart(i._id)}
                   onClick={() => AdOnHandler(i._id)}
                 />
                 <div className="left" style={{ textAlign: "right" }}>

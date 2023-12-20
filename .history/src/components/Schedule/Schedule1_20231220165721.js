@@ -65,7 +65,7 @@ const Schedule1 = () => {
     if (id) {
       GetItems();
     }
-  }, [id, cart]);
+  }, [id]);
 
   const navigate = useNavigate();
 
@@ -322,9 +322,10 @@ const Schedule1 = () => {
                 <div className="Item" key={index}>
                   <input
                     type="checkbox"
-                    checked={isItemInCart(i._id)}
+                    defaultChecked={isItemInCart(i._id)}
                     onClick={() => RegularHandler(i._id, i?.priceId, i)}
                   />
+                  {console.log(isItemInCart(i._id))}
                   <div className="description-box">
                     <p className="title"> {i.name} </p>
                     Total Time : ( {i?.totalTime})
@@ -457,7 +458,7 @@ const Schedule1 = () => {
               <div className="add-on" key={index}>
                 <input
                   type="checkbox"
-                  checked={isInCart(i._id)}
+                  defaultChecked={isInCart(i._id)}
                   onClick={() => AdOnHandler(i._id)}
                 />
                 <div className="left" style={{ textAlign: "right" }}>

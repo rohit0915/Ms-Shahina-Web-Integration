@@ -198,9 +198,9 @@ const Schedule2 = () => {
               ))
             ) : (
               <>
-                <h5>We're fully booked</h5>
-                <p>but you can book for {nextAvailableDate} </p>
+                
               </>
+              <p>Full Booked Today {nextAvailableDate} </p>
             )}
           </div>
         </div>

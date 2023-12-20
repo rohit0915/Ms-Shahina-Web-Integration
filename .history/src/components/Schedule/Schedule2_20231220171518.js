@@ -78,49 +78,25 @@ const Schedule2 = () => {
   }, []);
 
   function formatDate(date) {
-    if (date) {
-      const custome = new Date(date);
-      const year = custome.getFullYear();
-      const month = String(custome.getMonth() + 1).padStart(2, "0");
-      const day = String(custome.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    }
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   }
 
   const [crossDates, setCrossDates] = useState();
-  const [nextAvailableDate, setNextAvailable] = useState();
 
   function getBooked() {
-    if (date1) {
-      const year = parseInt(date1.split("-")[0], 10);
-      const month = parseInt(date1.split("-")[1], 10);
-      getCrossedSlot(setCrossDates, month, year);
-    }
+    const year = date1?.split("-")[0];
+    const month = date1?.split("-")[1];
+    getCrossedSlot(setCrossDates, month, year);
   }
 
   useEffect(() => {
     getBooked();
   }, [date1]);
 
-  const findNextAvailableDate = (date) => {
-    const nextDay = new Date(date);
-    nextDay.setDate(nextDay.getDate() + 1);
-
-    return nextDay.toISOString().split("T")[0];
-  };
-
-  useEffect(() => {
-    if (crossDates && crossDates.length > 0) {
-      const formattedSelectedDate = formatDate(new Date(date1));
-      const isDateBooked = crossDates.some(
-        (d) => formatDate(new Date(d.date)) === formattedSelectedDate
-      );
-
-      if (isDateBooked) {
-        setNextAvailable(findNextAvailableDate(new Date(date1)));
-      }
-    }
-  }, [crossDates, date1]);
+  console.log(crossDates);
 
   return (
     <>
@@ -138,13 +114,16 @@ const Schedule2 = () => {
             onChange={(selectedDate) => setDate(formatDate(selectedDate))}
             tileContent={({ date, view }) => {
               if (view === "month") {
+                // const formattedDate = formatDate(date);
+                // const isSelectedDate = formattedDate === date1;
+                // const isNoSlotDate = response.length === 0 && isSelectedDate;
                 const formattedDate = formatDate(date);
-                const bookedDateInfo = crossDates?.find(
-                  (d) => formatDate(new Date(d.date)) === formattedDate
-                );
+                const isSelectedDate = formattedDate === date1;
+                const isBookedDate =
+                  crossDates?.find((d) => d.date === formattedDate)
+                    ?.allBooked === "yes";
 
-                const isBookedDate = bookedDateInfo?.allBooked === "yes";
-
+                    
                 return isBookedDate ? (
                   <div
                     style={{
@@ -197,10 +176,7 @@ const Schedule2 = () => {
                 </div>
               ))
             ) : (
-              <>
-                <h5>We're fully booked</h5>
-                <p>but you can book for {nextAvailableDate} </p>
-              </>
+              <p>Full Booked Today</p>
             )}
           </div>
         </div>

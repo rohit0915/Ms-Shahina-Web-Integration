@@ -88,7 +88,6 @@ const Schedule2 = () => {
   }
 
   const [crossDates, setCrossDates] = useState();
-  const [nextAvailableDate, setNextAvailable] = useState();
 
   function getBooked() {
     if (date1) {
@@ -103,6 +102,7 @@ const Schedule2 = () => {
   }, [date1]);
 
   const findNextAvailableDate = (date) => {
+    // Add one day to the selected date
     const nextDay = new Date(date);
     nextDay.setDate(nextDay.getDate() + 1);
 
@@ -117,7 +117,9 @@ const Schedule2 = () => {
       );
 
       if (isDateBooked) {
-        setNextAvailable(findNextAvailableDate(new Date(date1)));
+        // If the selected date is booked, find the next available date (next day)
+        const nextAvailableDate = findNextAvailableDate(new Date(date1));
+        console.log("Next available date:", nextAvailableDate);
       }
     }
   }, [crossDates, date1]);
@@ -197,10 +199,7 @@ const Schedule2 = () => {
                 </div>
               ))
             ) : (
-              <>
-                <h5>We're fully booked</h5>
-                <p>but you can book for {nextAvailableDate} </p>
-              </>
+              <p>Full Booked Today</p>
             )}
           </div>
         </div>
