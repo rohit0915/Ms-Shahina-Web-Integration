@@ -329,7 +329,7 @@ const Schedule1 = () => {
                   />
                   <div className="description-box">
                     <p className="title"> {i.name} </p>
-                    Total Time : ( {i?.totalTime})
+                    
                     {textTransform(i.description, i.name)}
                   </div>
                   <div className="price-Box">
@@ -464,7 +464,7 @@ const Schedule1 = () => {
                 />
                 <div className="left" style={{ textAlign: "right" }}>
                   <div className="head">
-                    <p className="title"> {i.name}  </p>
+                    <p className="title"> {i.name} </p>
                     <p className="price">${i.price} </p>
                   </div>
                   <p className="desc"> {i.time} </p>

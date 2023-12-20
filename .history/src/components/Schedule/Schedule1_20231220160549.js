@@ -464,7 +464,7 @@ const Schedule1 = () => {
                 />
                 <div className="left" style={{ textAlign: "right" }}>
                   <div className="head">
-                    <p className="title"> {i.name}  </p>
+                    <p className="title"> {i.name}       Total Time : ( {i?.totalTime}) </p>
                     <p className="price">${i.price} </p>
                   </div>
                   <p className="desc"> {i.time} </p>
