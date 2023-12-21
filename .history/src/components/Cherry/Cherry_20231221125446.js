@@ -1,8 +1,9 @@
-/** @format */
+Try using this code instead:
 
 import { useEffect } from "react";
 
 function CherryWidget() {
+
   useEffect(() => {
     const script = document.createElement("script");
     script.innerHTML = `
@@ -55,3 +56,8 @@ function CherryWidget() {
 }
 
 export default CherryWidget;
+
+
+A few other notes:
+Feel free to update the colors and font (highlighted in yellow) to match your website's branding
+You will need to add the <link> tag with the fonts into your index.html file

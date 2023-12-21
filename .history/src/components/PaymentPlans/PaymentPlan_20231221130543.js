@@ -24,6 +24,7 @@ const PaymentPlan = () => {
   //   window.scrollTo(0, 0);
   // }, []);
 
+  
   useEffect(() => {
     const script = document.createElement("script");
     script.innerHTML = `(function (w, d, s, o, f, js, fjs) {

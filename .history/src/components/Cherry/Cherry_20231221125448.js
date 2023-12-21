@@ -1,8 +1,9 @@
-/** @format */
+Try using this code instead:
 
 import { useEffect } from "react";
 
 function CherryWidget() {
+
   useEffect(() => {
     const script = document.createElement("script");
     script.innerHTML = `
@@ -55,3 +56,4 @@ function CherryWidget() {
 }
 
 export default CherryWidget;
+

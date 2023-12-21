@@ -34,7 +34,7 @@ function CherryWidget() {
           name: "Shahina Hoja Aesthetics"
         },
         styles: {
-          primaryColor: "#00C37D",
+          primaryColor: "#042b26",
           secondaryColor: "#00C37D10",
           fontFamily: "Open Sans"
         }

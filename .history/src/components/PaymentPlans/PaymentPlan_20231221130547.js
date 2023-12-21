@@ -26,6 +26,11 @@ const PaymentPlan = () => {
 
   useEffect(() => {
     const script = document.createElement("script");
+    script.src = "https://files.withcherry.com/widgets/widget.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    // const script = document.createElement("script");
     script.innerHTML = `(function (w, d, s, o, f, js, fjs) {
       w[o] =
         w[o] ||

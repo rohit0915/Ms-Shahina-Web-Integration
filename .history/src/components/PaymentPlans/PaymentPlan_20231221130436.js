@@ -1,8 +1,29 @@
 /** @format */
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+// import PaymentType from "./PaymentType";
+// import { PAYMENT_TYpes, financialSituation } from "../../constants/constant";
+// import Testimonials from "./Testimonials";
+// import Faq from "./Faq";
+// import { useNavigate } from "react-router-dom";
+// import { getContactDetails } from "../../Repository/Api";
+// import { BsTelephoneFill } from "react-icons/bs";
+// import { HiMail } from "react-icons/hi";
+// import { ImLocation } from "react-icons/im";
+// import { MAP_IMG } from "../../constants/constant";
 
-function CherryWidget() {
+const PaymentPlan = () => {
+  // const navigate = useNavigate();
+  // const [response, setResponse] = useState({});
+
+  // useEffect(() => {
+  //   getContactDetails(setResponse);
+  // }, []);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.innerHTML = `
@@ -51,7 +72,9 @@ function CherryWidget() {
     };
   }, []);
 
-  return <div id="all"></div>;
-}
+  return (
+   
+  );
+};
 
-export default CherryWidget;
+export default PaymentPlan;
