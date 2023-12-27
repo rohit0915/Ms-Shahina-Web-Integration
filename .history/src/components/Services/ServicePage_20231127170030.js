@@ -119,7 +119,7 @@ const ServicePage = () => {
     : response?.sizePrice;
 
   const querySelector = (data, state) => {
-    setQuery(data);
+    setQuery(data?.substr(0, 2));
     state(false);
   };
 

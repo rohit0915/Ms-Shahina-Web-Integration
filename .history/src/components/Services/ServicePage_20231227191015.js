@@ -123,6 +123,8 @@ const ServicePage = () => {
     state(false);
   };
 
+  console.log(TotolData);
+  console.log(query);
   return (
     <>
       {" "}
