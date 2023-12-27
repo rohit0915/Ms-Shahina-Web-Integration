@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillInstagram } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
@@ -12,13 +12,6 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
-import axios from "axios";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe(
-  "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
-);
 
 const CheckoutDetails = () => {
   const navigate = useNavigate();
@@ -27,14 +20,6 @@ const CheckoutDetails = () => {
   }
 
   // ----
-  const options = {
-    mode: "setup",
-    currency: "usd",
-    appearance: {
-      /*...*/
-    },
-  };
-
   const stripe = useStripe();
   const elements = useElements();
 
@@ -44,60 +29,57 @@ const CheckoutDetails = () => {
   const handleError = (error) => {
     setLoading(false);
     setErrorMessage(error.message);
-  };
+  }
 
   const handleSubmit = async (event) => {
+    // We don't want to let default form submission happen here,
+    // which would refresh the page.
     event.preventDefault();
 
     if (!stripe) {
+      // Stripe.js hasn't yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
     setLoading(true);
 
-    const { error: submitError } = await elements.submit();
+    // Trigger form validation and wallet collection
+    const {error: submitError} = await elements.submit();
     if (submitError) {
       handleError(submitError);
       return;
     }
 
-    const res = await axios.post(
-      "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
-        },
-      }
-    );
-    const { clientSecret } = res?.data?.client_secret?.client_secret;
+    // Create the SetupIntent and obtain clientSecret
+    const res = await fetch("/create-intent", {
+      method: "POST",
+    });
 
-    const { error } = await stripe.confirmSetup({
+    const {client_secret: clientSecret} = await res.json();
+
+    // Confirm the SetupIntent using the details collected by the Payment Element
+    const {error} = await stripe.confirmSetup({
       elements,
       clientSecret,
       confirmParams: {
-        return_url: "https://example.com/complete",
+        return_url: 'https://example.com/complete',
       },
     });
 
     if (error) {
+      // This point is only reached if there's an immediate error when
+      // confirming the setup. Show the error to your customer (for example, payment details incomplete)
       handleError(error);
     } else {
+      // Your customer is redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer is redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
     }
   };
-
+  
   return (
     <>
-      <Elements stripe={stripePromise} options={options}>
-        <form onSubmit={handleSubmit}>
-          <PaymentElement />
-          <button type="submit" disabled={!stripe || loading}>
-            Submit
-          </button>
-          {errorMessage && <div>{errorMessage}</div>}
-        </form>
-      </Elements>
-
       <div className="Backward_Heading step_Heading">
         <div>
           <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />

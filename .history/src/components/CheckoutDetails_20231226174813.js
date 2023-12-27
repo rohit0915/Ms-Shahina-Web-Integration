@@ -61,16 +61,20 @@ const CheckoutDetails = () => {
       return;
     }
 
-    const res = await axios.post(
-      "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
-        },
-      }
-    );
-    const { clientSecret } = res?.data?.client_secret?.client_secret;
+    // const res = await axios.post(
+    //   "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
+    //   {},
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
+    //     },
+    //   }
+    // );
+    // // const { clientSecret } = res?.data?.client_secret?.client_secret;
+    const { client_secret: clientSecret } =
+      "seti_1ORZSmJsxpRH9smiFBbXY7PU_secret_PG5eX2iGtg1TDrCh6fGE2Feua5YN3Jo";
+
+    console.log(clientSecret);
 
     const { error } = await stripe.confirmSetup({
       elements,

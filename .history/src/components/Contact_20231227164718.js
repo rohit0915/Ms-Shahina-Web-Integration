@@ -15,6 +15,13 @@ const Contact = () => {
 
   const [load, setLoad] = useState(false);
 
+  const payload = {
+    query,
+    name,
+    email,
+    mobile,
+  };
+
   const starArray = Array.from({ length: response?.ratings });
 
   async function fetchHandler() {
@@ -32,6 +39,8 @@ const Contact = () => {
     fetchHandler();
   }, []);
 
+  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -41,13 +50,6 @@ const Contact = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
-
-    const payload = {
-      query,
-      name,
-      email,
-      mobile,
-    };
     const submitHandler = (e) => {
       e.preventDefault();
       postQuery(payload);

@@ -15,7 +15,6 @@ import {
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
 const stripePromise = loadStripe(
   "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
 );
@@ -30,6 +29,7 @@ const CheckoutDetails = () => {
   const options = {
     mode: "setup",
     currency: "usd",
+    // Fully customizable with appearance API.
     appearance: {
       /*...*/
     },
@@ -63,14 +63,16 @@ const CheckoutDetails = () => {
 
     const res = await axios.post(
       "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
-      {},
       {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
         },
       }
     );
-    const { clientSecret } = res?.data?.client_secret?.client_secret;
+    console.log(res);
+    const clientSecret = "";
+
+    // const { client_secret: clientSecret } = await res.json();
 
     const { error } = await stripe.confirmSetup({
       elements,

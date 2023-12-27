@@ -7,18 +7,14 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
 import { SlCalender } from "react-icons/sl";
-import {
-  useStripe,
-  useElements,
-  PaymentElement,
-} from "@stripe/react-stripe-js";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe(
-  "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
-);
+import {
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 
 const CheckoutDetails = () => {
   const navigate = useNavigate();
@@ -41,6 +37,7 @@ const CheckoutDetails = () => {
   const [errorMessage, setErrorMessage] = useState();
   const [loading, setLoading] = useState(false);
 
+  console.log(errorMessage);
   const handleError = (error) => {
     setLoading(false);
     setErrorMessage(error.message);
@@ -61,34 +58,22 @@ const CheckoutDetails = () => {
       return;
     }
 
-    const res = await axios.post(
-      "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
-        },
-      }
-    );
-    const { clientSecret } = res?.data?.client_secret?.client_secret;
-
     const { error } = await stripe.confirmSetup({
       elements,
-      clientSecret,
       confirmParams: {
         return_url: "https://example.com/complete",
       },
     });
-
     if (error) {
-      handleError(error);
+      console.log(error);
+      // handleError(error);
     } else {
+      // Handle success
     }
   };
-
   return (
     <>
-      <Elements stripe={stripePromise} options={options}>
+      {elements && (
         <form onSubmit={handleSubmit}>
           <PaymentElement />
           <button type="submit" disabled={!stripe || loading}>
@@ -96,7 +81,7 @@ const CheckoutDetails = () => {
           </button>
           {errorMessage && <div>{errorMessage}</div>}
         </form>
-      </Elements>
+      )}
 
       <div className="Backward_Heading step_Heading">
         <div>

@@ -70,7 +70,9 @@ const CheckoutDetails = () => {
         },
       }
     );
-    const { clientSecret } = res?.data?.client_secret?.client_secret;
+    const { clientSecret } = res?.data?.client_secret?.client_secret?.json();
+
+    console.log(clientSecret);
 
     const { error } = await stripe.confirmSetup({
       elements,

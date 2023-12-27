@@ -1,103 +1,27 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { AiFillInstagram } from "react-icons/ai";
+import {  AiFillInstagram } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
-import { SlCalender } from "react-icons/sl";
-import {
-  useStripe,
-  useElements,
-  PaymentElement,
-} from "@stripe/react-stripe-js";
-import axios from "axios";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe(
-  "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
-);
+import { SlCalender } from 'react-icons/sl'
 
 const CheckoutDetails = () => {
   const navigate = useNavigate();
+
   function BackNavigation() {
     navigate(-1);
   }
 
-  // ----
-  const options = {
-    mode: "setup",
-    currency: "usd",
-    appearance: {
-      /*...*/
-    },
-  };
-
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const [errorMessage, setErrorMessage] = useState();
-  const [loading, setLoading] = useState(false);
-
-  const handleError = (error) => {
-    setLoading(false);
-    setErrorMessage(error.message);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!stripe) {
-      return;
-    }
-
-    setLoading(true);
-
-    const { error: submitError } = await elements.submit();
-    if (submitError) {
-      handleError(submitError);
-      return;
-    }
-
-    const res = await axios.post(
-      "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
-        },
-      }
-    );
-    const { clientSecret } = res?.data?.client_secret?.client_secret;
-
-    const { error } = await stripe.confirmSetup({
-      elements,
-      clientSecret,
-      confirmParams: {
-        return_url: "https://example.com/complete",
-      },
-    });
-
-    if (error) {
-      handleError(error);
-    } else {
-    }
-  };
+  
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
-      <Elements stripe={stripePromise} options={options}>
-        <form onSubmit={handleSubmit}>
-          <PaymentElement />
-          <button type="submit" disabled={!stripe || loading}>
-            Submit
-          </button>
-          {errorMessage && <div>{errorMessage}</div>}
-        </form>
-      </Elements>
-
       <div className="Backward_Heading step_Heading">
         <div>
           <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />
@@ -197,7 +121,7 @@ const CheckoutDetails = () => {
               <SlCalender style={{ fontSize: "20px" }} />
               <div>
                 <p className="title" style={{ fontSize: "16px" }}>
-                  Delivery Date : 23 October ( 10:00 AM )
+                Delivery Date : 23 October ( 10:00 AM )
                 </p>
               </div>
             </div>
@@ -205,8 +129,7 @@ const CheckoutDetails = () => {
               <BiCurrentLocation style={{ fontSize: "20px" }} />
               <div>
                 <p className="title" style={{ fontSize: "16px" }}>
-                  Delivery Address : 905 Watters Creek Boulevard, 141, Allen,
-                  Texas, USA
+                Delivery Address : 905 Watters Creek Boulevard, 141, Allen, Texas, USA
                 </p>
               </div>
             </div>

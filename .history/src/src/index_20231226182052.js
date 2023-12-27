@@ -16,16 +16,9 @@ import "./Css/Responsive.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <MyContextProvider>
-    <App />
-  </MyContextProvider>
+  <Elements stripe={stripePromise}>
+    <MyContextProvider>
+      <App />
+    </MyContextProvider>
+  </Elements>
 );
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <Elements stripe={stripePromise}>
-//     <MyContextProvider>
-//       <App />
-//     </MyContextProvider>
-//   </Elements>
-// );

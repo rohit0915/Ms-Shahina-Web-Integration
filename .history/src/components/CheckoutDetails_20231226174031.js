@@ -13,9 +13,7 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-
+import { Elements  } from "@stripe/react-stripe-js";
 const stripePromise = loadStripe(
   "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
 );
@@ -30,6 +28,7 @@ const CheckoutDetails = () => {
   const options = {
     mode: "setup",
     currency: "usd",
+    // Fully customizable with appearance API.
     appearance: {
       /*...*/
     },
@@ -70,7 +69,10 @@ const CheckoutDetails = () => {
         },
       }
     );
-    const { clientSecret } = res?.data?.client_secret?.client_secret;
+    console.log(res);
+    const clientSecret = "";
+
+    // const { client_secret: clientSecret } = await res.json();
 
     const { error } = await stripe.confirmSetup({
       elements,

@@ -20,7 +20,6 @@ root.render(
     <App />
   </MyContextProvider>
 );
-
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(
 //   <Elements stripe={stripePromise}>
