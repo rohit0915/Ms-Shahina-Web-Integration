@@ -146,7 +146,7 @@ const Schedule1 = () => {
   console.log(cart);
 
   let bookNow;
-  if (cart?.services?.length === 0 || Object.keys(cart).length === 0) {
+  if (cart?.services?.length === 0 || Object.keys(cart).length) {
     const Component = () => {
       return (
         <>
