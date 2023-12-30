@@ -165,6 +165,7 @@ const ServicePage = () => {
           <p> {response?.name} </p>
         </div>
         <div className="content">
+          {/* <p className="desc">{response?.description}</p> */}
           <div dangerouslySetInnerHTML={{ __html: response?.description }} />
         </div>
 

@@ -165,7 +165,10 @@ const ServicePage = () => {
           <p> {response?.name} </p>
         </div>
         <div className="content">
-          <div dangerouslySetInnerHTML={{ __html: response?.description }} />
+          <p className="desc">{response?.description}</p>
+          <div
+                    dangerouslySetInnerHTML={{ __html: data?.description }}
+                  />
         </div>
 
         <div className="flex-container">
