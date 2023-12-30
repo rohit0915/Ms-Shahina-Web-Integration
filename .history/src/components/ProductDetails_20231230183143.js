@@ -156,7 +156,9 @@ const ProductDetails = () => {
   const MyComp = ({ desc, list, listes }) => {
     return (
       <div className="content">
-        {desc && <div dangerouslySetInnerHTML={{ __html: desc }} />}
+        {desc &&  <div
+      dangerouslySetInnerHTML={{__html: data}}
+    />}
 
         {list && (
           <ul>

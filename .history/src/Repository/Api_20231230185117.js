@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { Store } from "react-notifications-component";
-import { Login, LOGOUT } from "../store/authSlice";
+import { Login } from "../store/authSlice";
 import { getCartItems } from "../store/cartSlice";
 
 const Baseurl = "https://shahina-backend.vercel.app/";
@@ -1717,10 +1717,8 @@ export const getSession = () => {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       });
-      const isLoggedIn = res.data.data;
-      if (isLoggedIn === false) {
-        dispatch(LOGOUT());
-      }
+      console.log(res.data.data);
+      const 
     } catch {}
   };
 };

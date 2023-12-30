@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { Store } from "react-notifications-component";
-import { Login, LOGOUT } from "../store/authSlice";
+import { Login } from "../store/authSlice";
 import { getCartItems } from "../store/cartSlice";
 
 const Baseurl = "https://shahina-backend.vercel.app/";
@@ -1709,20 +1709,18 @@ export const getCrossedSlot = async (setResponse, month, year) => {
   } catch {}
 };
 
-export const getSession = () => {
+export const getSession = async () => {
   return async (dispatch) => {
-    try {
-      const res = await axios.get(`${Baseurl}api/v1/user/checkSession`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      });
-      const isLoggedIn = res.data.data;
-      if (isLoggedIn === false) {
-        dispatch(LOGOUT());
-      }
-    } catch {}
-  };
+    
+  }
+  try {
+    const res = await axios.get(`${Baseurl}api/v1/user/checkSession`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("Token")}`,
+      },
+    });
+    console.log(res.data.data);
+  } catch {}
 };
 
 export {

@@ -59,8 +59,8 @@ import ServiceOrder from "./components/Orders/ServiceOrder";
 import PastServiceOrder from "./components/Orders/PastServiceOrder";
 import CardSaver from "./components/Card/CardSaver";
 import { getSession } from "./Repository/Api";
-import { useDispatch, useSelector } from "react-redux";
-import { isAuthenticated, LOGOUT } from "./store/authSlice";
+import { useSelector } from "react-redux";
+import { isAuthenticated } from "./store/authSlice";
 
 const LazyComponent = (Component) => {
   return <Suspense fallback={<div></div>}>{Component}</Suspense>;
@@ -252,11 +252,29 @@ const appRouter = createBrowserRouter([
 
 function App() {
   const isLoggedIn = useSelector(isAuthenticated);
-  const dispatch = useDispatch();
+  dispatch
+
+  function LogoutHandler() {
+    dispatch(LOGOUT());
+    Store.addNotification({
+      title: "",
+      message: "Logged Out Successfully",
+      type: "success",
+      insert: "top",
+      container: "top-center",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 2000,
+        onScreen: true,
+      },
+    });
+    navigate("/login");
+  }
 
   useEffect(() => {
     if (isLoggedIn === true) {
-      dispatch(getSession());
+      getSession();
     }
   }, [isLoggedIn]);
 

@@ -59,8 +59,8 @@ import ServiceOrder from "./components/Orders/ServiceOrder";
 import PastServiceOrder from "./components/Orders/PastServiceOrder";
 import CardSaver from "./components/Card/CardSaver";
 import { getSession } from "./Repository/Api";
-import { useDispatch, useSelector } from "react-redux";
-import { isAuthenticated, LOGOUT } from "./store/authSlice";
+import { useSelector } from "react-redux";
+import { isAuthenticated } from "./store/authSlice";
 
 const LazyComponent = (Component) => {
   return <Suspense fallback={<div></div>}>{Component}</Suspense>;
@@ -252,13 +252,13 @@ const appRouter = createBrowserRouter([
 
 function App() {
   const isLoggedIn = useSelector(isAuthenticated);
-  const dispatch = useDispatch();
-
+  console.log(isLoggedIn)
   useEffect(() => {
-    if (isLoggedIn === true) {
-      dispatch(getSession());
+    if(isLoggedIn === true) {
+      
     }
-  }, [isLoggedIn]);
+    getSession();
+  }, []);
 
   return (
     <main>

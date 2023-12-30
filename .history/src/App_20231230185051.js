@@ -254,9 +254,13 @@ function App() {
   const isLoggedIn = useSelector(isAuthenticated);
   const dispatch = useDispatch();
 
+  function LogoutHandler() {
+    dispatch(LOGOUT());
+  }
+
   useEffect(() => {
     if (isLoggedIn === true) {
-      dispatch(getSession());
+     dispatch(getSession())
     }
   }, [isLoggedIn]);
 

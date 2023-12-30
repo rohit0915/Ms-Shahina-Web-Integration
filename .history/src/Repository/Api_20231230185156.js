@@ -1717,6 +1717,7 @@ export const getSession = () => {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       });
+      console.log(res.data.data);
       const isLoggedIn = res.data.data;
       if (isLoggedIn === false) {
         dispatch(LOGOUT());
