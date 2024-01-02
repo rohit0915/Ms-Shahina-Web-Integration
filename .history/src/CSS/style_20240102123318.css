@@ -3756,12 +3756,12 @@
   z-index: 9999;
 }
 
-.confirm_btn {
+
+.confirm_btn
+{
   width: 100%;
   text-align: center;
   color: #fff;
   background-color: #000;
   padding: 10px;
-  border-radius: 10px;
-  margin-top: 20px;
 }

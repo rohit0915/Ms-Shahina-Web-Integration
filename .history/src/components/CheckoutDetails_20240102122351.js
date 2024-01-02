@@ -1,16 +1,24 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillInstagram } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
-import { useSelector } from "react-redux";
-import { CartItems } from "../store/cartSlice";
-import { getContactDetails } from "../Repository/Api";
-import { AiFillStar } from "react-icons/ai";
-import { Call, Mail } from "./Helping/Mail";
+import { SlCalender } from "react-icons/sl";
+import {
+  useStripe,
+  useElements,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
+);
 
 const CheckoutDetails = () => {
   const navigate = useNavigate();
@@ -18,23 +26,78 @@ const CheckoutDetails = () => {
     navigate(-1);
   }
 
-  const [contact, setContact] = useState({});
-  const [cart, setCart] = useState({});
+  // ----
+  const options = {
+    mode: "setup",
+    currency: "usd",
+    appearance: {
+      /*...*/
+    },
+  };
 
-  const myCart = useSelector(CartItems);
+  const stripe = useStripe();
+  const elements = useElements();
 
-  useEffect(() => {
-    setCart(myCart);
-  }, [myCart]);
+  const [errorMessage, setErrorMessage] = useState();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    getContactDetails(setContact);
-  }, []);
+  const handleError = (error) => {
+    setLoading(false);
+    setErrorMessage(error.message);
+  };
 
-  const starArray = Array.from({ length: contact?.ratings });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!stripe) {
+      return;
+    }
+
+    setLoading(true);
+
+    const { error: submitError } = await elements.submit();
+    if (submitError) {
+      handleError(submitError);
+      return;
+    }
+
+    const res = await axios.post(
+      "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
+        },
+      }
+    );
+    const { clientSecret } = res?.data?.client_secret?.client_secret;
+
+    const { error } = await stripe.confirmSetup({
+      elements,
+      clientSecret,
+      confirmParams: {
+        return_url: "https://example.com/complete",
+      },
+    });
+
+    if (error) {
+      handleError(error);
+    } else {
+    }
+  };
 
   return (
     <>
+      {/* <Elements stripe={stripePromise} options={options}>
+        <form onSubmit={handleSubmit}>
+          <PaymentElement />
+          <button type="submit" disabled={!stripe || loading}>
+            Submit
+          </button>
+          {errorMessage && <div>{errorMessage}</div>}
+        </form>
+      </Elements> */}
+
       <div className="Backward_Heading step_Heading">
         <div>
           <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />
@@ -177,8 +240,12 @@ const CheckoutDetails = () => {
               </div>
             </div>
 
+            <a href={contact?.mapLink} target="_blank">
+              <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
+            </a>
+
             {/* Service */}
-            {cart?.services?.map((i, index) => (
+            {/* {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
                   <p className="head"> {i?.serviceId?.name} </p>
@@ -194,12 +261,21 @@ const CheckoutDetails = () => {
                     {" "}
                     Total Time : ( {i?.serviceId?.totalTime})
                   </p>
+                  <p
+                    className="delete cursor-pointer"
+                    onClick={() =>
+                      deleteServiceItem(i.serviceId?._id, i?.priceId)
+                    }
+                  >
+                    {" "}
+                    DELETE
+                  </p>
                 </div>
               </div>
-            ))}
+            ))} */}
 
             {/* Ad on Service */}
-            {cart?.AddOnservicesSchema?.map((i, index) => (
+            {/* {cart?.AddOnservicesSchema?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
                   <p className="head"> {i?.addOnservicesId?.name} </p>
@@ -210,18 +286,42 @@ const CheckoutDetails = () => {
                     {" "}
                     Total Time : ( {i?.addOnservicesId?.totalTime})
                   </p>
+                  <p
+                    className="delete cursor-pointer"
+                    onClick={() => deleteAnother(i?.addOnservicesId?._id)}
+                  >
+                    {" "}
+                    DELETE
+                  </p>
+                </div>
+              </div>
+            ))} */}
+
+            {bookNow}
+          </div>
+
+          <div className="border-collapsed"></div>
+
+          <div className="Box">
+            <p style={{ fontWeight: "bold", fontSize: "22px" }}>
+              Add On Services
+            </p>
+            {adOnService?.map((i, index) => (
+              <div className="add-on" key={index}>
+                <input
+                  type="checkbox"
+                  checked={isInCart(i._id)}
+                  onClick={() => AdOnHandler(i._id)}
+                />
+                <div className="left" style={{ textAlign: "right" }}>
+                  <div className="head">
+                    <p className="title"> {i.name} </p>
+                    <p className="price">${i.price} </p>
+                  </div>
+                  <p className="desc"> {i.time} </p>
                 </div>
               </div>
             ))}
-
-            <div className="Items">
-              <div className="two-div">
-                <p className="head">Total</p>
-                <p className="head">${cart?.total}</p>
-              </div>
-            </div>
-
-            <button className="confirm_btn">Confirm</button>
           </div>
         </div>
       </div>

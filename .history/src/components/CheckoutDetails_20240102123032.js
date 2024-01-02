@@ -178,6 +178,7 @@ const CheckoutDetails = () => {
             </div>
 
             {/* Service */}
+            {console.log(cart)}
             {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
@@ -213,15 +214,6 @@ const CheckoutDetails = () => {
                 </div>
               </div>
             ))}
-
-            <div className="Items">
-              <div className="two-div">
-                <p className="head">Total</p>
-                <p className="head">${cart?.total}</p>
-              </div>
-            </div>
-
-            <button className="confirm_btn">Confirm</button>
           </div>
         </div>
       </div>

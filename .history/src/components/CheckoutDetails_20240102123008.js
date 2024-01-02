@@ -213,15 +213,6 @@ const CheckoutDetails = () => {
                 </div>
               </div>
             ))}
-
-            <div className="Items">
-              <div className="two-div">
-                <p className="head">Total</p>
-                <p className="head">${cart?.total}</p>
-              </div>
-            </div>
-
-            <button className="confirm_btn">Confirm</button>
           </div>
         </div>
       </div>

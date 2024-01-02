@@ -8,9 +8,6 @@ import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { CartItems } from "../store/cartSlice";
-import { getContactDetails } from "../Repository/Api";
-import { AiFillStar } from "react-icons/ai";
-import { Call, Mail } from "./Helping/Mail";
 
 const CheckoutDetails = () => {
   const navigate = useNavigate();
@@ -26,13 +23,6 @@ const CheckoutDetails = () => {
   useEffect(() => {
     setCart(myCart);
   }, [myCart]);
-
-  useEffect(() => {
-    getContactDetails(setContact);
-  }, []);
-
-  const starArray = Array.from({ length: contact?.ratings });
-
   return (
     <>
       <div className="Backward_Heading step_Heading">
@@ -177,8 +167,12 @@ const CheckoutDetails = () => {
               </div>
             </div>
 
+            <a href={contact?.mapLink} target="_blank">
+              <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
+            </a>
+
             {/* Service */}
-            {cart?.services?.map((i, index) => (
+            {/* {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
                   <p className="head"> {i?.serviceId?.name} </p>
@@ -194,12 +188,21 @@ const CheckoutDetails = () => {
                     {" "}
                     Total Time : ( {i?.serviceId?.totalTime})
                   </p>
+                  <p
+                    className="delete cursor-pointer"
+                    onClick={() =>
+                      deleteServiceItem(i.serviceId?._id, i?.priceId)
+                    }
+                  >
+                    {" "}
+                    DELETE
+                  </p>
                 </div>
               </div>
-            ))}
+            ))} */}
 
             {/* Ad on Service */}
-            {cart?.AddOnservicesSchema?.map((i, index) => (
+            {/* {cart?.AddOnservicesSchema?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
                   <p className="head"> {i?.addOnservicesId?.name} </p>
@@ -210,18 +213,42 @@ const CheckoutDetails = () => {
                     {" "}
                     Total Time : ( {i?.addOnservicesId?.totalTime})
                   </p>
+                  <p
+                    className="delete cursor-pointer"
+                    onClick={() => deleteAnother(i?.addOnservicesId?._id)}
+                  >
+                    {" "}
+                    DELETE
+                  </p>
+                </div>
+              </div>
+            ))} */}
+
+            {bookNow}
+          </div>
+
+          <div className="border-collapsed"></div>
+
+          <div className="Box">
+            <p style={{ fontWeight: "bold", fontSize: "22px" }}>
+              Add On Services
+            </p>
+            {adOnService?.map((i, index) => (
+              <div className="add-on" key={index}>
+                <input
+                  type="checkbox"
+                  checked={isInCart(i._id)}
+                  onClick={() => AdOnHandler(i._id)}
+                />
+                <div className="left" style={{ textAlign: "right" }}>
+                  <div className="head">
+                    <p className="title"> {i.name} </p>
+                    <p className="price">${i.price} </p>
+                  </div>
+                  <p className="desc"> {i.time} </p>
                 </div>
               </div>
             ))}
-
-            <div className="Items">
-              <div className="two-div">
-                <p className="head">Total</p>
-                <p className="head">${cart?.total}</p>
-              </div>
-            </div>
-
-            <button className="confirm_btn">Confirm</button>
           </div>
         </div>
       </div>

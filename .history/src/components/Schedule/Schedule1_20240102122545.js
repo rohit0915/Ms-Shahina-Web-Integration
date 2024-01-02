@@ -139,9 +139,10 @@ const Schedule1 = () => {
         </>
       );
     } else {
-      return <div dangerouslySetInnerHTML={{ __html: content }} />;
+      return <p className="desc">{content}</p>;
     }
   }
+
 
   let bookNow;
   if (cart?.services?.length === 0 || Object.keys(cart).length === 0) {

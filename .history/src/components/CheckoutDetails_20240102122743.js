@@ -177,6 +177,10 @@ const CheckoutDetails = () => {
               </div>
             </div>
 
+            <a href={contact?.mapLink} target="_blank">
+              <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
+            </a>
+
             {/* Service */}
             {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
@@ -194,6 +198,7 @@ const CheckoutDetails = () => {
                     {" "}
                     Total Time : ( {i?.serviceId?.totalTime})
                   </p>
+                  <p className="delete cursor-pointer"> DELETE</p>
                 </div>
               </div>
             ))}
@@ -210,18 +215,10 @@ const CheckoutDetails = () => {
                     {" "}
                     Total Time : ( {i?.addOnservicesId?.totalTime})
                   </p>
+                  <p className="delete cursor-pointer"> DELETE</p>
                 </div>
               </div>
             ))}
-
-            <div className="Items">
-              <div className="two-div">
-                <p className="head">Total</p>
-                <p className="head">${cart?.total}</p>
-              </div>
-            </div>
-
-            <button className="confirm_btn">Confirm</button>
           </div>
         </div>
       </div>

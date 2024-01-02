@@ -177,6 +177,10 @@ const CheckoutDetails = () => {
               </div>
             </div>
 
+            <a href={contact?.mapLink} target="_blank">
+              <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
+            </a>
+
             {/* Service */}
             {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
@@ -213,15 +217,6 @@ const CheckoutDetails = () => {
                 </div>
               </div>
             ))}
-
-            <div className="Items">
-              <div className="two-div">
-                <p className="head">Total</p>
-                <p className="head">${cart?.total}</p>
-              </div>
-            </div>
-
-            <button className="confirm_btn">Confirm</button>
           </div>
         </div>
       </div>

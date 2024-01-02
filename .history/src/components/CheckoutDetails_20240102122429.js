@@ -1,29 +1,91 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AiFillStar, AiFillInstagram } from "react-icons/ai";
+import { AiFillInstagram } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
+import { SlCalender } from "react-icons/sl";
 import {
-  addAdOnInCart,
-  addServiceInCart,
-  deleteAdOn,
-  deleteServiceCart,
-  getContactDetails,
-  getOnService,
-  getServiceforCart,
-  getServiceProduct,
-} from "../../Repository/Api";
-import SelectService from "../Sliders/SelectService";
-import TextDrawer from "../Drawer/TextDrawer";
-import { Alert } from "antd";
-import { useSelector, useDispatch } from "react-redux";
-import { CartItems } from "../../store/cartSlice";
-import { Call, Mail } from "../Helping/Mail";
+  useStripe,
+  useElements,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
-const Schedule1 = () => {
+// const stripePromise = loadStripe(
+//   "pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3"
+// );
+
+const CheckoutDetails = () => {
+  const navigate = useNavigate();
+  function BackNavigation() {
+    navigate(-1);
+  }
+
+  // // ----
+  // const options = {
+  //   mode: "setup",
+  //   currency: "usd",
+  //   appearance: {
+  //     /*...*/
+  //   },
+  // };
+
+  // const stripe = useStripe();
+  // const elements = useElements();
+
+  // const [errorMessage, setErrorMessage] = useState();
+  // const [loading, setLoading] = useState(false);
+
+  // const handleError = (error) => {
+  //   setLoading(false);
+  //   setErrorMessage(error.message);
+  // };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   if (!stripe) {
+  //     return;
+  //   }
+
+  //   setLoading(true);
+
+  //   const { error: submitError } = await elements.submit();
+  //   if (submitError) {
+  //     handleError(submitError);
+  //     return;
+  //   }
+
+  //   const res = await axios.post(
+  //     "https://shahina-backend.vercel.app/api/v1/user/card/savecard",
+  //     {},
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NGNjMjQ1MjliNTE2M2Y0ZmFjMTE2MiIsImlhdCI6MTcwMzU5MjYwOSwiZXhwIjoxNzM1MTI4NjA5fQ.8_C1SjwjAtR-CYayezHkouJzj4usdOpwJVNCqO0RaHg`,
+  //       },
+  //     }
+  //   );
+  //   const { clientSecret } = res?.data?.client_secret?.client_secret;
+
+  //   const { error } = await stripe.confirmSetup({
+  //     elements,
+  //     clientSecret,
+  //     confirmParams: {
+  //       return_url: "https://example.com/complete",
+  //     },
+  //   });
+
+  //   if (error) {
+  //     handleError(error);
+  //   } else {
+  //   }
+  // };
+
   const [response, setResponse] = useState([]);
   const [Item, setItem] = useState([]);
   const [id, setId] = useState("");
@@ -139,9 +201,11 @@ const Schedule1 = () => {
         </>
       );
     } else {
-      return <div dangerouslySetInnerHTML={{ __html: content }} />;
+      return <p className="desc">{content}</p>;
     }
   }
+
+  console.log(cart);
 
   let bookNow;
   if (cart?.services?.length === 0 || Object.keys(cart).length === 0) {
@@ -208,144 +272,108 @@ const Schedule1 = () => {
 
   return (
     <>
-      <TextDrawer
-        open={modalOpen}
-        setOpen={setModalOpen}
-        title={title}
-        desc={desc}
-      />
+      {/* <Elements stripe={stripePromise} options={options}>
+        <form onSubmit={handleSubmit}>
+          <PaymentElement />
+          <button type="submit" disabled={!stripe || loading}>
+            Submit
+          </button>
+          {errorMessage && <div>{errorMessage}</div>}
+        </form>
+      </Elements> */}
 
       <div className="Backward_Heading step_Heading">
         <div>
           <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />
-          <p style={{ width: "50%" }}>STEP 1 OF 3</p>
         </div>
-        <p className="title">Select Services</p>
+        <p className="title">Review and confirm</p>
       </div>
-
-      <SelectService data={response} id={id} setId={setId} />
 
       <div className="schedule_1">
         <div className="left_div">
-          <ul className="Menu_List">
-            {response?.map((i, index) => (
-              <li
-                key={index}
-                className={i._id === id && "active"}
-                onClick={() => {
-                  setTitle(i.name);
-                  setId(i._id);
-                }}
-              >
-                {" "}
-                {i.name}{" "}
-              </li>
-            ))}
-          </ul>
+          <div className="review_box">
+            <p className="title">Payment method</p>
+            <span>
+              You won't be charged now , payment will be collected in store
+              after your appointment
+            </span>
 
-          {cart?.services?.length > 0 ||
-          cart?.services?.length === undefined ? (
-            <>
-              <p className="title">Selected Services</p>
-              <div className="Box">
-                {cart?.services?.map((i, index) => (
-                  <div className="Item" key={index}>
-                    <div>
-                      <input
-                        type="checkbox"
-                        checked
-                        onClick={() =>
-                          RegularHandler(
-                            i?.serviceId?._id,
-                            i?.serviceId?.priceId,
-                            i?.serviceId
-                          )
-                        }
-                      />
-                    </div>
-                    <div className="description-box">
-                      <p className="title"> {i?.serviceId?.name} </p>
-                      <p className="desc" style={{ textAlign: "justify" }}>
-                        Total Time : ( {i?.serviceId?.totalTime})
-                        {textTransform(
-                          i?.serviceId?.description,
-                          i?.serviceId?.priceId
-                        )}
-                      </p>
-                    </div>
-                    <div className="price-Box">
-                      <p className="title">
-                        {" "}
-                        {i?.serviceId?.type === "offer"
-                          ? `$${i.total}`
-                          : `$${i.subTotal}`}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-                {cart?.AddOnservicesSchema?.map((i, index) => (
-                  <div className="Item" key={index}>
-                    <div>
-                      <input
-                        type="checkbox"
-                        checked
-                        onClick={() => deleteAnother(i?.addOnservicesId?._id)}
-                      />
-                    </div>
-
-                    <div className="description-box">
-                      <p className="title"> {i?.addOnservicesId?.name} </p>
-                      <p className="desc" style={{ textAlign: "justify" }}>
-                        Total Time : ( {i?.addOnservicesId?.totalTime})
-                        {i?.addOnservicesId?.description}
-                      </p>
-                    </div>
-                    <div className="price-Box">
-                      <p className="title"> ${i.addOnservicesId?.price}</p>
-                    </div>
-                  </div>
-                ))}
+            <form>
+              <div>
+                <p>Name on card</p>
+                <input type="text" placeholder="Add Card Holder full name" />
               </div>
-            </>
-          ) : (
-            ""
-          )}
 
-          <p className="title">Featured Services</p>
+              <div>
+                <p>Card Number</p>
+                <input type="text" placeholder="Credit or debit card number" />
+              </div>
 
-          <div className="Box">
-            {Item?.length === 0 ? (
-              <Alert
-                message={`No Service is Related to ${title}`}
-                type="info"
-                className="Alert"
-              />
-            ) : (
-              Item?.map((i, index) => (
-                <div className="Item" key={index}>
-                  <input
-                    type="checkbox"
-                    checked={isItemInCart(i._id)}
-                    onClick={() => RegularHandler(i._id, i?.priceId, i)}
-                  />
-                  <div className="description-box">
-                    <p className="title"> {i.name} </p>
-                    Total Time : ( {i?.totalTime})
-                    {textTransform(i.description, i.name)}
-                  </div>
-                  <div className="price-Box">
-                    <p className="title">
-                      {" "}
-                      ${i.discountActive === true
-                        ? i.discountPrice
-                        : i.price}{" "}
-                    </p>
-                  </div>
+              <div className="two_input">
+                <div className="first">
+                  <p>Expiry Date</p>
+                  <input type="text" placeholder="MM/YY" />
                 </div>
-              ))
-            )}
+                <div>
+                  <p>Security code</p>
+                  <input type="text" placeholder="123" />
+                </div>
+              </div>
+
+              <div className="payment_div">
+                <p>Pay Securely with</p>
+                <img src="/Image/9.png" alt="" />
+                <img src="/Image/10.png" alt="" />
+                <img src="/Image/11.png" alt="" />
+                <img src="/Image/12.png" alt="" />
+                <img src="/Image/13.png" alt="" />
+              </div>
+
+              {/* <div className="border-line" /> */}
+
+              <div className="content">
+                <p>Cancellation policy</p>
+                <p className="desc">
+                  Cancel for free up to <strong>48 hours</strong> ahead ,
+                  otherwise you will be charged <strong>50%</strong> of the
+                  service price for late cancellation or <strong>100%</strong>{" "}
+                  for not showing up
+                </p>
+              </div>
+
+              <div className="content">
+                <p>Important info</p>
+                <p className="desc">
+                  Please understand that when you forget or cancel your
+                  appointment without giving enough <br />
+                  notice , I miss the oppurtunity to fill that appointment time
+                  , and clients on my waiting list miss <br />
+                  the oppurtunity to recieve services.
+                </p>
+              </div>
+
+              {/* <div>
+                <textarea placeholder="Write your Notes here..............r" />
+              </div> */}
+
+              {/* <div className="border-line" />
+              <div className="submit_btn">
+                <div style={{ marginTop: "0" }}>
+                  <p>TOTAL PRICE</p>
+                  <span>
+                    <span className="total"> $499</span>
+                    <span>1 SERVICE SELECTED</span>
+                  </span>
+                </div>
+
+                <button onClick={() => navigate("/thanks")}>
+                  PROCEED TO PAY
+                </button>
+              </div> */}
+            </form>
           </div>
         </div>
+
         <div className="right_div">
           <div className="Box">
             <div className="two-sec">
@@ -401,7 +429,7 @@ const Schedule1 = () => {
             </a>
 
             {/* Service */}
-            {cart?.services?.map((i, index) => (
+            {/* {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
                   <p className="head"> {i?.serviceId?.name} </p>
@@ -428,10 +456,10 @@ const Schedule1 = () => {
                   </p>
                 </div>
               </div>
-            ))}
+            ))} */}
 
             {/* Ad on Service */}
-            {cart?.AddOnservicesSchema?.map((i, index) => (
+            {/* {cart?.AddOnservicesSchema?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
                   <p className="head"> {i?.addOnservicesId?.name} </p>
@@ -451,7 +479,7 @@ const Schedule1 = () => {
                   </p>
                 </div>
               </div>
-            ))}
+            ))} */}
 
             {bookNow}
           </div>
@@ -485,4 +513,4 @@ const Schedule1 = () => {
   );
 };
 
-export default Schedule1;
+export default CheckoutDetails;

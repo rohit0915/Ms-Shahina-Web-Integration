@@ -139,7 +139,8 @@ const Schedule1 = () => {
         </>
       );
     } else {
-      return <div dangerouslySetInnerHTML={{ __html: content }} />;
+      return;
+      <div dangerouslySetInnerHTML={{ __html: content }} />;
     }
   }
 

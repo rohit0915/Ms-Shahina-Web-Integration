@@ -178,6 +178,7 @@ const CheckoutDetails = () => {
             </div>
 
             {/* Service */}
+            {console.log(cart)}
             {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
                 <div className="two-div">
@@ -215,13 +216,19 @@ const CheckoutDetails = () => {
             ))}
 
             <div className="Items">
-              <div className="two-div">
-                <p className="head">Total</p>
-                <p className="head">${cart?.total}</p>
+                <div className="two-div">
+                  <p className="head"> {i?.serviceId?.name} </p>
+                  <p className="head">
+                 
+                  </p>
+                </div>
+                <div className="two-div">
+                  <p className="desc">
+                    {" "}
+                    Total Time : ( {i?.serviceId?.totalTime})
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <button className="confirm_btn">Confirm</button>
           </div>
         </div>
       </div>
