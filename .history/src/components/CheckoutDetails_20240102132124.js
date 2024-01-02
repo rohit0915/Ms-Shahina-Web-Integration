@@ -223,7 +223,7 @@ const CheckoutDetails = () => {
                   <p className="head">${cart?.total}</p>
                 </div>
               </div>
-            )}
+            )} 
 
             <div className="Items">
               <div className="two-div">
@@ -231,15 +231,12 @@ const CheckoutDetails = () => {
               </div>
             </div>
 
-            <div className="twwo margin-0">
+            <div className="twwo mergin-0">
               <div className="imggg">S</div>
               <p>Shahina </p>
             </div>
             <div className="twwo">
-              <div className="cl">
-                {" "}
-                <SlCalender />
-              </div>
+             <div className="cl"> <SlCalender /></div>
 
               <div>
                 <p className="title">Monday 25 December</p>{" "}

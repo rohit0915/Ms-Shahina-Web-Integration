@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
 import { CartItems } from "../store/cartSlice";
 import { getContactDetails } from "../Repository/Api";
 import { AiFillStar } from "react-icons/ai";
-import { SlCalender } from "react-icons/sl";
-
 import { Call, Mail } from "./Helping/Mail";
 
 const CheckoutDetails = () => {
@@ -216,37 +214,15 @@ const CheckoutDetails = () => {
               </div>
             ))}
 
-            {cart?.total && (
-              <div className="Items">
-                <div className="two-div">
-                  <p className="head">Total</p>
-                  <p className="head">${cart?.total}</p>
-                </div>
-              </div>
-            )}
-
             <div className="Items">
               <div className="two-div">
-                <p className="head">Appointment</p>
+                <p className="head">Total</p>
+                <p className="head">${cart?.total}</p>
               </div>
             </div>
 
-            <div className="twwo margin-0">
-              <div className="imggg">S</div>
-              <p>Shahina </p>
-            </div>
-            <div className="twwo">
-              <div className="cl">
-                {" "}
-                <SlCalender />
-              </div>
-
-              <div>
-                <p className="title">Monday 25 December</p>{" "}
-                <p>10:00am - 10:30am</p>{" "}
-              </div>
-            </div>
-
+              
+              
             <button className="confirm_btn">Confirm</button>
           </div>
         </div>

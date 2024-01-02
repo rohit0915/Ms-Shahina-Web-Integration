@@ -231,15 +231,12 @@ const CheckoutDetails = () => {
               </div>
             </div>
 
-            <div className="twwo margin-0">
+            <div className="twwo">
               <div className="imggg">S</div>
               <p>Shahina </p>
             </div>
             <div className="twwo">
-              <div className="cl">
-                {" "}
-                <SlCalender />
-              </div>
+              <SlCalender />
 
               <div>
                 <p className="title">Monday 25 December</p>{" "}

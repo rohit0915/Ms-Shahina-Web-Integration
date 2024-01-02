@@ -231,16 +231,12 @@ const CheckoutDetails = () => {
               </div>
             </div>
 
-            <div className="twwo margin-0">
+            <div className="twwo">
               <div className="imggg">S</div>
               <p>Shahina </p>
             </div>
             <div className="twwo">
-              <div className="cl">
-                {" "}
-                <SlCalender />
-              </div>
-
+              <i class="fa-solid fa-calendar-days"></i>
               <div>
                 <p className="title">Monday 25 December</p>{" "}
                 <p>10:00am - 10:30am</p>{" "}

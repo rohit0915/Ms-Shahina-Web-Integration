@@ -3768,9 +3768,8 @@
 
 .twwo{
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
-  margin-top: 20px;
 }
 .twwo p{
   margin: 0;
@@ -3784,23 +3783,4 @@
   font-weight: 600;
   font-family: Poppins;
   text-align: center;
-}
-.twwo p {
-  font-size: 14px;
-  font-weight: 600;
-  color: #6a6a6a;
-}
-.twwo .cl{
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-}
-.twwo .cl svg{
-  margin: auto;
-  margin-top: 10px;
-}
-.twwo .title{
-  font-weight: 800;
-  color: #000;
 }
