@@ -61,7 +61,6 @@ import CardSaver from "./components/Card/CardSaver";
 import { getSession } from "./Repository/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated, LOGOUT } from "./store/authSlice";
-import MainStripe from "./components/Stripe/MainStripe";
 
 const LazyComponent = (Component) => {
   return <Suspense fallback={<div></div>}>{Component}</Suspense>;
@@ -249,7 +248,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/stripe",
-        element: LazyComponent(<MainStripe />),
+        element: LazyComponent(<CardSaver />),
       },
     ],
   },

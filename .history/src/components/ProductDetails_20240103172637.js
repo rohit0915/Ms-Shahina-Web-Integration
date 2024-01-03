@@ -347,7 +347,11 @@ const ProductDetails = () => {
                   <View_description
                     description={product?.keyIngredients?.[0]}
                   />
-      
+                  {/* <ul class="ingredients-list">
+                    {product?.keyIngredients?.map((i, index) => (
+                      <li key={`key-ingre${index}`}> {i} </li>
+                    ))}
+                  </ul> */}
                 </div>
                 <div className="Image_Container">
                   <img alt="" src={img} />

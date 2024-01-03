@@ -337,6 +337,7 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+              {console.log(product)}
         {product?.keyIngredients?.length > 0 && (
           <div className="Product_Key_Ingredeints">
             <div className="container">
@@ -344,10 +345,12 @@ const ProductDetails = () => {
                 <div class="ingredients">
                   <h3 class="heading">Key Ingredients</h3>
 
-                  <View_description
-                    description={product?.keyIngredients?.[0]}
-                  />
-      
+
+                  <ul class="ingredients-list">
+                    {product?.keyIngredients?.map((i, index) => (
+                      <li key={`key-ingre${index}`}> {i} </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="Image_Container">
                   <img alt="" src={img} />

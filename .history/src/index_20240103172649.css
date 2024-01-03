@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Sacramento&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap");
 
-@import "tailwindcss/base";
+/* @import "tailwindcss/base"; */
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
@@ -94,9 +94,5 @@ a {
 
 .membership_card ul,
 .membership_card ol {
-  list-style: disc;
-}
-
-.Product_Key_Ingredeints ul {
   list-style: disc;
 }
