@@ -223,7 +223,8 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
-  console.log(cart);
+
+  console.log(cart)
 
   return (
     <>

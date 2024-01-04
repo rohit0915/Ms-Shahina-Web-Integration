@@ -223,7 +223,8 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
-  console.log(cart);
+
+  console.log(cart)
 
   return (
     <>
@@ -555,7 +556,7 @@ const MyCart = () => {
                     </div>
 
                     <div className="price_div">
-                      <p className="sellingPrice">${i.price}</p>
+                      <p className="sellingPrice">${i.subTotal}</p>
                     </div>
                   </div>
                 </div>
