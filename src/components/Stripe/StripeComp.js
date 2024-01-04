@@ -38,13 +38,11 @@ export default function StripeComp() {
       {},
       {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjkxOGUxYWJmMTIyMjM4MTcwYmRhNCIsImlhdCI6MTcwNDE5MDE1OSwiZXhwIjoxNzM1NzI2MTU5fQ.zm417Y4OeGH3-CrYYFl0Tw6baA8jpLEgyX5--S9FEB8`,
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       }
     );
-    console.log(res?.data?.client_secret?.client_secret);
-    const clientSecret =
-      "seti_1OUSZeJsxpRH9smi5S5Rvy89_secret_PJ4jmrLG46SVSc8mdssuqmlEsuSg2WN";
+    const clientSecret = res?.data?.client_secret?.client_secret;
 
     const { error } = await stripe.confirmSetup({
       elements,

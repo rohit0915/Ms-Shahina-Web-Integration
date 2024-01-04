@@ -25,7 +25,7 @@ const ProductPage = () => {
   const [img, setImg] = useState("");
   const [load, setLoad] = useState(false);
   const [limit, setLimit] = useState(15);
-  const [ total ,setTotal ] = useState(0)
+  const [total, setTotal] = useState(0);
 
   const [search, setSearch] = useState("");
 
@@ -48,15 +48,13 @@ const ProductPage = () => {
   const productHandler = async () => {
     try {
       setLoad(true);
-      await getAllProducts(setProducts, url ,setTotal);
+      await getAllProducts(setProducts, url, setTotal);
     } catch (e) {
       console.log(e);
     } finally {
       setLoad(false);
     }
-
   };
-
 
   useEffect(() => {
     window.scrollTo({
@@ -100,7 +98,12 @@ const ProductPage = () => {
 
   const Component = () => {
     return (
-      <AllProducts products={filterData} setLimit={setLimit} limit={limit} total={total} />
+      <AllProducts
+        products={filterData}
+        setLimit={setLimit}
+        limit={limit}
+        total={total}
+      />
     );
   };
 
