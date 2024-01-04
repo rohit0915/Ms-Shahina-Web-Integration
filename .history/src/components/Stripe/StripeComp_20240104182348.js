@@ -65,8 +65,6 @@ export default function StripeComp() {
     borderRadius: "10px",
     border: "1px solid #000",
     width: "200px",
-    display: "block",
-    marginTop: "15px",
   };
 
   return (

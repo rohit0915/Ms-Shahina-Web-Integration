@@ -66,7 +66,8 @@ export default function StripeComp() {
     border: "1px solid #000",
     width: "200px",
     display: "block",
-    marginTop: "15px",
+    // margin: "auto",
+    marginTop: "10px",
   };
 
   return (

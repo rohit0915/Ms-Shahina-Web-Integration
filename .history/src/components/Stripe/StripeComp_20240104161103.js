@@ -58,21 +58,10 @@ export default function StripeComp() {
     }
   };
 
-  const btnStyle = {
-    backgroundColor: "#000",
-    color: "#fff",
-    padding: "10px",
-    borderRadius: "10px",
-    border: "1px solid #000",
-    width: "200px",
-    display: "block",
-    marginTop: "15px",
-  };
-
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button style={btnStyle} type="submit" disabled={!stripe || loading}>
+      <button type="submit" disabled={!stripe || loading}>
         Submit
       </button>
       {errorMessage && <div>{errorMessage}</div>}

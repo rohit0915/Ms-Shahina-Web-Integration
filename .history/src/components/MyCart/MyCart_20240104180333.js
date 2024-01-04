@@ -255,63 +255,6 @@ const MyCart = () => {
     hour12: true,
   });
 
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
-  };
-
-  // Checkout button
-  let checkoutBtn;
-
-  if (cart?.deliveryAddresss) {
-    const hasServices =
-      cart?.services?.length > 0 || cart?.AddOnservicesSchema?.length > 0;
-
-    if (hasServices && isChecked) {
-      checkoutBtn = (
-        <button
-          className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
-          onClick={() => checkoutHandler()}
-          style={{ cursor: "pointer" }}
-        >
-          Checkout Now
-        </button>
-      );
-    } else if (hasServices === false) {
-      checkoutBtn = (
-        <button
-          className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
-          onClick={() => checkoutHandler()}
-          style={{ cursor: "pointer" }}
-        >
-          Checkout Now
-        </button>
-      );
-    } else {
-      checkoutBtn = (
-        <button
-          className={`text-2xl py-4 my-12 w-full text-secondary bg-primary text-center ${
-            hasServices ? "disabled_button" : ""
-          }`}
-          disabled={!isChecked || !hasServices}
-        >
-          Checkout Now
-        </button>
-      );
-    }
-  } else {
-    checkoutBtn = (
-      <a href="#delivery_option">
-        <button
-          className={`text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button `}
-        >
-          Checkout Now
-        </button>
-      </a>
-    );
-  }
-
   return (
     <>
       <CheckoutModal open={modalOpen} setOpen={() => setModalOpen(false)} />
@@ -649,61 +592,8 @@ const MyCart = () => {
               ))}
 
               {cart?.services?.length > 0 ||
-              cart?.AddOnservicesSchema?.length > 0 ? (
-                <div className="schedule_1">
-                  <div className="left_div" style={{ width: "100%" }}>
-                    <div className="review_box">
-                      <p className="title">Payment method</p>
-                      <span>
-                        You won't be charged now , payment will be collected in
-                        store after your appointment
-                      </span>
+                  cart?.AddOnservicesSchema?.length > 0  ? }
 
-                      <div
-                        className="content"
-                        style={{ width: "100%", marginTop: "20px" }}
-                      >
-                        <p>
-                          <strong>Fill this form before proceeding !</strong>
-                        </p>
-                      </div>
-                      <MainStripe />
-
-                      <div className="content" style={{ width: "100%" }}>
-                        <p>
-                          <strong>Cancellation policy</strong>
-                        </p>
-                        <p className="desc">
-                          Cancel for free up to <strong>48 hours</strong> ahead
-                          , otherwise you will be charged <strong>50%</strong>{" "}
-                          of the service price for late cancellation or{" "}
-                          <strong>100%</strong> for not showing up
-                        </p>
-                      </div>
-
-                      <div
-                        className="content"
-                        style={{ width: "100%", marginTop: "20px" }}
-                      >
-                        <p>
-                          {" "}
-                          <strong>Important info</strong>{" "}
-                        </p>
-                        <p className="desc">
-                          Please understand that when you forget or cancel your
-                          appointment without giving enough <br />
-                          notice , I miss the oppurtunity to fill that
-                          appointment time , and clients on my waiting list miss{" "}
-                          <br />
-                          the oppurtunity to recieve services.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
             </div>
 
             <section className="right_container">
@@ -755,16 +645,14 @@ const MyCart = () => {
                       </p>
                     )}
                   </div>
+
                   {cart?.frequentlyBuyProductSchema?.length > 0 ||
                   cart?.products?.length > 0 ? (
                     <>
                       <h4 className="text-xl my-2 font-bold">
                         Select Delivery Option for Product
                       </h4>
-                      <div
-                        className="flex justify-between gap-2  my-5 delivery_container"
-                        id="delivery_option"
-                      >
+                      <div className="flex justify-between gap-2  my-5 delivery_container">
                         <div
                           className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
                           onClick={handleDeliveyOption}
@@ -960,7 +848,7 @@ const MyCart = () => {
                     ""
                   )}
 
-                  {cart?.fromTime && cart?.toTime ? (
+                  {cart?.date && cart?.timeInMin ? (
                     ""
                   ) : (
                     <p className="text-lg font-normal my-3">
@@ -1021,27 +909,23 @@ const MyCart = () => {
                       View Return Privacy
                     </p>
                   </div>
-                  {cart?.services?.length > 0 ||
-                  cart?.AddOnservicesSchema?.length > 0 ? (
-                    <div className="checkbox_checker">
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        value={isChecked}
-                        onChange={handleCheck}
-                      />
-                      <p>
-                        {" "}
-                        Please check the box if you have already provided your
-                        card details.
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )}
                 </section>
 
-                {checkoutBtn}
+                {cart?.date && cart?.timeInMin ? (
+                  <button
+                    className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+                    onClick={() => checkoutHandler()}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Checkout Now
+                  </button>
+                ) : (
+                  <a href="#time">
+                    <button className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button">
+                      Checkout Now
+                    </button>
+                  </a>
+                )}
 
                 <div className="flex justify-center items-center text-lg">
                   <span className="text-mediumGray">

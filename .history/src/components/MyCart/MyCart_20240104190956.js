@@ -302,15 +302,13 @@ const MyCart = () => {
     }
   } else {
     checkoutBtn = (
-      <a href="#delivery_option">
-        <button
-          className={`text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button `}
-        >
-          Checkout Now
-        </button>
-      </a>
+      <button className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button">
+        Checkout Now
+      </button>
     );
   }
+
+  // Render the checkoutBtn somewhere in your component
 
   return (
     <>
@@ -761,10 +759,7 @@ const MyCart = () => {
                       <h4 className="text-xl my-2 font-bold">
                         Select Delivery Option for Product
                       </h4>
-                      <div
-                        className="flex justify-between gap-2  my-5 delivery_container"
-                        id="delivery_option"
-                      >
+                      <div className="flex justify-between gap-2  my-5 delivery_container">
                         <div
                           className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
                           onClick={handleDeliveyOption}
@@ -1040,6 +1035,22 @@ const MyCart = () => {
                     ""
                   )}
                 </section>
+
+                {/* {cart?.deliveryAddresss ? (
+                  <button
+                    className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+                    onClick={() => checkoutHandler()}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Checkout Now
+                  </button>
+                ) : (
+                  <a href="#time">
+                    <button className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button">
+                      Checkout Now
+                    </button>
+                  </a>
+                )} */}
 
                 {checkoutBtn}
 

@@ -2227,6 +2227,7 @@
   border-bottom: 1px solid #000;
   padding: 20px;
 }
+.cart-container .left-container .Item:la
 .cart-container .left-container .Title {
   font-family: Poppins;
   font-size: 30px;
@@ -3070,7 +3071,7 @@
   cursor: pointer;
   color: #fff;
 }
-.Text_Drawer {
+.Text_Drawer{
   color: #fff;
 }
 .Text_Drawer p {
@@ -3768,21 +3769,21 @@
   margin-top: 20px;
 }
 
-.twwo {
+.twwo{
   display: flex;
   gap: 10px;
   align-items: center;
   margin-top: 20px;
 }
-.twwo p {
+.twwo p{
   margin: 0;
 }
-.twwo .imggg {
+.twwo .imggg{
   width: 40px;
   height: 40px;
-  background-color: #c5c0ea;
+  background-color: #C5C0EA;
   border-radius: 100%;
-  line-height: 40px;
+  line-height: 40px ;
   font-weight: 600;
   font-family: Poppins;
   text-align: center;
@@ -3792,46 +3793,29 @@
   font-weight: 600;
   color: #6a6a6a;
 }
-.twwo .cl {
+.twwo .cl{
   width: 40px;
   height: 40px;
   text-align: center;
   line-height: 40px;
 }
-.twwo .cl svg {
+.twwo .cl svg{
   margin: auto;
   margin-top: 10px;
 }
-.twwo .title {
+.twwo .title{
   font-weight: 800;
   color: #000;
 }
 
-.load_more {
+
+.load_more{
   width: 200px;
   padding: 10px;
-  background-color: #022b27;
+  background-color:#022b27;
   border-radius: 10px;
   display: block;
   margin: auto;
   color: #fff;
   margin-top: 20px;
-}
-
-.checkbox_checker {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  margin-top: 20px;
-}
-.checkbox_checker input {
-  width: 25px;
-  height: 25px;
-  margin-top: 4px;
-  cursor: pointer;
-}
-.checkbox_checker p {
-  font-size: 17px;
-  margin: 0;
-  font-weight: 600;
 }

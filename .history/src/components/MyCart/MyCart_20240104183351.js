@@ -255,61 +255,10 @@ const MyCart = () => {
     hour12: true,
   });
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [ isChecked , setIsChecked ] = useState*
 
   const handleCheck = () => {
-    setIsChecked(!isChecked);
-  };
 
-  // Checkout button
-  let checkoutBtn;
-
-  if (cart?.deliveryAddresss) {
-    const hasServices =
-      cart?.services?.length > 0 || cart?.AddOnservicesSchema?.length > 0;
-
-    if (hasServices && isChecked) {
-      checkoutBtn = (
-        <button
-          className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
-          onClick={() => checkoutHandler()}
-          style={{ cursor: "pointer" }}
-        >
-          Checkout Now
-        </button>
-      );
-    } else if (hasServices === false) {
-      checkoutBtn = (
-        <button
-          className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
-          onClick={() => checkoutHandler()}
-          style={{ cursor: "pointer" }}
-        >
-          Checkout Now
-        </button>
-      );
-    } else {
-      checkoutBtn = (
-        <button
-          className={`text-2xl py-4 my-12 w-full text-secondary bg-primary text-center ${
-            hasServices ? "disabled_button" : ""
-          }`}
-          disabled={!isChecked || !hasServices}
-        >
-          Checkout Now
-        </button>
-      );
-    }
-  } else {
-    checkoutBtn = (
-      <a href="#delivery_option">
-        <button
-          className={`text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button `}
-        >
-          Checkout Now
-        </button>
-      </a>
-    );
   }
 
   return (
@@ -761,10 +710,7 @@ const MyCart = () => {
                       <h4 className="text-xl my-2 font-bold">
                         Select Delivery Option for Product
                       </h4>
-                      <div
-                        className="flex justify-between gap-2  my-5 delivery_container"
-                        id="delivery_option"
-                      >
+                      <div className="flex justify-between gap-2  my-5 delivery_container">
                         <div
                           className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
                           onClick={handleDeliveyOption}
@@ -1021,15 +967,11 @@ const MyCart = () => {
                       View Return Privacy
                     </p>
                   </div>
+
                   {cart?.services?.length > 0 ||
                   cart?.AddOnservicesSchema?.length > 0 ? (
                     <div className="checkbox_checker">
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        value={isChecked}
-                        onChange={handleCheck}
-                      />
+                      <input type="checkbox"  />
                       <p>
                         {" "}
                         Please check the box if you have already provided your
@@ -1041,7 +983,21 @@ const MyCart = () => {
                   )}
                 </section>
 
-                {checkoutBtn}
+                {cart?.deliveryAddresss ? (
+                  <button
+                    className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+                    onClick={() => checkoutHandler()}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Checkout Now
+                  </button>
+                ) : (
+                  <a href="#time">
+                    <button className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button">
+                      Checkout Now
+                    </button>
+                  </a>
+                )}
 
                 <div className="flex justify-center items-center text-lg">
                   <span className="text-mediumGray">

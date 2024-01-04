@@ -3826,9 +3826,8 @@
 }
 .checkbox_checker input {
   width: 25px;
-  height: 25px;
+  height: 17px;
   margin-top: 4px;
-  cursor: pointer;
 }
 .checkbox_checker p {
   font-size: 17px;
