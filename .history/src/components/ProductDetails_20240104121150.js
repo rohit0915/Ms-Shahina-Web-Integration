@@ -337,6 +337,7 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+        {console.log(product)}
         {product?.keyIngredients?.[0]?.length > 0 && (
           <div className="Product_Key_Ingredeints">
             <div className="container">
@@ -347,6 +348,7 @@ const ProductDetails = () => {
                   <View_description
                     description={product?.keyIngredients?.[0]}
                   />
+      
                 </div>
                 <div className="Image_Container">
                   <img alt="" src={img} />

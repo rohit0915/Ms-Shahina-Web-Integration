@@ -337,6 +337,7 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+        {console.log(product?.keyIngredients?.[0]?.length)}
         {product?.keyIngredients?.[0]?.length > 0 && (
           <div className="Product_Key_Ingredeints">
             <div className="container">

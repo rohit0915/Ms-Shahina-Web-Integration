@@ -475,6 +475,8 @@ const ProductDetails = () => {
           </div>
         </div>
 
+        {console.log(relatedProducts)}
+
         <div className="frequently-bought">
           <p className="title">Frequently Bought Together</p>
           <div className="container">
