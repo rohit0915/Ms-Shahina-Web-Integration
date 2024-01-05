@@ -44,9 +44,11 @@ const GallarySlider = () => {
     ],
   };
 
+  console.log(pictures)
+
   return (
-    // <div className="Gallary_Slider">
-      <Slider {...settings} className="w-full">
+    <div className="Gallary_Slider">
+      <Slider {...settings} className="w-full MaxComponent">
         {pictures.map((picture, index) => (
           <div
             onMouseEnter={() => sethover(index)}
@@ -75,7 +77,7 @@ const GallarySlider = () => {
           </div>
         ))}
       </Slider>
-    // </div>
+    </div>
   );
 };
 

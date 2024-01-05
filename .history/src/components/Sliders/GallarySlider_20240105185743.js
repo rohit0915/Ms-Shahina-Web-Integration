@@ -44,8 +44,10 @@ const GallarySlider = () => {
     ],
   };
 
+  console.log(pictures)
+
   return (
-    // <div className="Gallary_Slider">
+    <div className="Gallary_Slider">
       <Slider {...settings} className="w-full">
         {pictures.map((picture, index) => (
           <div
@@ -75,7 +77,7 @@ const GallarySlider = () => {
           </div>
         ))}
       </Slider>
-    // </div>
+    </div>
   );
 };
 

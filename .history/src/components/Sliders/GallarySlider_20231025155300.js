@@ -12,7 +12,7 @@ const GallarySlider = () => {
   var settings = {
     dots: false,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow: 5,
     slidesToScroll: 2,
     infinite: true,
     swipeToSlide: true,
@@ -45,8 +45,8 @@ const GallarySlider = () => {
   };
 
   return (
-    // <div className="Gallary_Slider">
-      <Slider {...settings} className="w-full">
+    <div className="Gallary_Slider">
+      <Slider {...settings} className="w-full MaxComponent">
         {pictures.map((picture, index) => (
           <div
             onMouseEnter={() => sethover(index)}
@@ -75,7 +75,7 @@ const GallarySlider = () => {
           </div>
         ))}
       </Slider>
-    // </div>
+    </div>
   );
 };
 

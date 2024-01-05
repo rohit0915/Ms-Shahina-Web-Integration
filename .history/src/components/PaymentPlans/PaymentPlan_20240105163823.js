@@ -35,7 +35,7 @@ const PaymentPlan = () => {
         },
         styles: {
           primaryColor: "#042b26",
-          secondaryColor: "#e5d896",
+          secondaryColor: "#00C37D10",
           fontFamily: "Open Sans"
         }
       },

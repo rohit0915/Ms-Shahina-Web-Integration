@@ -15,7 +15,6 @@ import Testimonials from "../PaymentPlans/Testimonials";
 import { addServiceLocally } from "../../store/DummySerivce";
 import OfferDrawer from "../Drawer/OfferDrawer";
 import { motion } from "framer-motion";
-import GallarySlider from "../Sliders/GallarySlider";
 
 const ServicePage = () => {
   const { id } = useParams();
@@ -416,9 +415,8 @@ const ServicePage = () => {
         <div style={{ width: "100%", overflow: "hidden" }}>
           <Testimonials />
         </div>
-      
+        <Pictures />
       </main>
-      <GallarySlider />
     </>
   );
 };

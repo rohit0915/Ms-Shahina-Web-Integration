@@ -45,7 +45,7 @@ const Home = () => {
       <div className="mb-14"></div>
       <Description />
       <LatestNews />
-      {/* <Pictures /> */}
+      <Pictures />
       <div className="fixed bottom-5 max-md:hidden w-[26rem] h-[8rem]  right-10 z-[100]">
         <OfferCard />
       </div>

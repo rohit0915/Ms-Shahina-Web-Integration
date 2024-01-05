@@ -121,8 +121,6 @@ const pictures = [
   "/Image/Component 3.png",
   "/Image/Component 4.png",
   "/Image/Component 5.png",
-  "https://res.cloudinary.com/djgrqoefp/image/upload/v1704292991/shahina/images/product/pbvlbxx4mbkkssvk7zhd.jpg",
-  "https://res.cloudinary.com/djgrqoefp/image/upload/v1704460925/shahina/images/product/brzrsoccfoaa0wdpwase.jpg",
 ];
 
 const paymentCards = [

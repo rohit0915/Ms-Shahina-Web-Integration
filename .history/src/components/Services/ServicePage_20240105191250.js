@@ -416,9 +416,8 @@ const ServicePage = () => {
         <div style={{ width: "100%", overflow: "hidden" }}>
           <Testimonials />
         </div>
-      
+        <GallarySlider />
       </main>
-      <GallarySlider />
     </>
   );
 };

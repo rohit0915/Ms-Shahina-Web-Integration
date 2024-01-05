@@ -643,11 +643,11 @@ const MyCart = () => {
                       <p className="title">Confirm Appointment</p>
                       <p
                         className="title"
-                        style={{ fontSize: "20px", marginTop: "20px" ,marginBottom : '20px' }}
+                        style={{ fontSize: "20px", marginTop: "20px" }}
                       >
                         Payment Method
                       </p>
-                      <span style={{ marginTop: "20px" }}>
+                      <span>
                         You won't be charged now , payment will be collected in
                         store after your appointment
                       </span>

@@ -75,7 +75,7 @@ const GallarySlider = () => {
           </div>
         ))}
       </Slider>
-    // </div>
+    </div>
   );
 };
 
