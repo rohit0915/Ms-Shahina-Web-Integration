@@ -4,6 +4,8 @@ import React from "react";
 import ProductCard from "../shop/ProductCard";
 
 const AllProducts = ({ products, setLimit, limit, total }) => {
+  const isLoad = products?.length >= 5 && limit <= total;
+
   return products?.length > 0 ? (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-10 justify-items-center py-5  w-full product_container cursor-pointer ">
@@ -13,7 +15,6 @@ const AllProducts = ({ products, setLimit, limit, total }) => {
             id={item._id}
             src={item?.productImages?.[0]?.image}
             title={item.name}
-            quantity={item.quantity}
             price={
               item.multipleSize === false
                 ? item.price
@@ -22,7 +23,7 @@ const AllProducts = ({ products, setLimit, limit, total }) => {
           />
         ))}
       </div>
-      {products?.length >= 15 && limit <= total && (
+      {isLoad && (
         <button onClick={() => setLimit(limit + 10)} className="load_more">
           Load More
         </button>

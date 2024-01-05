@@ -307,13 +307,13 @@
   .MemberShip .Cont {
     flex-wrap: wrap;
   }
-  .membership_card{
+  .membership_card {
     width: 100%;
   }
   .membership_card_header {
     display: block;
   }
-  .membership_card_header .MemberShip h1{
+  .membership_card_header .MemberShip h1 {
     margin: 0;
     padding-top: 0;
   }
@@ -324,9 +324,10 @@
     min-height: 463px;
   }
   .testimonial_container {
-    width: 350px;
+    width: 100%;
     display: block;
     margin: auto;
+    padding: 20px;
   }
   .testimonial_slider {
     padding: 0;

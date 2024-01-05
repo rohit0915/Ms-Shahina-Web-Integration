@@ -5,7 +5,8 @@ import React, { useEffect } from "react";
 const PaymentPlan = () => {
   useEffect(() => {
     const script = document.createElement("script");
-    script.innerHTML = `(function (w, d, s, o, f, js, fjs) {
+    script.innerHTML = `
+    (function (w, d, s, o, f, js, fjs) {
       w[o] =
         w[o] ||
         function () {
@@ -33,7 +34,7 @@ const PaymentPlan = () => {
           name: "Shahina Hoja Aesthetics"
         },
         styles: {
-          primaryColor: "#00C37D",
+          primaryColor: "#042b26",
           secondaryColor: "#00C37D10",
           fontFamily: "Open Sans"
         }
@@ -49,7 +50,7 @@ const PaymentPlan = () => {
       head.removeChild(script);
     };
   }, []);
-  
+
   useEffect(() => {
     window.scrollTo({
       top: 0,

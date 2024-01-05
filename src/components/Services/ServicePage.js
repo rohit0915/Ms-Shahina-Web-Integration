@@ -144,7 +144,6 @@ const ServicePage = () => {
     }
   }, [TotolData]);
 
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -166,12 +165,11 @@ const ServicePage = () => {
             {response?.name}
           </p>
         </div>
+
         <div className="main_Img">
           <img src={response?.images?.[0]?.img} alt="" />
         </div>
-        <div className="laser_heading">
-          <p> {response?.name} </p>
-        </div>
+
         <div className="content">
           <div dangerouslySetInnerHTML={{ __html: response?.description }} />
         </div>
@@ -385,12 +383,12 @@ const ServicePage = () => {
         )}
 
         {response?.beforeAfterImage && (
-          <div className="center_img">
-            <img src={response?.beforeAfterImage} alt="" />
-          </div>
+          <div
+            className="center_img tweet_image"
+            style={{ backgroundImage: `url(${response?.beforeAfterImage})` }}
+          />
         )}
-        <div className="laser_heading mt-5">
-          <p></p>
+        <div className="service_book_button">
           <button onClick={() => addToCart()}>Book Now</button>
         </div>
 

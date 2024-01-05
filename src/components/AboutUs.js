@@ -5,6 +5,7 @@ import Pictures from "./home/Pictures";
 import { useNavigate } from "react-router-dom";
 import { getAboutUs } from "../Repository/Api";
 import WithLoader from "./Wrapped/WithLoader";
+import { View_description } from "../Helper/Herlper";
 
 const AboutUs = () => {
   const [show, setShow] = useState(false);
@@ -59,19 +60,15 @@ const AboutUs = () => {
                 {response?.title}{" "}
               </h3>
               <h4 className="font-medium text-xl flex items-center gap-2">
-                {/* Shahina Hoja, RN, LE
-        <span className="font-light text-sm ">
-          - Aesthetic Nurse & Founder
-        </span> */}
                 {response?.designation}
               </h4>
 
               {show ? (
                 response?.description?.map((i, index) => (
-                  <p key={index}> {i} </p>
+                  <View_description description={i} key={index} />
                 ))
               ) : (
-                <p>{response?.description?.[0]}</p>
+                <View_description description={response?.description?.[0]} />
               )}
 
               {show ? (

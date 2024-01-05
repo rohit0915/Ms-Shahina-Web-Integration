@@ -12,11 +12,12 @@ import {
 import ShopMenu from "./ShopMenu";
 import Description from "./Description";
 import { useNavigate } from "react-router-dom";
-import { getLimitedOffer } from "../../Repository/Api";
+import { getLimitedOffer, getWishlist } from "../../Repository/Api";
 
 const Shop = () => {
   const [desc, setDesc] = useState(0);
   const [response, setResponse] = useState([]);
+  const [fav, setFav] = useState([]);
 
   const navigate = useNavigate();
 
@@ -29,8 +30,8 @@ const Shop = () => {
 
   useEffect(() => {
     getLimitedOffer(setResponse, "shopPage");
+    getWishlist(setFav);
   }, []);
-
 
   return (
     <section>
@@ -50,15 +51,12 @@ const Shop = () => {
           <div className="Image">
             <img
               src="/asessts/back-button.svg"
-              alt=""  
+              alt=""
               onClick={() => navigate(-1)}
             />
           </div>
         </div>
       )}
-
-
-
 
       <h2 className="text-4xl font-medium  text-primary text-center my-14">
         SHOP SKIN TYPE
@@ -81,10 +79,15 @@ const Shop = () => {
         SHOP NUTRITON
       </h2>
       <Nutrition />
-      <h2 className="text-4xl font-medium  text-primary text-center my-14">
-        CUSTOMER’S FAVOURITES
-      </h2>
-      <Products />
+      {fav?.length > 0 && (
+        <>
+          <h2 className="text-4xl font-medium  text-primary text-center my-14">
+            CUSTOMER’S FAVOURITES
+          </h2>
+          <Products data={fav} />
+        </>
+      )}
+
       <div>
         {response?.[0]?.shopDetails?.map(
           (item, index) =>

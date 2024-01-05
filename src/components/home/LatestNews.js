@@ -5,6 +5,9 @@ import NewsCard from "./NewsCard";
 import { getNews } from "../../Repository/Api";
 import { useNavigate } from "react-router-dom";
 import WithLoader from "../Wrapped/WithLoader";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import { Pagination, Autoplay, Keyboard } from "swiper/modules";
 
 const LatestNews = () => {
   const [response, setResponse] = useState([]);
@@ -26,6 +29,27 @@ const LatestNews = () => {
     fetchHandler();
   }, []);
 
+  const swiperConfig = {
+    spaceBetween: 20,
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+    },
+    keyboard: {
+      enabled: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  };
+
   const Component = () => {
     return (
       response?.length > 0 && (
@@ -38,16 +62,23 @@ const LatestNews = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap  gap-3 mt-14 mx-auto justify-center">
+          <Swiper
+            {...swiperConfig}
+            pagination={true}
+            modules={[Pagination, Autoplay, Keyboard]}
+          >
             {response?.map((card, index) => (
-              <NewsCard
-                key={index}
-                src={card.image}
-                title={card.title}
-                content={card.description}
-              />
+              <SwiperSlide key={index}>
+                <NewsCard
+                  key={index}
+                  src={card.image}
+                  title={card.title}
+                  content={card.description}
+                  id={card._id}
+                />
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
 
           <div className="flex justify-center my-24 viewMore-Container">
             <button

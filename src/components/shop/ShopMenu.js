@@ -4,13 +4,6 @@ import React, { useState } from "react";
 import { shopMenu } from "../../constants/shopConstant";
 import { BsChevronDown } from "react-icons/bs";
 import {
-  Brands,
-  Nutrition,
-  ProductType,
-  SkinConditions,
-  SkinType,
-} from "./shopHelpingcomponents";
-import {
   BrandsSlider,
   NutritionSlider,
   ProductTypeSlider,

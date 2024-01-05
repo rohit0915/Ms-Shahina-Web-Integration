@@ -61,12 +61,11 @@ const ProductPage = () => {
       top: 0,
       behavior: "instant",
     });
-  }, [url , id]);
+  }, [url, id]);
 
   useEffect(() => {
     productHandler();
   }, [url]);
-
 
   const navigate = useNavigate();
 

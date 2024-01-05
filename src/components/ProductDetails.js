@@ -14,6 +14,8 @@ import {
   getProductReviews,
   giveReview,
   getRelatedProduct,
+  createWishlist,
+  removeWishlist,
 } from "../Repository/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated } from "../store/authSlice";
@@ -22,6 +24,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { motion } from "framer-motion";
 import WithLoader from "./Wrapped/WithLoader";
 import { View_description } from "../Helper/Herlper";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -39,6 +42,7 @@ const ProductDetails = () => {
   const [open, setOpen] = useState(false);
   const [recentProduct, setRecentProduct] = useState([]);
   const [load, setLoad] = useState(false);
+  const [isWishlist, setIsWishlist] = useState(null);
 
   let payload;
 
@@ -54,6 +58,13 @@ const ProductDetails = () => {
       quantity,
       sizePrice: price,
     };
+  }
+
+  function addToFav() {
+    createWishlist(id, fetchProduct);
+  }
+  function removeFromFav() {
+    removeWishlist(id, fetchProduct);
   }
 
   const dispatch = useDispatch();
@@ -103,6 +114,7 @@ const ProductDetails = () => {
     getFrequently(setRelatedProducts);
   }, []);
 
+  console.log(isWishlist);
   const fetchProduct = async () => {
     try {
       setLoad(true);
@@ -114,7 +126,8 @@ const ProductDetails = () => {
           setSizes,
           setPrice,
           setSize,
-          setPriceId
+          setPriceId,
+          setIsWishlist
         );
       } else {
         await getSingleProduct(
@@ -231,6 +244,12 @@ const ProductDetails = () => {
           <div className="left">
             <div className="upperImage">
               <img src={img} alt="" />
+              {isWishlist === true && (
+                <FaHeart onClick={removeFromFav} className="heart" />
+              )}
+              {isWishlist === false && (
+                <FaRegHeart className="heart" onClick={() => addToFav()} />
+              )}
             </div>
             <div className="multi-Images">
               {product?.productImages?.map((i, index) => (

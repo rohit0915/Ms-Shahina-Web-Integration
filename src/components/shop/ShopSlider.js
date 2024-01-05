@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
 import {
   getAllBrands,
   getAllNutrition,
@@ -10,6 +9,9 @@ import {
   getSkinType,
 } from "../../Repository/Api";
 import ItemCard from "./ItemCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import { Pagination, Autoplay, Keyboard } from "swiper/modules";
 
 export const SkinTypeSlider = () => {
   const [response, setResponse] = useState([]);
@@ -21,56 +23,47 @@ export const SkinTypeSlider = () => {
     fetchHandler();
   }, []);
 
-  var settings = {
-    dots: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    infinite: true,
-    swipeToSlide: true,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
+  const swiperConfig = {
+    spaceBetween: 20,
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction: false,
+    },
+    keyboard: {
+      enabled: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
       },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
+      1024: {
+        slidesPerView: 4,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    },
   };
 
   return (
     response && (
       <>
         <div style={{ overflow: "hidden", maxWidth: "1400px", margin: "auto" }}>
-          <Slider {...settings}>
+          <Swiper
+            {...swiperConfig}
+            pagination={true}
+            modules={[Pagination, Autoplay, Keyboard]}
+          >
             {response?.map((item, i) => (
-              <ItemCard
-                key={i}
-                src={item.image}
-                styles={"w-80 h-80 text-4xl"}
-                type={item.name}
-                link={`/skinTypeId/${item._id}/${item.name}`}
-              />
+              <SwiperSlide key={i}>
+                <ItemCard
+                  src={item.image}
+                  styles={"w-80 h-80 text-4xl"}
+                  type={item.name}
+                  link={`/skinTypeId/${item._id}/${item.name}`}
+                />
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </div>
       </>
     )
@@ -84,55 +77,46 @@ export const ProductTypeSlider = () => {
     getProductType(setResponse);
   }, []);
 
-  var settings = {
-    dots: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    infinite: true,
-    swipeToSlide: true,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
+  const swiperConfig = {
+    spaceBetween: 20,
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction: false,
+    },
+    keyboard: {
+      enabled: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
       },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
+      1024: {
+        slidesPerView: 5,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    },
   };
 
   return (
     response && (
       <div style={{ overflow: "hidden", maxWidth: "1400px", margin: "auto" }}>
-        <Slider {...settings}>
+        <Swiper
+          {...swiperConfig}
+          pagination={true}
+          modules={[Pagination, Autoplay, Keyboard]}
+        >
           {response?.map((item, i) => (
-            <ItemCard
-              key={i}
-              src={item.image}
-              styles={"w-60 h-60"}
-              baseType={item.name}
-              link={`/productTypeId/${item._id}/${item.name}`}
-            />
+            <SwiperSlide key={i}>
+              <ItemCard
+                src={item.image}
+                styles={"w-60 h-60"}
+                baseType={item.name}
+                link={`/productTypeId/${item._id}/${item.name}`}
+              />
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
     )
   );
@@ -145,58 +129,51 @@ export const BrandsSlider = ({ isBrand }) => {
     getAllBrands(setResponse);
   }, []);
 
-  var settings = {
-    dots: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    infinite: true,
-    swipeToSlide: true,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
+  const swiperConfig = {
+    spaceBetween: 20,
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction: false,
+    },
+    keyboard: {
+      enabled: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
       },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
+      1024: {
+        slidesPerView: 5,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    },
   };
 
   return (
     response && (
       <div style={{ overflow: "hidden", maxWidth: "1400px", margin: "auto" }}>
-        <Slider {...settings}>
+        <Swiper
+          {...swiperConfig}
+          pagination={true}
+          modules={[Pagination, Autoplay, Keyboard]}
+        >
           {response?.map((item, i) => (
-            <ItemCard
-              key={i}
-              src={item.image}
-              isBrand={isBrand}
-              styles={`${
-                isBrand ? "w-60 h-60 text-2xl text-center" : "isBrand_container"
-              }`}
-              link={`/brandId/${item._id}/${item.name}`}
-              largeCardType={item.name}
-            />
+            <SwiperSlide key={i}>
+              <ItemCard
+                src={item.image}
+                isBrand={isBrand}
+                styles={`${
+                  isBrand
+                    ? "w-60 h-60 text-2xl text-center"
+                    : "isBrand_container"
+                }`}
+                link={`/brandId/${item._id}/${item.name}`}
+                largeCardType={item.name}
+              />
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
     )
   );
@@ -209,55 +186,45 @@ export const SkinConditionsSlider = () => {
     getSkinCondition(setResponse);
   }, []);
 
-  var settings = {
-    dots: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    infinite: true,
-    swipeToSlide: true,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
+  const swiperConfig = {
+    spaceBetween: 20,
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction: false,
+    },
+    keyboard: {
+      enabled: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
       },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
+      1024: {
+        slidesPerView: 5,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    },
   };
-
   return (
     response && (
       <div style={{ overflow: "hidden", maxWidth: "1400px", margin: "auto" }}>
-        <Slider {...settings}>
+        <Swiper
+          {...swiperConfig}
+          pagination={true}
+          modules={[Pagination, Autoplay, Keyboard]}
+        >
           {response?.map((item, i) => (
-            <ItemCard
-              key={i}
-              src={item.image}
-              styles={"w-60 h-60"}
-              baseType={item.name}
-              link={`/skinConditionId/${item._id}/${item.name}`}
-            />
+            <SwiperSlide key={i}>
+              <ItemCard
+                src={item.image}
+                styles={"w-60 h-60"}
+                baseType={item.name}
+                link={`/skinConditionId/${item._id}/${item.name}`}
+              />
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
     )
   );
@@ -270,55 +237,46 @@ export const NutritionSlider = () => {
     getAllNutrition(setResponse);
   }, []);
 
-  var settings = {
-    dots: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    infinite: true,
-    swipeToSlide: true,
-    autoplay: true,
-    autoplaySpeed: 1500,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
+  const swiperConfig = {
+    spaceBetween: 20,
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction: false,
+    },
+    keyboard: {
+      enabled: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
       },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
+      1024: {
+        slidesPerView: 4,
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    },
   };
 
   return (
     response && (
       <div style={{ overflow: "hidden", maxWidth: "1200px", margin: "auto" }}>
-        <Slider {...settings}>
+        <Swiper
+          {...swiperConfig}
+          pagination={true}
+          modules={[Pagination, Autoplay, Keyboard]}
+        >
           {response?.map((item, i) => (
-            <ItemCard
-              key={i}
-              src={item.image}
-              styles={"w-60 h-60"}
-              nutritionType={item.name}
-              link={`/nutritionId/${item._id}/${item.name}`}
-            />
+            <SwiperSlide key={i}>
+              <ItemCard
+                src={item.image}
+                styles={"w-60 h-60"}
+                nutritionType={item.name}
+                link={`/nutritionId/${item._id}/${item.name}`}
+              />
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
     )
   );
