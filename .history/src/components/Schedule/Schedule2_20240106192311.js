@@ -144,7 +144,7 @@ const Schedule2 = () => {
             slots={response}
             selectSlot={setTime}
             selectedSlot={time}
-            nextDate={nextAvailableDate}
+            
           />
 
           {/* <Calendar

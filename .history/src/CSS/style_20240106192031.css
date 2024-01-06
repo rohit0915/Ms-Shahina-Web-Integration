@@ -4086,16 +4086,6 @@
   color: #6a6a6a;
   font-weight: 600;
 }
-.fully_booked_slots button {
-  width: 200px;
-  background-color: #0d1619;
-  border-radius: 10px;
-  font-size: 16px;
-  padding: 10px;
-  border: 1px solid #0d1619;
-
-  color: #fff;
-}
 /* .custome-fres-calender .slots ul li:focus {
   border-color: #6950f3;
   background-color: #6950f3;

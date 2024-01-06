@@ -197,9 +197,7 @@ const SwipCal = ({
               <div className="fully_booked_slots">
                 <h6>We're fully booked</h6>
                 <p>but you can book for {combinedNextDate} </p>
-                <button onClick={() => setDate(nextDate)}>
-                  Go to {combinedNextDate}{" "}
-                </button>
+                <button>Go to {combinedNextDate} </button>
               </div>
             </>
           )}

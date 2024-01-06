@@ -1687,12 +1687,7 @@ const getAllSlot = async (setResponse, date) => {
     } else {
       setResponse([]);
     }
-  } catch (e) {
-    const msg = e?.response?.data?.message;
-    if (msg === "Slots not Found") {
-      setResponse([]);
-    }
-  }
+  } catch (e) {}
 };
 
 const getShippingPrivacy = async (setResponse) => {

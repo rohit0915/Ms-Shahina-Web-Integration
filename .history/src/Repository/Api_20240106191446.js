@@ -1688,10 +1688,7 @@ const getAllSlot = async (setResponse, date) => {
       setResponse([]);
     }
   } catch (e) {
-    const msg = e?.response?.data?.message;
-    if (msg === "Slots not Found") {
-      setResponse([]);
-    }
+    
   }
 };
 

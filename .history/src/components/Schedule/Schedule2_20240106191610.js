@@ -125,6 +125,7 @@ const Schedule2 = () => {
     }
   }, [crossDates, date1]);
 
+  console.log(response)
 
   return (
     <>
@@ -144,7 +145,6 @@ const Schedule2 = () => {
             slots={response}
             selectSlot={setTime}
             selectedSlot={time}
-            nextDate={nextAvailableDate}
           />
 
           {/* <Calendar
@@ -221,6 +221,7 @@ const Schedule2 = () => {
             )}
           </div> */}
         </div>
+
 
         <div className="right_div">
           <div className="Box">

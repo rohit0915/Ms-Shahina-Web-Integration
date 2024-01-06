@@ -4088,11 +4088,8 @@
 }
 .fully_booked_slots button {
   width: 200px;
-  background-color: #0d1619;
-  border-radius: 10px;
-  font-size: 16px;
+  background-color: #1e211f;
   padding: 10px;
-  border: 1px solid #0d1619;
 
   color: #fff;
 }

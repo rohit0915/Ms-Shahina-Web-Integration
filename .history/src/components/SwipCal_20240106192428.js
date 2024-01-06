@@ -140,11 +140,6 @@ const SwipCal = ({
   const nextDateDay = new Date(nextDate)?.toLocaleDateString("en-US", {
     month: "long",
   });
-  const nextDateDate = new Date(nextDate)?.toLocaleDateString("en-US", {
-    day: "numeric",
-  });
-
-  const combinedNextDate = nextDateDate + " " + nextDateDay?.slice(0, 3);
 
   return (
     <div className="custome-fres-calender">
@@ -196,10 +191,8 @@ const SwipCal = ({
             <>
               <div className="fully_booked_slots">
                 <h6>We're fully booked</h6>
-                <p>but you can book for {combinedNextDate} </p>
-                <button onClick={() => setDate(nextDate)}>
-                  Go to {combinedNextDate}{" "}
-                </button>
+                <p>but you can book for {nextDate} </p>
+                <button>Go to {nextDateDay} </button>
               </div>
             </>
           )}

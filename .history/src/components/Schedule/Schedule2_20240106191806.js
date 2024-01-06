@@ -125,7 +125,6 @@ const Schedule2 = () => {
     }
   }, [crossDates, date1]);
 
-
   return (
     <>
       <div className="Backward_Heading step_Heading">
@@ -144,7 +143,6 @@ const Schedule2 = () => {
             slots={response}
             selectSlot={setTime}
             selectedSlot={time}
-            nextDate={nextAvailableDate}
           />
 
           {/* <Calendar

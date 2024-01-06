@@ -4069,32 +4069,12 @@
   min-height: 350px;
 }
 
-.fully_booked_slots {
+.fully_booked_slots{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  flex-direction: column;
-  padding: 20px;
-}
-.fully_booked_slots h6 {
-  font-size: 22px;
-  font-weight: 600;
-}
-.fully_booked_slots p {
-  font-size: 15px;
-  color: #6a6a6a;
-  font-weight: 600;
-}
-.fully_booked_slots button {
-  width: 200px;
-  background-color: #0d1619;
-  border-radius: 10px;
-  font-size: 16px;
-  padding: 10px;
-  border: 1px solid #0d1619;
-
-  color: #fff;
+  gap: 20px;
+  flex
 }
 /* .custome-fres-calender .slots ul li:focus {
   border-color: #6950f3;
