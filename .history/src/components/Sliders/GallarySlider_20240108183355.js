@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { pictures } from "../../constants/constant";
+import { pictures} from '../../constants/constant'
 
 const GallarySlider = () => {
   const [hover, sethover] = useState(null);
@@ -18,7 +18,7 @@ const GallarySlider = () => {
     swipeToSlide: true,
     autoplay: false,
     autoplaySpeed: 2000,
-    adaptiveHeight: true,
+    adaptiveHeight: true ,
     responsive: [
       {
         breakpoint: 1024,
@@ -49,6 +49,8 @@ const GallarySlider = () => {
     width: "100%",
     overflow: "hidden",
   };
+
+
 
   return (
     <div style={sliderStyle}>

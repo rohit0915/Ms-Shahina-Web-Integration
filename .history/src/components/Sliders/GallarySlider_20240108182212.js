@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { pictures } from "../../constants/constant";
 
 const GallarySlider = () => {
   const [hover, sethover] = useState(null);
@@ -12,13 +11,12 @@ const GallarySlider = () => {
   var settings = {
     dots: false,
     speed: 500,
-    slidesToShow: 7,
+    slidesToShow: 1,
     slidesToScroll: 2,
     infinite: false,
     swipeToSlide: true,
     autoplay: false,
     autoplaySpeed: 2000,
-    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -50,6 +48,10 @@ const GallarySlider = () => {
     overflow: "hidden",
   };
 
+  const pictures = [
+    "https://res.cloudinary.com/djgrqoefp/image/upload/v1704453733/shahina/images/product/z7gl4ohem0ddpdgpp9nh.jpg",
+  ];
+
   return (
     <div style={sliderStyle}>
       <Slider {...settings} className="w-full">
@@ -58,15 +60,15 @@ const GallarySlider = () => {
             onMouseEnter={() => sethover(index)}
             onMouseLeave={() => sethover(null)}
             key={index}
-            className="relative galler_slider_com "
+            className="relative w-72 h-72 flex-shrink-0 galler_slider_com "
+        
           >
-            <img
+            {/* <img
               key={index}
               className="w-full h-full object-cover"
-              src={i}
+              src={picture}
               alt=""
-            />
-            {console.log(hover)}
+            /> */}
             {hover === index && (
               <div className="absolute top-0 w-full h-full flex justify-center items-center bg-black bg-opacity-30 ">
                 <Link

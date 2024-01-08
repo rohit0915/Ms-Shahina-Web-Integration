@@ -4178,11 +4178,7 @@
 
 @media (max-width: 768px) {
   .galler_slider_com {
-    width: auto;
-    height: auto;
-  }
-  .galler_slider_com {
-    width: auto;
+    width: 100%;
     height: auto;
   }
 }

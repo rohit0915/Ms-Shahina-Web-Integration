@@ -4172,17 +4172,8 @@
 }
 
 .galler_slider_com {
-  width: 18rem;
-  height: 18rem;
-}
-
-@media (max-width: 768px) {
-  .galler_slider_com {
-    width: auto;
-    height: auto;
-  }
-  .galler_slider_com {
-    width: auto;
-    height: auto;
-  }
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-image: url("https://res.cloudinary.com/djgrqoefp/image/upload/v1704292991/shahina/images/product/pbvlbxx4mbkkssvk7zhd.jpg"); */
 }

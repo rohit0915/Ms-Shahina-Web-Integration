@@ -4175,14 +4175,3 @@
   width: 18rem;
   height: 18rem;
 }
-
-@media (max-width: 768px) {
-  .galler_slider_com {
-    width: auto;
-    height: auto;
-  }
-  .galler_slider_com {
-    width: auto;
-    height: auto;
-  }
-}

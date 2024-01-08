@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Slider from "react-slick";
+import { pictures } from "../../constants/constant";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { pictures } from "../../constants/constant";
 
 const GallarySlider = () => {
   const [hover, sethover] = useState(null);
@@ -12,13 +12,12 @@ const GallarySlider = () => {
   var settings = {
     dots: false,
     speed: 500,
-    slidesToShow: 7,
+    slidesToShow: 6,
     slidesToScroll: 2,
-    infinite: false,
+    infinite: true,
     swipeToSlide: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 2000,
-    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -50,23 +49,27 @@ const GallarySlider = () => {
     overflow: "hidden",
   };
 
+  console.log(pictures)
+
   return (
     <div style={sliderStyle}>
       <Slider {...settings} className="w-full">
-        {pictures.map((i, index) => (
+        {pictures.map((picture, index) => (
           <div
             onMouseEnter={() => sethover(index)}
             onMouseLeave={() => sethover(null)}
             key={index}
-            className="relative galler_slider_com "
+            className="relative w-72 h-72 flex-shrink-0 galler_slider_com "
+            style={{ backgroundImage: `url(${picture})` }}
           >
-            <img
-              key={index}
-              className="w-full h-full object-cover"
-              src={i}
-              alt=""
-            />
-            {console.log(hover)}
+     {console.log(picture)}
+          
+            {/* <img
+                key={index}
+                className="w-full h-full object-cover"
+                src={picture}
+                alt=""
+              /> */}
             {hover === index && (
               <div className="absolute top-0 w-full h-full flex justify-center items-center bg-black bg-opacity-30 ">
                 <Link
