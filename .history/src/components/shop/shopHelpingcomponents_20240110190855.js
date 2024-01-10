@@ -186,9 +186,22 @@ export const Brands = ({ isBrand }) => {
           className={`${
             isBrand
               ? "flex flex-shrink-0 justify-center px-10  gap-10"
-              : "SkinType_Container  padingation_another MaxComponent"
+              : "SkinType_Container"
           }`}
         >
+          {response?.map((item, i) => (
+            <ItemCard
+              key={i}
+              src={item.image}
+              isBrand={isBrand}
+              styles={`${
+                isBrand ? "w-60 h-60 text-2xl text-center" : "isBrand_container"
+              }`}
+              link={`/brandId/${item._id}/${item.name}`}
+              largeCardType={item.name}
+            />
+          ))}
+
           <Swiper
             pagination={{
               dynamicBullets: true,
@@ -201,10 +214,9 @@ export const Brands = ({ isBrand }) => {
                 <ItemCard
                   key={i}
                   src={item.image}
-                  isBrand={isBrand}
-                  styles={`w-80 h-80 text-2xl text-center`}
-                  link={`/brandId/${item._id}/${item.name}`}
-                  largeCardType={item.name}
+                  styles={"w-80 h-80 text-4xl"}
+                  type={item.name}
+                  link={`/skinTypeId/${item._id}/${item.name}`}
                 />
               </SwiperSlide>
             ))}

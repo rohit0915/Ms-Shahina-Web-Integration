@@ -16,6 +16,7 @@ import { Pagination, Autoplay, Keyboard } from "swiper/modules";
 
 export const SkinType = () => {
   const [response, setResponse] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
 
   function fetchHandler() {
     getSkinType(setResponse);
@@ -23,6 +24,18 @@ export const SkinType = () => {
   useEffect(() => {
     fetchHandler();
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 786);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobile]);
 
   const swiperConfig = {
     spaceBetween: 20,
@@ -137,102 +150,35 @@ export const ProductType = () => {
 
 export const Brands = ({ isBrand }) => {
   const [response, setResponse] = useState([]);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
 
   useEffect(() => {
     getAllBrands(setResponse);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 786);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isMobile]);
-
-  const swiperConfig = {
-    spaceBetween: 20,
-    slidesPerView: 1,
-    loop: true,
-    autoplay: {
-      delay: 1500,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    keyboard: {
-      enabled: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-      },
-      900: {
-        slidesPerView: 3,
-      },
-      1024: {
-        slidesPerView: 4,
-      },
-    },
-  };
-
-  return isMobile
-    ? response && (
-        <div
-          className={`${
-            isBrand
-              ? "flex flex-shrink-0 justify-center px-10  gap-10"
-              : "SkinType_Container  padingation_another MaxComponent"
-          }`}
-        >
-          <Swiper
-            pagination={{
-              dynamicBullets: true,
-            }}
-            {...swiperConfig}
-            modules={[Pagination, Autoplay, Keyboard]}
-          >
-            {response?.map((item, i) => (
-              <SwiperSlide key={i}>
-                <ItemCard
-                  key={i}
-                  src={item.image}
-                  isBrand={isBrand}
-                  styles={`w-80 h-80 text-2xl text-center`}
-                  link={`/brandId/${item._id}/${item.name}`}
-                  largeCardType={item.name}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      )
-    : response && (
-        <div
-          className={`${
-            isBrand
-              ? "flex flex-shrink-0 justify-center px-10  gap-10"
-              : "SkinType_Container"
-          }`}
-        >
-          {response?.map((item, i) => (
-            <ItemCard
-              key={i}
-              src={item.image}
-              isBrand={isBrand}
-              styles={`${
-                isBrand ? "w-60 h-60 text-2xl text-center" : "isBrand_container"
-              }`}
-              link={`/brandId/${item._id}/${item.name}`}
-              largeCardType={item.name}
-            />
-          ))}
-        </div>
-      );
+  return (
+    response && (
+      <div
+        className={`${
+          isBrand
+            ? "flex flex-shrink-0 justify-center px-10  gap-10"
+            : "SkinType_Container"
+        }`}
+      >
+        {response?.map((item, i) => (
+          <ItemCard
+            key={i}
+            src={item.image}
+            isBrand={isBrand}
+            styles={`${
+              isBrand ? "w-60 h-60 text-2xl text-center" : "isBrand_container"
+            }`}
+            link={`/brandId/${item._id}/${item.name}`}
+            largeCardType={item.name}
+          />
+        ))}
+      </div>
+    )
+  );
 };
 
 export const SkinConditions = () => {
@@ -262,33 +208,24 @@ export const SkinConditions = () => {
         slidesPerView: 3,
       },
       1024: {
-        slidesPerView: 5,
+        slidesPerView: 4,
       },
     },
   };
 
+
   return (
     response && (
-      <div className="SkinType_Container padingation_another MaxComponent">
-        <Swiper
-          pagination={{
-            dynamicBullets: true,
-          }}
-          {...swiperConfig}
-          modules={[Pagination, Autoplay, Keyboard]}
-        >
-          {response?.map((item, i) => (
-            <SwiperSlide key={i}>
-              <ItemCard
-                key={i}
-                src={item.image}
-                styles={"w-60 h-60"}
-                baseType={item.name}
-                link={`/skinConditionId/${item._id}/${item.name}`}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <div className="SkinType_Container">
+        {response?.map((item, i) => (
+          <ItemCard
+            key={i}
+            src={item.image}
+            styles={"w-60 h-60"}
+            baseType={item.name}
+            link={`/skinConditionId/${item._id}/${item.name}`}
+          />
+        ))}
       </div>
     )
   );
@@ -301,53 +238,18 @@ export const Nutrition = () => {
     getAllNutrition(setResponse);
   }, []);
 
-  const swiperConfig = {
-    spaceBetween: 20,
-    slidesPerView: 1,
-    loop: true,
-    autoplay: {
-      delay: 1500,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    keyboard: {
-      enabled: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-      },
-      900: {
-        slidesPerView: 3,
-      },
-      1024: {
-        slidesPerView: 4,
-      },
-    },
-  };
-
   return (
     response && (
-      <div className="SkinType_Container  padingation_another MaxComponent ">
-        <Swiper
-          pagination={{
-            dynamicBullets: true,
-          }}
-          {...swiperConfig}
-          modules={[Pagination, Autoplay, Keyboard]}
-        >
-          {response?.map((item, i) => (
-            <SwiperSlide key={i}>
-              <ItemCard
-                key={i}
-                src={item.image}
-                styles={"w-60 h-60"}
-                nutritionType={item.name}
-                link={`/nutritionId/${item._id}/${item.name}`}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <div className="SkinType_Container ">
+        {response?.map((item, i) => (
+          <ItemCard
+            key={i}
+            src={item.image}
+            styles={"w-60 h-60"}
+            nutritionType={item.name}
+            link={`/nutritionId/${item._id}/${item.name}`}
+          />
+        ))}
       </div>
     )
   );

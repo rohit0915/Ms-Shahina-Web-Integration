@@ -202,7 +202,11 @@ export const Brands = ({ isBrand }) => {
                   key={i}
                   src={item.image}
                   isBrand={isBrand}
-                  styles={`w-80 h-80 text-2xl text-center`}
+                  styles={`${
+                    isBrand
+                      ? ""
+                      : "isBrand_container"
+                  }`}
                   link={`/brandId/${item._id}/${item.name}`}
                   largeCardType={item.name}
                 />

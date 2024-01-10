@@ -186,29 +186,21 @@ export const Brands = ({ isBrand }) => {
           className={`${
             isBrand
               ? "flex flex-shrink-0 justify-center px-10  gap-10"
-              : "SkinType_Container  padingation_another MaxComponent"
+              : "SkinType_Container"
           }`}
         >
-          <Swiper
-            pagination={{
-              dynamicBullets: true,
-            }}
-            {...swiperConfig}
-            modules={[Pagination, Autoplay, Keyboard]}
-          >
-            {response?.map((item, i) => (
-              <SwiperSlide key={i}>
-                <ItemCard
-                  key={i}
-                  src={item.image}
-                  isBrand={isBrand}
-                  styles={`w-80 h-80 text-2xl text-center`}
-                  link={`/brandId/${item._id}/${item.name}`}
-                  largeCardType={item.name}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {response?.map((item, i) => (
+            <ItemCard
+              key={i}
+              src={item.image}
+              isBrand={isBrand}
+              styles={`${
+                isBrand ? "w-60 h-60 text-2xl text-center" : "isBrand_container"
+              }`}
+              link={`/brandId/${item._id}/${item.name}`}
+              largeCardType={item.name}
+            />
+          ))}
         </div>
       )
     : response && (
