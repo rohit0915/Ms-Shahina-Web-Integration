@@ -77,7 +77,9 @@ const GiftCard = () => {
                 >
                   {i.name}
                 </h2>
+                <div className="mt-3 mb-4" />
                 <View_description description={i.description} />
+                <div className="mt-3 mb-4" />
                 <label
                   className="font-bold flex flex-col"
                   style={{ fontSize: "20px", fontFamily: "Poppins" }}

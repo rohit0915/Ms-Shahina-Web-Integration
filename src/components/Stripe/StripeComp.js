@@ -73,7 +73,8 @@ export default function StripeComp() {
         elements,
         clientSecret,
         confirmParams: {
-          return_url: "https://shahina-web.vercel.app/mycart",
+          return_url:
+            "http://shahinahoja.s3-website.eu-north-1.amazonaws.com/mycart",
         },
       });
       if (error) {

@@ -6,7 +6,7 @@ import { orderSuccess } from "../Repository/Api";
 
 const Thanks = () => {
   const { id } = useParams();
-  const [response, setResponse] = useState(false);
+  const [response, setResponse] = useState(true);
 
   useEffect(() => {
     window.scrollTo({
