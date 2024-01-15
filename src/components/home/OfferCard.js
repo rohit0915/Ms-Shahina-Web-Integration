@@ -22,7 +22,8 @@ const OfferCard = () => {
       </div>
       <div className="flex flex-col gap-3 py-2">
         <h5 className="text-left text-xs font-bold">
-        Get $50 OFF on your first visit when you book through our App
+          Unlock a Special Treat! 🎉 <br />   Enjoy $50 OFF on your first visit when you
+          choose the convenience of booking through our fabulous APP!
         </h5>
         <h5 className="cursor-pointer font-bold" onClick={() => handleOpen()}>
           {"CLICK TO VIEW MORE"}

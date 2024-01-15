@@ -59,7 +59,13 @@ const Signup = () => {
       <div className="Indivisual-Appointment">
         <p className="title">
           <img src="/Image/99.png" alt="" />
-          <span>You are One Step away to Become our VIP Member!</span>
+          {/* <span>You are One Step away to Become our VIP Member!</span> */}
+          <span style={{ fontSize: "16px" }}>
+            You're just one step away from unlocking VIP privileges! Create your
+            profile now and join our exclusive community for personalized perks,
+            special offers, and a touch of VIP magic. Let's make every
+            visit extraordinary!
+          </span>
         </p>
 
         <form onSubmit={submitHandler}>
