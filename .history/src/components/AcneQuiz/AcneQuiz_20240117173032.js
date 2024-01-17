@@ -6,11 +6,15 @@ import { openQuiz } from "../../store/quizSlice";
 import { useDispatch } from "react-redux";
 
 const AcneQuiz = () => {
+  const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(false);
   const dispatch = useDispatch();
 
   function isValidEmail(email) {
+    // Regular expression for a basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Use the test method of the regex to check if the email matches the pattern
     return emailRegex.test(email);
   }
 
@@ -23,7 +27,6 @@ const AcneQuiz = () => {
       localStorage.setItem("acneEmail", "");
     }
   }
-
 
   return (
     <div
@@ -40,7 +43,7 @@ const AcneQuiz = () => {
           placeholder="Enter your Email"
           onChange={(e) => ValidateEmial(e.target.value)}
         />{" "}
-        {isValid ? (
+        {isVal ? (
           <Link onClick={() => dispatch(openQuiz())} to={"/acnequiz"}>
             <button className="w-[31rem] bg-primary text-darkSecondary text-2xl font-bold py-5">
               NEXT

@@ -296,7 +296,7 @@ const userSendOtp = async (payload) => {
       payload
     );
     if (response.status === 200) {
-      showMsg("", "Please check your email", "info");
+      showMsg("success", "Please check your email", "info");
     }
   } catch (e) {
     const msg = e.response.data.msg;

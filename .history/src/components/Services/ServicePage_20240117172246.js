@@ -148,6 +148,7 @@ const ServicePage = () => {
     }
   }, [TotolData, query]);
 
+
   useEffect(() => {
     window.scrollTo({
       top: 0,

@@ -138,15 +138,20 @@ const ServicePage = () => {
   };
 
   useEffect(() => {
-    if (query?.length > 2) {
+    if(query){
       if (TotolData?.length > 0) {
+        console.log(TotolData)
         setPriceId(TotolData?.[0]?._id);
         setSize(TotolData?.[0]?.size);
         setSizeprice(TotolData?.[0]?.price);
         setMemberPrice(TotolData?.[0]?.mPrice);
       }
     }
-  }, [TotolData, query]);
+  
+  }, [TotolData]);
+
+
+  console.log(query)
 
   useEffect(() => {
     window.scrollTo({

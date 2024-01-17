@@ -2,13 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { filterProduct } from "../../Repository/Api";
 
-const SearchHeader = ({ isOpen, setIsOpen }) => {
+const SearchHeader = ({ isOpen }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     filterProduct(searchTerm, setFilteredProducts);
@@ -17,7 +16,7 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
   const uniqueNamedArray = [];
   const encounteredNames = new Set();
 
-  filteredProducts?.forEach((product) => {
+  filteredProducts.forEach((product) => {
     const { name } = product;
     if (!encounteredNames.has(name)) {
       encounteredNames.add(name);
@@ -25,11 +24,8 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
     }
   });
 
-
-  const handleNavigator = (link) => {
-    navigate(link);
-    setIsOpen(false);
-  };
+  console.log(filteredProducts);
+  console.log(uniqueNamedArray);
 
   return (
     <motion.div
@@ -74,12 +70,7 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
 
                 <div className="media-body">
                   <div className="product-name">
-                    <span
-                      className="cursor-pointer"
-                      onClick={() => handleNavigator(`/product/${i._id}`)}
-                    >
-                      {i.name}
-                    </span>
+                    <Link to={`/product/${i._id}`}>{i.name}</Link>
                   </div>
                   <div></div>
                 </div>

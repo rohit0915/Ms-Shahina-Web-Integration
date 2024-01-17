@@ -24,6 +24,7 @@ const AcneQuiz = () => {
     }
   }
 
+  localStorage.getItem("acneEmail")
 
   return (
     <div

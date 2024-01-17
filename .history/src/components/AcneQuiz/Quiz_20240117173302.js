@@ -13,13 +13,15 @@ const Quiz = () => {
   const [answer2, setAnswer2] = useState("");
   const [answer3, setAnswer3] = useState("");
   const [answer4, setAnswer4] = useState("");
-  const email = localStorage.getItem("acneEmail");
 
   const submitHandler = () => {
-    if (answer1 && answer2 && answer3 && answer4) {
-      ReviewQuiz(answer1, answer2, answer3, answer4, email, navigate);
+    if (answer1 && answer2 && answer3 && answer4 ) {
+      ReviewQuiz(answer1, answer2, answer3, answer4 , email , navigate);
     }
   };
+
+  const email = localStorage.getItem("acneEmail");
+
 
   const [items, setItems] = useState([]);
 

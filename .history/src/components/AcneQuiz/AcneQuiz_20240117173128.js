@@ -11,6 +11,8 @@ const AcneQuiz = () => {
 
   function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Use the test method of the regex to check if the email matches the pattern
     return emailRegex.test(email);
   }
 
@@ -23,7 +25,6 @@ const AcneQuiz = () => {
       localStorage.setItem("acneEmail", "");
     }
   }
-
 
   return (
     <div

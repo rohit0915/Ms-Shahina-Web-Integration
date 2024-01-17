@@ -10,7 +10,10 @@ const AcneQuiz = () => {
   const dispatch = useDispatch();
 
   function isValidEmail(email) {
+    // Regular expression for a basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Use the test method of the regex to check if the email matches the pattern
     return emailRegex.test(email);
   }
 
@@ -23,7 +26,6 @@ const AcneQuiz = () => {
       localStorage.setItem("acneEmail", "");
     }
   }
-
 
   return (
     <div

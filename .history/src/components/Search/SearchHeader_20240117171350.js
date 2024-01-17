@@ -17,14 +17,13 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
   const uniqueNamedArray = [];
   const encounteredNames = new Set();
 
-  filteredProducts?.forEach((product) => {
+  filteredProducts.forEach((product) => {
     const { name } = product;
     if (!encounteredNames.has(name)) {
       encounteredNames.add(name);
       uniqueNamedArray.push(product);
     }
   });
-
 
   const handleNavigator = (link) => {
     navigate(link);

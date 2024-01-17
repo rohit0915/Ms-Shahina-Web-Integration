@@ -24,7 +24,6 @@ const AcneQuiz = () => {
     }
   }
 
-
   return (
     <div
       className="fixed flex flex-col items-center justify-center   Quiz_Input_Handler Acne_Quiz_Container "

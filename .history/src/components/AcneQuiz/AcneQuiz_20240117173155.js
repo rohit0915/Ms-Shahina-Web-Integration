@@ -23,7 +23,7 @@ const AcneQuiz = () => {
       localStorage.setItem("acneEmail", "");
     }
   }
-
+  console.log(localStorage.getItem("acneEmail"));
 
   return (
     <div

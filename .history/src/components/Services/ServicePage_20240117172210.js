@@ -138,8 +138,9 @@ const ServicePage = () => {
   };
 
   useEffect(() => {
-    if (query?.length > 2) {
+    if (query?.length > 0) {
       if (TotolData?.length > 0) {
+        console.log(TotolData);
         setPriceId(TotolData?.[0]?._id);
         setSize(TotolData?.[0]?.size);
         setSizeprice(TotolData?.[0]?.price);
@@ -147,6 +148,8 @@ const ServicePage = () => {
       }
     }
   }, [TotolData, query]);
+
+  console.log(query?.length);
 
   useEffect(() => {
     window.scrollTo({

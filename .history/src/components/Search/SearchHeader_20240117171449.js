@@ -25,6 +25,7 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
     }
   });
 
+  console.log(encounteredNames )
 
   const handleNavigator = (link) => {
     navigate(link);

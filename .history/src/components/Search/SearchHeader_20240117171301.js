@@ -17,14 +17,13 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
   const uniqueNamedArray = [];
   const encounteredNames = new Set();
 
-  filteredProducts?.forEach((product) => {
+  filteredProducts.forEach((product) => {
     const { name } = product;
     if (!encounteredNames.has(name)) {
       encounteredNames.add(name);
       uniqueNamedArray.push(product);
     }
   });
-
 
   const handleNavigator = (link) => {
     navigate(link);
@@ -74,12 +73,10 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
 
                 <div className="media-body">
                   <div className="product-name">
-                    <span
-                      className="cursor-pointer"
-                      onClick={() => handleNavigator(`/product/${i._id}`)}
-                    >
-                      {i.name}
-                    </span>
+                  <span>
+                    
+                  </span>
+                    <Link to={`/product/${i._id}`}>{i.name}</Link>
                   </div>
                   <div></div>
                 </div>

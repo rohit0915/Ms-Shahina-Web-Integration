@@ -296,7 +296,7 @@ const userSendOtp = async (payload) => {
       payload
     );
     if (response.status === 200) {
-      showMsg("", "Please check your email", "info");
+      showMsg("success", "Please check your email", "info");
     }
   } catch (e) {
     const msg = e.response.data.msg;
@@ -807,14 +807,7 @@ const getQuiz = async (setResponse) => {
   } catch {}
 };
 
-const ReviewQuiz = async (
-  answer1,
-  answer2,
-  answer3,
-  answer4,
-  email,
-  navigate
-) => {
+const ReviewQuiz = async (answer1, answer2, answer3, answer4, navigate) => {
   try {
     const response = await axios.get(
       `${Baseurl}api/v1/AcneQuizSuggession/getAcneQuizSuggessionByAnswer?answer1=${answer1}&answer2=${answer2}&answer3=${answer3}&answer4=${answer4}&email=${email}`,

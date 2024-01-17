@@ -17,7 +17,7 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
   const uniqueNamedArray = [];
   const encounteredNames = new Set();
 
-  filteredProducts?.forEach((product) => {
+  filteredProducts.forEach((product) => {
     const { name } = product;
     if (!encounteredNames.has(name)) {
       encounteredNames.add(name);
@@ -25,6 +25,7 @@ const SearchHeader = ({ isOpen, setIsOpen }) => {
     }
   });
 
+  console.log(encounteredNames )
 
   const handleNavigator = (link) => {
     navigate(link);
