@@ -1875,11 +1875,8 @@ export const guestIntentMaker = async ({ email, clientSecret }) => {
     );
     if (res.status === 200) {
       const id = res?.data?.client_secret?.client_secret;
-      console.log(id)
       clientSecret = id;
-    } else {
-      clientSecret = null;
-    }
+    }else
   } catch {}
 };
 

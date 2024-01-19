@@ -1868,18 +1868,12 @@ export const getServiceCount = async (setShow) => {
   } catch {}
 };
 
-export const guestIntentMaker = async ({ email, clientSecret }) => {
+export const guestIntentMaker = async ({ email }) => {
   try {
     const res = await axios.post(
       `${Baseurl}api/v1/user/card/savecardBeforLogin/${email}`
     );
-    if (res.status === 200) {
-      const id = res?.data?.client_secret?.client_secret;
-      console.log(id)
-      clientSecret = id;
-    } else {
-      clientSecret = null;
-    }
+    console.log(res.data.client_secret?.client_secret);
   } catch {}
 };
 

@@ -65,7 +65,6 @@ import ReturnPrivacy from "./components/ReturnPrivacy";
 import GuestThanks from "./components/GuestThanks";
 import GuestFailed from "./components/GuestFailed";
 import CardSave from "./components/CardSaver/CardSave";
-import Confirmation from "./components/Confirmation";
 
 const LazyComponent = (Component) => {
   return <Suspense fallback={<div></div>}>{Component}</Suspense>;
@@ -267,8 +266,8 @@ const appRouter = createBrowserRouter([
         element: LazyComponent(<CardSave />),
       },
       {
-        path: "/confirmation",
-        element: LazyComponent(<Confirmation />),
+        path: "/",
+        element: LazyComponent(<CardSave />),
       },
     ],
   },

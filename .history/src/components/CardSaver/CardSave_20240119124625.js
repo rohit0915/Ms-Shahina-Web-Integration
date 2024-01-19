@@ -9,8 +9,10 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
+import { showMsg } from "../../Repository/Api";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEm
 
 const stripePromise = loadStripe(process.env.React_App_Stripe_Published_Key);
 
@@ -82,10 +84,8 @@ const boxStyle = {
   margin: "auto",
 };
 
-const Baseurl = process.env.React_App_Baseurl;
 const CardSave = () => {
-  const { email } = useParams();
-
+  // Intent Component
   const IntentComponent = () => {
     const stripe = useStripe();
     const elements = useElements();
@@ -98,8 +98,7 @@ const CardSave = () => {
       setErrorMessage(error.message);
     };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+    const handleSubmit = async () => {
       if (!stripe) {
         return;
       }
@@ -110,27 +109,19 @@ const CardSave = () => {
         return;
       }
       try {
-        const res = await axios.post(
-          `${Baseurl}api/v1/user/card/savecardBeforLogin/${email}`
-        );
-        const clientSecret = res?.data?.client_secret?.client_secret;
-        if (clientSecret) {
-          const { error } = await stripe.confirmSetup({
-            elements,
-            clientSecret,
-            confirmParams: {
-              return_url:
-                "http://shahinahoja.s3-website.eu-north-1.amazonaws.com/confirmation",
-            },
-          });
-          if (error) {
-            handleError(error);
-            setSubmitLoading(false);
-          } else {
-            setSubmitLoading(false);
-          }
+        let clientSecret;
+        const { error } = await stripe.confirmSetup({
+          elements,
+          clientSecret,
+          confirmParams: {
+            return_url: "",
+          },
+        });
+        if (error) {
+          handleError(error);
+          setSubmitLoading(false);
         } else {
-          console.log("Client Secret not available ");
+          setSubmitLoading(false);
         }
       } catch (error) {
         handleError(error);

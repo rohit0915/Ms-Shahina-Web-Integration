@@ -9,7 +9,9 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
+import { guestIntentMaker, showMsg } from "../../Repository/Api";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const stripePromise = loadStripe(process.env.React_App_Stripe_Published_Key);
@@ -82,7 +84,6 @@ const boxStyle = {
   margin: "auto",
 };
 
-const Baseurl = process.env.React_App_Baseurl;
 const CardSave = () => {
   const { email } = useParams();
 
@@ -119,8 +120,7 @@ const CardSave = () => {
             elements,
             clientSecret,
             confirmParams: {
-              return_url:
-                "http://shahinahoja.s3-website.eu-north-1.amazonaws.com/confirmation",
+              return_url: "",
             },
           });
           if (error) {
