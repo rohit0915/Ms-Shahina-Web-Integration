@@ -17,7 +17,6 @@ import {
 import { Store } from "react-notifications-component";
 import { Call, Mail } from "../Helping/Mail";
 import SwipCal from "../SwipCal";
-import ContactComponent from "../Contact/ContactComponent";
 
 const Schedule2 = () => {
   const navigate = useNavigate();
@@ -139,7 +138,7 @@ const Schedule2 = () => {
 
         <div className="right_div">
           <div className="Box">
-          <ContactComponent />
+          
 
             {/* Service */}
             {cart?.services?.map((i, index) => (

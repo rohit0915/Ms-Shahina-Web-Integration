@@ -17,7 +17,6 @@ import {
 import { Store } from "react-notifications-component";
 import { Call, Mail } from "../Helping/Mail";
 import SwipCal from "../SwipCal";
-import ContactComponent from "../Contact/ContactComponent";
 
 const Schedule2 = () => {
   const navigate = useNavigate();
@@ -47,7 +46,20 @@ const Schedule2 = () => {
     if (date1 && time) {
       TimeandSlot(payload, navigate);
     } else {
-      showMsg("", "Select Date and Time", "danger");
+      showMsg("" , "Select Date and Time" , "")
+      Store.addNotification({
+        title: "",
+        message: "Select Date and Time",
+        type: "danger",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 2000,
+          onScreen: true,
+        },
+      });
     }
   };
 
@@ -139,7 +151,54 @@ const Schedule2 = () => {
 
         <div className="right_div">
           <div className="Box">
-          <ContactComponent />
+            <div className="two-sec">
+              <img src={contact?.image} alt="" />
+              <div>
+                <p className="title"> {contact?.name} </p>
+                <span className="Stars">
+                  <span>
+                    {" "}
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                  </span>
+                  <span> ({contact?.ratings}) </span>
+                </span>
+                <div
+                  className="contact-info cursor-pointer"
+                  onClick={() => Call(contact?.phone)}
+                >
+                  <BsFillTelephoneFill />
+                  <p> {contact?.phone} </p>
+                </div>
+                <div className="contact-info cursor-pointer ">
+                  <GrMail />
+                  <p onClick={() => Mail(contact?.email)}> {contact?.email} </p>
+                </div>
+                <div className="contact-info">
+                  <a href={contact?.instagram}>
+                    <AiFillInstagram />
+                  </a>
+                  <a href={contact?.instagram}>
+                    <p> @nurse.shahina </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="two-sec mt-3">
+              <BiCurrentLocation style={{ fontSize: "20px" }} />
+              <div>
+                <p className="title" style={{ fontSize: "16px" }}>
+                  {contact?.address}
+                </p>
+              </div>
+            </div>
+
+            <a href={contact?.mapLink} target="_blank">
+              <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
+            </a>
 
             {/* Service */}
             {cart?.services?.map((i, index) => (

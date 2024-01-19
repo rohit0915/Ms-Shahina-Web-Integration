@@ -24,7 +24,6 @@ import { CartItems } from "../../store/cartSlice";
 import { Call, Mail } from "../Helping/Mail";
 import Select from "react-select";
 import { View_description } from "../../Helper/Herlper";
-import ContactComponent from "../Contact/ContactComponent";
 
 const Schedule1 = () => {
   const [response, setResponse] = useState([]);
@@ -436,7 +435,7 @@ const Schedule1 = () => {
         </div>
         <div className="right_div">
           <div className="Box">
-           <ContactComponent />
+           
             {/* Service */}
             {cart?.services?.map((i, index) => (
               <div className="Items" key={index}>
