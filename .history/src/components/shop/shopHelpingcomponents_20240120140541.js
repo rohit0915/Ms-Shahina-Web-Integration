@@ -367,6 +367,8 @@ export const Products = ({ data }) => {
               />
             </SwiperSlide>
           ))}
+          <div className="swiper-pagination" style={paginationStyles}></div>
+       
         </Swiper>
       </div>
     )

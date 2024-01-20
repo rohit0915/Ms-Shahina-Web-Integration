@@ -4503,6 +4503,4 @@
   bottom: 0px;
 }
 
-.customer_fav .swiper-wrapper{
-  min-height: 430px !important;
-}
+.customer_fav .swiper-wrapper

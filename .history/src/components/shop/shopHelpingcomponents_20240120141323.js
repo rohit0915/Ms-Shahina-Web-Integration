@@ -351,7 +351,7 @@ export const Products = ({ data }) => {
         <Swiper
           {...swiperConfig}
           pagination={true}
-          modules={[Pagination, Autoplay, Keyboard]}
+          modules={[Pagination, Keyboard]}
         >
           {data?.map((item) => (
             <SwiperSlide key={item._id}>

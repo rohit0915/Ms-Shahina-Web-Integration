@@ -347,7 +347,7 @@ export const Products = ({ data }) => {
   };
   return (
     data?.length > 0 && (
-      <div className="customer_fav">
+      <div style={{ overflow: "hidden", maxWidth: "1400px", margin: "auto" }} className='customer_fav padingation_another' >
         <Swiper
           {...swiperConfig}
           pagination={true}

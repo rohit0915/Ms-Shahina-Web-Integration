@@ -4473,6 +4473,7 @@
   overflow: hidden;
   max-width: 1440px;
   margin: auto;
+  min-height: 400px;
 }
 
 .customer_fav .Item {
@@ -4498,11 +4499,4 @@
 }
 .customer_fav .Item h4 {
   margin-top: 10px;
-}
-.customer_fav .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal  .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
-  bottom: 0px;
-}
-
-.customer_fav .swiper-wrapper{
-  min-height: 430px !important;
 }

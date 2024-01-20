@@ -4503,6 +4503,4 @@
   bottom: 0px;
 }
 
-.customer_fav .swiper-wrapper{
-  min-height: 430px !important;
-}
+.latest_news_swiper .swiper-wrapper
