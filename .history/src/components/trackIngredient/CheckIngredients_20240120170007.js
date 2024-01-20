@@ -25,7 +25,7 @@ const CheckIngredients = () => {
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
-  }, [selected]);
+  }, [selected  ,limit]);
 
   useEffect(() => {
     window.scrollTo({
@@ -59,11 +59,6 @@ const CheckIngredients = () => {
 
   const filteredRes = response?.slice(0, limit);
 
-  useEffect(() => {
-    if (response?.length === filteredRes?.length) {
-      setLimit(response?.length);
-    }
-  }, [response, filteredRes, limit]);
 
   const text_maker = () => {
     if (response?.length === filteredRes?.length) {

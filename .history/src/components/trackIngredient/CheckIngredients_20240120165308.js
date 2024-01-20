@@ -26,14 +26,12 @@ const CheckIngredients = () => {
   useEffect(() => {
     getIngredeints(selected, setResponse);
   }, [selected]);
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "instant",
     });
   }, []);
-
   const isEmpty = Object.keys(response).length === 0;
 
   // Input Checker
@@ -58,36 +56,6 @@ const CheckIngredients = () => {
   }, [name, response]);
 
   const filteredRes = response?.slice(0, limit);
-
-  useEffect(() => {
-    if (response?.length === filteredRes?.length) {
-      setLimit(response?.length);
-    }
-  }, [response, filteredRes, limit]);
-
-  const text_maker = () => {
-    if (response?.length === filteredRes?.length) {
-      return (
-        <p
-          key={`list`}
-          className={`flex flex-col border-t border-b border-b-primary border-t-primary  pb-6 pt-6 mb-4 cursor-pointer`}
-          onClick={() => setLimit(limit - 10)}
-        >
-          View Less
-        </p>
-      );
-    } else {
-      return (
-        <p
-          key={`list`}
-          className={`flex flex-col border-t border-b border-b-primary border-t-primary  pb-6 pt-6 mb-4 cursor-pointer`}
-          onClick={() => setLimit(limit + 10)}
-        >
-          View More
-        </p>
-      );
-    }
-  };
 
   return (
     <section className="bg-primary">
@@ -174,8 +142,11 @@ const CheckIngredients = () => {
               {filteredRes?.map((list, index) => (
                 <p
                   key={`list ${index}`}
-                  className={`flex flex-col pt-6 border-b border-b-primary  pb-6 mb-4"
-                 
+                  className={`flex flex-col ${
+                    index === response?.length - 1
+                      ? "border-none"
+                      : "border-b border-b-primary  pb-6 mb-4"
+                  } "" 
                   ${name === list.name ? "activeIngredeientd" : ""}
                   
                   `}
@@ -184,7 +155,9 @@ const CheckIngredients = () => {
                 </p>
               ))}
 
-              {text_maker()}
+              <p key={`list ${index}`} className={`flex flex-col `}>
+                View More
+              </p>
             </div>
           </div>
         )}

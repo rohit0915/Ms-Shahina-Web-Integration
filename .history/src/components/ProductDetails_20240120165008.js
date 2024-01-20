@@ -262,6 +262,8 @@ const ProductDetails = () => {
     setFBArr((prevItems) => prevItems.filter((item) => item._id !== itemId));
   };
 
+  console.log(product);
+
   const membership_fetcher = () => {
     if (product?.multipleSize === false) {
       const greterThan =

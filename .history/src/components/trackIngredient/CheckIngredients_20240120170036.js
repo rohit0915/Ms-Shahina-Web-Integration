@@ -25,7 +25,7 @@ const CheckIngredients = () => {
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
-  }, [selected]);
+  }, [selected, limit]);
 
   useEffect(() => {
     window.scrollTo({
@@ -59,19 +59,13 @@ const CheckIngredients = () => {
 
   const filteredRes = response?.slice(0, limit);
 
-  useEffect(() => {
-    if (response?.length === filteredRes?.length) {
-      setLimit(response?.length);
-    }
-  }, [response, filteredRes, limit]);
-
   const text_maker = () => {
     if (response?.length === filteredRes?.length) {
       return (
         <p
           key={`list`}
           className={`flex flex-col border-t border-b border-b-primary border-t-primary  pb-6 pt-6 mb-4 cursor-pointer`}
-          onClick={() => setLimit(limit - 10)}
+          onClick={() => setLimit(limit - 20)}
         >
           View Less
         </p>

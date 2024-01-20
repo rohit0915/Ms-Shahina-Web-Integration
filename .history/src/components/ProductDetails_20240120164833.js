@@ -262,49 +262,35 @@ const ProductDetails = () => {
     setFBArr((prevItems) => prevItems.filter((item) => item._id !== itemId));
   };
 
+  console.log(product)
+
   const membership_fetcher = () => {
     if (product?.multipleSize === false) {
-      const greterThan =
-        product?.membershipDiscountPer > 0 && product?.membershipDiscount > 0;
       return (
-        greterThan && (
-          <div className="Membership_discount">
-            <div>
-              <span className="title"> Membership Discount Percentage :</span>
-              <span className="desc"> {product?.membershipDiscountPer}% </span>
-            </div>
-            <div>
-              <span className="title"> Membership Discount :</span>
-              <span className="desc"> ${product?.membershipDiscount} </span>
-            </div>
+        <div className="Membership_discount">
+          <div>
+            <span className="title"> Membership Discount Percentage :</span>
+            <span className="desc"> {product?.membershipDiscountPer}% </span>
           </div>
-        )
+          <div>
+            <span className="title"> Membership Discount :</span>
+            <span className="desc"> ${product?.membershipDiscount} </span>
+          </div>
+        </div>
       );
     } else {
       const filtered = product?.sizePrice?.filter((i) => i._id === priceId);
-      const greterThan =
-        filtered?.[0]?.membershipDiscountPer > 0 &&
-        filtered?.[0]?.membershipDiscount > 0;
-
       return (
-        greterThan && (
-          <div className="Membership_discount">
-            <div>
-              <span className="title"> Membership Discount Percentage :</span>
-              <span className="desc">
-                {" "}
-                {filtered?.[0]?.membershipDiscountPer}%{" "}
-              </span>
-            </div>
-            <div>
-              <span className="title"> Membership Discount :</span>
-              <span className="desc">
-                {" "}
-                ${filtered?.[0]?.membershipDiscount}{" "}
-              </span>
-            </div>
+        <div className="Membership_discount">
+          <div>
+            <span className="title"> Membership Discount Percentage :</span>
+            <span className="desc"> {filtered?.[0]?.membershipDiscountPer} </span>
           </div>
-        )
+          <div>
+            <span className="title"> Membership Discount :</span>
+            <span className="desc"> {filtered?.[0]?.membershipDiscount} </span>
+          </div>
+        </div>
       );
     }
   };

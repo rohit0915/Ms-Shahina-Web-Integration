@@ -262,10 +262,12 @@ const ProductDetails = () => {
     setFBArr((prevItems) => prevItems.filter((item) => item._id !== itemId));
   };
 
+  console.log(product);
+
   const membership_fetcher = () => {
     if (product?.multipleSize === false) {
       const greterThan =
-        product?.membershipDiscountPer > 0 && product?.membershipDiscount > 0;
+        product?.membershipDiscountPe > 0 && product?.membershipDiscount > 0;
       return (
         greterThan && (
           <div className="Membership_discount">

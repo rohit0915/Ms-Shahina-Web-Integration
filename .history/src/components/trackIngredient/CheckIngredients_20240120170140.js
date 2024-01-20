@@ -25,7 +25,7 @@ const CheckIngredients = () => {
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
-  }, [selected]);
+  }, [selected, limit]);
 
   useEffect(() => {
     window.scrollTo({
