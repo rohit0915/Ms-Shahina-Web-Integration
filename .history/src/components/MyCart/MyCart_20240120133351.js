@@ -451,7 +451,13 @@ const MyCart = () => {
 
   function showProductCheckout() {
     if (hasGiftCard || hasProducts) {
-      return <CheckElement  />;
+      const hasBoth = hasGiftCard && hasProducts
+      let heading  ; 
+      if(hasBoth) {
+        
+      }
+      // const heading = 
+      return <CheckElement />;
     }
   }
 
@@ -1031,7 +1037,7 @@ const MyCart = () => {
                         Become a Member & Save upto <br />
                         20% off on Products & Services
                       </Link>
-
+                    
                       <img src="./Image/editor-0 1.gif" alt="" />
                     </div>
                   )}

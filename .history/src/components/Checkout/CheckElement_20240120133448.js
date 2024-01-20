@@ -60,7 +60,7 @@ const options = {
 const CheckElement = ({heading}) => {
   return (
     <Elements stripe={stripePromise} options={options}>
-      <CheckoutIntent />
+      <CheckoutIntent heading={heading} />
     </Elements>
   );
 };

@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutIntent = () => {
+const CheckoutIntent = ({heading}) => {
   const [processing, setProcessing] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();

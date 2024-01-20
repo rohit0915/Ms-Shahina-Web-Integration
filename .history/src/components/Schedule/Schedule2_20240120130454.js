@@ -99,6 +99,8 @@ const Schedule2 = () => {
     const nextDay = new Date(date);
     nextDay.setDate(nextDay.getDate() + 1);
 
+    console.log(date);
+
     const isDate = crossDates?.some(
       (i) =>
         new Date(i.date).toISOString().split("T")[0] ===

@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutIntent = () => {
+const CheckoutIntent = ({heading}) => {
   const [processing, setProcessing] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -125,7 +125,7 @@ const CheckoutIntent = () => {
       <div className="schedule_1">
         <div className="left_div" style={{ width: "100%" }}>
           <div className="review_box">
-            <p className="title"> Confirm Payment for Product </p>
+            <p className="title"> {heading} </p>
             <form id="payment-form" onSubmit={handleSubmit}>
               <CardElement id="card-element" options={options} />
               <button disabled={processing} style={btnStyle} id="submit">

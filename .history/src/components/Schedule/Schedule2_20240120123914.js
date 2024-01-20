@@ -98,17 +98,6 @@ const Schedule2 = () => {
   const findNextAvailableDate = (date) => {
     const nextDay = new Date(date);
     nextDay.setDate(nextDay.getDate() + 1);
-
-    const isDate = crossDates?.some(
-      (i) =>
-        new Date(i.date).toISOString().split("T")[0] ===
-          nextDay.toISOString().split("T")[0] && i.allBooked === "yes"
-    );
-
-    if (isDate) {
-      return findNextAvailableDate(nextDay);
-    }
-
     return nextDay.toISOString().split("T")[0];
   };
 
@@ -124,6 +113,9 @@ const Schedule2 = () => {
       }
     }
   }, [crossDates, date1]);
+
+  console.log(nextAvailableDate)
+  console.log(nextAvailableDate)
 
   return (
     <>

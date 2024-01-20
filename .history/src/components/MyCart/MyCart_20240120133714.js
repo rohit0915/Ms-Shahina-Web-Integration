@@ -451,7 +451,7 @@ const MyCart = () => {
 
   function showProductCheckout() {
     if (hasGiftCard || hasProducts) {
-      return <CheckElement  />;
+      return <CheckElement heading={heading} />;
     }
   }
 

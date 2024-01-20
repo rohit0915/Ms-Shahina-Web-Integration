@@ -100,15 +100,14 @@ const Schedule2 = () => {
     nextDay.setDate(nextDay.getDate() + 1);
 
     const isDate = crossDates?.some(
-      (i) =>
-        new Date(i.date).toISOString().split("T")[0] ===
-          nextDay.toISOString().split("T")[0] && i.allBooked === "yes"
+      (i) => i.date?.slice(0, 10) === date && i.allBooked === "yes"
     );
 
-    if (isDate) {
-      return findNextAvailableDate(nextDay);
-    }
 
+
+    if (isDate) {
+      findNextAvailableDate(nextDay);
+    }
     return nextDay.toISOString().split("T")[0];
   };
 

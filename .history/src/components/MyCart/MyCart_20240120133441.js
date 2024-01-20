@@ -451,7 +451,13 @@ const MyCart = () => {
 
   function showProductCheckout() {
     if (hasGiftCard || hasProducts) {
-      return <CheckElement  />;
+      const hasBoth = hasGiftCard && hasProducts;
+      let heading;
+      if (hasBoth) {
+        heading = "Confirm Payment for Product";
+      }
+      // const heading =
+      return <CheckElement heading={heading} />;
     }
   }
 
