@@ -38,11 +38,12 @@ const CheckIngredients = () => {
 
   const [filteredRes, setFilteredRes] = useState([]);
 
+  console.log(response);
+  console.log(filteredRes);
+  console.log(limit);
   useEffect(() => {
     if (limit === 0) {
       setFilteredRes(response?.slice(0, 10));
-    } else {
-      setFilteredRes(response?.slice(0, limit));
     }
   }, [limit, response]);
 

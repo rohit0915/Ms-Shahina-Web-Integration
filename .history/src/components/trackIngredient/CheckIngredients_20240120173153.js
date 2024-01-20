@@ -15,6 +15,7 @@ const CheckIngredients = () => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [limit, setLimit] = useState(10);
+  const [filteredRes, setFilteredRes] = useState([]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -36,12 +37,8 @@ const CheckIngredients = () => {
 
   const isEmpty = Object.keys(response).length === 0;
 
-  const [filteredRes, setFilteredRes] = useState([]);
-
   useEffect(() => {
-    if (limit === 0) {
-      setFilteredRes(response?.slice(0, 10));
-    } else {
+    if (response?.length > 0) {
       setFilteredRes(response?.slice(0, limit));
     }
   }, [limit, response]);
