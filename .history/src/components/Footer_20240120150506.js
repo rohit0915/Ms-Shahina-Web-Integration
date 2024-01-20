@@ -376,16 +376,14 @@ const Footer = () => {
                 <span className="text-xl font-medium desc">nurse.shahina</span>
               </a>
             </div>
-            <a href={response?.mapLink}>
-              {" "}
-              <div className="Item">
-                <img src="/asessts/footer/contact (3).png" alt="contact" />
+            <a href={response?.mapLink}> </a>
+            <div className="Item">
+              <img src="/asessts/footer/contact (3).png" alt="contact" />
 
-                <span className="text-xl font-medium desc">
-                  {response?.address}
-                </span>
-              </div>
-            </a>
+              <span className="text-xl font-medium desc">
+                {response?.address}
+              </span>
+            </div>
 
             <div>
               <iframe
