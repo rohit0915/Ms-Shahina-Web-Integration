@@ -14,6 +14,7 @@ const CheckIngredients = () => {
   const [response, setResponse] = useState([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [highlightedText, setHighlightedText] = useState("");
   const [limit, setLimit] = useState(10);
 
   const submitHandler = async (e) => {

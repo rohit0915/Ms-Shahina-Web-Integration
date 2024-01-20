@@ -14,6 +14,7 @@ const CheckIngredients = () => {
   const [response, setResponse] = useState([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [highlightedText, setHighlightedText] = useState("");
   const [limit, setLimit] = useState(10);
 
   const submitHandler = async (e) => {
@@ -24,7 +25,6 @@ const CheckIngredients = () => {
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
-    setLimit(10);
   }, [selected]);
 
   useEffect(() => {
@@ -36,6 +36,8 @@ const CheckIngredients = () => {
 
   const isEmpty = Object.keys(response).length === 0;
 
+
+
   const filteredRes = response?.slice(0, limit);
 
   useEffect(() => {
@@ -43,6 +45,10 @@ const CheckIngredients = () => {
       setLimit(response?.length);
     }
   }, [response, filteredRes, limit]);
+
+  console.log(response)
+  console.log(filteredRes)
+  console.log(limit)
 
   const text_maker = () => {
     if (response?.length === filteredRes?.length) {
