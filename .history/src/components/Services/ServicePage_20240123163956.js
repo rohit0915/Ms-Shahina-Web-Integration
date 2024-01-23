@@ -86,6 +86,12 @@ const ServicePage = () => {
     }
   };
 
+ 
+
+  useEffect(() => {
+    fetchHandler();
+  }, []);
+
   // ------------
   const handleToggleOpen = () => {
     setSeasonOpen(false);

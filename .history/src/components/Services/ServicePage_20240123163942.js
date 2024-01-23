@@ -28,6 +28,8 @@ const ServicePage = () => {
   const [size, setSize] = useState("");
   const [sizePrice, setSizeprice] = useState("");
   const [memberprice, setMemberPrice] = useState("");
+  const [open, setOpen] = useState(false);
+  const [limitedOffer, setLimitedOffer] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [seasonOpen, setSeasonOpen] = useState(false);
   const [sizeOpen, setSizeOpen] = useState(false);
@@ -85,6 +87,16 @@ const ServicePage = () => {
       navigate("/appointment");
     }
   };
+
+ 
+
+  function fetchHandler() {
+    getLimitedOffer(setLimitedOffer, "offer");
+  }
+
+  useEffect(() => {
+    fetchHandler();
+  }, []);
 
   // ------------
   const handleToggleOpen = () => {

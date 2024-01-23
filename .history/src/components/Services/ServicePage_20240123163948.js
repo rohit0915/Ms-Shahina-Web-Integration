@@ -86,6 +86,16 @@ const ServicePage = () => {
     }
   };
 
+ 
+
+  function fetchHandler() {
+    getLimitedOffer(setLimitedOffer, "offer");
+  }
+
+  useEffect(() => {
+    fetchHandler();
+  }, []);
+
   // ------------
   const handleToggleOpen = () => {
     setSeasonOpen(false);

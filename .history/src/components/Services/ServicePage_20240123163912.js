@@ -15,7 +15,6 @@ import { addServiceLocally } from "../../store/DummySerivce";
 import OfferDrawer from "../Drawer/OfferDrawer";
 import { motion } from "framer-motion";
 import GallarySlider from "../Sliders/GallarySlider";
-import LimitedOffer from "../home/LimitedOffer";
 
 const ServicePage = () => {
   const { id } = useParams();
@@ -28,6 +27,8 @@ const ServicePage = () => {
   const [size, setSize] = useState("");
   const [sizePrice, setSizeprice] = useState("");
   const [memberprice, setMemberPrice] = useState("");
+  const [open, setOpen] = useState(false);
+  const [limitedOffer, setLimitedOffer] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [seasonOpen, setSeasonOpen] = useState(false);
   const [sizeOpen, setSizeOpen] = useState(false);
@@ -85,6 +86,22 @@ const ServicePage = () => {
       navigate("/appointment");
     }
   };
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  function fetchHandler() {
+    getLimitedOffer(setLimitedOffer, "offer");
+  }
+
+  useEffect(() => {
+    fetchHandler();
+  }, []);
 
   // ------------
   const handleToggleOpen = () => {
@@ -169,6 +186,7 @@ const ServicePage = () => {
   return (
     <>
       {" "}
+      <OfferDrawer onClose={onClose} open={open} />
       <main className="service_details_page">
         <div className="Backward_Heading step_Heading" style={{ padding: 0 }}>
           <div>
@@ -404,7 +422,7 @@ const ServicePage = () => {
           <button onClick={() => addToCart()}>Book Now</button>
         </div>
 
-        <LimitedOffer />
+        
 
         <div className="Review_Title_Container ">
           <h1>Client Reviews</h1>
