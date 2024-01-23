@@ -85,6 +85,7 @@ const Membership = () => {
           list={ShipHandler(`silver`)?.[0]?.details}
           id={ShipHandler(`silver`)?.[0]?._id}
           term={ShipHandler(`silver`)?.[0]?.term}
+          isSubscription={profile?.isSubscription}
           fetchAll={fetchAll}
           profile={profile}
         />
@@ -98,6 +99,7 @@ const Membership = () => {
           bg={"gold"}
           list={ShipHandler(`gold`)?.[0]?.details}
           id={ShipHandler(`gold`)?.[0]?._id}
+          isSubscription={profile?.isSubscription}
           term={ShipHandler(`gold`)?.[0]?.term}
           fetchAll={fetchAll}
           profile={profile}
@@ -112,6 +114,7 @@ const Membership = () => {
           bg={"platinum"}
           list={ShipHandler(`platinum`)?.[0]?.details}
           id={ShipHandler(`platinum`)?.[0]?._id}
+          isSubscription={profile?.isSubscription}
           term={ShipHandler(`platinum`)?.[0]?.term}
           fetchAll={fetchAll}
           profile={profile}
@@ -126,6 +129,7 @@ const Membership = () => {
           bg={"diamond"}
           list={ShipHandler(`diamond`)?.[0]?.details}
           id={ShipHandler(`diamond`)?.[0]?._id}
+          isSubscription={profile?.isSubscription}
           term={ShipHandler(`diamond`)?.[0]?.term}
           fetchAll={fetchAll}
           profile={profile}

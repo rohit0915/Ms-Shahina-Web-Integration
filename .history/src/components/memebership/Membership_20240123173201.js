@@ -19,13 +19,8 @@ const Membership = () => {
     getSubscription(setResponse);
   };
 
-  const fetchProfile = () => {
-    getProfile(setProfile);
-  };
-
   useEffect(() => {
-    fetchSubscription();
-    fetchProfile();
+    getProfile(setProfile);
     MembershipFaq(setFaq);
   }, []);
 
@@ -35,11 +30,6 @@ const Membership = () => {
       behavior: "instant",
     });
   }, []);
-
-  const fetchAll = () => {
-    fetchSubscription();
-    fetchProfile();
-  };
 
   function ShipHandler(query) {
     const TotolData = response?.filter((i) =>
@@ -85,8 +75,7 @@ const Membership = () => {
           list={ShipHandler(`silver`)?.[0]?.details}
           id={ShipHandler(`silver`)?.[0]?._id}
           term={ShipHandler(`silver`)?.[0]?.term}
-          fetchAll={fetchAll}
-          profile={profile}
+          isSubscription={profile?.isSubscription}
         />
         <MembershipCard
           medal="/Image/73.png"
@@ -98,9 +87,8 @@ const Membership = () => {
           bg={"gold"}
           list={ShipHandler(`gold`)?.[0]?.details}
           id={ShipHandler(`gold`)?.[0]?._id}
+          isSubscription={profile?.isSubscription}
           term={ShipHandler(`gold`)?.[0]?.term}
-          fetchAll={fetchAll}
-          profile={profile}
         />
         <MembershipCard
           medal="/Image/74.png"
@@ -112,9 +100,8 @@ const Membership = () => {
           bg={"platinum"}
           list={ShipHandler(`platinum`)?.[0]?.details}
           id={ShipHandler(`platinum`)?.[0]?._id}
+          isSubscription={profile?.isSubscription}
           term={ShipHandler(`platinum`)?.[0]?.term}
-          fetchAll={fetchAll}
-          profile={profile}
         />
         <MembershipCard
           medal="/Image/75.png"
@@ -126,9 +113,8 @@ const Membership = () => {
           bg={"diamond"}
           list={ShipHandler(`diamond`)?.[0]?.details}
           id={ShipHandler(`diamond`)?.[0]?._id}
+          isSubscription={profile?.isSubscription}
           term={ShipHandler(`diamond`)?.[0]?.term}
-          fetchAll={fetchAll}
-          profile={profile}
         />
       </div>
       <h1 className="text-5xl font-light text-secondary text-center py-14 box-border">

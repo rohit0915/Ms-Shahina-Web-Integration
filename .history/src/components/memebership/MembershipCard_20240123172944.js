@@ -17,11 +17,10 @@ const MembershipCard = ({
   require,
   id,
   term,
-  fetchAll,
-  profile,
 }) => {
   const isLoggedIn = useSelector(isAuthenticated);
   const navigate = useNavigate("");
+  const [profile, setProfile] = useState({});
   const [open, setOpen] = useState(false);
 
   const submitHandler = (e) => {
@@ -34,8 +33,17 @@ const MembershipCard = ({
     navigate("/login");
   }
 
+  const fechProfile = useCallback(() => {
+    getProfile(setProfile);
+  }, []);
+
+  useEffect(() => {
+    fechProfile();
+  }, [fechProfile]);
+
   const subscriptionId = profile?.subscriptionId?._id;
 
+  console.log(profile);
   const MembershipBtn = () => {
     if (isLoggedIn) {
       if (profile && profile?.isSubscription === true) {
@@ -89,7 +97,7 @@ const MembershipCard = ({
 
   return (
     <>
-      <SubsModal open={open} setOpen={setOpen} fetchHandler={fetchAll} />
+      <SubsModal open={open} setOpen={setOpen} fetchHandler={fechProfile} />
       <section
         className={`${bg} flex flex-col border border-orange-600  box-border py-4 rounded-md space-y-8 justify-center card membership_card`}
       >

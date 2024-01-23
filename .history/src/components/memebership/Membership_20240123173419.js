@@ -85,6 +85,7 @@ const Membership = () => {
           list={ShipHandler(`silver`)?.[0]?.details}
           id={ShipHandler(`silver`)?.[0]?._id}
           term={ShipHandler(`silver`)?.[0]?.term}
+          isSubscription={profile?.isSubscription}
           fetchAll={fetchAll}
           profile={profile}
         />

@@ -22,6 +22,7 @@ const MembershipCard = ({
 }) => {
   const isLoggedIn = useSelector(isAuthenticated);
   const navigate = useNavigate("");
+  const [profile, setProfile] = useState({});
   const [open, setOpen] = useState(false);
 
   const submitHandler = (e) => {

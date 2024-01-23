@@ -42,7 +42,7 @@ export default function StripeComp() {
     } catch (e) {
       const msg = e.response.data.msg;
       showMsg("Error !", msg, "danger");
-      if (msg === "This Slot already booked. " || msg === "Your service time is greater than 05:00 pm, so move to next date.") {
+      if (msg === "This Slot already booked. " ) {
         navigate("/schedule2");
       }
       

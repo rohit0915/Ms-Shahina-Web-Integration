@@ -17,11 +17,11 @@ const MembershipCard = ({
   require,
   id,
   term,
-  fetchAll,
-  profile,
+  fetchAll
 }) => {
   const isLoggedIn = useSelector(isAuthenticated);
   const navigate = useNavigate("");
+  const [profile, setProfile] = useState({});
   const [open, setOpen] = useState(false);
 
   const submitHandler = (e) => {
@@ -33,6 +33,14 @@ const MembershipCard = ({
     showMsg("", "Login to Proceed !", "info");
     navigate("/login");
   }
+
+  const fechProfile = useCallback(() => {
+    getProfile(setProfile);
+  }, []);
+
+  useEffect(() => {
+    fechProfile();
+  }, []);
 
   const subscriptionId = profile?.subscriptionId?._id;
 
