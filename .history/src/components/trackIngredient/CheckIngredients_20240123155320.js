@@ -36,6 +36,9 @@ const CheckIngredients = () => {
 
   const isEmpty = Object.keys(response).length === 0;
 
+
+ 
+
   return (
     <section className="bg-primary">
       <Header
@@ -117,10 +120,7 @@ const CheckIngredients = () => {
               <BiSearch className="text-4xl " />
             </div>
 
-            <div
-              className="font-semibold text-sm"
-              style={{ overflowY: "auto" ,maxHeight : '600px' }}
-            >
+            <div className="font-semibold text-sm">
               {response?.map((list, index) => (
                 <p
                   key={`list ${index}`}

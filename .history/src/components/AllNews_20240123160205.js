@@ -32,10 +32,9 @@ const AllNews = () => {
           <section className="p-3" key={index}>
             <div className="my-2">
               <div
-                style={{
-                  backgroundImage: `url(${card.image})`,
-                }}
+                style={{ backgroundImage: `url(${card.image})` }}
                 className="thumbnail"
+                
               />
               <h3 className="my-6 font-medium text-3xl text-primary title">
                 {card.title}

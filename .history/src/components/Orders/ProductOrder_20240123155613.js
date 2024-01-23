@@ -23,7 +23,7 @@ const ProductOrder = () => {
     });
   }, []);
 
-
+  console.log(order)
   return (
     <div className="user_product_order">
       {order?.length === 0 ? (
@@ -55,7 +55,7 @@ const ProductOrder = () => {
                     </p>{" "}
                     <p className="title" style={{ fontSize: "24px" }}>
                       {" "}
-                      ${i?.price}
+                      ${item?.total}
                     </p>
                   </div>
                   <p

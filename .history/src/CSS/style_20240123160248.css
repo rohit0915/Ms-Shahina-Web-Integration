@@ -3170,7 +3170,7 @@
   height: auto !important;
 }
 .All_News_Page {
-  max-width: 1400px;
+  max-width: 1440px;
 }
 .All_News_Page section {
   width: 100%;
@@ -3181,10 +3181,10 @@
 }
 .All_News_Page section .thumbnail {
   width: 100%;
-    height: 600px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .All_News_Page section .keyword_cont {

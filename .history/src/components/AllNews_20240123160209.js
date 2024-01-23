@@ -34,6 +34,7 @@ const AllNews = () => {
               <div
                 style={{
                   backgroundImage: `url(${card.image})`,
+                  height: "600px",
                 }}
                 className="thumbnail"
               />

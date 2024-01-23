@@ -23,7 +23,7 @@ const ProductOrder = () => {
     });
   }, []);
 
-
+  console.log(order)
   return (
     <div className="user_product_order">
       {order?.length === 0 ? (

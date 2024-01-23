@@ -119,7 +119,7 @@ const CheckIngredients = () => {
 
             <div
               className="font-semibold text-sm"
-              style={{ overflowY: "auto" ,maxHeight : '600px' }}
+              style={{ overflowY: "auto" ,ma }}
             >
               {response?.map((list, index) => (
                 <p

@@ -36,6 +36,31 @@ const CheckIngredients = () => {
 
   const isEmpty = Object.keys(response).length === 0;
 
+
+  const text_maker = () => {
+    if (response?.length === filteredRes?.length) {
+      return (
+        <p
+          key={`list`}
+          className={`flex flex-col border-t border-b border-b-primary border-t-primary  pb-6 pt-6 mb-4 cursor-pointer`}
+          onClick={() => setLimit(limit - 10)}
+        >
+          View Less
+        </p>
+      );
+    } else {
+      return (
+        <p
+          key={`list`}
+          className={`flex flex-col border-t border-b border-b-primary border-t-primary  pb-6 pt-6 mb-4 cursor-pointer`}
+          onClick={() => setLimit(limit + 10)}
+        >
+          View More
+        </p>
+      );
+    }
+  };
+
   return (
     <section className="bg-primary">
       <Header
@@ -117,10 +142,7 @@ const CheckIngredients = () => {
               <BiSearch className="text-4xl " />
             </div>
 
-            <div
-              className="font-semibold text-sm"
-              style={{ overflowY: "auto" ,maxHeight : '600px' }}
-            >
+            <div className="font-semibold text-sm">
               {response?.map((list, index) => (
                 <p
                   key={`list ${index}`}
@@ -133,6 +155,8 @@ const CheckIngredients = () => {
                   {list?.name}
                 </p>
               ))}
+
+              {text_maker()}
             </div>
           </div>
         )}

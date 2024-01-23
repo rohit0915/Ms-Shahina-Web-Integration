@@ -31,12 +31,11 @@ const AllNews = () => {
         {response?.map((card, index) => (
           <section className="p-3" key={index}>
             <div className="my-2">
-              <div
-                style={{
-                  backgroundImage: `url(${card.image})`,
-                }}
-                className="thumbnail"
-              />
+            <div
+              style={{ backgroundImage: `url(${card.image})` }}
+              className="thumbnail"
+            />
+              <img src={card.image} className="w-full h-auto" alt="news" />
               <h3 className="my-6 font-medium text-3xl text-primary title">
                 {card.title}
               </h3>
