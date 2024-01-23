@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { openQuiz } from "../../store/quizSlice";
 import { useDispatch } from "react-redux";
 
-const AcneQuiz = ({ onClose }) => {
+const AcneQuiz = ({onClose}) => {
   const [isValid, setIsValid] = useState(false);
   const dispatch = useDispatch();
 
@@ -24,6 +24,7 @@ const AcneQuiz = ({ onClose }) => {
     }
   }
 
+
   return (
     <div
       className="fixed flex flex-col items-center justify-center   Quiz_Input_Handler Acne_Quiz_Container "
@@ -40,13 +41,7 @@ const AcneQuiz = ({ onClose }) => {
           onChange={(e) => ValidateEmial(e.target.value)}
         />{" "}
         {isValid ? (
-          <Link
-            onClick={() => {
-              dispatch(openQuiz());
-              onClose();
-            }}
-            to={"/acnequiz"}
-          >
+          <Link onClick={() => {dispatch(openQuiz()) onClose}} to={"/acnequiz"}>
             <button className="w-[31rem] bg-primary text-darkSecondary text-2xl font-bold py-5">
               NEXT
             </button>
@@ -62,14 +57,7 @@ const AcneQuiz = ({ onClose }) => {
         )}
       </div>
       <div className="acne_quiz_close_btn">
-        <img
-          onClick={() => {
-            dispatch(openQuiz());
-            onClose();
-          }}
-          src="/Image/14.png"
-          alt=""
-        />
+        <img onClick={() => dispatch(openQuiz())} src="/Image/14.png" alt="" />
       </div>
     </div>
   );

@@ -22,6 +22,5 @@ const quizSlice = createSlice({
 });
 
 export const { increaseStep, openQuiz } = quizSlice.actions;
-export const selectIsQuizOpen = (state) => state.quiz.isQuizOpen;
 
 export default quizSlice.reducer;

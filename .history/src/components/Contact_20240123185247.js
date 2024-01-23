@@ -32,20 +32,14 @@ const Contact = () => {
     setSubmitLoading(true);
     try {
       await postQuery(payload, setMsg, setOpen);
-      setEmail("");
-      setMobile("");
-      setName("");
-      setQuery("");
+      
     } catch {
       setSubmitLoading(false);
     } finally {
-      setEmail("");
-      setMobile("");
-      setName("");
-      setQuery("");
       setSubmitLoading(false);
     }
   };
+
 
   const starArray = Array.from({ length: response?.ratings });
 
@@ -72,6 +66,7 @@ const Contact = () => {
         <h1 className="text-5xl text-center font-light text-primary my-10 title ">
           Contact
         </h1>
+  
 
         <div className="container">
           {response && (

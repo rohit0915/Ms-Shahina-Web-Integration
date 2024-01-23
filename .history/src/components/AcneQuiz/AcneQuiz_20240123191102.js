@@ -62,14 +62,7 @@ const AcneQuiz = ({ onClose }) => {
         )}
       </div>
       <div className="acne_quiz_close_btn">
-        <img
-          onClick={() => {
-            dispatch(openQuiz());
-            onClose();
-          }}
-          src="/Image/14.png"
-          alt=""
-        />
+        <img onClick={() => dispatch(openQuiz())} src="/Image/14.png" alt="" />
       </div>
     </div>
   );

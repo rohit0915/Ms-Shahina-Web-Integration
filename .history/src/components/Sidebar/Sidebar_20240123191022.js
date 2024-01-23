@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated, LOGOUT } from "../../store/authSlice";
 import { Store } from "react-notifications-component";
-import { openQuiz } from "../../store/quizSlice";
+import { openQuiz, selectIsQuizOpen } from "../../store/quizSlice";
 import AcneQuiz from "../AcneQuiz/AcneQuiz";
 import { getProfile } from "../../Repository/Api";
 import { AiOutlineClose } from "react-icons/ai";
@@ -93,7 +93,12 @@ const Sidebar = ({ open, onClose }) => {
 
   async function openHandl() {
     await dispatch(openQuiz());
-  
+    if (ooe === true) {
+      onClose();
+    }else{
+    onClose();
+
+    }
   }
 
   return (
@@ -166,7 +171,7 @@ const Sidebar = ({ open, onClose }) => {
             </li>
           )}
         </ul>
-        {isQuizOpen && <AcneQuiz  onClose={onClose}/>}
+        {isQuizOpen && <AcneQuiz />}
       </div>
     </Drawer>
   );

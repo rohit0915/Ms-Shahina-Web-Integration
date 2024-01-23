@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { openQuiz } from "../../store/quizSlice";
 import AcneQuiz from "../AcneQuiz/AcneQuiz";
 
+
+
 const TopHeader = () => {
   const dispatch = useDispatch();
   const { isQuizOpen } = useSelector((store) => store.quiz);
-  function onClose() {}
+  const 
 
   return (
     <header className="top-header-container">
@@ -34,7 +36,7 @@ const TopHeader = () => {
           </button>
         </Link>
       </div>
-      {isQuizOpen && <AcneQuiz onClose={onClose} />}
+      {isQuizOpen && <AcneQuiz />}
     </header>
   );
 };

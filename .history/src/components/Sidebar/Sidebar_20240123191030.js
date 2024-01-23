@@ -93,7 +93,12 @@ const Sidebar = ({ open, onClose }) => {
 
   async function openHandl() {
     await dispatch(openQuiz());
-  
+    if (ooe === true) {
+      onClose();
+    }else{
+    onClose();
+
+    }
   }
 
   return (
@@ -166,7 +171,7 @@ const Sidebar = ({ open, onClose }) => {
             </li>
           )}
         </ul>
-        {isQuizOpen && <AcneQuiz  onClose={onClose}/>}
+        {isQuizOpen && <AcneQuiz  onClose={onClose/>}
       </div>
     </Drawer>
   );

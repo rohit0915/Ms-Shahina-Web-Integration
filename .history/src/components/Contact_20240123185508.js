@@ -39,10 +39,6 @@ const Contact = () => {
     } catch {
       setSubmitLoading(false);
     } finally {
-      setEmail("");
-      setMobile("");
-      setName("");
-      setQuery("");
       setSubmitLoading(false);
     }
   };

@@ -93,7 +93,12 @@ const Sidebar = ({ open, onClose }) => {
 
   async function openHandl() {
     await dispatch(openQuiz());
-  
+    if (ooe === true) {
+      onClose();
+    }else{
+    onClose();
+
+    }
   }
 
   return (

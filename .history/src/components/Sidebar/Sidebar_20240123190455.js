@@ -17,7 +17,8 @@ const Sidebar = ({ open, onClose }) => {
   const isLoggedIn = useSelector(isAuthenticated);
   const dispatch = useDispatch();
   const { isQuizOpen } = useSelector((store) => store.quiz);
-  
+  const ooe = useSelector(selectIsQuizOpen);
+
 
   const menu = [
     {
@@ -93,7 +94,7 @@ const Sidebar = ({ open, onClose }) => {
 
   async function openHandl() {
     await dispatch(openQuiz());
-  
+    // onClose();
   }
 
   return (
@@ -166,7 +167,7 @@ const Sidebar = ({ open, onClose }) => {
             </li>
           )}
         </ul>
-        {isQuizOpen && <AcneQuiz  onClose={onClose}/>}
+        {isQuizOpen && <AcneQuiz />}
       </div>
     </Drawer>
   );
