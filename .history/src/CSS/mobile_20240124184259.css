@@ -922,12 +922,7 @@
   }
   .animated_dropDown{
     right: 20px;
+    /* bottom: 0; */
     top: auto;
-  }
-  .Acne_Quiz_Container {
-    width: 100%;
-  }
-  .Acne_Quiz_Container .SkinContainer{
-    width: 100%;
   }
 }

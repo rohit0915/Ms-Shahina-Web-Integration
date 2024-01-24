@@ -3574,6 +3574,9 @@
 .Promotional_Banner_Mobile .Download img {
   width: 100px;
 }
+.Promotional_Banner_Mobile .content p {
+  color: #e5d896;
+}
 .user_product_order {
   max-width: 1200px;
   margin: auto;

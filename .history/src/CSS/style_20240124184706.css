@@ -3181,10 +3181,10 @@
 }
 .All_News_Page section .thumbnail {
   width: 100%;
-  height: 600px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .All_News_Page section .keyword_cont {
@@ -3573,6 +3573,9 @@
 }
 .Promotional_Banner_Mobile .Download img {
   width: 100px;
+}
+.Promotional_Banner_Mobile .content p {
+  color
 }
 .user_product_order {
   max-width: 1200px;
@@ -4498,13 +4501,10 @@
 .customer_fav .Item h4 {
   margin-top: 10px;
 }
-.customer_fav .swiper-pagination-fraction,
-.swiper-pagination-custom,
-.swiper-horizontal .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal {
+.customer_fav .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal  .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
   bottom: 0px;
 }
 
-.customer_fav .swiper-wrapper {
+.customer_fav .swiper-wrapper{
   min-height: 430px !important;
 }

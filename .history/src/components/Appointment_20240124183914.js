@@ -24,7 +24,8 @@ const Appointment = () => {
       </div>
 
       <div className="Appointment_Selection">
-    
+      
+
         <div className="boxes">
           <div
             className="Item cursor-pointer"
