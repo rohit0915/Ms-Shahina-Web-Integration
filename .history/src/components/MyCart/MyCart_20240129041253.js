@@ -37,7 +37,6 @@ import { Mail } from "../Helping/Mail";
 import { SlCalender } from "react-icons/sl";
 import MainStripe from "../Stripe/MainStripe";
 import CheckElement from "../Checkout/CheckElement";
-import DateFormatter from "../Global/DateFormatter";
 
 const MyCart = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -229,9 +228,38 @@ const MyCart = () => {
   }, [serviceCart]);
 
   const fromDate = new Date(cart?.fromTime);
+  const toDate = new Date(cart?.toTime);
+  const now = new Date();
+  const additionalTime = now.getTimezoneOffset();
+  fromDate.setMinutes(fromDate.getMinutes() - additionalTime);
+  toDate.setMinutes(toDate.getMinutes() - additionalTime);
+
   const weekday = fromDate.toLocaleString("en-US", { weekday: "long" });
   const month = fromDate.toLocaleString("en-US", { month: "long" });
   const day = fromDate.toLocaleString("en-US", { day: "numeric" });
+
+  const fromTime = fromDate.toLocaleString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+  const toTime = toDate.toLocaleString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  // ----
+  const nn = new Date(toDate);
+  const formattedToTimeUTC = nn.toLocaleString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "UTC",
+  });
+
+  console.log(`Formatted To Time (UTC): ${formattedToTimeUTC}`);
+  // ---
 
   const hasProducts =
     cart?.frequentlyBuyProductSchema?.length > 0 || cart?.products?.length > 0;
@@ -389,8 +417,7 @@ const MyCart = () => {
               </p>{" "}
               <p>
                 {" "}
-                <DateFormatter time={cart?.toTime} /> -
-                <DateFormatter time={cart?.fromTime} />
+                {toTime} - {fromTime}
               </p>{" "}
             </div>
           </div>

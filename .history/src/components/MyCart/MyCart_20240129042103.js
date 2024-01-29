@@ -228,11 +228,6 @@ const MyCart = () => {
     }
   }, [serviceCart]);
 
-  const fromDate = new Date(cart?.fromTime);
-  const weekday = fromDate.toLocaleString("en-US", { weekday: "long" });
-  const month = fromDate.toLocaleString("en-US", { month: "long" });
-  const day = fromDate.toLocaleString("en-US", { day: "numeric" });
-
   const hasProducts =
     cart?.frequentlyBuyProductSchema?.length > 0 || cart?.products?.length > 0;
 

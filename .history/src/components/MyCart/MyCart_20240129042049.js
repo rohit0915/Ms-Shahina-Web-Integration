@@ -229,9 +229,22 @@ const MyCart = () => {
   }, [serviceCart]);
 
   const fromDate = new Date(cart?.fromTime);
+  const now = new Date();
+  const additionalTime = now.getTimezoneOffset();
+  fromDate.setMinutes(fromDate.getMinutes() - additionalTime);
+  // toDate.setMinutes(toDate.getMinutes() - additionalTime);
+
   const weekday = fromDate.toLocaleString("en-US", { weekday: "long" });
   const month = fromDate.toLocaleString("en-US", { month: "long" });
   const day = fromDate.toLocaleString("en-US", { day: "numeric" });
+
+  const fromTime = fromDate.toLocaleString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  // ---
 
   const hasProducts =
     cart?.frequentlyBuyProductSchema?.length > 0 || cart?.products?.length > 0;
@@ -389,8 +402,9 @@ const MyCart = () => {
               </p>{" "}
               <p>
                 {" "}
-                <DateFormatter time={cart?.toTime} /> -
+                <DateFormatter time={cart?.toTime} /> - 
                 <DateFormatter time={cart?.fromTime} />
+                {fromTime}
               </p>{" "}
             </div>
           </div>
