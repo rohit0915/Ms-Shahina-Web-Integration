@@ -16,6 +16,7 @@ import ContactComponent from "../Contact/ContactComponent";
 const Schedule2 = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState({});
+  const [contact, setContact] = useState({});
   const today = new Date();
   const formattedToday = today.toISOString().split("T")[0];
   const [date1, setDate] = useState(formattedToday);
@@ -60,6 +61,7 @@ const Schedule2 = () => {
 
   useEffect(() => {
     fetchCart();
+    getContactDetails(setContact);
   }, []);
 
   function formatDate(date) {

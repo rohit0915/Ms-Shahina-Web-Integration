@@ -729,7 +729,8 @@ const deleteServiceCart = (payload, priceId) => {
       }
     } catch (e) {
       const msg = e.response.data.message;
-      showMsg("", msg, "danger");
+      showMsg("" , msg , "danger")
+ 
     }
   };
 };
@@ -1086,7 +1087,8 @@ const AddToCartInBulk = (productId, payload) => {
       );
     } catch (e) {
       const msg = e.response.data.message;
-      showMsg("", msg, "danger");
+      showMsg("" , msg , "danger")
+ 
     }
   };
 };
@@ -1105,7 +1107,8 @@ const AddServiceBulk = (payload, form) => {
       );
     } catch (e) {
       const msg = e.response.data.message;
-      showMsg("", msg, "danger");
+      showMsg("" , msg , "danger")
+ 
     }
   };
 };
@@ -1209,19 +1212,15 @@ const RenewMembership = async () => {
     );
   } catch (e) {
     const msg = e.response.data.message;
-    showMsg("", msg, "danger");
+    showMsg("" , msg , "danger")
+ 
   }
 };
 
 const getAllSlot = async (setResponse, date) => {
   try {
     const res = await axios.get(
-      `${Baseurl}api/v1/admin/Slot/allSlot?date=${date}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      }
+      `${Baseurl}api/v1/admin/Slot/allSlot?date=${date}` ,
     );
     const data = res?.data?.data;
     if (Array.isArray(data)) {
