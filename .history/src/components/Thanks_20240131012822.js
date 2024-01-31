@@ -23,7 +23,8 @@ const Thanks = () => {
     }
   }, [giftOrderId]);
 
-  const couponCode = data?.data?.coupanData?.code;
+  const 
+  console.log(data?.data?.coupanData?.code);
 
   return id === "failed" ? (
     <div className="Thanks_Container">
@@ -42,7 +43,11 @@ const Thanks = () => {
       <p className="desc">
         We look forward to serving you and hope to exceed your expectations.
       </p>
-      <p className="desc">GIFT CARD CODE : {couponCode}</p>
+      <p className="desc">
+      GIFT CARD NUMBER OR CODE: {}
+
+
+      </p>
       <Link to="/mycart" style={{ cursor: "pointer" }}>
         <button>RETURN TO CART</button>
       </Link>

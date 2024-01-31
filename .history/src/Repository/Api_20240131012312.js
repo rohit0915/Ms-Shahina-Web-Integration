@@ -925,6 +925,7 @@ const orderSuccess = (payload, navigate, setLoading) => {
       setLoading(false);
       if (response.status === 200) {
         dispatch(getCart());
+        console.log(response?.data?.data);
         if (response?.data?.data?.giftOrder) {
           navigate(`/thanks/success-${response?.data?.data?.orderId}`);
         } else {
@@ -1431,13 +1432,6 @@ export const guestIntentMaker = async ({ email, clientSecret }) => {
     } else {
       clientSecret = null;
     }
-  } catch {}
-};
-
-export const getUserOrder = async (id, setResponse) => {
-  try {
-    const res = await axios.get(`${Baseurl}api/v1/user/getOrderDetails/${id}`);
-    setResponse(res?.data);
   } catch {}
 };
 

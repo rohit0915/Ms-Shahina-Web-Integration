@@ -1434,12 +1434,12 @@ export const guestIntentMaker = async ({ email, clientSecret }) => {
   } catch {}
 };
 
-export const getUserOrder = async (id, setResponse) => {
+
+export const getUserOrder  = async () => {
   try {
-    const res = await axios.get(`${Baseurl}api/v1/user/getOrderDetails/${id}`);
-    setResponse(res?.data);
-  } catch {}
-};
+    const res =await axios.get(`${Baseurl}api/v1/user/getOrderDetails`)
+  }catch{}
+}
 
 export {
   filterProduct,

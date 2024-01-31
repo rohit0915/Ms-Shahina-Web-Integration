@@ -6,7 +6,7 @@ import { getUserOrder } from "../Repository/Api";
 
 const Thanks = () => {
   const { id } = useParams();
-  const [data, setData] = useState({});
+  const [ data , setData ] = useState({})
 
   useEffect(() => {
     window.scrollTo({
@@ -16,14 +16,14 @@ const Thanks = () => {
   }, []);
 
   const giftOrderId = id.split("-")?.[1];
+  console.log(giftOrderId);
+
 
   useEffect(() => {
-    if (giftOrderId) {
-      getUserOrder(giftOrderId, setData);
-    }
-  }, [giftOrderId]);
+    getUserOrder(giftOrderId , setData)
+  },[giftOrderId])
 
-  const couponCode = data?.data?.coupanData?.code;
+  console.log(data?.data)
 
   return id === "failed" ? (
     <div className="Thanks_Container">
@@ -42,7 +42,6 @@ const Thanks = () => {
       <p className="desc">
         We look forward to serving you and hope to exceed your expectations.
       </p>
-      <p className="desc">GIFT CARD CODE : {couponCode}</p>
       <Link to="/mycart" style={{ cursor: "pointer" }}>
         <button>RETURN TO CART</button>
       </Link>

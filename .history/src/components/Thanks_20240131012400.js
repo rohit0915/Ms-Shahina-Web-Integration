@@ -1,12 +1,10 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getUserOrder } from "../Repository/Api";
 
 const Thanks = () => {
   const { id } = useParams();
-  const [data, setData] = useState({});
 
   useEffect(() => {
     window.scrollTo({
@@ -15,15 +13,7 @@ const Thanks = () => {
     });
   }, []);
 
-  const giftOrderId = id.split("-")?.[1];
-
-  useEffect(() => {
-    if (giftOrderId) {
-      getUserOrder(giftOrderId, setData);
-    }
-  }, [giftOrderId]);
-
-  const couponCode = data?.data?.coupanData?.code;
+  console.log()
 
   return id === "failed" ? (
     <div className="Thanks_Container">
@@ -36,18 +26,17 @@ const Thanks = () => {
         <button>RETURN TO CART</button>
       </Link>
     </div>
-  ) : giftOrderId ? (
+  ) : id === "success-giftorder" ? (
     <div className="Thanks_Container">
       <p className="title">Thank You for Your Gift Card Purchase!</p>
       <p className="desc">
         We look forward to serving you and hope to exceed your expectations.
       </p>
-      <p className="desc">GIFT CARD CODE : {couponCode}</p>
       <Link to="/mycart" style={{ cursor: "pointer" }}>
         <button>RETURN TO CART</button>
       </Link>
     </div>
-  ) : (
+  ) :(
     <div className="Thanks_Container">
       <p className="title">Thank you for your order!</p>
       <p className="desc">

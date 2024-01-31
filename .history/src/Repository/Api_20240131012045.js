@@ -925,11 +925,12 @@ const orderSuccess = (payload, navigate, setLoading) => {
       setLoading(false);
       if (response.status === 200) {
         dispatch(getCart());
-        if (response?.data?.data?.giftOrder) {
-          navigate(`/thanks/success-${response?.data?.data?.orderId}`);
-        } else {
-          navigate("/thanks/success");
-        }
+        console.log(response)
+        // if (response?.data?.data?.giftOrder) {
+        //   navigate(`/thanks/success-giftorder`);
+        // } else {
+        //   navigate("/thanks/success");
+        // }
       }
     } catch {
       setLoading(false);
@@ -1431,13 +1432,6 @@ export const guestIntentMaker = async ({ email, clientSecret }) => {
     } else {
       clientSecret = null;
     }
-  } catch {}
-};
-
-export const getUserOrder = async (id, setResponse) => {
-  try {
-    const res = await axios.get(`${Baseurl}api/v1/user/getOrderDetails/${id}`);
-    setResponse(res?.data);
   } catch {}
 };
 
