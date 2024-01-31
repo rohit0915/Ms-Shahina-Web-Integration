@@ -248,7 +248,7 @@ const Schedule1 = () => {
             label: `${i.size}`,
           }))}
           onChange={(selectedOption) => handleSizeChange(selectedOption, i._id)}
-          placeholder="Select type"
+          placeholder="Select Package"
           className="mt-2 mb-2"
         />
       );

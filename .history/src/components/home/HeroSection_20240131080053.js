@@ -27,7 +27,7 @@ const HeroSection = () => {
           </ul>
           {isLoggedIn ? (
             <Link to="/schedule1">
-              <button>Learn More </button>
+              <button>BOOK ONLINE</button>
             </Link>
           ) : (
             <Link to="/appointment">
