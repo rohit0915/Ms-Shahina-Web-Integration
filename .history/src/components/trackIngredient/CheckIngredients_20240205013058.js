@@ -59,9 +59,8 @@ const CheckIngredients = () => {
     document.execCommand("insertHTML", false, plainText);
   };
 
-  function clearPast() {
-    setName("");
-    setIsMatched(false);
+  function clearPast () {
+    
   }
 
   return (
@@ -127,7 +126,7 @@ const CheckIngredients = () => {
               </button>
               <button
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
-                onClick={() => clearPast()}
+                onClick={() => {setName("")}}
               >
                 Clear
               </button>

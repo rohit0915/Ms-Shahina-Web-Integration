@@ -18,7 +18,7 @@ const GallarySlider = () => {
     keyboard: {
       enabled: true,
     },
-    autoHeight: true,
+    autoHeight: false,
     breakpoints: {
       768: {
         slidesPerView: 2,

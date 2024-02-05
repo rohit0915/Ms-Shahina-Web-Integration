@@ -3,19 +3,25 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../../utils/helpingComponent";
 import { BiSearch } from "react-icons/bi";
-import { getIngredeints } from "../../Repository/Api";
+import Error from "./Error";
+import { checkIngredients, getIngredeints } from "../../Repository/Api";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ingredients = ["COSMETICS", "FOOD INGREDIENTS", "BIRTH CONTROL"];
 
 const CheckIngredients = () => {
   const [selected, setSelected] = useState("COSMETICS");
+  const [iserror, setError] = useState(false);
   const [response, setResponse] = useState([]);
   const [name, setName] = useState("Please insert ingredients here.....");
-  const [isMatched, setIsMatched] = useState(false);
+  const [message, setMessage] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
     highlightWords();
+    await checkIngredients(name, setMessage);
+    setError(true);
   };
 
   useEffect(() => {
@@ -40,10 +46,6 @@ const CheckIngredients = () => {
 
   const highlightWords = () => {
     const pattern = new RegExp(items?.join("|"), "gi");
-    const matches = name?.match(pattern);
-    if (matches) {
-      setIsMatched(true);
-    }
     const highlighted = name?.replace(
       pattern,
       (match) => `<span style="color: red;">${match}</span>`
@@ -58,11 +60,6 @@ const CheckIngredients = () => {
     );
     document.execCommand("insertHTML", false, plainText);
   };
-
-  function clearPast() {
-    setName("");
-    setIsMatched(false);
-  }
 
   return (
     <section className="bg-primary">
@@ -115,7 +112,6 @@ const CheckIngredients = () => {
               onPaste={handlePaste}
               dangerouslySetInnerHTML={{ __html: name }}
               className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl ingre outline-none"
-              style={{ overflowY: "scroll" }}
             ></div>
 
             <div className="text-2xl font-semibold flex justify-between items-center my-6">
@@ -127,20 +123,13 @@ const CheckIngredients = () => {
               </button>
               <button
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
-                onClick={() => clearPast()}
+                onClick={() => setName("")}
               >
                 Clear
               </button>
             </div>
           </form>
-          {isMatched && (
-            <p className="text-sl text-[#FF0000] font-normal line-clamp-4 ">
-              Unfortunately , there are some comedogenic ingredients.
-              Comedogenics ingredients are listed in red .
-            </p>
-          )}
         </div>
-
         {isEmpty === false && (
           <div className="w-96 bg-secondary text-primary px-5 rounded-xl">
             <div className="flex justify-between my-9  items-center">
@@ -168,6 +157,7 @@ const CheckIngredients = () => {
           </div>
         )}
       </main>
+      {iserror && <Error setError={setError} message={message} />}
     </section>
   );
 };

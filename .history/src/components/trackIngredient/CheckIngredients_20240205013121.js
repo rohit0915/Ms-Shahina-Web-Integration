@@ -127,7 +127,7 @@ const CheckIngredients = () => {
               </button>
               <button
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
-                onClick={() => clearPast()}
+                onClick={() => clearPast}
               >
                 Clear
               </button>

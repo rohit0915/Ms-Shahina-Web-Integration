@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useState } from "react";
+import Slider from "react-slick";
 import { PiInstagramLogoLight } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { pictures } from "../../constants/constant";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { Keyboard } from "swiper/modules";
+import {  Keyboard } from "swiper/modules";
 
 const GallarySlider = () => {
   const [hover, sethover] = useState(null);

@@ -3,19 +3,24 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../../utils/helpingComponent";
 import { BiSearch } from "react-icons/bi";
-import { getIngredeints } from "../../Repository/Api";
+import Error from "./Error";
+import { checkIngredients, getIngredeints } from "../../Repository/Api";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ingredients = ["COSMETICS", "FOOD INGREDIENTS", "BIRTH CONTROL"];
 
 const CheckIngredients = () => {
   const [selected, setSelected] = useState("COSMETICS");
+  const [iserror, setError] = useState(false);
   const [response, setResponse] = useState([]);
   const [name, setName] = useState("Please insert ingredients here.....");
-  const [isMatched, setIsMatched] = useState(false);
+  const [message, setMessage] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    highlightWords();
+    await checkIngredients(name, setMessage);
+    setError(true);
   };
 
   useEffect(() => {
@@ -32,37 +37,26 @@ const CheckIngredients = () => {
   const isEmpty = Object.keys(response).length === 0;
 
   // ---
-  const items = response?.map((i) => i.name);
+  const [inputText, setInputText] = useState('');
 
   const handleInputChange = (e) => {
-    setName(e.target.innerHTML);
+    setInputText(e.target.value);
   };
 
   const highlightWords = () => {
-    const pattern = new RegExp(items?.join("|"), "gi");
-    const matches = name?.match(pattern);
-    if (matches) {
-      setIsMatched(true);
-    }
-    const highlighted = name?.replace(
-      pattern,
-      (match) => `<span style="color: red;">${match}</span>`
-    );
-    setName(highlighted);
+    // Define your reserved keywords or keys
+    const reservedKeys = ['example', 'highlight', 'custom'];
+
+    // Create a regular expression pattern to match reserved keys
+    const pattern = new RegExp(reservedKeys.join('|'), 'gi');
+
+    // Highlight matched words in red
+    const highlighted = inputText.replace(pattern, (match) => `<span style="color: red;">${match}</span>`);
+
+    // Set the highlighted text back to the editor
+    setInputText(highlighted);
   };
 
-  const handlePaste = (e) => {
-    e.preventDefault();
-    const plainText = (e.clipboardData || window.clipboardData).getData(
-      "text/plain"
-    );
-    document.execCommand("insertHTML", false, plainText);
-  };
-
-  function clearPast() {
-    setName("");
-    setIsMatched(false);
-  }
 
   return (
     <section className="bg-primary">
@@ -109,14 +103,13 @@ const CheckIngredients = () => {
             to check on the Internet, copy and insert it here :
           </p>
           <form onSubmit={submitHandler}>
-            <div
-              contentEditable
-              onInput={handleInputChange}
-              onPaste={handlePaste}
-              dangerouslySetInnerHTML={{ __html: name }}
-              className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl ingre outline-none"
-              style={{ overflowY: "scroll" }}
-            ></div>
+            <ReactQuill
+              theme="snow"
+              value={name}
+              onChange={setName}
+              modules={{ toolbar: false }}
+              className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl ingre"
+            />
 
             <div className="text-2xl font-semibold flex justify-between items-center my-6">
               <button
@@ -127,20 +120,13 @@ const CheckIngredients = () => {
               </button>
               <button
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
-                onClick={() => clearPast()}
+                onClick={() => setName("")}
               >
                 Clear
               </button>
             </div>
           </form>
-          {isMatched && (
-            <p className="text-sl text-[#FF0000] font-normal line-clamp-4 ">
-              Unfortunately , there are some comedogenic ingredients.
-              Comedogenics ingredients are listed in red .
-            </p>
-          )}
         </div>
-
         {isEmpty === false && (
           <div className="w-96 bg-secondary text-primary px-5 rounded-xl">
             <div className="flex justify-between my-9  items-center">
@@ -168,6 +154,7 @@ const CheckIngredients = () => {
           </div>
         )}
       </main>
+      {iserror && <Error setError={setError} message={message} />}
     </section>
   );
 };

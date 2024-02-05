@@ -59,10 +59,7 @@ const CheckIngredients = () => {
     document.execCommand("insertHTML", false, plainText);
   };
 
-  function clearPast() {
-    setName("");
-    setIsMatched(false);
-  }
+  console.log(isMatched);
 
   return (
     <section className="bg-primary">
@@ -127,20 +124,13 @@ const CheckIngredients = () => {
               </button>
               <button
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
-                onClick={() => clearPast()}
+                onClick={() => setName("")}
               >
                 Clear
               </button>
             </div>
           </form>
-          {isMatched && (
-            <p className="text-sl text-[#FF0000] font-normal line-clamp-4 ">
-              Unfortunately , there are some comedogenic ingredients.
-              Comedogenics ingredients are listed in red .
-            </p>
-          )}
         </div>
-
         {isEmpty === false && (
           <div className="w-96 bg-secondary text-primary px-5 rounded-xl">
             <div className="flex justify-between my-9  items-center">

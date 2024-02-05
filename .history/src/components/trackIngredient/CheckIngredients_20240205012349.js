@@ -3,19 +3,26 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../../utils/helpingComponent";
 import { BiSearch } from "react-icons/bi";
-import { getIngredeints } from "../../Repository/Api";
+import Error from "./Error";
+import { checkIngredients, getIngredeints } from "../../Repository/Api";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ingredients = ["COSMETICS", "FOOD INGREDIENTS", "BIRTH CONTROL"];
 
 const CheckIngredients = () => {
   const [selected, setSelected] = useState("COSMETICS");
+  const [iserror, setError] = useState(false);
   const [response, setResponse] = useState([]);
   const [name, setName] = useState("Please insert ingredients here.....");
+  const [message, setMessage] = useState("");
   const [isMatched, setIsMatched] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     highlightWords();
+    await checkIngredients(name, setMessage);
+    setError(true);
   };
 
   useEffect(() => {
@@ -40,10 +47,12 @@ const CheckIngredients = () => {
 
   const highlightWords = () => {
     const pattern = new RegExp(items?.join("|"), "gi");
+
+    // Find all matches using the pattern
     const matches = name?.match(pattern);
-    if (matches) {
-      setIsMatched(true);
-    }
+
+    // Log the matched words
+    console.log("Matched Words:", matches);
     const highlighted = name?.replace(
       pattern,
       (match) => `<span style="color: red;">${match}</span>`
@@ -58,11 +67,6 @@ const CheckIngredients = () => {
     );
     document.execCommand("insertHTML", false, plainText);
   };
-
-  function clearPast() {
-    setName("");
-    setIsMatched(false);
-  }
 
   return (
     <section className="bg-primary">
@@ -127,20 +131,13 @@ const CheckIngredients = () => {
               </button>
               <button
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
-                onClick={() => clearPast()}
+                onClick={() => setName("")}
               >
                 Clear
               </button>
             </div>
           </form>
-          {isMatched && (
-            <p className="text-sl text-[#FF0000] font-normal line-clamp-4 ">
-              Unfortunately , there are some comedogenic ingredients.
-              Comedogenics ingredients are listed in red .
-            </p>
-          )}
         </div>
-
         {isEmpty === false && (
           <div className="w-96 bg-secondary text-primary px-5 rounded-xl">
             <div className="flex justify-between my-9  items-center">
@@ -168,6 +165,7 @@ const CheckIngredients = () => {
           </div>
         )}
       </main>
+      {iserror && <Error setError={setError} message={message} />}
     </section>
   );
 };

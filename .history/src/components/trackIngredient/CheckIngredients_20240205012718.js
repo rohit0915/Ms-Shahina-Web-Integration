@@ -59,10 +59,7 @@ const CheckIngredients = () => {
     document.execCommand("insertHTML", false, plainText);
   };
 
-  function clearPast() {
-    setName("");
-    setIsMatched(false);
-  }
+  console.log(isMatched);
 
   return (
     <section className="bg-primary">
@@ -127,18 +124,18 @@ const CheckIngredients = () => {
               </button>
               <button
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
-                onClick={() => clearPast()}
+                onClick={() => setName("")}
               >
                 Clear
               </button>
             </div>
           </form>
-          {isMatched && (
-            <p className="text-sl text-[#FF0000] font-normal line-clamp-4 ">
-              Unfortunately , there are some comedogenic ingredients.
-              Comedogenics ingredients are listed in red .
-            </p>
-          )}
+          <p className="text-sl text-[#] font-normal line-clamp-4 ">
+            If you have acne-prone skin, you need to check skincare, haircare,
+            and makeup products for comedogenic ( pore-clogging ) ingredients.
+            Please find the ingredients list of the product that you would like
+            to check on the Internet, copy and insert it here :
+          </p>
         </div>
 
         {isEmpty === false && (
