@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const Question = ({
   styles,
@@ -16,7 +17,7 @@ const Question = ({
   option4,
   option4image,
   query,
-  answer
+  answer,
 }) => {
   const handleClick = async (options) => {
     query(options);
@@ -25,7 +26,6 @@ const Question = ({
       step > 0 && setStep(step + 1);
     }
   };
-
 
   return (
     <>
@@ -45,12 +45,12 @@ const Question = ({
             className="flex flex-col items-center gap-8 cursor-pointer Items"
           >
             <div className={`${styles ? styles : "w-96 h-96"}`}>
-              <img
+              <ImageLazyLoading
+                img={option1image}
+                alt={""}
                 className={`w-full h-full object-cover ${
                   option1 === answer && "selected"
                 }`}
-                src={option1image}
-                alt="skin"
               />
             </div>
             <span className={`text-2xl font-normal `}>{option1}</span>
@@ -66,12 +66,12 @@ const Question = ({
             className="flex flex-col items-center gap-8 cursor-pointer"
           >
             <div className={`${styles ? styles : "w-96 h-96"}`}>
-              <img
+              <ImageLazyLoading
                 className={`w-full h-full object-cover ${
                   option2 === answer && "selected"
                 }`}
-                src={option2image}
-                alt="skin"
+                img={option2image}
+                alt={""}
               />
             </div>
             <span className="text-2xl font-normal">{option2}</span>
@@ -87,12 +87,12 @@ const Question = ({
             className="flex flex-col items-center gap-8 cursor-pointer"
           >
             <div className={`${styles ? styles : "w-96 h-96"}`}>
-              <img
+              <ImageLazyLoading
                 className={`w-full h-full object-cover ${
                   option3 === answer && "selected"
                 }`}
-                src={option3image}
-                alt="skin"
+                img={option3image}
+                alt={""}
               />
             </div>
             <span className="text-2xl font-normal">{option3}</span>
@@ -108,12 +108,12 @@ const Question = ({
             className="flex flex-col items-center gap-8 cursor-pointer"
           >
             <div className={`${styles ? styles : "w-96 h-96"}`}>
-              <img
+              <ImageLazyLoading
                 className={`w-full h-full object-cover ${
                   option4 === answer && "selected"
                 }`}
-                src={option4image}
-                alt="skin"
+                img={option4image}
+                alt={""}
               />
             </div>
             <span className="text-2xl font-normal">{option4}</span>

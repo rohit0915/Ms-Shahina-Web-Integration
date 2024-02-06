@@ -4,6 +4,9 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { HiMail } from "react-icons/hi";
 import { ImLocation } from "react-icons/im";
 
+
+
+
 export const pictures = [
   "https://res.cloudinary.com/dbcnha741/image/upload/v1704973978/387266794_1344083136235029_9037499935939544718_n_hbm7z6.jpg",
   "https://res.cloudinary.com/dbcnha741/image/upload/v1704974394/347446893_230912729567472_4221892920201154758_n_j35lj9.jpg",
@@ -24,3 +27,26 @@ export const paymentCards = [
 
 export const STAR = "/Image/72.png";
 export const MAP_IMG = "/Image/image 211.png";
+
+
+
+
+
+export {
+  SERVICE_HEAD_IMAGE,
+  SHOP_HEAD_IMAGE,
+  pictures,
+  paymentCards,
+  MAP_URL,
+  ADD_IMG,
+  STAR,
+  MAP_IMG,
+  GOLD_MEDAL,
+  SILVER_MEDAL,
+  PLATINUM_MEDAL,
+  DIAMOND_MEDAL,
+  galleryImages,
+  PAYMENT_TYpes,
+  financialSituation,
+  testimonials,
+};

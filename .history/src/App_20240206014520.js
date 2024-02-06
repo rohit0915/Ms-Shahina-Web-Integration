@@ -32,6 +32,7 @@ import "./CSS/style.css";
 import IndivisualAppointment from "./components/IndivisualAppointment";
 import Schedule1 from "./components/Schedule/Schedule1";
 import Schedule2 from "./components/Schedule/Schedule2";
+import Schedule3 from "./components/Schedule/Schedule3";
 import Thanks from "./components/Thanks";
 import Privacy from "./components/Privacy";
 import Terms from "./components/Terms";
@@ -40,6 +41,8 @@ import ForgetPassword from "./components/ForgetPassword";
 import ChangePassword from "./components/ChangePassword";
 import Signup from "./components/Signup";
 import ProductDetails from "./components/ProductDetails";
+import GuestCheckout from "./components/GuestCheckout";
+import CheckoutDetails from "./components/CheckoutDetails";
 import { ReactNotifications } from "react-notifications-component";
 import "./CSS/mobile.css";
 import MyProfile from "./components/MyProfile";
@@ -51,6 +54,7 @@ import ReturningMember from "./components/ReturningMember";
 import ProductOrder from "./components/Orders/ProductOrder";
 import ServiceOrder from "./components/Orders/ServiceOrder";
 import PastServiceOrder from "./components/Orders/PastServiceOrder";
+import CardSaver from "./components/Card/CardSaver";
 import { getSession } from "./Repository/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated } from "./store/authSlice";
@@ -143,6 +147,10 @@ const appRouter = createBrowserRouter([
         element: LazyComponent(<Schedule2 />),
       },
       {
+        path: "/schedule3",
+        element: LazyComponent(<Schedule3 />),
+      },
+      {
         path: "/thanks/:id",
         element: LazyComponent(<Thanks />),
       },
@@ -191,6 +199,14 @@ const appRouter = createBrowserRouter([
         element: LazyComponent(<ProductDetails />),
       },
       {
+        path: "/guestCheckout",
+        element: LazyComponent(<GuestCheckout />),
+      },
+      {
+        path: "/guestCheckout/card-details",
+        element: LazyComponent(<CheckoutDetails />),
+      },
+      {
         path: "mycart",
         element: LazyComponent(<MyCart />),
       },
@@ -229,6 +245,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/past-orders",
         element: LazyComponent(<PastServiceOrder />),
+      },
+      {
+        path: "/card_saver",
+        element: LazyComponent(<CardSaver />),
       },
       {
         path: "/guestthanks",

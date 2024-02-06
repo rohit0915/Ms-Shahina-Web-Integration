@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillApple, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import CheckoutModal from "../Drawer/CheckoutModal";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import {
   addFBP,
@@ -40,6 +41,7 @@ import DateFormatter from "../Global/DateFormatter";
 import { IoMdNavigate } from "react-icons/io";
 
 const MyCart = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
   const [cart, setCart] = useState({});
   const [contact, setContact] = useState({});

@@ -7,6 +7,7 @@ import { Call, Mail } from "../Helping/Mail";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
+import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const ContactComponent = () => {
   const [contact, setContact] = useState(null);
@@ -20,7 +21,7 @@ const ContactComponent = () => {
     contact && (
       <>
         <div className="two-sec">
-          <img src={contact?.image} alt="" />
+          <ImageLazyLoading img={contact?.image} alt={""} />
           <div>
             <p className="title"> {contact?.name} </p>
             <span className="Stars">

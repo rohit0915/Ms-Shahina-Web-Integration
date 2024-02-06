@@ -179,6 +179,38 @@ const CardSave = () => {
 
               <form onSubmit={submitHandler}>
                 <PaymentElement />
+
+                <div className="content" style={{ width: "100%" }}>
+                  <p>
+                    <strong>Cancellation policy</strong>
+                  </p>
+                  <p className="desc">
+                    Cancel for free up to <strong>48 hours</strong> ahead ,
+                    otherwise you will be charged <strong>50%</strong> of the
+                    service price for late cancellation or <strong>100%</strong>{" "}
+                    for not showing up
+                  </p>
+                </div>
+
+                <div
+                  className="content"
+                  style={{ width: "100%", marginTop: "20px" }}
+                >
+                  <p>
+                    {" "}
+                    <strong>Important info</strong>{" "}
+                  </p>
+                  <p className="desc">
+                    Please understand that when you forget or cancel your
+                    appointment without giving enough notice, we miss the
+                    opportunity to fill that appointment time, and clients on
+                    our waiting list miss the opportunity to receive services.{" "}
+                    <br /> Appointments are confirmed 48 hours in advance
+                    because we know how easy it is to forget an appointment you
+                    booked months ago. Since the services are reserved for you
+                    personally, a cancellation fee will apply if you no show.
+                  </p>
+                </div>
                 <div className="checked_check">
                   <input type="checkbox" required />
                   <p>I agree with cancellation policy</p>
@@ -193,38 +225,6 @@ const CardSave = () => {
 
                 {errorMessage && <div>{errorMessage}</div>}
               </form>
-
-              <div className="content" style={{ width: "100%" }}>
-                <p>
-                  <strong>Cancellation policy</strong>
-                </p>
-                <p className="desc">
-                  Cancel for free up to <strong>48 hours</strong> ahead ,
-                  otherwise you will be charged <strong>50%</strong> of the
-                  service price for late cancellation or <strong>100%</strong>{" "}
-                  for not showing up
-                </p>
-              </div>
-
-              <div
-                className="content"
-                style={{ width: "100%", marginTop: "20px" }}
-              >
-                <p>
-                  {" "}
-                  <strong>Important info</strong>{" "}
-                </p>
-                <p className="desc">
-                  Please understand that when you forget or cancel your
-                  appointment without giving enough notice, we miss the
-                  opportunity to fill that appointment time, and clients on our
-                  waiting list miss the opportunity to receive services. <br />{" "}
-                  Appointments are confirmed 48 hours in advance because we know
-                  how easy it is to forget an appointment you booked months ago.
-                  Since the services are reserved for you personally, a
-                  cancellation fee will apply if you no show.
-                </p>
-              </div>
             </div>
           </div>
         </div>

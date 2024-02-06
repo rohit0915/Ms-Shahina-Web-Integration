@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getGallery } from "../../Repository/Api";
+import { ImageLazyLoading } from "../../utils/helpingComponent";
 import NoData from "../NoData/NoData";
 import WithLoader from "../Wrapped/WithLoader";
 
@@ -53,7 +54,7 @@ const Gallery = () => {
                   }
                   target="_blank"
                 >
-                  <img src={i.image} alt="" />
+                  <ImageLazyLoading img={i?.image} alt={""} />
                   <p> {i.description} </p>
                 </Link>
               </div>

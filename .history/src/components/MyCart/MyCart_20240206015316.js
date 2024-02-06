@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillApple, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import CheckoutModal from "../Drawer/CheckoutModal";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import {
   addFBP,

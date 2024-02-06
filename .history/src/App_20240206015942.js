@@ -32,6 +32,7 @@ import "./CSS/style.css";
 import IndivisualAppointment from "./components/IndivisualAppointment";
 import Schedule1 from "./components/Schedule/Schedule1";
 import Schedule2 from "./components/Schedule/Schedule2";
+import Schedule3 from "./components/Schedule/Schedule3";
 import Thanks from "./components/Thanks";
 import Privacy from "./components/Privacy";
 import Terms from "./components/Terms";
@@ -40,6 +41,8 @@ import ForgetPassword from "./components/ForgetPassword";
 import ChangePassword from "./components/ChangePassword";
 import Signup from "./components/Signup";
 import ProductDetails from "./components/ProductDetails";
+import GuestCheckout from "./components/GuestCheckout";
+import CheckoutDetails from "./components/CheckoutDetails";
 import { ReactNotifications } from "react-notifications-component";
 import "./CSS/mobile.css";
 import MyProfile from "./components/MyProfile";
@@ -189,6 +192,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/product/:id",
         element: LazyComponent(<ProductDetails />),
+      },
+      {
+        path: "/guestCheckout",
+        element: LazyComponent(<GuestCheckout />),
+      },
+      {
+        path: "/guestCheckout/card-details",
+        element: LazyComponent(<CheckoutDetails />),
       },
       {
         path: "mycart",

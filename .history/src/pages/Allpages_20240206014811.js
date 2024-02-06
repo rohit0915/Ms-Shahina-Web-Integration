@@ -28,6 +28,7 @@ export {
   TopHeader,
   Home,
   Footer,
+  SignUp,
   MenuOptions,
   GiftCard,
   LogIn,

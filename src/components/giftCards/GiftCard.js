@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addGiftItem, getGiftCard } from "../../Repository/Api";
 import { View_description } from "../../Helper/Herlper";
+import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const GiftCard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,10 +98,13 @@ const GiftCard = () => {
                 className="w-[50rem] h-[22rem] mx-auto my-20 Img_Container"
                 key={index}
               >
-                <div
+          
+
+                <ImageLazyLoading
+                  img={i?.image}
+                  alt={""}
                   className="gift_card_image"
-                  style={{ backgroundImage: `url(${i.image})` }}
-                ></div>
+                />
               </div>
               <div className="w-[50rem] mx-auto Img_Container">
                 <h2

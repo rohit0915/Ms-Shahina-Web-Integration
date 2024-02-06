@@ -191,6 +191,10 @@ const appRouter = createBrowserRouter([
         element: LazyComponent(<ProductDetails />),
       },
       {
+        path: "/guestCheckout",
+        element: LazyComponent(<GuestCheckout />),
+      },
+      {
         path: "mycart",
         element: LazyComponent(<MyCart />),
       },

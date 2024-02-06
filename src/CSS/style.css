@@ -2879,9 +2879,7 @@
 .GiftCard_Container .gift_card_image {
   width: 100%;
   height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
 }
 .GiftCard_Container .drop_values {
   z-index: 4;
@@ -3585,7 +3583,7 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.user_product_order_container{
+.user_product_order_container {
   padding: 20px;
 }
 .user_product_order .title {
@@ -4544,7 +4542,7 @@
   right: 10px;
   bottom: 20px;
   cursor: pointer;
-  z-index: 5555 ;
+  z-index: 5555;
 }
 .down_arrow_btn svg {
   transform: rotate(180deg);
@@ -4555,8 +4553,7 @@
   display: none;
 }
 
-
-.view_more_btn{
+.view_more_btn {
   gap: 20px;
   width: 200px;
   color: #042b26;
@@ -4572,7 +4569,6 @@
   margin-top: 20px;
 }
 
-.ingre  .ql-container.ql-snow{
+.ingre .ql-container.ql-snow {
   border: none;
-
 }

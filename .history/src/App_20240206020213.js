@@ -40,6 +40,8 @@ import ForgetPassword from "./components/ForgetPassword";
 import ChangePassword from "./components/ChangePassword";
 import Signup from "./components/Signup";
 import ProductDetails from "./components/ProductDetails";
+import GuestCheckout from "./components/GuestCheckout";
+import CheckoutDetails from "./components/CheckoutDetails";
 import { ReactNotifications } from "react-notifications-component";
 import "./CSS/mobile.css";
 import MyProfile from "./components/MyProfile";
@@ -189,6 +191,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/product/:id",
         element: LazyComponent(<ProductDetails />),
+      },
+      {
+        path: "/guestCheckout",
+        element: LazyComponent(<GuestCheckout />),
       },
       {
         path: "mycart",

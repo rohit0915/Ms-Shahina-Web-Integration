@@ -5,6 +5,7 @@ import Navbar from "../components/home/Navbar";
 import TopHeader from "../components/home/TopHeader";
 import Home from "../pages/home/Home";
 import Footer from "../components/Footer";
+import SignUp from "../components/auth/SignUp";
 import MenuOptions from "../components/home/MenuOptions";
 const GiftCard = lazy(() => import("../components/giftCards/GiftCard"));
 const LogIn = lazy(() => import("../components/auth/LogIn"));
@@ -28,6 +29,7 @@ export {
   TopHeader,
   Home,
   Footer,
+  SignUp,
   MenuOptions,
   GiftCard,
   LogIn,
@@ -40,5 +42,6 @@ export {
   PaymentPlan,
   Shop,
   AllProducts,
+  RecomendedProduct,
   CheckIngredients,
 };
