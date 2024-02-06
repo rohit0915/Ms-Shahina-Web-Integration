@@ -15,7 +15,6 @@ import { getLimitedOffer, getWishlist } from "../../Repository/Api";
 import LatestNews from "../home/LatestNews";
 
 const Shop = () => {
-  const [desc, setDesc] = useState(0);
   const [response, setResponse] = useState([]);
   const [fav, setFav] = useState([]);
 
