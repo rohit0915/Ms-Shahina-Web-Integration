@@ -1953,7 +1953,7 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   margin-left: 1rem;
-  -webkit-margin-before: 20px; /* Safari specific */
+  padding-left: 0 !important;
 }
 .Home_Hero_Section .left-container ul li {
   color: #fff;
@@ -1961,6 +1961,7 @@
   font-style: normal;
   margin-top: 15px;
   font-weight: 500;
+  padding-left: 0 !important;
 }
 .Home_Hero_Section .left-container button {
   background: #e5d896;

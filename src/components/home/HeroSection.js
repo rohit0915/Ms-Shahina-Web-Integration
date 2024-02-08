@@ -14,7 +14,9 @@ const HeroSection = () => {
 
   useEffect(() => {
     getHomePage(setBanner);
+    alert("Cheanges pushed")
   }, []);
+  
 
   return (
     banner && (
