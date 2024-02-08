@@ -14,7 +14,6 @@ const HeroSection = () => {
 
   useEffect(() => {
     getHomePage(setBanner);
-    alert("Cheanges agaain")
   }, []);
   
 
