@@ -32,6 +32,7 @@
     color: #e5d896;
     font-weight: 600;
     text-shadow: 1px 1px 1px #000;
+    list-style: none !important;
   }
   .Home_Hero_Section .Image_container {
     top: 0;
