@@ -10,7 +10,7 @@ import OfferDrawer from "../Drawer/OfferDrawer";
 const LimitedOffer = () => {
   const [open, setOpen] = useState(false);
   const [response, setResponse] = useState([]);
-  const [showOffer, setShowOffer] = useState(true);
+  const [showOffer, setShowOffer] = useState(false);
   const isLoggedIn = useSelector(isAuthenticated);
 
   function fetchHandler() {

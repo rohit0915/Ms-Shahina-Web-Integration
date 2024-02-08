@@ -107,7 +107,7 @@ const ProductPage = () => {
         style={{ backgroundImage: `url(${img})` }}
       >
         <div className="content">
-          <h1 className="text-6xl text-white text-center  z-50 font-light">
+          <h1 className="text-6xl text-[#000] text-center  z-50 font-light">
             {name}
           </h1>
         </div>
