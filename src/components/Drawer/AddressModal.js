@@ -80,7 +80,7 @@ const AddressModal = ({
           />
         </div>
         <div>
-          <p>Appartment</p>
+          <p>Apartment</p>
           <input
             type="text"
             value={appartment}

@@ -26,8 +26,8 @@ const NewsCard = ({ src, title, content, id }) => {
         </div>
         <Link to={`/news/${id}`}>
           <button>
-            READ MORE
-            <img className="arrow-Img" src="/Image/Arrow 1.svg" alt="" />
+           Read More 
+            {/* <img className="arrow-Img" src="/Image/Arrow 1.svg" alt="" /> */}
           </button>
         </Link>
       </div>

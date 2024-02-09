@@ -59,7 +59,7 @@ const MyProfile = () => {
     if (query) {
       return (
         <div className="two-sec">
-          <p className="dark"> {title} : </p>
+          <p className="dark"> {title}: </p>
           <p> {query} </p>
         </div>
       );
@@ -193,14 +193,14 @@ const MyProfile = () => {
           {profile?.image && (
             <img src={profile?.image} alt="" className="Profile_Image" />
           )}
-          {QueryHandler(profile?.firstName, "First Name ")}
-          {QueryHandler(profile?.lastName, "Last Name ")}
-          {QueryHandler(profile?.gender, "Gender ")}
+          {QueryHandler(profile?.firstName, "First Name")}
+          {QueryHandler(profile?.lastName, "Last Name")}
+          {QueryHandler(profile?.gender, "Gender")}
           {DOBfetcher()}
           {QueryHandler(profile?.countryCode, "Country Code")}
           {profile?.phone && (
             <div className="two-sec">
-              <p className="dark"> Mobile Number : </p>
+              <p className="dark"> Mobile Number: </p>
               <p style={{ display: "flex", alignItems: "center", gap: "2px" }}>
                 {" "}
                 <i className="fa-solid fa-plus"></i>
@@ -208,7 +208,7 @@ const MyProfile = () => {
               </p>
             </div>
           )}
-          {QueryHandler(profile?.email, "Email Id ")}
+          {QueryHandler(profile?.email, "Email")}
         </div>
 
         <div className="profile_div">
@@ -257,7 +257,7 @@ const MyProfile = () => {
             </div>
           </div>
           {QueryHandler(filterData?.[0]?.address, "Address")}
-          {QueryHandler(filterData?.[0]?.appartment, "Appartment")}
+          {QueryHandler(filterData?.[0]?.appartment, "Apartment")}
           {QueryHandler(filterData?.[0]?.city, "City")}
           {QueryHandler(filterData?.[0]?.state, "State")}
           {QueryHandler(filterData?.[0]?.zipCode, "Zip Code")}
@@ -307,7 +307,7 @@ const MyProfile = () => {
             </div>
           </div>
           {QueryHandler(billing?.[0]?.address, "Address")}
-          {QueryHandler(billing?.[0]?.appartment, "Appartment")}
+          {QueryHandler(billing?.[0]?.appartment, "Apartment")}
           {QueryHandler(billing?.[0]?.city, "City")}
           {QueryHandler(billing?.[0]?.state, "State")}
           {QueryHandler(billing?.[0]?.zipCode, "Zip Code")}

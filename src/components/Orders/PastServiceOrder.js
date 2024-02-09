@@ -86,7 +86,7 @@ const PastServiceOrder = ({ isSliced, heading, padded, isMore }) => {
                                 fontSize: "20px",
                               }}
                             >
-                              OrderId : {item?.orderId}
+                              Order ID : {item?.orderId}
                             </p>{" "}
                             <p className="orderId" style={{ color: "#A9A9A9" }}>
                               Date : {item?.date?.slice(0, 10)}
@@ -169,7 +169,7 @@ const PastServiceOrder = ({ isSliced, heading, padded, isMore }) => {
                                 fontSize: "20px",
                               }}
                             >
-                              OrderId : {item?.orderId}
+                              Order ID : {item?.orderId}
                             </p>{" "}
                             <p className="orderId" style={{ color: "#A9A9A9" }}>
                               Date : {item?.date?.slice(0, 10)}
@@ -256,7 +256,7 @@ const PastServiceOrder = ({ isSliced, heading, padded, isMore }) => {
                                   fontSize: "20px",
                                 }}
                               >
-                                OrderId : {item?.orderId}
+                                Order ID : {item?.orderId}
                               </p>{" "}
                               <p
                                 className="orderId"

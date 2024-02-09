@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { pictures } from "../../constants/constant";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { Keyboard } from "swiper/modules";
+import { Keyboard, Autoplay } from "swiper/modules";
 import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const GallarySlider = () => {
@@ -18,6 +18,10 @@ const GallarySlider = () => {
     loop: false,
     keyboard: {
       enabled: true,
+    },
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
     },
     autoHeight: true,
     breakpoints: {
@@ -40,7 +44,7 @@ const GallarySlider = () => {
 
   return (
     <div style={sliderStyle}>
-      <Swiper {...swiperConfig} modules={[Keyboard]}>
+      <Swiper {...swiperConfig} modules={[Keyboard, Autoplay]}>
         {pictures?.map((i, index) => (
           <SwiperSlide key={index}>
             <div

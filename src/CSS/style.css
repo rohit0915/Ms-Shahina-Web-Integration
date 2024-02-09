@@ -3142,8 +3142,7 @@
 .NewsCard .Upper_Div img {
   width: 360px;
   height: 256px;
-  aspect-ratio: 1;
-  object-fit: contain;
+  object-fit: cover;
 }
 .NewsCard .title {
   font-size: 22px;
@@ -3154,10 +3153,13 @@
   margin-top: 20px;
 }
 .NewsCard button {
-  display: flex;
-  gap: 10px;
+  /* display: flex; */
+  /* gap: 10px; */
+  background-color: rgb(229 216 150);
   font-size: 20px;
-  align-items: center;
+  width: 100%;
+  padding: 10px;
+  /* align-items: center; */
   margin-top: 10px;
   color: #042b26;
   font-weight: bold;
@@ -4048,6 +4050,10 @@
 
 .Home_Three_Sec .viewMore {
   width: 200px;
+}
+.latest_blog_title {
+  max-width: 600px;
+  width: 100%;
 }
 
 .memeber_notification {

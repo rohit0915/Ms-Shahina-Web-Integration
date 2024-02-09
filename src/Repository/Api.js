@@ -336,7 +336,8 @@ export const getSingleProductAuth = async (
   setPrice,
   setSingleSize,
   setPriceId,
-  setIsWishlist
+  setIsWishlist,
+  setInCart
 ) => {
   try {
     const response = await axios.get(
@@ -360,6 +361,7 @@ export const getSingleProductAuth = async (
       setPrice(data.price);
     }
     setIsWishlist(response?.data?.isWishList);
+    setInCart(response?.data?.isCart);
   } catch {}
 };
 

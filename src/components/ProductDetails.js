@@ -36,6 +36,7 @@ const ProductDetails = () => {
   const [recentProduct, setRecentProduct] = useState([]);
   const [isWishlist, setIsWishlist] = useState(null);
   const [FBarr, setFBArr] = useState([]);
+  const [inCart, setInCart] = useState(false);
 
   let payload;
 
@@ -114,6 +115,7 @@ const ProductDetails = () => {
       }
       dispatch(addToCart(payload));
     }
+    fetchProduct();
   };
 
   const FBHandler = (id) => {
@@ -140,7 +142,8 @@ const ProductDetails = () => {
           setPrice,
           setSize,
           setPriceId,
-          setIsWishlist
+          setIsWishlist,
+          setInCart
         );
       } else {
         await getSingleProduct(
@@ -322,7 +325,7 @@ const ProductDetails = () => {
               <FaRegHeart className="heart" onClick={() => addToFav()} />
             )}
           </div>
-          
+
           <div className="multi-Images">
             {product?.productImages?.map((i, index) => (
               <img
@@ -397,7 +400,7 @@ const ProductDetails = () => {
 
           <div className="buttons">
             <button className="cart" onClick={() => cartHandler()}>
-              ADD TO CART
+              {inCart ? "ADDED" : "ADD TO CART"}
             </button>
 
             <button className="stripe" onClick={() => buyWithStripe()}>

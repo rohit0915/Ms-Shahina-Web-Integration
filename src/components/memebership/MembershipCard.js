@@ -99,7 +99,7 @@ const MembershipCard = ({
             <h1 className="text-2xl text-secondary flex items-center gap-2 font-bold">
               <span>
                 <span>{price}</span>
-                <span style={{ fontSize: "10px" }} > /month</span>
+                <span style={{ fontSize: "13px" }} > /month</span>
               </span>
               <span className="text-xl text-white font-semibold plan_mobile "  >{type} </span>
             </h1>
