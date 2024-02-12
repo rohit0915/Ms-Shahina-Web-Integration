@@ -91,7 +91,8 @@ const AboutUs = () => {
           </div>
         )}
 
-        <hr className="bg-secondary mt-[14.5rem] mb-14 w-3/4 mx-auto last-hr" />
+        {/* <hr className="bg-secondary mt-[14.5rem] mb-14 w-3/4 mx-auto last-hr" /> */}
+        <div className="mt-[14.5rem]"></div>
         <GallarySlider />
       </section>
     );

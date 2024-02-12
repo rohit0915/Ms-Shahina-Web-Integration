@@ -69,6 +69,17 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
         </>
       );
     } else {
+      const smallestPriceObject = i?.sizePrice?.reduce(
+        (minPriceObject, currentObject) => {
+          if (currentObject.mPrice < minPriceObject.mPrice) {
+            return currentObject;
+          } else {
+            return minPriceObject;
+          }
+        },
+        i?.sizePrice?.[0]
+      );
+
       return (
         <>
           <span className="price-container">
@@ -88,22 +99,32 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
           </span>
           <span className="price-container">
             <p className="member-price" style={{ color: "red" }}>
-              ${i.sizePrice?.[0]?.mPrice}{" "}
+              ${smallestPriceObject?.mPrice}{" "}
             </p>
             <span className="mrp" style={{ textDecoration: "none" }}>
-              ${i.sizePrice?.[0]?.price}{" "}
+              ${smallestPriceObject?.price}{" "}
             </span>
           </span>
         </>
       );
     }
   }
-
   const Component = () => {
+    function getHead() {
+      if (Heading === "IV Injections") {
+        return "IV Injections";
+      } else {
+        return `${Heading} Treatments`;
+      }
+    }
+
     return (
       <div className="Service_Drawer">
         <div className="heading">
-          <p> {`${Heading} Treatment`} </p>
+          <p>
+            {" "}
+            {getHead()}
+          </p>
           <img src="/Image/14.png" alt="" onClick={() => onClose()} />
         </div>
 
@@ -121,10 +142,6 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
             response?.map((i, index) => (
               <div className="Items" key={index}>
                 <Link to={`/indi-services/${i._id}`}>
-                  {/* <div
-                    className="thumbnail_second"
-                    style={{ backgroundImage: `url(${i.images?.[0]?.img})` }}
-                  /> */}
                   <ImageLazyLoading
                     img={i.images?.[0]?.img}
                     className="thumbnail"

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleNews } from "../../Repository/Api";
 import { View_description } from "../../Helper/Herlper";
+import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const OneNews = () => {
   const { id } = useParams();
@@ -41,9 +42,10 @@ const OneNews = () => {
       <div className="gap-3  mx-auto  All_News_Page">
         <section className="p-3">
           <div className="my-2">
-            <div
-              style={{ backgroundImage: `url(${response.image})` }}
-              className="thumbnail"
+            <ImageLazyLoading
+              className={"thumb_image"}
+              alt=""
+              img={response.image}
             />
             <h3 className="my-6 font-medium text-3xl text-primary title">
               {response.title}

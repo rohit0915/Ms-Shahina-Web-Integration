@@ -51,31 +51,47 @@ const Shop = () => {
             <img
               src="/asessts/back-button.svg"
               alt=""
+              className="cursor-pointer"
               onClick={() => navigate(-1)}
             />
           </div>
         </div>
       )}
 
-      <h2 className="text-4xl font-medium  text-primary text-center my-14">
-        SHOP SKIN TYPE
+      <h2
+        className="text-4xl font-medium  text-primary text-center my-14"
+        style={{ textTransform: "uppercase" }}
+      >
+        Shop by skin type
       </h2>
 
       <SkinType />
-      <h2 className="text-4xl font-medium  text-primary text-center my-14">
-        SHOP PRODUCT TYPE
+      <h2
+        className="text-4xl font-medium  text-primary text-center my-14"
+        style={{ textTransform: "uppercase" }}
+      >
+        Shop by product type
       </h2>
       <ProductType />
-      <h2 className="text-4xl font-medium  text-primary text-center my-14">
-        SHOP BRANDS
+      <h2
+        className="text-4xl font-medium  text-primary text-center my-14"
+        style={{ textTransform: "uppercase" }}
+      >
+        Shop by brands
       </h2>
       <Brands />
-      <h2 className="text-4xl font-medium  text-primary text-center my-14">
-        SHOP SKIN CONDITIONS
+      <h2
+        className="text-4xl font-medium  text-primary text-center my-14"
+        style={{ textTransform: "uppercase" }}
+      >
+        Shop by skin conditions
       </h2>
       <SkinConditions />
-      <h2 className="text-4xl font-medium  text-primary text-center my-14">
-        SHOP NUTRITON
+      <h2
+        className="text-4xl font-medium  text-primary text-center my-14"
+        style={{ textTransform: "uppercase" }}
+      >
+        Shop by nutritions
       </h2>
       <Nutrition />
       {fav?.length > 0 && (

@@ -58,10 +58,6 @@ const LatestNews = () => {
             <h1 className="text-4xl text-primary font-medium  bg-secondary w-full text-center  py-4 text-4xl font-medium text-primary title latest_blog_title ">
               Latest Blogs{" "}
             </h1>
-            <p className="text-xl text-center w-[53rem] content">
-              Nourish your skin with toxic-free cosmetic products. With offers
-              you can't refuse.
-            </p>
           </div>
 
           <div className="latest_news_swiper">

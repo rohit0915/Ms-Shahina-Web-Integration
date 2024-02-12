@@ -149,7 +149,7 @@ const Contact = () => {
 
           <section className="flex flex-col justify-between gap-7 w-1/3 query_Section">
             <h1 className="text-2xl font-semibold text-primary ">
-              Any Queries?
+              How Can We Best Serve You?
             </h1>
 
             <form onSubmit={submitHandler} className="query_Container">

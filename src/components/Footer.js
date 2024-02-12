@@ -74,6 +74,10 @@ const Footer = () => {
       title: "Useful Links",
       options: [
         {
+          title: "MY ACCOUNT",
+          link: "/my-profile",
+        },
+        {
           title: "PAYMENT PLANS",
           link: "/paymentplan",
         },
@@ -126,12 +130,14 @@ const Footer = () => {
                   <ImageLazyLoading
                     img={"/asessts/footer/instagram.png"}
                     alt={"instagram"}
+                    className={"Intsa"}
                   />
                 </a>
                 <a href={response?.fb} target="_blank" rel="noreferrer">
                   <ImageLazyLoading
                     img={"/asessts/footer/facebook.png"}
                     alt={"facebook"}
+                    className={"Intsa"}
                   />
                 </a>
               </div>

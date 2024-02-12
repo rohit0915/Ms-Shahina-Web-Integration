@@ -91,17 +91,23 @@ const MembershipCard = ({
     <>
       <SubsModal open={open} setOpen={setOpen} fetchHandler={fetchAll} />
       <section
-        className={`${bg} flex flex-col border border-orange-600  box-border py-4 rounded-md space-y-8 justify-center card membership_card`}
+        className={`${bg} flex flex-col    box-border py-4 rounded-md space-y-8 justify-center card membership_card`}
+        style={{ border: "2px solid rgb(229, 216, 150)" }}
       >
         <div className="flex gap-3 px-4 membership_card_header">
           <img className="w-10 h-10 image_subs" src={medal} alt="d" />
           <div>
             <h1 className="text-2xl text-secondary flex items-center gap-2 font-bold">
               <span>
-                <span>{price}</span>
-                <span style={{ fontSize: "13px" }} > /month</span>
+                <span className="Price">{price}</span>
+                <span className="mon" style={{ fontSize: "13px" }}>
+                  {" "}
+                  /month
+                </span>
               </span>
-              <span className="text-xl text-white font-semibold plan_mobile "  >{type} </span>
+              <span className="text-xl text-white font-semibold plan_mobile ">
+                {type}{" "}
+              </span>
             </h1>
 
             <p className="text-secondary text-sm font-bold">{require}</p>

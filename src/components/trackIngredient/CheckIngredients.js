@@ -12,6 +12,7 @@ const CheckIngredients = () => {
   const [response, setResponse] = useState([]);
   const [name, setName] = useState("Please insert ingredients here.....");
   const [isMatched, setIsMatched] = useState(false);
+  const [newKey, setNewKey] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -35,7 +36,8 @@ const CheckIngredients = () => {
   const items = response?.map((i) => i.name);
 
   const handleInputChange = (e) => {
-    setName(e.target.innerHTML);
+    const newText = e.target.innerText;
+    setName(newText);
   };
 
   const highlightWords = () => {

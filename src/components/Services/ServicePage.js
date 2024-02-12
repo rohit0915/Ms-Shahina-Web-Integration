@@ -411,7 +411,7 @@ const ServicePage = () => {
           <p>
             We are very proud of the service we provide and stand by every
             product we carry. We work hard to address our client's needs and
-            have them leave our spa loving their skin. That's why over 400
+            have them leave our spa loving their skin. That's why over 130
             people have given us a 5-star rating on Google!
           </p>
           <img src="/asessts/google-review.png" />

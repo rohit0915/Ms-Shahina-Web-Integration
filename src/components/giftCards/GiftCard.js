@@ -158,7 +158,7 @@ const GiftCard = () => {
                   <input
                     type="email"
                     className="InputEmail"
-                    placeholder="Enter Email to sent gift card"
+                    placeholder="Enter email to send gift card"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>

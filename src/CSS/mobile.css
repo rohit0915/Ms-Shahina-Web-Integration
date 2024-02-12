@@ -282,7 +282,8 @@
   .contact-us .title {
     font-size: 25px;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 40px;
+    font-weight: 800;
   }
   .contact-us .container {
     display: block;
@@ -316,6 +317,7 @@
   }
   .About-us_section .Right_Section .title {
     font-size: 25px;
+    margin-top: 20px;
   }
   .About-us_section .Right_Section button {
     width: 100%;
@@ -328,6 +330,11 @@
     font-size: 25px;
     padding: 10px;
   }
+  .MemberShip .heading_bold{
+    font-weight: 900;
+    padding-top: 40px;
+
+  }
 
   .MemberShip .container .card {
     margin-top: 20px;
@@ -338,6 +345,12 @@
   }
   .membership_card {
     width: 100%;
+  }
+  .membership_card .Price{
+    font-size: 18px;
+  }
+  .membership_card .mon{
+    font-size: 10px;
   }
   .membership_card_header {
     display: flex;

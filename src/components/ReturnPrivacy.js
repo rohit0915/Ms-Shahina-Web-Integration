@@ -32,7 +32,7 @@ const ReturnPrivacy = () => {
           <p style={{ width: "50%" }}></p>
         </div>
         <p className="title" style={{ textTransform: "uppercase" }}>
-          Return Privacy
+          Return Policy
         </p>
       </div>
 

@@ -63,7 +63,7 @@ const Membership = () => {
 
   return (
     <section className="bg-primary MemberShip">
-      <h1 className="text-5xl font-light text-secondary text-center py-14 box-border">
+      <h1 className="text-5xl font-light text-secondary text-center py-14 box-border heading_bold">
         Membership
       </h1>
       <h6 style={stylePara} className="memn_in_mobile">

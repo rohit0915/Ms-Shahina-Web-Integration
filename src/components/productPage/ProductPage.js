@@ -107,9 +107,9 @@ const ProductPage = () => {
         style={{ backgroundImage: `url(${img})` }}
       >
         <div className="content">
-          <h1 className="text-6xl text-[#000] text-center  z-50 font-light">
+          {/* <h1 className="text-6xl text-[#000] text-center  z-50 font-light">
             {name}
-          </h1>
+          </h1> */}
         </div>
         <div className="Image">
           <img
@@ -123,7 +123,7 @@ const ProductPage = () => {
       <section className="Category_Product_Container">
         <div className="Main ">
           <h1 className="text-4xl text-center font-medium text-primary TItle_of">
-            {name ? name : "All"} Products
+            {/* {name ? name : "All"} Products */}
           </h1>
 
           <div className=" flex gap-5 items-center text-xl border-b-2 pb-2   w-80 border-b-primary text-primary">

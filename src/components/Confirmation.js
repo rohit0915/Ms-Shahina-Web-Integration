@@ -15,8 +15,8 @@ const Confirmation = () => {
     <div className="Thanks_Container">
       <p className="title">Card Saved Successfully!</p>
       <p className="desc">
-        Thank you for saving your card. <br /> Your payment information has been
-        securely stored.
+        Thank you for confirming your appointment. We look forward to seeing you
+        soon!
       </p>
       <Link to="/" style={{ cursor: "pointer" }}>
         <button>RETURN TO HOMEPAGE</button>
