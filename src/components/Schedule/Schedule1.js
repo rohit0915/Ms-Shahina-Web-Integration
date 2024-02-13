@@ -71,6 +71,7 @@ const Schedule1 = () => {
     navigate(-1);
   }
 
+
   const addServie = (id, i) => {
     let payload;
     if (i?.multipleSize === true) {

@@ -5,19 +5,16 @@ import { Header } from "../../utils/helpingComponent";
 import { BiSearch } from "react-icons/bi";
 import { getIngredeints } from "../../Repository/Api";
 
+// --chnages
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 const ingredients = ["COSMETICS", "FOOD INGREDIENTS", "BIRTH CONTROL"];
 
 const CheckIngredients = () => {
   const [selected, setSelected] = useState("COSMETICS");
   const [response, setResponse] = useState([]);
-  const [name, setName] = useState("Please insert ingredients here.....");
   const [isMatched, setIsMatched] = useState(false);
-  const [newKey, setNewKey] = useState("");
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    highlightWords();
-  };
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
@@ -35,38 +32,45 @@ const CheckIngredients = () => {
   // ---
   const items = response?.map((i) => i.name);
 
-  const handleInputChange = (e) => {
-    const newText = e.target.innerText;
-    setName(newText);
-  };
-
-  const highlightWords = () => {
-    const pattern = new RegExp(items?.join("|"), "gi");
-    const matches = name?.match(pattern);
-    if (matches) {
-      setIsMatched(true);
-    } else {
-      setIsMatched(false);
-    }
-    const highlighted = name?.replace(
-      pattern,
-      (match) => `<span style="color: red;">${match}</span>`
-    );
-    setName(highlighted);
-  };
-
-  const handlePaste = (e) => {
-    e.preventDefault();
-    const plainText = (e.clipboardData || window.clipboardData).getData(
-      "text/plain"
-    );
-    document.execCommand("insertHTML", false, plainText);
-  };
-
   function clearPast() {
-    setName("");
+    setValue("");
     setIsMatched(false);
   }
+
+  const [value, setValue] = useState(
+    '<p><span style="color: white;">Please insert ingredients here.....</span></p>'
+  );
+
+  const handleChange = (content, delta, source, editor) => {
+    setValue(content);
+  };
+
+  const changeWordColor = () => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(value, "text/html");
+    const span = doc.querySelector("span");
+    if (span) {
+      const words = span.textContent.split(" ");
+      let newWords = [];
+      let redWordFound = false;
+      for (const word of words) {
+        const filtered = items?.some((i) => i === word);
+        if (filtered) {
+          newWords.push(`<span style="color: red;">${word}</span>`);
+          redWordFound = true;
+          setIsMatched(true);
+        } else {
+          if (redWordFound) {
+            newWords.push(`<span style="color: white;">${word}</span>`);
+          } else {
+            newWords.push(`<span style="color: white;">${word}</span>`);
+          }
+        }
+      }
+      span.innerHTML = newWords.join(" ");
+      setValue(doc.body.innerHTML);
+    }
+  };
 
   return (
     <section className="bg-primary">
@@ -113,19 +117,20 @@ const CheckIngredients = () => {
             Find the ingredients list of the product that you would like to
             check on the Internet, copy and insert it here:
           </p>
-          <form onSubmit={submitHandler}>
-            <div
-              contentEditable
-              onInput={handleInputChange}
-              onPaste={handlePaste}
-              dangerouslySetInnerHTML={{ __html: name }}
-              className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl ingre outline-none"
-              style={{ overflowY: "scroll" }}
-            ></div>
+          <form>
+            <div className="edit-cont">
+              <ReactQuill
+                className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl ingre outline-none"
+                theme="snow"
+                value={value}
+                onChange={handleChange}
+              />
+            </div>
 
             <div className="text-2xl font-semibold flex justify-between items-center my-6 gap-4">
               <button
-                type="submit"
+                type="button"
+                onClick={changeWordColor}
                 className="w-96 bg-secondary text-primary  rouded-xl py-3 rounded-xl"
               >
                 Check
@@ -160,11 +165,9 @@ const CheckIngredients = () => {
               {response?.map((list, index) => (
                 <p
                   key={`list ${index}`}
-                  className={`flex flex-col pt-6 border-b border-b-primary  pb-6 mb-4"
-                 
-                  ${name === list.name ? "activeIngredeientd" : ""}
-                  
-                  `}
+                  className={
+                    "flex flex-col pt-6 border-b border-b-primary  pb-6 mb-4"
+                  }
                 >
                   {list?.name}
                 </p>

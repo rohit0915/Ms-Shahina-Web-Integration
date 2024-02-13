@@ -278,7 +278,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-3 special_offer">
+          {/* <div className="flex items-center gap-3 special_offer">
             <div className="w-30 h-14" onClick={() => handleOpen()}>
               <img
                 className="w-full h-full object-contain"
@@ -291,7 +291,7 @@ const Footer = () => {
               visit when you choose the convenience of booking through
               our fabulous APP!
             </h6>
-          </div>
+          </div> */}
 
           <div className="Down_Div">
             <span className="font-medium text-base text-secondary mr-5">

@@ -362,7 +362,7 @@ const MyCart = () => {
           }}
           className="text-lg font-normal my-3"
         >
-          Please add shipping address before checkout !
+          Please add shipping address
         </Link>
       );
     }
@@ -848,7 +848,7 @@ const MyCart = () => {
 
                     {cart?.shipping > 0 && (
                       <p className="flex justify-between items-center">
-                        Shipping Amount{" "}
+                        Shipping Fee{" "}
                         <span className="text-green font-semibold">
                           ${cart?.shipping}{" "}
                         </span>
@@ -1002,8 +1002,8 @@ const MyCart = () => {
                         Become a Member & Save upto <br />
                         20% off on Products & Services
                       </Link>
-
-                      <img src="./Image/editor-0 1.gif" alt="" />
+{/* 
+                      <img src="./Image/editor-0 1.gif" alt="" /> */}
                     </div>
                   )}
 

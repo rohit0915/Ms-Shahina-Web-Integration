@@ -18,6 +18,9 @@
     padding: 10px;
     padding-left: 20px;
   }
+  .Galler_container {
+    justify-content: flex-start;
+  }
   .Home_Hero_Section .left-container h1 {
     font-size: 30px;
     width: 200px;

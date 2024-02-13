@@ -55,12 +55,12 @@ const LatestNews = () => {
       response?.length > 0 && (
         <section className=" Home_Three_Sec  MaxComponent mt-24 ">
           <div className="flex flex-col gap-7 items-center">
-            <h1 className="text-4xl text-primary font-medium  bg-secondary w-full text-center  py-4 text-4xl font-medium text-primary title latest_blog_title ">
+            <h1 className="text-4xl text-primary font-bold  bg-secondary w-full text-center  py-4 text-4xl font-medium text-primary title latest_blog_title ">
               Latest Blogs{" "}
             </h1>
           </div>
 
-          <div className="latest_news_swiper">
+          <div className="latest_news_swiper mt-3">
             <Swiper
               {...swiperConfig}
               pagination={true}

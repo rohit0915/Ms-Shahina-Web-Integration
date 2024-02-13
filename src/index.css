@@ -111,3 +111,9 @@ a {
   background-color: yellow; /* Adjust the highlighting style as needed */
   font-weight: bold;
 }
+
+
+.edit-cont .ql-toolbar.ql-snow{
+  display: none !important;
+
+}
