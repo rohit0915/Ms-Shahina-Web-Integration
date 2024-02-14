@@ -38,38 +38,26 @@ const CheckIngredients = () => {
   }
 
   const [value, setValue] = useState(
-    '<p><span style="color: white;">Please insert ingredients here.....</span></p>'
+    "<p><span>Please insert ingredients here.....</span></p>"
   );
 
   const handleChange = (content, delta, source, editor) => {
     setValue(content);
   };
 
-  const changeWordColor = () => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(value, "text/html");
-    const span = doc.querySelector("span");
-    if (span) {
-      const words = span.textContent.split(" ");
-      let newWords = [];
-      let redWordFound = false;
-      for (const word of words) {
-        const filtered = items?.some((i) => i === word);
-        if (filtered) {
-          newWords.push(`<span style="color: red;">${word}</span>`);
-          redWordFound = true;
-          setIsMatched(true);
-        } else {
-          if (redWordFound) {
-            newWords.push(`<span style="color: white;">${word}</span>`);
-          } else {
-            newWords.push(`<span style="color: white;">${word}</span>`);
-          }
-        }
-      }
-      span.innerHTML = newWords.join(" ");
-      setValue(doc.body.innerHTML);
+  const highlightWords = () => {
+    const pattern = new RegExp(items?.join("|"), "gi");
+    const matches = value?.match(pattern);
+    if (matches) {
+      setIsMatched(true);
+    } else {
+      setIsMatched(false);
     }
+    const highlighted = value?.replace(
+      pattern,
+      (match) => `<span style="color: red;">${match}</span>`
+    );
+    setValue(highlighted);
   };
 
   return (
@@ -130,12 +118,13 @@ const CheckIngredients = () => {
             <div className="text-2xl font-semibold flex justify-between items-center my-6 gap-4">
               <button
                 type="button"
-                onClick={changeWordColor}
+                onClick={highlightWords}
                 className="w-96 bg-secondary text-primary  rouded-xl py-3 rounded-xl"
               >
                 Check
               </button>
               <button
+                type="button"
                 className="w-96 text-secondary border border-secondary rounded-xl py-3"
                 onClick={() => clearPast()}
               >
