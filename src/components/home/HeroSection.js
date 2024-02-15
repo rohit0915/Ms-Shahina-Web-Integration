@@ -15,7 +15,6 @@ const HeroSection = () => {
   useEffect(() => {
     getHomePage(setBanner);
   }, []);
-  
 
   return (
     banner && (
@@ -24,7 +23,7 @@ const HeroSection = () => {
           <h1> {banner?.title} </h1>
           <ul>
             {banner?.description?.map((i, index) => (
-              <li key={index}> {i} </li>
+              <li key={index}>{i} </li>
             ))}
           </ul>
           {isLoggedIn ? (

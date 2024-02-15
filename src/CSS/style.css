@@ -2204,27 +2204,25 @@
 .Galler_container {
   max-width: 780px;
   margin: auto;
-  display: flex;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-gap: 10px;
   align-items: flex-start;
-  flex-wrap: wrap;
 }
 
 .Galler_container .Item {
-  width: 226px;
-  padding: 20px;
+  width: 200px;
   margin: auto;
+  margin-top: 0;
 }
 .Galler_container .Item img {
-  max-width: 100%;
-  width: auto;
-  max-height: 504px;
-  height: auto;
-  margin: auto;
+width: 200px;
+height: 200px;
+object-fit: cover;
 }
 .Galler_container .Item p {
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   padding: 5px;
   line-height: 1.75rem;
   margin-top: 1.25rem;
@@ -2233,7 +2231,6 @@
   font-weight: 600;
   color: rgb(4 43 38);
   background-color: rgb(229 216 150);
-
 }
 
 .membership_card {
