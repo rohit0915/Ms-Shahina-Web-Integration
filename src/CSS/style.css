@@ -1954,7 +1954,7 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   margin-left: 1rem;
-  padding-left: 0 !important;
+  /* padding-left: 0 !important; */
 }
 .Home_Hero_Section .left-container ul li {
   color: #fff;

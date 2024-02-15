@@ -12,7 +12,6 @@
   }
   /* ---------------- */
   .Home_Hero_Section {
-   
     justify-content: flex-start;
     height: auto;
     padding: 10px;
@@ -59,6 +58,7 @@
   .Home_Hero_Section .left-container ul {
     line-height: normal;
     margin: 0;
+    padding-left: 10px;
   }
   /* ---------------------------- */
   .Service_Glass_Section .Heading {
@@ -333,10 +333,9 @@
     font-size: 25px;
     padding: 10px;
   }
-  .MemberShip .heading_bold{
+  .MemberShip .heading_bold {
     font-weight: 900;
     padding-top: 40px;
-
   }
 
   .MemberShip .container .card {
@@ -349,10 +348,10 @@
   .membership_card {
     width: 100%;
   }
-  .membership_card .Price{
+  .membership_card .Price {
     font-size: 18px;
   }
-  .membership_card .mon{
+  .membership_card .mon {
     font-size: 10px;
   }
   .membership_card_header {
@@ -993,7 +992,7 @@
   .plan_mobile {
     font-size: 16px;
   }
-  .image_subs{
+  .image_subs {
     width: 30px;
     height: 30px;
   }
@@ -1001,6 +1000,5 @@
   .galler_slider_com {
     height: 500px;
     overflow: hidden;
-    
   }
 }
