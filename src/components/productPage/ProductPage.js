@@ -106,11 +106,7 @@ const ProductPage = () => {
         className="relative_product_container"
         style={{ backgroundImage: `url(${img})` }}
       >
-        <div className="content">
-          {/* <h1 className="text-6xl text-[#000] text-center  z-50 font-light">
-            {name}
-          </h1> */}
-        </div>
+        <div className="content"></div>
         <div className="Image">
           <img
             src="/asessts/back-button.svg"
@@ -133,7 +129,7 @@ const ProductPage = () => {
               type="search"
               placeholder="Search Products...."
               onChange={(e) => setSearch(e.target.value)}
-              style={{outline : 'none'}}
+              style={{ outline: "none" }}
             />
           </div>
         </div>
