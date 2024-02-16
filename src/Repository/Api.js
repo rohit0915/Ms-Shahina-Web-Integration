@@ -1406,6 +1406,20 @@ export const getServiceCount = async (setShow) => {
   } catch {}
 };
 
+export const savedBookingCard = async () => {
+  try {
+    const res = await axios.post(
+      `${Baseurl}api/v1/user/card/updateCardDetailSavedThroughToken`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      }
+    );
+  } catch {}
+};
+
 export const guestIntentMaker = async ({ email, clientSecret }) => {
   try {
     const res = await axios.post(

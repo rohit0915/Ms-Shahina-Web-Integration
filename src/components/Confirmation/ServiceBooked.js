@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getServiceOrder } from "../../Repository/Api";
+import { getServiceOrder, savedBookingCard } from "../../Repository/Api";
 import DateFormatter from "../Global/DateFormatter";
 
 function DOBfetcher(orgignalDate) {
@@ -26,6 +26,7 @@ const ServiceBooked = () => {
 
   useEffect(() => {
     fetchHandler();
+    savedBookingCard();
   }, []);
 
   useEffect(() => {
