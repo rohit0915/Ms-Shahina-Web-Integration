@@ -348,7 +348,7 @@ const MyCart = () => {
             }}
             className="text-lg font-normal my-3"
           >
-            Please update shipping address
+            Change shipping address
           </Link>
         </>
       );

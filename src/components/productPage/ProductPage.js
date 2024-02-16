@@ -256,7 +256,7 @@ const ProductPage = () => {
               </div>
             )}
           </div>
-          <div className="w-full border-l-2 border-l-primary mb-20">
+          <div className="w-full border-l-2 border-l-primary mb-20 product-colored-container">
             <WithLoader Wrapped={Component} loading={load} />
           </div>
         </div>

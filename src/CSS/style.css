@@ -1948,6 +1948,11 @@
   font-size: 6rem;
   color: #e5d896;
 }
+.Brand_Container h3 {
+  color: #000;
+  font-weight: 900;
+}
+
 .Home_Hero_Section .left-container ul {
   list-style: disc;
   margin-top: 20px;
@@ -2216,9 +2221,9 @@
   margin-top: 0;
 }
 .Galler_container .Item img {
-width: 200px;
-height: 200px;
-object-fit: cover;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 .Galler_container .Item p {
   text-align: center;

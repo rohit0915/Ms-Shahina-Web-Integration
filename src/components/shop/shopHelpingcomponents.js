@@ -155,30 +155,7 @@ export const Brands = ({ isBrand }) => {
     };
   }, [isMobile]);
 
-  const swiperConfig = {
-    spaceBetween: 20,
-    slidesPerView: 1,
-    loop: true,
-    autoplay: {
-      delay: 1500,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
-    },
-    keyboard: {
-      enabled: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-      },
-      900: {
-        slidesPerView: 3,
-      },
-      1024: {
-        slidesPerView: 4,
-      },
-    },
-  };
+
 
   return (
     response && (
