@@ -16,7 +16,7 @@ const ItemCard = ({
         <div className={`${styles} relative flex justify-center items-end`}>
           <img className="w-full h-full object-cover" src={src} alt="card" />
           {(type || largeCardType) && (
-            <div className="absolute bg-black w-full h-full bg-opacity-25	 flex justify-center items-center">
+            <div className="absolute bg-black w-full h-full bg-opacity-60	 flex justify-center items-center">
               <h3 className="font-medium text-white">
                 {type || largeCardType}
               </h3>
