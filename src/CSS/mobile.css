@@ -821,9 +821,9 @@
     display: block;
     text-align: center;
   }
-  .service-upcoming-order .Items {
+  /* .service-upcoming-order .Items {
     width: 100%;
-  }
+  } */
   .user_product_order .Items .content .orderId {
     text-align: center;
   }
@@ -878,7 +878,9 @@
 
   .Brand_Container h3 {
     text-align: center;
-
+  }
+  .user_product_order .Items {
+    width: 100%;
   }
   .memn_in_mobile {
     margin-top: 20px;

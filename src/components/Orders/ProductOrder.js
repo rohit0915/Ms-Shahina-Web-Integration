@@ -23,6 +23,7 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
     });
   }, []);
 
+
   return (
     <div className={`${!padded && "user_product_order_container"}`}>
       <div className="user_product_order">
