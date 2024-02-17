@@ -1250,7 +1250,7 @@ const getReturnPolicy = async (setResponse) => {
 const filterProduct = async (payload, setResponse) => {
   try {
     const res = await axios.get(
-      `https://shahina-backend.vercel.app/api/v1/Product/all/paginateProductSearch?search=${payload}`
+      `${Baseurl}api/v1/Product/all/paginateProductSearch?search=${payload}`
     );
     const data = res.data.data?.docs;
     setResponse(data);

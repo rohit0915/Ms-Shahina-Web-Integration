@@ -44,6 +44,7 @@
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-js": "^1.1.5",
     "react-syntax-highlighter": "^15.5.0",
+    "serverless": "^3.38.0",
     "slick-carousel": "^1.8.1",
     "stripe": "^13.11.0",
     "swiper": "^11.0.5",
