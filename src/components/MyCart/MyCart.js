@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AiFillApple, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import {
   addFBP,
   AddServiceBulk,
   AddToCartInBulk,
-  checkout,
+  // checkout,
   deleteAdOn,
   deleteFBP,
   deleteGift,
@@ -38,6 +38,7 @@ import MainStripe from "../Stripe/MainStripe";
 import CheckElement from "../Checkout/CheckElement";
 import DateFormatter from "../Global/DateFormatter";
 import { IoMdNavigate } from "react-icons/io";
+import { Spin } from "antd";
 
 const MyCart = () => {
   const [modalOpen2, setModalOpen2] = useState(false);
@@ -51,9 +52,8 @@ const MyCart = () => {
   const [desc, setDesc] = useState("");
   const [shippingPrivacy, setShippingPrivacy] = useState();
   const [returnPolicy, setReturnPolicy] = useState();
-  const [url, setUrl] = useState("");
-  const [orderId, setOrderId] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
+  const [deliveryLoader, setDeliveryLoader] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -68,7 +68,7 @@ const MyCart = () => {
   }, [isMobile]);
 
   const handleDeliveyOption = () => {
-    dispatch(updateDeliveyOpt());
+    dispatch(updateDeliveyOpt(setDeliveryLoader));
   };
 
   const getPolicies = () => {
@@ -164,9 +164,9 @@ const MyCart = () => {
     dispatch(updateAdOnQuantity(id, quantity));
   };
 
-  const checkoutHandler = () => {
-    checkout(setUrl, setOrderId);
-  };
+  // const checkoutHandler = () => {
+  //   checkout();
+  // };
 
   const [isPushingItems, setIsPushingItems] = useState(false);
   const pushItemInApi = async () => {
@@ -253,72 +253,72 @@ const MyCart = () => {
 
   const hasGiftCard = cart?.gifts?.length > 0;
 
-  let checkoutBtn;
+  // let checkoutBtn;
 
-  if (hasProducts || hasGiftCard) {
-    if (hasGiftCard && !hasProducts) {
-      checkoutBtn = (
-        <button
-          className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
-          onClick={() => checkoutHandler()}
-          style={{ cursor: "pointer" }}
-        >
-          Checkout
-        </button>
-      );
-    } else {
-      if (cart?.deliveryAddresss) {
-        checkoutBtn = (
-          <>
-            <button
-              className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
-              onClick={() => checkoutHandler()}
-              style={{ cursor: "pointer" }}
-            >
-              Checkout{" "}
-            </button>
+  // if (hasProducts || hasGiftCard) {
+  //   if (hasGiftCard && !hasProducts) {
+  //     checkoutBtn = (
+  //       <button
+  //         className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+  //         onClick={() => checkoutHandler()}
+  //         style={{ cursor: "pointer" }}
+  //       >
+  //         Checkout
+  //       </button>
+  //     );
+  //   } else {
+  //     if (cart?.deliveryAddresss) {
+  //       checkoutBtn = (
+  //         <>
+  //           <button
+  //             className="text-2xl py-4 my-12 w-full text-secondary bg-primary text-center"
+  //             onClick={() => checkoutHandler()}
+  //             style={{ cursor: "pointer" }}
+  //           >
+  //             Checkout{" "}
+  //           </button>
 
-            <div className="flex justify-center items-center text-lg">
-              <span className="text-mediumGray">
-                Pay with interest free installments with{" "}
-              </span>
-            </div>
-            <Link
-              className="text-lg flex justify-center my-4 font-bold underline text-primary"
-              to="/paymentplan"
-            >
-              CLICK TO LEARN MORE
-            </Link>
+  //           <div className="flex justify-center items-center text-lg">
+  //             <span className="text-mediumGray">
+  //               Pay with interest free installments with{" "}
+  //             </span>
+  //           </div>
+  //           <Link
+  //             className="text-lg flex justify-center my-4 font-bold underline text-primary"
+  //             to="/paymentplan"
+  //           >
+  //             CLICK TO LEARN MORE
+  //           </Link>
 
-            <div className="relative flex items-center justify-center text-xl my-12 font-semibold">
-              <hr className="w-full h-0.5" />
-              <span className="absolute  mx-auto px-4 bg-white">OR</span>
-            </div>
-            <div className="">
-              <h3 className="text-lg font-semibold my-4">
-                Express Checkout with
-              </h3>
+  //           <div className="relative flex items-center justify-center text-xl my-12 font-semibold">
+  //             <hr className="w-full h-0.5" />
+  //             <span className="absolute  mx-auto px-4 bg-white">OR</span>
+  //           </div>
+  //           <div className="">
+  //             <h3 className="text-lg font-semibold my-4">
+  //               Express Checkout with
+  //             </h3>
 
-              <button className="flex items-center justify-center  text-3xl font-semibold text-white bg-black w-full py-4 ">
-                <AiFillApple className="text-5xl" type="submit" />
-                Pay
-              </button>
-            </div>
-          </>
-        );
-      } else {
-        checkoutBtn = (
-          <a href="#delivery_option">
-            <button
-              className={`text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button`}
-            >
-              Checkout{" "}
-            </button>
-          </a>
-        );
-      }
-    }
-  }
+  //             <button className="flex items-center justify-center  text-3xl font-semibold text-white bg-black w-full py-4 ">
+  //               <AiFillApple className="text-5xl" type="submit" />
+  //               Pay
+  //             </button>
+  //           </div>
+  //         </>
+  //       );
+  //     } else {
+  //       checkoutBtn = (
+  //         <a href="#delivery_option">
+  //           <button
+  //             className={`text-2xl py-4 my-12 w-full text-secondary bg-primary text-center disabled_button`}
+  //           >
+  //             Checkout{" "}
+  //           </button>
+  //         </a>
+  //       );
+  //     }
+  //   }
+  // }
 
   const hasAppointmentTime = hasService && cart?.fromTime && cart?.toTime;
   const deliveryAddressPresent = cart?.deliveryAddresss;
@@ -858,65 +858,76 @@ const MyCart = () => {
 
                   {hasProducts && (
                     <>
-                      <h4 className="text-xl my-2 font-bold">
-                        Select Delivery Option for Product
-                      </h4>
-                      <div
-                        className="flex justify-between gap-2  my-5 delivery_container"
-                        id="delivery_option"
-                      >
-                        <div
-                          className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
-                          onClick={handleDeliveyOption}
-                        >
-                          <input
-                            className="absolute top-2 w-6  checked:accent-green h-6 left-2"
-                            type="radio"
-                            name="option"
-                            checked={!cart?.pickupFromStore}
-                          />
-                          <label htmlFor="doorstep">
-                            <div className="flex flex-col items-center">
-                              <img
-                                className="w-24 h-12 stroke-green fill-green"
-                                src="/asessts/truck.svg"
-                                alt="truck"
-                              />
-                              <span className="text bold  text-xl font-bold">
-                                Doorstep Delivery
-                              </span>
-                              <p className="text-sm">
-                                *Includes Shipping Charges
-                              </p>
-                            </div>
-                          </label>
+                      {deliveryLoader ? (
+                        <div className="loader">
+                          <Spin size="medium" />
                         </div>
+                      ) : (
+                        <>
+                          <h4 className="text-xl my-2 font-bold">
+                            Select Delivery Option for Product
+                          </h4>
+                          <div
+                            className="flex justify-between gap-2  my-5 delivery_container"
+                            id="delivery_option"
+                          >
+                            <div
+                              className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
+                              onClick={handleDeliveyOption}
+                            >
+                              <input
+                                className="absolute top-2 w-6  checked:accent-green h-6 left-2"
+                                type="radio"
+                                name="option"
+                                checked={!cart?.pickupFromStore}
+                              />
+                              <label htmlFor="doorstep">
+                                <div className="flex flex-col items-center">
+                                  <img
+                                    className="w-24 h-12 stroke-green fill-green"
+                                    src="/asessts/truck.svg"
+                                    alt="truck"
+                                  />
+                                  <span className="text bold  text-xl font-bold">
+                                    Doorstep Delivery
+                                  </span>
+                                  <p className="text-sm">
+                                    *Includes Shipping Charges
+                                  </p>
+                                </div>
+                              </label>
+                            </div>
 
-                        <div
-                          className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
-                          onClick={handleDeliveyOption}
-                        >
-                          <input
-                            className="absolute top-2 w-6  checked:accent-green h-6 left-2"
-                            type="radio"
-                            name="option"
-                            checked={cart?.pickupFromStore}
-                          />
-                          <label htmlFor="store">
-                            <div className="flex flex-col items-center">
-                              <img
-                                className="w-24 h-12 stroke-green fill-green"
-                                src="/asessts/store location.svg"
-                                alt="store"
+                            <div
+                              className="relative flex gap-1 px-3 py-2 border-2 cursor-pointer"
+                              onClick={handleDeliveyOption}
+                            >
+                              <input
+                                className="absolute top-2 w-6  checked:accent-green h-6 left-2"
+                                type="radio"
+                                name="option"
+                                checked={cart?.pickupFromStore}
                               />
-                              <span className="text bold text-xl font-bold">
-                                Pickup from Store
-                              </span>
-                              <p className="text-sm">*No Shipping Charges</p>
+                              <label htmlFor="store">
+                                <div className="flex flex-col items-center">
+                                  <img
+                                    className="w-24 h-12 stroke-green fill-green"
+                                    src="/asessts/store location.svg"
+                                    alt="store"
+                                  />
+                                  <span className="text bold text-xl font-bold">
+                                    Pickup from Store
+                                  </span>
+                                  <p className="text-sm">
+                                    *No Shipping Charges
+                                  </p>
+                                </div>
+                              </label>
                             </div>
-                          </label>
-                        </div>
-                      </div>
+                          </div>
+                        </>
+                      )}
+
                       {cart?.pickupFromStore ? (
                         <>
                           <h3 className="text-xl font-medium">
@@ -996,30 +1007,19 @@ const MyCart = () => {
                     <span className="">Total Amount</span>
                     <span>${cart?.total} </span>
                   </div>
+                  
                   {!isSubscriptionActive && (
                     <div className="memeber_notification">
                       <Link to="/membership">
                         Become a Member & Save upto <br />
                         20% off on Products & Services
                       </Link>
-{/* 
-                      <img src="./Image/editor-0 1.gif" alt="" /> */}
                     </div>
                   )}
 
                   {hasProducts && (
-                    <div
-                      className="flex gap-2 items-center mt-2"
-                      style={{
-                        textAlign: "center",
-                        justifyContent: "center",
-                        textDecorationLine: "underline",
-                        color: "rgb(4 43 38)",
-                        fontWeight: "900",
-                      }}
-                    >
+                    <div className="policy-sem-container">
                       <p
-                        style={{ cursor: "pointer" }}
                         onClick={() => {
                           setDesc(shippingPrivacy);
                           setModalOpen2(true);
@@ -1029,7 +1029,6 @@ const MyCart = () => {
                         Shipping Policy
                       </p>
                       <p
-                        style={{ cursor: "pointer" }}
                         onClick={() => {
                           setDesc(returnPolicy);
                           setModalOpen2(true);

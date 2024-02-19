@@ -4595,3 +4595,20 @@
 .Footer-Container .Intsa {
   width: 40px !important;
 }
+
+
+.policy-sem-container{
+  text-align: center;
+  justify-content: center;
+  text-decoration: underline;
+  color:rgb(4 43 38) ;
+  font-weight: 900;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.policy-sem-container p {
+  cursor: pointer;
+}

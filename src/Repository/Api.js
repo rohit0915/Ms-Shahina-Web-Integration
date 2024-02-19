@@ -433,7 +433,8 @@ const getCart = () => {
   };
 };
 
-const updateDeliveyOpt = () => {
+const updateDeliveyOpt = (setLoader) => {
+  setLoader(true);
   return async (dispatch) => {
     try {
       const response = await axios.put(
@@ -447,8 +448,11 @@ const updateDeliveyOpt = () => {
       );
       if (response.status === 200) {
         dispatch(getCart());
+        setLoader(false);
       }
-    } catch {}
+    } catch {
+      setLoader(false);
+    }
   };
 };
 
@@ -861,7 +865,7 @@ const placeOrder = async (orderId) => {
     showMsg("", msg, "danger");
   }
 };
-export const placeOrderwithIntent = async (orderId, setKey) => {
+export const placeOrderwithIntent = async (orderId) => {
   try {
     const response = await axios.post(
       `${Baseurl}api/v1/placeOrderWebsite/${orderId} `,
@@ -873,14 +877,13 @@ export const placeOrderwithIntent = async (orderId, setKey) => {
       }
     );
     const intentKey = response?.data?.paymentIntent?.client_secret;
-    setKey(intentKey);
   } catch (e) {
     const msg = e.response.data.message;
     showMsg("", msg, "danger");
   }
 };
 
-const checkout = async (setKey, setOrderId) => {
+const checkout = async () => {
   try {
     const response = await axios.post(
       `${Baseurl}api/v1/checkout`,
@@ -892,8 +895,7 @@ const checkout = async (setKey, setOrderId) => {
       }
     );
     const id = response.data?.data?.orderId;
-    setOrderId(id);
-    placeOrderwithIntent(id, setKey);
+    placeOrderwithIntent(id);
   } catch (e) {
     const msg = e?.response?.data?.message;
     showMsg("", msg, "danger");
