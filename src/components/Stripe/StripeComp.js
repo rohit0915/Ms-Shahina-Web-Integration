@@ -79,7 +79,7 @@ export default function StripeComp() {
         clientSecret,
         confirmParams: {
           return_url:
-            "http://shahinahoja.s3-website.eu-north-1.amazonaws.com/service-booked",
+            "https://main.d3teo2g7vp93hi.amplifyapp.com/service-booked",
         },
       });
       if (error) {
