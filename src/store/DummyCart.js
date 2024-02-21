@@ -2,7 +2,6 @@
 
 // src/cartSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { Store } from "react-notifications-component";
 import { showMsg } from "../Repository/Api";
 
 const Localdata = localStorage.getItem("dummyCart");

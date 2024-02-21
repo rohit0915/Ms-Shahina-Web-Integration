@@ -131,8 +131,7 @@ const CardSave = () => {
             elements,
             clientSecret,
             confirmParams: {
-              return_url:
-                "http://shahinahoja.s3-website.eu-north-1.amazonaws.com/confirmation",
+              return_url: "https://main.d3teo2g7vp93hi.amplifyapp.com/confirmation",
             },
           });
           if (error) {

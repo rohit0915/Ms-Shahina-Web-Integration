@@ -9,6 +9,9 @@
   width: 50px;
   cursor: pointer;
 }
+.plan_mobile{
+  font-size: 18px;
+}
 .Backward_Heading p {
   color: #042b26;
   text-align: center;
@@ -2363,6 +2366,9 @@
 
 .cart-container .left-container .content {
   width: 30%;
+}
+.cart-container .right_container{
+  min-width: 330px;
 }
 
 .cart-container .left-container .content .title {

@@ -21,6 +21,7 @@ import Select from "react-select";
 import { View_description } from "../../Helper/Herlper";
 import ContactComponent from "../Contact/ContactComponent";
 import { IoMdNavigate } from "react-icons/io";
+import Loader from "../Loader/Loader";
 
 const Schedule1 = () => {
   const [response, setResponse] = useState([]);
@@ -28,12 +29,12 @@ const Schedule1 = () => {
   const [id, setId] = useState("");
   const [cart, setCart] = useState({});
   const [adOnService, setAdOnService] = useState([]);
-  const [contact, setContact] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const dispatch = useDispatch();
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const myCart = useSelector(CartItems);
 
@@ -56,7 +57,6 @@ const Schedule1 = () => {
   useEffect(() => {
     fetchHandler();
     fetchAdOn();
-    getContactDetails(setContact);
   }, []);
 
   useEffect(() => {
@@ -70,7 +70,6 @@ const Schedule1 = () => {
   function BackNavigation() {
     navigate(-1);
   }
-
 
   const addServie = (id, i) => {
     let payload;
@@ -88,7 +87,7 @@ const Schedule1 = () => {
         quantity: 1,
       };
     }
-    dispatch(addServiceInCart(id, payload, navigate));
+    dispatch(addServiceInCart(id, payload, navigate ,setLoading));
   };
 
   const isItemInCart = ({ itemId, priceId, item }) => {
@@ -106,19 +105,19 @@ const Schedule1 = () => {
 
   const deleteServiceItem = (id, priceId) => {
     if (priceId) {
-      dispatch(deleteServiceCart(id, priceId));
+      dispatch(deleteServiceCart( setLoading , id, priceId));
     } else {
-      dispatch(deleteServiceCart(id));
+      dispatch(deleteServiceCart(setLoading ,id));
     }
   };
 
   const addOnInCart = (id) => {
     const quantity = 1;
-    dispatch(addAdOnInCart(id, quantity));
+    dispatch(addAdOnInCart(id, quantity ,setLoading));
   };
 
   const deleteAnother = (id) => {
-    dispatch(deleteAdOn(id));
+    dispatch(deleteAdOn(id ,setLoading));
   };
 
   function textTransform(content, title) {
@@ -199,7 +198,7 @@ const Schedule1 = () => {
     if (isItemInCart({ itemId: id, priceId, item: i })) {
       deleteServiceItem(id, priceId);
     } else {
-      addServie(id, i);
+      addServie(id, i );
     }
   }
   // ----
@@ -309,223 +308,231 @@ const Schedule1 = () => {
         desc={desc}
       />
 
-      <div className="down_arrow_btn">
-        <a href="#booknow">
-          <IoMdNavigate color="#fff" />
-        </a>
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="down_arrow_btn">
+            <a href="#booknow">
+              <IoMdNavigate color="#fff" />
+            </a>
+          </div>
 
-      <div className="Backward_Heading step_Heading">
-        <div>
-          <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />
-          <p style={{ width: "50%" }}>STEP 1 OF 3</p>
-        </div>
-        <p className="title">Select Services</p>
-      </div>
+          <div className="Backward_Heading step_Heading">
+            <div>
+              <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />
+              <p style={{ width: "50%" }}>STEP 1 OF 3</p>
+            </div>
+            <p className="title">Select Services</p>
+          </div>
 
-      <SelectService data={response} id={id} setId={setId} />
+          <SelectService data={response} id={id} setId={setId} />
 
-      <div className="schedule_1">
-        <div className="left_div">
-          <ul className="Menu_List">
-            {response?.map((i, index) => (
-              <li
-                key={index}
-                className={i._id === id && "active"}
-                onClick={() => {
-                  setTitle(i.name);
-                  setId(i._id);
-                }}
-              >
-                {" "}
-                {i.name}{" "}
-              </li>
-            ))}
-          </ul>
+          <div className="schedule_1">
+            <div className="left_div">
+              <ul className="Menu_List">
+                {response?.map((i, index) => (
+                  <li
+                    key={index}
+                    className={i._id === id && "active"}
+                    onClick={() => {
+                      setTitle(i.name);
+                      setId(i._id);
+                    }}
+                  >
+                    {" "}
+                    {i.name}{" "}
+                  </li>
+                ))}
+              </ul>
 
-          {hasService && (
-            <>
-              <p className="title">Selected Services</p>
+              {hasService && (
+                <>
+                  <p className="title">Selected Services</p>
+                  <div className="Box">
+                    {cart?.services?.map((i, index) => (
+                      <div className="Item" key={index}>
+                        <div>
+                          <input
+                            type="checkbox"
+                            checked
+                            className="cursor-pointer"
+                            onClick={() =>
+                              RegularHandler(
+                                i?.serviceId?._id,
+                                i?.priceId,
+                                i?.serviceId
+                              )
+                            }
+                          />
+                        </div>
+
+                        <div className="description-box">
+                          <p className="title">
+                            {" "}
+                            {i?.priceId ? i?.size : i?.serviceId?.name}{" "}
+                          </p>
+
+                          <p className="desc" style={{ textAlign: "justify" }}>
+                            Total Time : ( {i?.totalTime})
+                            {textTransform(
+                              i?.serviceId?.description,
+                              i?.serviceId?.priceId
+                            )}
+                          </p>
+                        </div>
+                        <div className="price-Box">
+                          <p className="title">
+                            {" "}
+                            {i?.serviceId?.type === "offer"
+                              ? `$${i.total}`
+                              : `$${i.subTotal}`}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                    {cart?.AddOnservicesSchema?.map((i, index) => (
+                      <div className="Item" key={index}>
+                        <div>
+                          <input
+                            type="checkbox"
+                            checked
+                            onClick={() =>
+                              deleteAnother(i?.addOnservicesId?._id)
+                            }
+                          />
+                        </div>
+
+                        <div className="description-box">
+                          <p className="title"> {i?.addOnservicesId?.name} </p>
+                          <p className="desc" style={{ textAlign: "justify" }}>
+                            Total Time : ( {i?.addOnservicesId?.totalTime})
+                            {i?.addOnservicesId?.description}
+                          </p>
+                        </div>
+                        <div className="price-Box">
+                          <p className="title"> ${i.addOnservicesId?.price}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              <p className="title">Featured Services</p>
+
               <div className="Box">
-                {cart?.services?.map((i, index) => (
-                  <div className="Item" key={index}>
-                    <div>
-                      <input
-                        type="checkbox"
-                        checked
-                        className="cursor-pointer"
-                        onClick={() =>
-                          RegularHandler(
-                            i?.serviceId?._id,
-                            i?.priceId,
-                            i?.serviceId
-                          )
-                        }
-                      />
+                {" "}
+                {Item?.length === 0 ? (
+                  <Alert
+                    message={`No Service is Related to ${title}`}
+                    type="info"
+                    className="Alert"
+                  />
+                ) : (
+                  Item?.map((i, index) => (
+                    <div className="Item" key={index}>
+                      {checkboxGetter(i)}
+                      <div className="description-box">
+                        <p className="title"> {i.name} </p>
+                        {TimeFetcher(i)}
+                        {packageGetter(i)}
+                        {textTransform(i.description, i.name)}
+                      </div>
+                      <div className="price-Box">
+                        <p className="title">{priceGetter(i)}</p>
+                      </div>
                     </div>
-
-                    <div className="description-box">
-                      <p className="title">
+                  ))
+                )}
+              </div>
+            </div>
+            <div className="right_div">
+              <div className="Box" id="booknow">
+                <ContactComponent />
+                {/* Service */}
+                {cart?.services?.map((i, index) => (
+                  <div className="Items" key={index}>
+                    <div className="two-div">
+                      <p className="head">
                         {" "}
                         {i?.priceId ? i?.size : i?.serviceId?.name}{" "}
                       </p>
-
-                      <p className="desc" style={{ textAlign: "justify" }}>
-                        Total Time : ( {i?.totalTime})
-                        {textTransform(
-                          i?.serviceId?.description,
-                          i?.serviceId?.priceId
-                        )}
-                      </p>
-                    </div>
-                    <div className="price-Box">
-                      <p className="title">
+                      <p className="head">
                         {" "}
                         {i?.serviceId?.type === "offer"
                           ? `$${i.total}`
                           : `$${i.subTotal}`}
                       </p>
                     </div>
-                  </div>
-                ))}
-                {cart?.AddOnservicesSchema?.map((i, index) => (
-                  <div className="Item" key={index}>
-                    <div>
-                      <input
-                        type="checkbox"
-                        checked
-                        onClick={() => deleteAnother(i?.addOnservicesId?._id)}
-                      />
-                    </div>
-
-                    <div className="description-box">
-                      <p className="title"> {i?.addOnservicesId?.name} </p>
-                      <p className="desc" style={{ textAlign: "justify" }}>
-                        Total Time : ( {i?.addOnservicesId?.totalTime})
-                        {i?.addOnservicesId?.description}
+                    <div className="two-div">
+                      <p className="desc"> Total Time : ( {i?.totalTime})</p>
+                      <p
+                        className="delete cursor-pointer"
+                        onClick={() =>
+                          deleteServiceItem(i.serviceId?._id, i?.priceId)
+                        }
+                      >
+                        {" "}
+                        DELETE
                       </p>
                     </div>
-                    <div className="price-Box">
-                      <p className="title"> ${i.addOnservicesId?.price}</p>
+                  </div>
+                ))}
+
+                {/* Ad on Service */}
+                {cart?.AddOnservicesSchema?.map((i, index) => (
+                  <div className="Items" key={index}>
+                    <div className="two-div">
+                      <p className="head"> {i?.addOnservicesId?.name} </p>
+                      <p className="head"> ${i.addOnservicesId?.price}</p>
+                    </div>
+                    <div className="two-div">
+                      <p className="desc">
+                        {" "}
+                        Total Time : ( {i?.addOnservicesId?.totalTime})
+                      </p>
+                      <p
+                        className="delete cursor-pointer"
+                        onClick={() => deleteAnother(i?.addOnservicesId?._id)}
+                      >
+                        {" "}
+                        DELETE
+                      </p>
+                    </div>
+                  </div>
+                ))}
+
+                {bookNow}
+              </div>
+
+              <div className="border-collapsed"></div>
+
+              <div className="Box">
+                <p style={{ fontWeight: "bold", fontSize: "22px" }}>
+                  Add On Services
+                </p>
+                {adOnService?.map((i, index) => (
+                  <div className="add-on" key={index}>
+                    <input
+                      type="checkbox"
+                      checked={isInCart(i._id)}
+                      onClick={() => AdOnHandler(i._id)}
+                    />
+                    <div className="left" style={{ textAlign: "right" }}>
+                      <div className="head">
+                        <p className="title"> {i.name} </p>
+                        <p className="price">${i.price} </p>
+                      </div>
+                      <p className="desc"> {i.time} </p>
                     </div>
                   </div>
                 ))}
               </div>
-            </>
-          )}
-
-          <p className="title">Featured Services</p>
-
-          <div className="Box">
-            {" "}
-            {Item?.length === 0 ? (
-              <Alert
-                message={`No Service is Related to ${title}`}
-                type="info"
-                className="Alert"
-              />
-            ) : (
-              Item?.map((i, index) => (
-                <div className="Item" key={index}>
-                  {checkboxGetter(i)}
-                  <div className="description-box">
-                    <p className="title"> {i.name} </p>
-                    {TimeFetcher(i)}
-                    {packageGetter(i)}
-                    {textTransform(i.description, i.name)}
-                  </div>
-                  <div className="price-Box">
-                    <p className="title">{priceGetter(i)}</p>
-                  </div>
-                </div>
-              ))
-            )}
+            </div>
           </div>
-        </div>
-        <div className="right_div">
-          <div className="Box" id="booknow">
-            <ContactComponent />
-            {/* Service */}
-            {cart?.services?.map((i, index) => (
-              <div className="Items" key={index}>
-                <div className="two-div">
-                  <p className="head">
-                    {" "}
-                    {i?.priceId ? i?.size : i?.serviceId?.name}{" "}
-                  </p>
-                  <p className="head">
-                    {" "}
-                    {i?.serviceId?.type === "offer"
-                      ? `$${i.total}`
-                      : `$${i.subTotal}`}
-                  </p>
-                </div>
-                <div className="two-div">
-                  <p className="desc"> Total Time : ( {i?.totalTime})</p>
-                  <p
-                    className="delete cursor-pointer"
-                    onClick={() =>
-                      deleteServiceItem(i.serviceId?._id, i?.priceId)
-                    }
-                  >
-                    {" "}
-                    DELETE
-                  </p>
-                </div>
-              </div>
-            ))}
-
-            {/* Ad on Service */}
-            {cart?.AddOnservicesSchema?.map((i, index) => (
-              <div className="Items" key={index}>
-                <div className="two-div">
-                  <p className="head"> {i?.addOnservicesId?.name} </p>
-                  <p className="head"> ${i.addOnservicesId?.price}</p>
-                </div>
-                <div className="two-div">
-                  <p className="desc">
-                    {" "}
-                    Total Time : ( {i?.addOnservicesId?.totalTime})
-                  </p>
-                  <p
-                    className="delete cursor-pointer"
-                    onClick={() => deleteAnother(i?.addOnservicesId?._id)}
-                  >
-                    {" "}
-                    DELETE
-                  </p>
-                </div>
-              </div>
-            ))}
-
-            {bookNow}
-          </div>
-
-          <div className="border-collapsed"></div>
-
-          <div className="Box">
-            <p style={{ fontWeight: "bold", fontSize: "22px" }}>
-              Add On Services
-            </p>
-            {adOnService?.map((i, index) => (
-              <div className="add-on" key={index}>
-                <input
-                  type="checkbox"
-                  checked={isInCart(i._id)}
-                  onClick={() => AdOnHandler(i._id)}
-                />
-                <div className="left" style={{ textAlign: "right" }}>
-                  <div className="head">
-                    <p className="title"> {i.name} </p>
-                    <p className="price">${i.price} </p>
-                  </div>
-                  <p className="desc"> {i.time} </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 };
