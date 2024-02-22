@@ -73,10 +73,8 @@
   .Home_Two_Sec {
     display: block;
   }
-  .product-colored-container{
+  .product-colored-container {
     border: none !important;
-  
-
   }
   .Home_Two_Sec .img-container {
     width: 100%;
@@ -821,19 +819,25 @@
     display: block;
     text-align: center;
   }
-  /* .service-upcoming-order .Items {
-    width: 100%;
-  } */
+
   .user_product_order .Items .content .orderId {
     text-align: center;
   }
   .Spec {
     justify-content: center !important;
-    gap: 10px !important;
+    gap: 5px !important;
+    flex-direction: column-reverse;
+  }
+  .Spec p{
+    text-align: center;
   }
   .user_product_order .Items .content .button-container button {
     display: block;
     margin: auto;
+  }
+  .user_product_order .main,
+  .service-upcoming-order {
+    grid-template-columns: repeat(1, 1fr);
   }
   .user_product_order .title_account_second {
     text-align: center;
@@ -841,6 +845,7 @@
   .More-Question {
     display: block;
   }
+
   .More-Question .left {
     max-width: 100%;
     margin-top: 20px;

@@ -8,7 +8,7 @@ import authSlice from "./authSlice";
 import cartSlice from "./cartSlice";
 import DummyCart from "./DummyCart";
 import ServiceCart from "./DummySerivce";
-import bannerSlice from './BannerSlice';
+import bannerSlice from "./BannerSlice";
 
 export const store = configureStore({
   reducer: {

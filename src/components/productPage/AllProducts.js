@@ -1,10 +1,22 @@
 /** @format */
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import ProductCard from "../shop/ProductCard";
 
 const AllProducts = ({ products, setLimit, limit, total }) => {
-  const isLoad = products?.length >= 5 && limit <= total;
+  const loaderRef = useRef(null);
+
+  const isInView = () => {
+    if (!loaderRef.current) return false;
+    const rect = loaderRef.current.getBoundingClientRect();
+    return rect.top < window.innerHeight;
+  };
+
+  const handleLoadMore = () => {
+    if (isInView() && products.length < total) {
+      setLimit(limit + 10);
+    }
+  };
 
   const sortedArr =
     products?.length > 0 &&
@@ -15,8 +27,8 @@ const AllProducts = ({ products, setLimit, limit, total }) => {
     });
 
   return products?.length > 0 ? (
-    <>
-      <div className="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 gap-10 justify-items-center py-5  w-full product_container cursor-pointer ">
+    <div className="w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center py-5 product_container cursor-pointer">
         {sortedArr?.map((item) => (
           <ProductCard
             key={item._id}
@@ -31,12 +43,17 @@ const AllProducts = ({ products, setLimit, limit, total }) => {
           />
         ))}
       </div>
-      {isLoad && (
-        <button onClick={() => setLimit(limit + 10)} className="load_more">
-          Load More
-        </button>
+
+      {products.length < total && (
+        <div className="text-center py-5">
+          <button onClick={handleLoadMore} className="load_more">
+            Load More
+          </button>
+        </div>
       )}
-    </>
+
+      <div ref={loaderRef}></div>
+    </div>
   ) : (
     <div className="Not-Found">
       <img src="/Image/no-results.png" alt="" />

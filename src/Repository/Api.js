@@ -509,6 +509,30 @@ const updateQuan = (productId, payload, setLoading) => {
   };
 };
 
+export const updateProductInCart = (productId, payload, setLoading) => {
+  setLoading(true);
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `${Baseurl}api/v1/updateProductToCart/${productId}`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("Token")}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        dispatch(CartwithLoader(setLoading));
+      }
+    } catch (e) {
+      const msg = e.response.data.message;
+      showMsg("", msg, "danger");
+      setLoading(false);
+    }
+  };
+};
+
 const deleteGift = (id) => {
   return async (dispatch) => {
     try {
@@ -863,8 +887,8 @@ const updateServiceQuan = (payload, formDetail, setLoading) => {
   };
 };
 
-const updateAdOnQuantity = (payload, quantity ,setLoading) => {
-  setLoading(true)
+const updateAdOnQuantity = (payload, quantity, setLoading) => {
+  setLoading(true);
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -876,14 +900,13 @@ const updateAdOnQuantity = (payload, quantity ,setLoading) => {
           },
         }
       );
-      if(response.status === 200){
+      if (response.status === 200) {
         dispatch(CartwithLoader(setLoading));
-
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false)
+      setLoading(false);
     }
   };
 };
@@ -1484,6 +1507,24 @@ export const getUserOrder = async (id, setResponse) => {
     const res = await axios.get(`${Baseurl}api/v1/user/getOrderDetails/${id}`);
     setResponse(res?.data);
   } catch {}
+};
+
+export const getAddressCart = async (setResponse) => {
+  try {
+    const response = await axios.get(
+      `${Baseurl}api/v1/getAddressDataForCart`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      }
+    );
+    setResponse(response.data);
+  } catch (e) {
+    const msg = e.response.data.message;
+    showMsg("", msg, "danger");
+  }
 };
 
 export {

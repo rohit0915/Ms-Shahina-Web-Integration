@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { View_description } from "../Helper/Herlper";
 import {
   getAddress,
-  getProductOrder,
   getProfile,
   removeAddress,
 } from "../Repository/Api";
+import { DateFormatter } from "../utils/helpingComponent";
 import AddressModal from "./Drawer/AddressModal";
 import ProfileModal from "./Drawer/ProfileModal";
 import SubsModal from "./Drawer/SubsModal";
@@ -85,64 +85,11 @@ const MyProfile = () => {
     }
   }, [profile?.subscriptionId]);
 
-  function DOBfetcher() {
-    const original = new Date(profile?.dob);
-    const month = original.getMonth() + 1;
-    const date = original.getDate();
-    const year = original.getFullYear();
-    const hasAll = month && year && date;
-    return (
-      hasAll && (
-        <div className="two-sec">
-          <p className="dark"> Date of Birth : </p>
-          <p>
-            {" "}
-            {`${month < 9 ? `0${month}` : month}-${
-              date < 9 ? `0${date}` : date
-            }-${year}  `}{" "}
-          </p>
-        </div>
-      )
-    );
-  }
-
   const isSubscriptionActive = profile?.isSubscription;
-
-  function getSubscriptionDate() {
-    if (profile?.subscriptionId) {
-      if (profile?.subscriptionId?.updatedAt) {
-        const original = new Date(profile?.subscriptionId?.updatedAt);
-        const month = original.getMonth() + 1;
-        const date = original.getDate();
-        const year = original.getFullYear();
-        return (
-          <p>
-            {" "}
-            {`${month < 9 ? `0${month}` : month}-${
-              date < 9 ? `0${date}` : date
-            }-${year}  `}
-          </p>
-        );
-      } else {
-        const original = new Date(profile?.subscriptionId?.createdAt);
-        const month = original.getMonth() + 1;
-        const date = original.getDate();
-        const year = original.getFullYear();
-        return (
-          <p>
-            {" "}
-            {`${month < 9 ? `0${month}` : month}-${
-              date < 9 ? `0${date}` : date
-            }-${year}  `}
-          </p>
-        );
-      }
-    }
-  }
 
   function getUpgradeBtn() {
     if (profile?.subscriptionId) {
-      if (profile?.subscriptionId?.plan != "DIAMOND") {
+      if (profile?.subscriptionId?.plan !== "DIAMOND") {
         return (
           <Link to="/membership">
             <button className="first">UPGRADE PLAN</button>
@@ -196,7 +143,7 @@ const MyProfile = () => {
           {QueryHandler(profile?.firstName, "First Name")}
           {QueryHandler(profile?.lastName, "Last Name")}
           {QueryHandler(profile?.gender, "Gender")}
-          {DOBfetcher()}
+          {QueryHandler(DateFormatter(profile?.dob), "Date of Birth")}
           {QueryHandler(profile?.countryCode, "Country Code")}
           {profile?.phone && (
             <div className="two-sec">
@@ -341,7 +288,14 @@ const MyProfile = () => {
                 <div className="right">
                   <div className="two-sec">
                     <p className="strong">Purchased On : </p>
-                    {getSubscriptionDate()}
+                    <p>
+                      {" "}
+                      {profile?.subscriptionId?.updatedAt
+                        ? DateFormatter(profile?.subscriptionId?.updatedAt)
+                        : DateFormatter(
+                            profile?.subscriptionId?.createdAt
+                          )}{" "}
+                    </p>
                   </div>
                   <div className="two-sec">
                     <p className="strong">Validity : </p>

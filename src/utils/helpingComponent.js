@@ -61,3 +61,17 @@ export const ValidInput = ({ props }) => {
 export const ImageLazyLoading = ({ img, className, alt }) => {
   return <LazyLoadImage className={className} alt={alt} src={img} />;
 };
+
+export const DateFormatter = (date) => {
+  const original = new Date(date);
+  const month = original.getMonth() + 1;
+  const day = original.getDate();
+  const year = original.getFullYear();
+  const hasAll = month && year && day;
+  return (
+    hasAll &&
+    `${month <= 9 ? `0${month}` : month}-${
+      day <= 9 ? `0${day}` : day
+    }-${year}  `
+  );
+};

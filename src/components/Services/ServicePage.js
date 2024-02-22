@@ -1,18 +1,16 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {
   addServiceInCart,
-  getLimitedOffer,
   getSingleService,
 } from "../../Repository/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated } from "../../store/authSlice";
 import Testimonials from "../PaymentPlans/Testimonials";
 import { addServiceLocally } from "../../store/DummySerivce";
-import OfferDrawer from "../Drawer/OfferDrawer";
 import { motion } from "framer-motion";
 import GallarySlider from "../Sliders/GallarySlider";
 import LimitedOffer from "../home/LimitedOffer";
@@ -80,7 +78,7 @@ const ServicePage = () => {
 
   const addToCart = async () => {
     if (isLoggedIn === true) {
-      dispatch(addServiceInCart(id, payload, navigate , setLoading ));
+      dispatch(addServiceInCart(id, payload, navigate, setLoading));
     } else {
       const dummy = { id, payload };
       await dispatch(addServiceLocally(dummy));
@@ -217,7 +215,7 @@ const ServicePage = () => {
             {response?.area?.length > 0 && (
               <div className="drop_Down_Container">
                 <button className="main_btn" onClick={handleToggleOpen}>
-                  Area : {area}
+                  Type : {area}
                   <svg
                     className="Icon Icon--select-arrow"
                     role="presentation"
@@ -432,7 +430,7 @@ const ServicePage = () => {
                 have them leave our spa loving their skin. That's why over 130
                 people have given us a 5-star rating on Google!
               </p>
-              <img src="/asessts/google-review.png" />
+              <img src="/asessts/google-review.png" alt='' />
             </div>
             <div style={{ width: "100%", overflow: "hidden" }}>
               <Testimonials />
