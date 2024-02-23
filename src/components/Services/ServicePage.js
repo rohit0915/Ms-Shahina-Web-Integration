@@ -78,7 +78,7 @@ const ServicePage = () => {
 
   const addToCart = async () => {
     if (isLoggedIn === true) {
-      dispatch(addServiceInCart(id, payload, navigate, setLoading));
+      dispatch(addServiceInCart(id, payload, navigate));
     } else {
       const dummy = { id, payload };
       await dispatch(addServiceLocally(dummy));

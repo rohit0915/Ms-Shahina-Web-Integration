@@ -87,7 +87,7 @@ const Schedule1 = () => {
         quantity: 1,
       };
     }
-    dispatch(addServiceInCart(id, payload, navigate ,setLoading));
+    dispatch(addServiceInCart(id, payload, navigate));
   };
 
   const isItemInCart = ({ itemId, priceId, item }) => {
@@ -105,19 +105,19 @@ const Schedule1 = () => {
 
   const deleteServiceItem = (id, priceId) => {
     if (priceId) {
-      dispatch(deleteServiceCart( setLoading , id, priceId));
+      dispatch(deleteServiceCart( id, priceId));
     } else {
-      dispatch(deleteServiceCart(setLoading ,id));
+      dispatch(deleteServiceCart( id));
     }
   };
 
   const addOnInCart = (id) => {
     const quantity = 1;
-    dispatch(addAdOnInCart(id, quantity ,setLoading));
+    dispatch(addAdOnInCart(id, quantity));
   };
 
   const deleteAnother = (id) => {
-    dispatch(deleteAdOn(id ,setLoading));
+    dispatch(deleteAdOn(id));
   };
 
   function textTransform(content, title) {
@@ -198,7 +198,7 @@ const Schedule1 = () => {
     if (isItemInCart({ itemId: id, priceId, item: i })) {
       deleteServiceItem(id, priceId);
     } else {
-      addServie(id, i );
+      addServie(id, i);
     }
   }
   // ----

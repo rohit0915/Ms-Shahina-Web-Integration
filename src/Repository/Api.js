@@ -375,8 +375,7 @@ const getFrequently = async (setResponse, id) => {
   } catch {}
 };
 
-const AddItemCart = (productId, payload, setLoading) => {
-  setLoading(true);
+const AddItemCart = (productId, payload) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -389,12 +388,11 @@ const AddItemCart = (productId, payload, setLoading) => {
         }
       );
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
@@ -485,8 +483,7 @@ const getGiftCard = async (setResponse) => {
   } catch {}
 };
 
-const updateQuan = (productId, payload, setLoading) => {
-  setLoading(true);
+const updateQuan = (productId, payload) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -499,12 +496,11 @@ const updateQuan = (productId, payload, setLoading) => {
         }
       );
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
@@ -575,8 +571,7 @@ const deleteFBP = (id) => {
   };
 };
 
-const deleteItemCart = (id, setLoading) => {
-  setLoading(true);
+const deleteItemCart = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
@@ -589,12 +584,11 @@ const deleteItemCart = (id, setLoading) => {
         }
       );
       if (response?.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
@@ -724,8 +718,7 @@ const getAddress = async (setResponse) => {
   } catch {}
 };
 
-const addServiceInCart = (payload, formDetail, navigate, setLoading) => {
-  setLoading(true);
+const addServiceInCart = (payload, formDetail, navigate) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -738,13 +731,12 @@ const addServiceInCart = (payload, formDetail, navigate, setLoading) => {
         }
       );
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
         navigate("/schedule1");
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
@@ -760,8 +752,7 @@ const getServiceforCart = async (setResponse, setId) => {
   } catch {}
 };
 
-const deleteServiceCart = (setLoading, payload, priceId) => {
-  setLoading(true);
+const deleteServiceCart = (payload, priceId) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
@@ -776,18 +767,16 @@ const deleteServiceCart = (setLoading, payload, priceId) => {
         }
       );
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
 
-const addAdOnInCart = (payload, quantity, setLoading) => {
-  setLoading(true);
+const addAdOnInCart = (payload, quantity) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -801,12 +790,11 @@ const addAdOnInCart = (payload, quantity, setLoading) => {
       );
 
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
@@ -821,8 +809,7 @@ const getOnService = async (setResponse) => {
   } catch {}
 };
 
-const deleteAdOn = (payload, setLoading) => {
-  setLoading(true);
+const deleteAdOn = (payload) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
@@ -835,12 +822,11 @@ const deleteAdOn = (payload, setLoading) => {
         }
       );
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
@@ -863,8 +849,7 @@ const TimeandSlot = async (formData, navigate) => {
   }
 };
 
-const updateServiceQuan = (payload, formDetail, setLoading) => {
-  setLoading(true);
+const updateServiceQuan = (payload, formDetail) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -877,18 +862,16 @@ const updateServiceQuan = (payload, formDetail, setLoading) => {
         }
       );
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };
 
-const updateAdOnQuantity = (payload, quantity, setLoading) => {
-  setLoading(true);
+const updateAdOnQuantity = (payload, quantity) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -901,12 +884,11 @@ const updateAdOnQuantity = (payload, quantity, setLoading) => {
         }
       );
       if (response.status === 200) {
-        dispatch(CartwithLoader(setLoading));
+        dispatch(getCart());
       }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
-      setLoading(false);
     }
   };
 };

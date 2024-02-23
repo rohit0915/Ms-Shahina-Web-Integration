@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import {
   addFBP,
   AddServiceBulk,
@@ -29,14 +27,15 @@ import { DummyCartItems, removeFromCart } from "../../store/DummyCart";
 import { removeServiceDummy, ServiceItems } from "../../store/DummySerivce";
 import TextDrawer from "../Drawer/TextDrawer";
 import { SlCalender } from "react-icons/sl";
-import MainStripe from "../Stripe/MainStripe";
-import CheckElement from "../Checkout/CheckElement";
 import DateFormatter from "../Global/DateFormatter";
 import { IoMdNavigate } from "react-icons/io";
-import Loader from "../Loader/Loader";
 import PriceDetails from "./CartComponent/PriceDetails";
 import ProductActions from "./CartComponent/ProductActions";
 import FBPActions from "./CartComponent/FBPActions";
+import GiftCardActions from "./CartComponent/GiftCardActions";
+import ServiceActions from "./CartComponent/ServiceActions";
+import AdOnActions from "./CartComponent/AdOnActions";
+import CheckoutSection from "./CartComponent/CheckoutSection";
 
 const MyCart = () => {
   const [modalOpen2, setModalOpen2] = useState(false);
@@ -52,7 +51,6 @@ const MyCart = () => {
   const [returnPolicy, setReturnPolicy] = useState();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [deliveryLoader, setDeliveryLoader] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState({});
 
   useEffect(() => {
@@ -111,8 +109,7 @@ const MyCart = () => {
         sizePrice,
       };
     }
-    // dispatch(updateProductInCart(id, payload, setLoading));
-    dispatch(updateQuan(id, payload, setLoading));
+    dispatch(updateQuan(id, payload));
   };
 
   const DeleteGiftItem = (id) => {
@@ -123,7 +120,7 @@ const MyCart = () => {
     dispatch(deleteFBP(id));
   };
   const deleteItem = (id) => {
-    dispatch(deleteItemCart(id, setLoading));
+    dispatch(deleteItemCart(id));
   };
 
   const updateFBPItem = (id, quantity) => {
@@ -134,9 +131,9 @@ const MyCart = () => {
 
   const DeleteServiceItem = (id, priceId) => {
     if (priceId) {
-      dispatch(deleteServiceCart(setLoading, id, priceId));
+      dispatch(deleteServiceCart(id, priceId));
     } else {
-      dispatch(deleteServiceCart(setLoading, id));
+      dispatch(deleteServiceCart(id));
     }
   };
 
@@ -155,15 +152,15 @@ const MyCart = () => {
         quantity,
       };
     }
-    dispatch(updateServiceQuan(id, payload, setLoading));
+    dispatch(updateServiceQuan(id, payload));
   };
 
   const deleteAdOnService = (id) => {
-    dispatch(deleteAdOn(id, setLoading));
+    dispatch(deleteAdOn(id));
   };
 
   const updateOnQuan = (id, quantity) => {
-    dispatch(updateAdOnQuantity(id, quantity, setLoading));
+    dispatch(updateAdOnQuantity(id, quantity));
   };
 
   const [isPushingItems, setIsPushingItems] = useState(false);
@@ -375,12 +372,6 @@ const MyCart = () => {
     }
   }
 
-  function showProductCheckout() {
-    if (hasGiftCard || hasProducts) {
-      return <CheckElement />;
-    }
-  }
-
   // New Key for  price section
   const subTotal = cart?.subTotal;
   const offerDiscount = cart?.offerDiscount;
@@ -398,270 +389,97 @@ const MyCart = () => {
         desc={desc}
       />
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <div className="down_arrow_btn">
-            <a href="#mobilecart">
-              <IoMdNavigate color="#fff" />
-            </a>
+      <>
+        <div className="down_arrow_btn">
+          <a href="#mobilecart">
+            <IoMdNavigate color="#fff" />
+          </a>
+        </div>
+
+        <section className="my-14">
+          <div className="Backward_Heading step_Heading">
+            <div>
+              <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />
+            </div>
+            <p className="title">My Cart</p>
           </div>
 
-          <section className="my-14">
-            <div className="Backward_Heading step_Heading">
-              <div>
-                <img src="/Image/1.png" alt="" onClick={() => navigate(-1)} />
-              </div>
-              <p className="title">My Cart</p>
-            </div>
-
-            {isEmpty === false ? (
-              <div className="flex gap-10 justify-center cart-container">
-                <div className="left-container">
-                  <ProductActions
-                    hasProducts={hasProducts}
-                    products={cart?.products}
-                    QuantityAction={updatedItemQuan}
-                    deleteAction={deleteItem}
-                  />
-
-                  <FBPActions
-                    Items={cart?.frequentlyBuyProductSchema}
-                    QuantityAction={updateFBPItem}
-                    DeleteAction={DeleteFBPItem}
-                  />
-
-             
-
-                  {hasGiftCard && <p className="Title">All Gift : </p>}
-                  {cart?.gifts?.map((i, index) => (
-                    <div className="Item" key={index}>
-                      <div className="item-container">
-                        <div className="img-container">
-                          <img src={i.giftPriceId?.giftId?.image} alt="" />
-                        </div>
-                        <div className="content">
-                          <p className="title">
-                            {" "}
-                            {i.giftPriceId?.giftId?.name}{" "}
-                          </p>
-
-                          <button
-                            onClick={() => DeleteGiftItem(i.giftPriceId?._id)}
-                          >
-                            {" "}
-                            <RiDeleteBin6Fill /> DELETE ITEM
-                          </button>
-                        </div>
-
-                        <div className="price_div">
-                          <p className="sellingPrice">${i?.subTotal}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-
-                  {hasService && <p className="Title">All Services : </p>}
-
-                  {cart?.services?.map((i, index) => (
-                    <div className="Item" key={index}>
-                      <div className="item-container">
-                        <div className="img-container">
-                          <img src={i.serviceId?.images?.[0]?.img} alt="" />
-                        </div>
-                        <div className="content">
-                          <p className="title"> {i.serviceId?.name} </p>
-
-                          <div className="Quantity">
-                            <span className="quant">QTY</span>
-
-                            <div className="qty">
-                              <span
-                                className="input cursor-pointer"
-                                onClick={() => {
-                                  if (i.quantity > 1) {
-                                    updateServiceQuantity(
-                                      i,
-                                      i.quantity - 1,
-                                      i.serviceId?._id
-                                    );
-                                  }
-                                }}
-                              >
-                                <AiOutlineMinus />
-                              </span>
-                              <span className="item"> {i.quantity} </span>
-                              <span
-                                className="input cursor-pointer"
-                                onClick={() => {
-                                  updateServiceQuantity(
-                                    i,
-                                    i.quantity + 1,
-                                    i.serviceId?._id
-                                  );
-                                }}
-                              >
-                                <AiOutlinePlus />
-                              </span>
-                            </div>
-                          </div>
-
-                          <button
-                            onClick={() =>
-                              DeleteServiceItem(i.serviceId?._id, i?.priceId)
-                            }
-                          >
-                            {" "}
-                            <RiDeleteBin6Fill /> DELETE SERVICE
-                          </button>
-                        </div>
-
-                        <div className="price_div">
-                          <p className="sellingPrice">
-                            {" "}
-                            {i?.serviceId?.type === "offer"
-                              ? `$${i.total}`
-                              : `$${i.price}`}{" "}
-                          </p>
-                          {i.size && (
-                            <p
-                              className="sellingPrice"
-                              style={{ fontSize: "20px" }}
-                            >
-                              Size : {i.size}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-
-                  {cart?.AddOnservicesSchema?.map((i, index) => (
-                    <div className="Item" key={index}>
-                      <div className="item-container">
-                        <div className="img-container">
-                          <img src={i.addOnservicesId?.image} alt="" />
-                        </div>
-                        <div className="content">
-                          <p className="title"> {i.addOnservicesId?.name} </p>
-
-                          <div className="Quantity">
-                            <span className="quant">QTY</span>
-
-                            <div className="qty">
-                              <span
-                                className="input cursor-pointer"
-                                onClick={() => {
-                                  if (i.quantity > 1) {
-                                    updateOnQuan(
-                                      i.addOnservicesId?._id,
-                                      i?.quantity - 1
-                                    );
-                                  }
-                                }}
-                              >
-                                <AiOutlineMinus />
-                              </span>
-                              <span className="item"> {i.quantity} </span>
-                              <span
-                                className="input cursor-pointer"
-                                onClick={() => {
-                                  updateOnQuan(
-                                    i.addOnservicesId?._id,
-                                    i?.quantity + 1
-                                  );
-                                }}
-                              >
-                                <AiOutlinePlus />
-                              </span>
-                            </div>
-                          </div>
-
-                          <button
-                            onClick={() =>
-                              deleteAdOnService(i.addOnservicesId?._id)
-                            }
-                          >
-                            {" "}
-                            <RiDeleteBin6Fill /> DELETE SERVICE
-                          </button>
-                        </div>
-
-                        <div className="price_div">
-                          <p className="sellingPrice">${i.price}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-
-                  {!isMobile && (
-                    <>
-                      {hasService && (
-                        <div className="schedule_1 appointment_box">
-                          <div className="left_div" style={{ width: "100%" }}>
-                            <div className="review_box">
-                              <p className="title">Confirm Appointment</p>
-                              <p
-                                className="title"
-                                style={{
-                                  fontSize: "20px",
-                                  marginTop: "20px",
-                                  marginBottom: "20px",
-                                }}
-                              >
-                                Payment Method
-                              </p>
-                              <span
-                                style={{ marginTop: "20px" }}
-                                className="mob"
-                              >
-                                You won't be charged now , payment will be
-                                collected in store after your appointment.
-                              </span>
-                              <MainStripe />
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      {showProductCheckout()}
-                    </>
-                  )}
-                </div>
-
-                <PriceDetails
-                  isSubscriptionActive={isSubscriptionActive}
-                  subTotal={subTotal}
-                  offerDiscount={offerDiscount}
-                  membershipDiscount={membershipDiscount}
+          {isEmpty === false ? (
+            <div className="flex gap-10 justify-center cart-container">
+              <div className="left-container">
+                <ProductActions
                   hasProducts={hasProducts}
-                  deliveryLoader={deliveryLoader}
-                  handleDeliveyOption={handleDeliveyOption}
-                  pickUpFromStore={pickUpFromStore}
-                  contact={contact}
-                  addressFetcher={addressFetcher}
-                  hasService={hasService}
-                  appointmentTimeGetter={appointmentTimeGetter}
-                  appointmentSlotChanger={appointmentSlotChanger}
-                  shipping={shipping}
-                  total={total}
-                  setModalOpen2={setModalOpen2}
-                  setDesc={setDesc}
-                  returnPolicy={returnPolicy}
-                  shippingPrivacy={shippingPrivacy}
-                  isMobile={isMobile}
-                  showProductCheckout={showProductCheckout}
+                  products={cart?.products}
+                  QuantityAction={updatedItemQuan}
+                  deleteAction={deleteItem}
                 />
+
+                <FBPActions
+                  Items={cart?.frequentlyBuyProductSchema}
+                  QuantityAction={updateFBPItem}
+                  DeleteAction={DeleteFBPItem}
+                />
+
+                <GiftCardActions
+                  hasGiftCard={hasGiftCard}
+                  Items={cart?.gifts}
+                  deleteAction={DeleteGiftItem}
+                />
+
+                <ServiceActions
+                  hasService={hasService}
+                  Items={cart?.services}
+                  QuantityAction={updateServiceQuantity}
+                  DeleteAction={DeleteServiceItem}
+                />
+
+                <AdOnActions
+                  Items={cart?.AddOnservicesSchema}
+                  QuantityAction={updateOnQuan}
+                  DeletAction={deleteAdOnService}
+                />
+
+                {!isMobile && (
+                  <CheckoutSection
+                    hasService={hasService}
+                    hasGiftCard={hasGiftCard}
+                    hasProducts={hasProducts}
+                  />
+                )}
               </div>
-            ) : (
-              <div className="Not-Found">
-                <img src="/Image/empty-cart.png" alt="" />
-                <h5> Your cart is currently empty.</h5>
-              </div>
-            )}
-          </section>
-        </>
-      )}
+
+              <PriceDetails
+                isSubscriptionActive={isSubscriptionActive}
+                subTotal={subTotal}
+                offerDiscount={offerDiscount}
+                membershipDiscount={membershipDiscount}
+                hasProducts={hasProducts}
+                deliveryLoader={deliveryLoader}
+                handleDeliveyOption={handleDeliveyOption}
+                pickUpFromStore={pickUpFromStore}
+                contact={contact}
+                addressFetcher={addressFetcher}
+                hasService={hasService}
+                appointmentTimeGetter={appointmentTimeGetter}
+                appointmentSlotChanger={appointmentSlotChanger}
+                shipping={shipping}
+                total={total}
+                setModalOpen2={setModalOpen2}
+                setDesc={setDesc}
+                returnPolicy={returnPolicy}
+                shippingPrivacy={shippingPrivacy}
+                isMobile={isMobile}
+                hasGiftCard={hasGiftCard}
+              />
+            </div>
+          ) : (
+            <div className="Not-Found">
+              <img src="/Image/empty-cart.png" alt="" />
+              <h5> Your cart is currently empty.</h5>
+            </div>
+          )}
+        </section>
+      </>
     </>
   );
 };

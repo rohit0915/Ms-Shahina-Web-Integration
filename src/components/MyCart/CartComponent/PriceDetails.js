@@ -8,7 +8,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { BiCurrentLocation } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import MainStripe from "../../Stripe/MainStripe";
+import CheckoutSection from "./CheckoutSection";
 
 const PriceDetails = ({
   isSubscriptionActive,
@@ -31,7 +31,7 @@ const PriceDetails = ({
   shippingPrivacy,
   returnPolicy,
   isMobile,
-  showProductCheckout,
+  hasGiftCard,
 }) => {
   return (
     <section className="right_container">
@@ -245,36 +245,13 @@ const PriceDetails = ({
           )}
         </section>
       </div>
+
       {isMobile && (
-        <>
-          <div id="mobilecart">
-            {hasService && (
-              <div className="schedule_1 appointment_box">
-                <div className="left_div" style={{ width: "100%" }}>
-                  <div className="review_box">
-                    <p className="title">Confirm Appointment</p>
-                    <p
-                      className="title"
-                      style={{
-                        fontSize: "20px",
-                        marginTop: "20px",
-                        marginBottom: "20px",
-                      }}
-                    >
-                      Payment Method
-                    </p>
-                    <span style={{ marginTop: "20px" }} className="mob">
-                      You won't be charged now , payment will be collected in
-                      store after your appointment.
-                    </span>
-                    <MainStripe />
-                  </div>
-                </div>
-              </div>
-            )}
-            {showProductCheckout()}
-          </div>
-        </>
+        <CheckoutSection
+          hasService={hasService}
+          hasGiftCard={hasGiftCard}
+          hasProducts={hasProducts}
+        />
       )}
     </section>
   );

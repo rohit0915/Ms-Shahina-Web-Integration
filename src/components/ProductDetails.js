@@ -38,7 +38,6 @@ const ProductDetails = () => {
   const [isWishlist, setIsWishlist] = useState(null);
   const [FBarr, setFBArr] = useState([]);
   const [inCart, setInCart] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   let payload;
 
@@ -86,7 +85,7 @@ const ProductDetails = () => {
 
   const cartHandler = () => {
     if (isLoggedIn === true) {
-      dispatch(AddItemCart(id, payload, setLoading));
+      dispatch(AddItemCart(id, payload));
     } else {
       let payload;
       if (size) {
@@ -316,219 +315,209 @@ const ProductDetails = () => {
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <div className="indivisual-product">
-            <div className="left">
-              <div className="upperImage">
-                <img src={img} alt="" />
-                {isWishlist === true && (
-                  <FaHeart onClick={removeFromFav} className="heart" />
-                )}
-                {isWishlist === false && (
-                  <FaRegHeart className="heart" onClick={() => addToFav()} />
-                )}
-              </div>
+      <div className="indivisual-product">
+        <div className="left">
+          <div className="upperImage">
+            <img src={img} alt="" />
+            {isWishlist === true && (
+              <FaHeart onClick={removeFromFav} className="heart" />
+            )}
+            {isWishlist === false && (
+              <FaRegHeart className="heart" onClick={() => addToFav()} />
+            )}
+          </div>
 
-              <div className="multi-Images">
-                {product?.productImages?.map((i, index) => (
-                  <img
-                    src={i.image}
-                    className="cursor-pointer"
-                    alt=""
-                    key={`Product-Image${index}`}
-                    onClick={() => setImg(i.image)}
-                  />
+          <div className="multi-Images">
+            {product?.productImages?.map((i, index) => (
+              <img
+                src={i.image}
+                className="cursor-pointer"
+                alt=""
+                key={`Product-Image${index}`}
+                onClick={() => setImg(i.image)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="right">
+          <p className="title"> {product?.name} </p>
+
+          <div className="price-container">
+            <span className="price">${price}</span>
+          </div>
+
+          {membership_fetcher()}
+          <p className="quantity">QUANTITY</p>
+
+          <div style={{ width: "40%" }} className="Quantity_Container">
+            <div className="qty">
+              <span
+                className="input cursor-pointer"
+                onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+              >
+                <AiOutlineMinus />
+              </span>
+              <span className="item"> {quantity} </span>
+              <span
+                className="input cursor-pointer"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                <AiOutlinePlus />
+              </span>
+            </div>
+          </div>
+
+          {sizes?.length > 0 && (
+            <div className="multiple-sizes">
+              <p> Select Size </p>
+              <div className="Main">
+                {sizes?.map((i, index) => (
+                  <div
+                    key={`multiple-sizes${index}`}
+                    className={`box ${size === i.size ? "active" : ""} `}
+                    onClick={() => {
+                      setSize(i.size);
+                      setPrice(i.price);
+                      setPriceId(i._id);
+                    }}
+                  >
+                    {i.size}
+                  </div>
                 ))}
               </div>
             </div>
+          )}
 
-            <div className="right">
-              <p className="title"> {product?.name} </p>
+          {product?.acneType || product?.considerAcne ? (
+            <div className="multiple-sizes">
+              <p>
+                Categories : {product?.acneType} , {product?.considerAcne}
+              </p>
+            </div>
+          ) : (
+            ""
+          )}
 
-              <div className="price-container">
-                <span className="price">${price}</span>
+          <div className="buttons">
+            <button className="cart" onClick={() => cartHandler()}>
+              {inCart ? "ADDED" : "ADD TO CART"}
+            </button>
+
+            <button className="stripe" onClick={() => buyWithStripe()}>
+              BUY WITH STRIPE
+            </button>
+          </div>
+
+          <div className="tabs-container">
+            <Tabs defaultActiveKey="DESCRIPTION1" items={items} />
+          </div>
+        </div>
+      </div>
+      {product?.keyIngredients?.[0]?.length > 0 && (
+        <div className="Product_Key_Ingredeints">
+          <div className="container">
+            <div className="Item">
+              <div class="ingredients">
+                <h3 class="heading">Key Ingredients</h3>
+
+                <View_description description={product?.keyIngredients?.[0]} />
               </div>
-
-              {membership_fetcher()}
-              <p className="quantity">QUANTITY</p>
-
-              <div style={{ width: "40%" }} className="Quantity_Container">
-                <div className="qty">
-                  <span
-                    className="input cursor-pointer"
-                    onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-                  >
-                    <AiOutlineMinus />
-                  </span>
-                  <span className="item"> {quantity} </span>
-                  <span
-                    className="input cursor-pointer"
-                    onClick={() => setQuantity(quantity + 1)}
-                  >
-                    <AiOutlinePlus />
-                  </span>
-                </div>
-              </div>
-
-              {sizes?.length > 0 && (
-                <div className="multiple-sizes">
-                  <p> Select Size </p>
-                  <div className="Main">
-                    {sizes?.map((i, index) => (
-                      <div
-                        key={`multiple-sizes${index}`}
-                        className={`box ${size === i.size ? "active" : ""} `}
-                        onClick={() => {
-                          setSize(i.size);
-                          setPrice(i.price);
-                          setPriceId(i._id);
-                        }}
-                      >
-                        {i.size}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {product?.acneType || product?.considerAcne ? (
-                <div className="multiple-sizes">
-                  <p>
-                    Categories : {product?.acneType} , {product?.considerAcne}
-                  </p>
-                </div>
-              ) : (
-                ""
-              )}
-
-              <div className="buttons">
-                <button className="cart" onClick={() => cartHandler()}>
-                  {inCart ? "ADDED" : "ADD TO CART"}
-                </button>
-
-                <button className="stripe" onClick={() => buyWithStripe()}>
-                  BUY WITH STRIPE
-                </button>
-              </div>
-
-              <div className="tabs-container">
-                <Tabs defaultActiveKey="DESCRIPTION1" items={items} />
+              <div className="Image_Container">
+                <img alt="" src={img} />
               </div>
             </div>
           </div>
-          {product?.keyIngredients?.[0]?.length > 0 && (
-            <div className="Product_Key_Ingredeints">
-              <div className="container">
-                <div className="Item">
-                  <div class="ingredients">
-                    <h3 class="heading">Key Ingredients</h3>
+        </div>
+      )}
 
-                    <View_description
-                      description={product?.keyIngredients?.[0]}
-                    />
-                  </div>
-                  <div className="Image_Container">
-                    <img alt="" src={img} />
-                  </div>
-                </div>
-              </div>
+      {relatedProducts?.products?.length > 0 && (
+        <div className="frequently-bought">
+          <p className="title">Frequently Bought Together</p>
+
+          <div className="container">
+            <div className="left">
+              {FBarr?.map((i, index) => (
+                <>
+                  <img
+                    src={i.productImages?.[0]?.image}
+                    className="Image"
+                    alt=""
+                    key={`Product_Image_Carousel_Images${index}`}
+                  />
+                  <img
+                    src="/Image/96.png"
+                    key={`Product_Image_Carousel_Images_Img${index}`}
+                    className="plus"
+                    alt=""
+                  />
+                </>
+              ))}
             </div>
-          )}
+            {FBarr?.length > 0 && (
+              <div className="right">
+                <p className="heading">TOTAL PRICE</p>
+                <p className="price">${fbpTotal} </p>
+                <button onClick={() => FBHandler(relatedProducts?._id)}>
+                  ADD SELECTED TO CART
+                </button>
+              </div>
+            )}
+          </div>
 
-          {relatedProducts?.products?.length > 0 && (
-            <div className="frequently-bought">
-              <p className="title">Frequently Bought Together</p>
+          <div className="list">
+            {relatedProducts?.products?.map((i, index) => (
+              <div className="Item" key={`Related_Product${index}`}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={isItemInCart(i._id)}
+                    onChange={() => handleCheck(i)}
+                  />
 
-              <div className="container">
-                <div className="left">
-                  {FBarr?.map((i, index) => (
-                    <>
-                      <img
-                        src={i.productImages?.[0]?.image}
-                        className="Image"
-                        alt=""
-                        key={`Product_Image_Carousel_Images${index}`}
-                      />
-                      <img
-                        src="/Image/96.png"
-                        key={`Product_Image_Carousel_Images_Img${index}`}
-                        className="plus"
-                        alt=""
-                      />
-                    </>
-                  ))}
+                  <p className="head">{i.name} </p>
                 </div>
-                {FBarr?.length > 0 && (
-                  <div className="right">
-                    <p className="heading">TOTAL PRICE</p>
-                    <p className="price">${fbpTotal} </p>
-                    <button onClick={() => FBHandler(relatedProducts?._id)}>
-                      ADD SELECTED TO CART
-                    </button>
-                  </div>
-                )}
+                <p className="price">
+                  $
+                  {i.multipleSize === true ? i?.sizePrice?.[0]?.price : i.price}{" "}
+                </p>
               </div>
+            ))}
+          </div>
+        </div>
+      )}
 
-              <div className="list">
-                {relatedProducts?.products?.map((i, index) => (
-                  <div className="Item" key={`Related_Product${index}`}>
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "10px",
-                        alignItems: "flex-start",
-                      }}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={isItemInCart(i._id)}
-                        onChange={() => handleCheck(i)}
-                      />
-
-                      <p className="head">{i.name} </p>
-                    </div>
-                    <p className="price">
-                      $
-                      {i.multipleSize === true
-                        ? i?.sizePrice?.[0]?.price
-                        : i.price}{" "}
-                    </p>
-                  </div>
-                ))}
+      {recentProduct?.length > 0 && (
+        <>
+          <h2 className="text-4xl font-medium  text-primary text-center my-14">
+            You May Also Like
+          </h2>
+          <div className="multi-product">
+            {recentProduct?.map((i, index) => (
+              <div
+                className="Item"
+                key={`related-product${index}`}
+                onClick={() => navigate(`/product/${i.products?._id}`)}
+              >
+                <div className="thumbnail">
+                  <img src={i.products?.productImages?.[0]?.image} alt="" />
+                </div>
+                <p className="price">
+                  $
+                  {i.products?.sizePrice?.[0]?.price
+                    ? i.products?.sizePrice?.[0]?.price
+                    : i.products?.price}{" "}
+                </p>
+                <p className="title">{i.products?.name}</p>
               </div>
-            </div>
-          )}
-
-          {recentProduct?.length > 0 && (
-            <>
-              <h2 className="text-4xl font-medium  text-primary text-center my-14">
-                You May Also Like
-              </h2>
-              <div className="multi-product">
-                {recentProduct?.map((i, index) => (
-                  <div
-                    className="Item"
-                    key={`related-product${index}`}
-                    onClick={() => navigate(`/product/${i.products?._id}`)}
-                  >
-                    <div className="thumbnail">
-                      <img src={i.products?.productImages?.[0]?.image} alt="" />
-                    </div>
-                    <p className="price">
-                      $
-                      {i.products?.sizePrice?.[0]?.price
-                        ? i.products?.sizePrice?.[0]?.price
-                        : i.products?.price}{" "}
-                    </p>
-                    <p className="title">{i.products?.name}</p>
-                  </div>
-                ))}
-              </div>{" "}
-            </>
-          )}
+            ))}
+          </div>{" "}
         </>
       )}
     </>
