@@ -1,12 +1,9 @@
 /** @format */
 
 import React, { useState } from "react";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import {
-  addServiceInCart,
-  getSingleService,
-} from "../../Repository/Api";
+import { addServiceInCart, getSingleService } from "../../Repository/Api";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated } from "../../store/authSlice";
 import Testimonials from "../PaymentPlans/Testimonials";
@@ -15,6 +12,7 @@ import { motion } from "framer-motion";
 import GallarySlider from "../Sliders/GallarySlider";
 import LimitedOffer from "../home/LimitedOffer";
 import Loader from "../Loader/Loader";
+import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const ServicePage = () => {
   const { id } = useParams();
@@ -409,11 +407,10 @@ const ServicePage = () => {
             )}
 
             {response?.beforeAfterImage && (
-              <div
+              <ImageLazyLoading
+                img={response?.beforeAfterImage}
                 className="center_img tweet_image"
-                style={{
-                  backgroundImage: `url(${response?.beforeAfterImage})`,
-                }}
+                alt=""
               />
             )}
             <div className="service_book_button">
@@ -430,7 +427,7 @@ const ServicePage = () => {
                 have them leave our spa loving their skin. That's why over 130
                 people have given us a 5-star rating on Google!
               </p>
-              <img src="/asessts/google-review.png" alt='' />
+              <img src="/asessts/google-review.png" alt="" />
             </div>
             <div style={{ width: "100%", overflow: "hidden" }}>
               <Testimonials />

@@ -9,7 +9,7 @@
   width: 50px;
   cursor: pointer;
 }
-.plan_mobile{
+.plan_mobile {
   font-size: 18px;
 }
 .Backward_Heading p {
@@ -1009,9 +1009,9 @@
   max-width: 800px;
   width: auto;
   height: 594px;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
+  min-width: 600px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .Limited_offer {
@@ -2367,7 +2367,7 @@
 .cart-container .left-container .content {
   width: 30%;
 }
-.cart-container .right_container{
+.cart-container .right_container {
   min-width: 330px;
 }
 
@@ -3171,13 +3171,10 @@
   margin-top: 20px;
 }
 .NewsCard button {
-  /* display: flex; */
-  /* gap: 10px; */
   background-color: rgb(229 216 150);
   font-size: 20px;
   width: 100%;
   padding: 10px;
-  /* align-items: center; */
   margin-top: 10px;
   color: #042b26;
   font-weight: bold;
@@ -3199,7 +3196,7 @@
 .All_News_Page section {
   width: 100%;
 }
-.news-heading{
+.news-heading {
   text-align: left;
 }
 .All_News_Page section img {
@@ -4605,12 +4602,11 @@
   width: 40px !important;
 }
 
-
-.policy-sem-container{
+.policy-sem-container {
   text-align: center;
   justify-content: center;
   text-decoration: underline;
-  color:rgb(4 43 38) ;
+  color: rgb(4 43 38);
   font-weight: 900;
   display: flex;
   gap: 10px;

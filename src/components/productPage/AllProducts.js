@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useRef, useEffect } from "react";
+import React, { useMemo, useRef } from "react";
 import ProductCard from "../shop/ProductCard";
 
 const AllProducts = ({ products, setLimit, limit, total }) => {
@@ -18,16 +18,19 @@ const AllProducts = ({ products, setLimit, limit, total }) => {
     }
   };
 
-  const sortedArr =
-    products?.length > 0 &&
-    products?.sort((a, b) => {
-      const name1 = a?.name?.trim();
-      const name2 = b?.name?.trim();
-      return name1?.localeCompare(name2);
-    });
+  const sortedArr = useMemo(() => {
+    return (
+      products?.length > 0 &&
+      products?.sort((a, b) => {
+        const name1 = a?.name?.trim();
+        const name2 = b?.name?.trim();
+        return name1?.localeCompare(name2);
+      })
+    );
+  }, [products]);
 
   return products?.length > 0 ? (
-    <div className="w-full">
+    <div className="w-full" style={{ minHeight: "100vh" }}>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center py-5 product_container cursor-pointer">
         {sortedArr?.map((item) => (
           <ProductCard

@@ -21,7 +21,7 @@ const ProductPage = () => {
   const [brands, setBrands] = useState([]);
   const [skinCondition, setSkinCondition] = useState([]);
   const [nutrition, setNutrition] = useState([]);
-  const { type, id, name } = useParams();
+  const { type, id } = useParams();
   const [img, setImg] = useState("");
   const [load, setLoad] = useState(false);
   const [limit, setLimit] = useState(15);
