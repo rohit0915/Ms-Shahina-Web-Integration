@@ -3,11 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { View_description } from "../Helper/Herlper";
-import {
-  getAddress,
-  getProfile,
-  removeAddress,
-} from "../Repository/Api";
+import { getAddress, getProfile, removeAddress } from "../Repository/Api";
 import { DateFormatter } from "../utils/helpingComponent";
 import AddressModal from "./Drawer/AddressModal";
 import ProfileModal from "./Drawer/ProfileModal";
@@ -72,16 +68,16 @@ const MyProfile = () => {
   useEffect(() => {
     if (profile?.subscriptionId?.plan === "SILVER") {
       setImg("/Image/72.png");
-      setBg("silver");
+      setBg("#7A8989");
     } else if (profile?.subscriptionId?.plan === "GOLD") {
       setImg("/Image/73.png");
-      setBg("gold");
+      setBg("#D3A206");
     } else if (profile?.subscriptionId?.plan === "PLATINUM") {
       setImg("/Image/74.png");
-      setBg("platinum");
+      setBg("#545351");
     } else if (profile?.subscriptionId?.plan === "DIAMOND") {
       setImg("/Image/75.png");
-      setBg("diamond");
+      setBg("#51ADF9");
     }
   }, [profile?.subscriptionId]);
 
@@ -273,7 +269,7 @@ const MyProfile = () => {
           {isSubscriptionActive && (
             <div className="subscription">
               <div className="container">
-                <div className={`left ${bg}`}>
+                <div className={`left`} style={{ backgroundColor: bg }}>
                   <img src={img} alt="" />
                   <div className="two-sec">
                     <p className="price">${profile?.subscriptionId?.price}</p>
