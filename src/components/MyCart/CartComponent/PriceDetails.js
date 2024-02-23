@@ -202,12 +202,15 @@ const PriceDetails = ({
 
           {appointmentSlotChanger()}
 
-          <div className="font-semibold text-l flex justify-between border-black border-t-2 mt-4 pt-3">
-            <span>Shipping Fee </span>
-            <span className="text-green font-semibold">
-              {shipping === 0 ? "Free" : `$${shipping}`}
-            </span>
-          </div>
+          {hasProducts && (
+            <div className="font-semibold text-l flex justify-between border-black border-t-2 mt-4 pt-3">
+              <span>Shipping Fee </span>
+              <span className="text-green font-semibold">
+                {shipping === 0 ? "Free" : `$${shipping}`}
+              </span>
+            </div>
+          )}
+
           <div className="font-semibold text-2xl flex justify-between border-black border-t-2 py-8 border-b-2 my-8">
             <span className="">Total Amount</span>
             <span>${total} </span>
