@@ -88,15 +88,10 @@ export const ProductType = () => {
   const swiperConfig = {
     spaceBetween: 20,
     slidesPerView: 1,
-    centeredSlides: true,
-    pagination: {
-      dynamicBullets: true,
-    },
     loop: true,
     autoplay: {
       delay: 1500,
       disableOnInteraction: false,
-      pauseOnMouseEnter: true,
     },
     keyboard: {
       enabled: true,
@@ -117,7 +112,13 @@ export const ProductType = () => {
   return (
     response && (
       <div className="SkinType_Container padingation_another MaxComponent">
-        <Swiper {...swiperConfig} modules={[Pagination, Autoplay, Keyboard]}>
+        <Swiper
+          pagination={{
+            dynamicBullets: true,
+          }}
+          {...swiperConfig}
+          modules={[Pagination, Autoplay, Keyboard]}
+        >
           {response?.map((item, i) => (
             <SwiperSlide key={i}>
               <ItemCard
@@ -154,8 +155,6 @@ export const Brands = ({ isBrand }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, [isMobile]);
-
-
 
   return (
     response && (

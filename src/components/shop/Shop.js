@@ -91,7 +91,7 @@ const Shop = () => {
         className="text-4xl font-medium  text-primary text-center my-14"
         style={{ textTransform: "uppercase" }}
       >
-        Shop by nutritions
+        Shop  nutritions
       </h2>
       <Nutrition />
       {fav?.length > 0 && (

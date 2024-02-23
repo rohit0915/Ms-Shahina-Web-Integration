@@ -9,8 +9,8 @@ const GuestThanks = () => {
       <p className="title">Thank You!</p>
 
       <p className="desc">
-        Congratulations🎉 Your order has been successfully verified. <br /> We
-        are looking forward to provide you the best Experience!
+        Congratulations! Your order has been successfully verified. <br /> We
+        are looking forward to provide you the best Experience.
       </p>
       <Link to="/" style={{ cursor: "pointer" }}>
         <button>RETURN TO HOMEPAGE</button>

@@ -3199,6 +3199,9 @@
 .All_News_Page section {
   width: 100%;
 }
+.news-heading{
+  text-align: left;
+}
 .All_News_Page section img {
   max-height: 450px;
   width: 100%;

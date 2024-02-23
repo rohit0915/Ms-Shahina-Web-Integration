@@ -36,20 +36,21 @@ const OneNews = () => {
 
   return (
     <section
-      className=" Home_Three_Sec  MaxComponent All_News_Page"
+      className="MaxComponent All_News_Page"
       style={{ marginBottom: "40px" }}
     >
       <div className="gap-3  mx-auto  All_News_Page">
         <section className="p-3">
           <div className="my-2">
-            <ImageLazyLoading
-              className={"thumb_image"}
-              alt=""
-              img={response.image}
-            />
-            <h3 className="my-6 font-medium text-3xl text-primary title">
+            <h3 className="my-6 font-medium text-3xl text-primary news-heading">
               {response.title}
             </h3>
+            <ImageLazyLoading
+              className={"thumb_image"}
+              alt={response.title}
+              img={response.image}
+            />
+
             <View_description description={response?.description} />
             <div className="keyword_cont">{getKeywords()}</div>
           </div>

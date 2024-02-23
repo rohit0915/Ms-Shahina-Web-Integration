@@ -35,10 +35,6 @@ const ServiceTab = () => {
             alt=""
           />
           <div className="content">
-            <h1 className="text-6xl text-white text-center  z-50 font-light">
-              BOOK ONLINE
-            </h1>
-
             {isLoggedIn ? (
               <button
                 className="w-52 mx-auto py-2 text-lg font-semibold z-50  bg-secondary text-primary "
