@@ -32,7 +32,7 @@ const Appointment = () => {
           >
             <img src="/Image/2.png" alt="" />
             <p>
-              Returning Client <br /> / Member{" "}
+              Returning  <br />  Client/Member{" "}
             </p>
           </div>
           <div

@@ -103,11 +103,12 @@ const ServicePage = () => {
 
   const query = firstQuery?.trim() + " " + secondQuery?.trim();
 
-  const TotolData = query
+  const TotolData = query?.length > 2
     ? response?.sizePrice?.filter((i) =>
         i?.size?.toLowerCase().includes(query?.toLowerCase())
       )
     : response?.sizePrice;
+
 
   const querySelector = (data, state, type) => {
     if (type === "first") {
@@ -117,6 +118,7 @@ const ServicePage = () => {
     }
     state(false);
   };
+
 
   useEffect(() => {
     if (query?.length > 2) {
@@ -200,7 +202,7 @@ const ServicePage = () => {
             <div className="flex-container">
               {response?.benfit?.length > 0 && (
                 <div className="list">
-                  <p> Treatment Benefits? </p>
+                  <p> Treatment Benefits</p>
                   <ul>
                     {response?.benfit?.map((i, index) => (
                       <li key={`Benefit${index}`}> {i} </li>
@@ -328,6 +330,7 @@ const ServicePage = () => {
                 )}
               </div>
             )}
+                   
 
             {response?.sizePrice?.length > 0 && (
               <div className="drop_Down_Container">
@@ -383,7 +386,7 @@ const ServicePage = () => {
                                 setSizeOpen(false);
                               }}
                             >
-                              {i.size} {i.mPrice}
+                              {i.size} ${i.mPrice}
                             </button>
                           ))
                         : TotolData?.map((i, index) => (

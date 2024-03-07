@@ -78,7 +78,8 @@ const btnStyle = {
 
 const Baseurl = process.env.React_App_Baseurl;
 const CardSave = () => {
-  const { email } = useParams();
+  const { email, orderId } = useParams();
+  const updateid = orderId?.split("=")?.[1];
 
   const IntentComponent = () => {
     const stripe = useStripe();
@@ -97,7 +98,7 @@ const CardSave = () => {
       setSubmitLoading(true);
       try {
         const response = await axios.post(
-          `${process.env.React_App_Baseurl}api/v1/user/card/updateCardDetailSaved/${email}`,
+          `${process.env.React_App_Baseurl}api/v1/user/card/updateCardDetailSaved/${updateid}`,
           {},
           {
             headers: {
@@ -131,7 +132,7 @@ const CardSave = () => {
             elements,
             clientSecret,
             confirmParams: {
-              return_url: "https://main.d3teo2g7vp93hi.amplifyapp.com/confirmation",
+              return_url: `${process.env.React_App_Web_url}confirmation`,
             },
           });
           if (error) {

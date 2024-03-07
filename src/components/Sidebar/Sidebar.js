@@ -65,19 +65,6 @@ const Sidebar = ({ open, onClose }) => {
   function LogoutHandler() {
     onClose();
     dispatch(LOGOUT());
-    Store.addNotification({
-      title: "",
-      message: "Logged Out Successfully",
-      type: "success",
-      insert: "top",
-      container: "top-center",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 2000,
-        onScreen: true,
-      },
-    });
     navigate("/login");
   }
 

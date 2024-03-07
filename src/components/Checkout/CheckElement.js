@@ -57,10 +57,15 @@ const options = {
     },
   },
 };
-const CheckElement = ({heading}) => {
+const CheckElement = ({ pickUpFromStore, deliveryAddressPresent ,hasProducts  ,hasGiftCard}) => {
   return (
     <Elements stripe={stripePromise} options={options}>
-      <CheckoutIntent />
+      <CheckoutIntent
+        pickUpFromStore={pickUpFromStore}
+        deliveryAddressPresent={deliveryAddressPresent}
+        hasProducts={hasProducts}
+        hasGiftCard={hasGiftCard}
+      />
     </Elements>
   );
 };

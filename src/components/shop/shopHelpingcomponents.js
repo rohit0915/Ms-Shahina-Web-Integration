@@ -50,30 +50,28 @@ export const SkinType = () => {
   };
 
   return (
-    response && (
-      <>
-        <div className="SkinType_Container  padingation_another MaxComponent">
-          <Swiper
-            pagination={{
-              dynamicBullets: true,
-            }}
-            {...swiperConfig}
-            modules={[Pagination, Autoplay, Keyboard]}
-          >
-            {response?.map((item, i) => (
-              <SwiperSlide key={i}>
-                <ItemCard
-                  key={i}
-                  src={item.image}
-                  styles={"w-80 h-80 text-4xl"}
-                  type={item.name}
-                  link={`/skinTypeId/${item._id}/${item.name}`}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </>
+    response?.length > 0 && (
+      <div className="SkinType_Container  padingation_another MaxComponent">
+        <Swiper
+          pagination={{
+            dynamicBullets: true,
+          }}
+          {...swiperConfig}
+          modules={[Pagination, Autoplay, Keyboard]}
+        >
+          {response?.map((item, i) => (
+            <SwiperSlide key={i}>
+              <ItemCard
+                key={i}
+                src={item.image}
+                styles={"w-80 h-80 text-4xl"}
+                type={item.name}
+                link={`/skinTypeId/${item._id}/${item.name}`}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     )
   );
 };
@@ -110,7 +108,7 @@ export const ProductType = () => {
   };
 
   return (
-    response && (
+    response?.length > 0 && (
       <div className="SkinType_Container padingation_another MaxComponent">
         <Swiper
           pagination={{
@@ -138,26 +136,13 @@ export const ProductType = () => {
 
 export const Brands = ({ isBrand }) => {
   const [response, setResponse] = useState([]);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
 
   useEffect(() => {
     getAllBrands(setResponse);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 786);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isMobile]);
-
   return (
-    response && (
+    response?.length > 0 && (
       <div
         className={`${
           isBrand
@@ -215,7 +200,7 @@ export const SkinConditions = () => {
   };
 
   return (
-    response && (
+    response?.length > 0 && (
       <div className="SkinType_Container padingation_another MaxComponent">
         <Swiper
           pagination={{
@@ -274,7 +259,7 @@ export const Nutrition = () => {
   };
 
   return (
-    response && (
+    response?.length > 0 && (
       <div className="SkinType_Container  padingation_another MaxComponent ">
         <Swiper
           pagination={{

@@ -239,7 +239,7 @@ const appRouter = createBrowserRouter([
         element: LazyComponent(<GuestFailed />),
       },
       {
-        path: "/guest-card-saver/:email",
+        path: "/guest-card-saver/:email/:orderId",
         element: LazyComponent(<CardSave />),
       },
       {

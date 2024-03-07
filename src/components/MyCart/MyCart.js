@@ -36,6 +36,7 @@ import GiftCardActions from "./CartComponent/GiftCardActions";
 import ServiceActions from "./CartComponent/ServiceActions";
 import AdOnActions from "./CartComponent/AdOnActions";
 import CheckoutSection from "./CartComponent/CheckoutSection";
+import { getCorrectTime } from "../../Helper/Herlper";
 
 const MyCart = () => {
   const [modalOpen2, setModalOpen2] = useState(false);
@@ -330,9 +331,8 @@ const MyCart = () => {
               </p>{" "}
               <p>
                 {" "}
-                <DateFormatter time={cart?.toTime} /> -
-                <DateFormatter time={cart?.fromTime} />
-              </p>{" "}
+                {getCorrectTime(cart?.toTime)} -{getCorrectTime(cart?.fromTime)}
+              </p>
             </div>
           </div>
         </div>
@@ -379,7 +379,6 @@ const MyCart = () => {
   const pickUpFromStore = cart?.pickupFromStore;
   const shipping = cart?.shipping;
   const total = cart?.total;
-
   return (
     <>
       <TextDrawer
@@ -444,6 +443,9 @@ const MyCart = () => {
                     hasService={hasService}
                     hasGiftCard={hasGiftCard}
                     hasProducts={hasProducts}
+                    hasAppointmentTime={hasAppointmentTime}
+                    deliveryAddressPresent={deliveryAddressPresent}
+                    pickUpFromStore={pickUpFromStore}
                   />
                 )}
               </div>
@@ -470,6 +472,8 @@ const MyCart = () => {
                 shippingPrivacy={shippingPrivacy}
                 isMobile={isMobile}
                 hasGiftCard={hasGiftCard}
+                hasAppointmentTime={hasAppointmentTime}
+                deliveryAddressPresent={deliveryAddressPresent}
               />
             </div>
           ) : (

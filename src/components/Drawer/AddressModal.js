@@ -47,16 +47,23 @@ const AddressModal = ({
   };
 
   useEffect(() => {
-    if (open && data) {
-      setAddress(data?.[0]?.address);
-      setAppartment(data?.[0]?.appartment);
-      setCity(data?.[0]?.city);
-      setState(data?.[0]?.state);
-      setZipCode(data?.[0]?.zipCode);
+    if (open) {
+      if (data?.length > 0) {
+        setAddress(data?.[0]?.address);
+        setAppartment(data?.[0]?.appartment);
+        setCity(data?.[0]?.city);
+        setState(data?.[0]?.state);
+        setZipCode(data?.[0]?.zipCode);
+      } else {
+        setAddress("");
+        setAppartment("");
+        setCity("");
+        setState("");
+        setZipCode("");
+      }
     }
   }, [open, data]);
 
- 
 
   return (
     <Modal
@@ -65,7 +72,7 @@ const AddressModal = ({
       onCancel={() => setOpen(false)}
       className="Checkout_Modal"
     >
-    <div className="close_icon_btn">
+      <div className="close_icon_btn">
         <img src="/Image/x.svg" onClick={() => setOpen(false)} alt="" />
       </div>
       <p className="title"> {title} </p>

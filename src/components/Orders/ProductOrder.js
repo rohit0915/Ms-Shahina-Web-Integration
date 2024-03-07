@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getProductOrder } from "../../Repository/Api";
+import { DateFormatter } from "../../utils/helpingComponent";
 
 const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
   const [order, setOrder] = useState([]);
@@ -72,9 +73,11 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           >
                             Order ID : {item?.orderId}
                           </p>{" "}
-                          <p className="orderId" style={{ color: "#A9A9A9" }}>
-                            Date : {item?.date?.slice(0, 10)}
-                          </p>{" "}
+                          {item?.date && (
+                            <p className="orderId" style={{ color: "#A9A9A9" }}>
+                              Date : {DateFormatter(item?.date)}
+                            </p>
+                          )}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
                             {" "}
                             Subtotal ${item?.subTotal}

@@ -54,20 +54,23 @@ const ServiceCard = ({ src, service, id, name }) => {
           )}
 
           {isHovered && (
-            <div
-              className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-70 cursor-pointer "
-              onClick={() => showDrawer()}
-            >
-              <div className="flex flex-col items-center space-y-3">
-                <span className="text-4xl font-medium Title text-uppercase ">
-                  {service}
-                </span>
+          <div
+            className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-70 cursor-pointer "
+            onClick={() => showDrawer()}
+          >
+            <div className="flex flex-col items-center space-y-3">
+              <span
+                className="text-4xl font-medium Title text-uppercase "
+                style={{ textAlign: "center" }}
+              >
+                {service}
+              </span>
 
-                <button className="btn-bookNow px-4 border border-white text-white">
-                  {"Learn More"}
-                </button>
-              </div>
+              <button className="btn-bookNow px-4 border border-white text-white">
+                {"Learn More"}
+              </button>
             </div>
+          </div>
           )}
         </div>
       </div>

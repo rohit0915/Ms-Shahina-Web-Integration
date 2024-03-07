@@ -33,9 +33,8 @@ const DummyCart = createSlice({
           "dummyCart",
           JSON.stringify([...state.items, action.payload])
         );
-        showMsg("", "Product added to cart", "success");
       } else {
-        showMsg("", "Product already added to cart", "success");
+        console.log("Product already added to cart");
       }
     },
     removeFromCart: (state, action) => {

@@ -3,15 +3,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userLogin2 } from "../Repository/Api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaEye } from "react-icons/fa6";
 import { PiEyeClosedBold } from "react-icons/pi";
 import PhoneInput from "react-phone-input-2";
+import { isAuthenticated } from "../store/authSlice";
 
 const ReturningMember = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const isLoggedIn = useSelector(isAuthenticated);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,6 +30,12 @@ const ReturningMember = () => {
       behavior: "instant",
     });
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/schedule1");
+    }
+  }, [isLoggedIn]);
 
   function BackNavigation() {
     navigate(-1);

@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { BrowserRouter } from "react-router-dom";
 
 const stripePromise = loadStripe(process.env.React_App_Stripe_Published_Key);
 

@@ -670,6 +670,9 @@
   .profile_div .two-sec {
     display: block;
   }
+  .profile_div .two-sec p{
+    word-wrap: break-word;
+  }
   .profile_div .button_Cont {
     display: block !important;
   }
@@ -891,7 +894,6 @@
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 14px !important;
-    text-align: justify !important;
     padding: 20px;
   }
 
@@ -1001,6 +1003,7 @@
   }
   .service_details_page .center_img.tweet_image {
     height: 200px;
+    min-width : auto ;
   }
   .plan_mobile {
     font-size: 16px;
@@ -1013,5 +1016,9 @@
   .galler_slider_com {
     height: 500px;
     overflow: hidden;
+  }
+  .schedule_1 .left_div .Box .Item input{
+    width: 30px;
+    height: 30px;
   }
 }

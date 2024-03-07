@@ -33,8 +33,8 @@ const Schedule2 = () => {
       getHandler();
     }
   }, [date1]);
-  const updatedTime = time?.split("T")[1]?.slice(0, 5);
 
+  const updatedTime = time?.split("T")[1]?.slice(0, 5);
   const payload = { date: date1, time: updatedTime };
 
   const submitHandler = () => {
@@ -101,7 +101,6 @@ const Schedule2 = () => {
     if (isDate) {
       return findNextAvailableDate(nextDay);
     }
-
     return nextDay.toISOString().split("T")[0];
   };
 

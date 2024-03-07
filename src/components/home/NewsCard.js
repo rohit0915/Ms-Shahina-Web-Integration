@@ -18,17 +18,14 @@ const NewsCard = ({ src, title, content, id }) => {
     <section className="p-3 w-[430px] NewsCard ">
       <div className="my-2 Upper_Div">
         <div>
-          <ImageLazyLoading img={src} alt={""} className="w-full h-auto" />
           <h3 className="font-medium  text-primary title">
             {title?.substr(0, 100)}
           </h3>
+          <ImageLazyLoading img={src} alt={""} className="w-full h-auto" />
           <p className="font-normal desc">{textTransformation(content)} </p>
         </div>
         <Link to={`/news/${id}`}>
-          <button>
-           Read More 
-            {/* <img className="arrow-Img" src="/Image/Arrow 1.svg" alt="" /> */}
-          </button>
+          <button>Read More</button>
         </Link>
       </div>
     </section>

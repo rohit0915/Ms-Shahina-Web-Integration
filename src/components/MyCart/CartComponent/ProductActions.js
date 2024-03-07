@@ -3,6 +3,7 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const ProductActions = ({
   hasProducts,
@@ -23,9 +24,13 @@ const ProductActions = ({
       {products?.map((i, index) => (
         <div className="Item" key={index}>
           <div className="item-container">
-            <div className="img-container">{showImage(i)}</div>
+            <div className="img-container">
+              <Link to={`/product/${i?.productId?._id}`}>{showImage(i)}</Link>
+            </div>
             <div className="content">
-              <p className="title"> {i.productId?.name} </p>
+              <Link to={`/product/${i?.productId?._id}`}>
+                <p className="title"> {i.productId?.name} </p>
+              </Link>
 
               <div className="Quantity">
                 <span className="quant">QTY</span>

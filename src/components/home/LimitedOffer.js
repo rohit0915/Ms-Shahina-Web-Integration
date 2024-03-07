@@ -10,8 +10,6 @@ import OfferDrawer from "../Drawer/OfferDrawer";
 const LimitedOffer = () => {
   const [open, setOpen] = useState(false);
   const [response, setResponse] = useState([]);
-  const [showOffer, setShowOffer] = useState(false);
-  const isLoggedIn = useSelector(isAuthenticated);
 
   function fetchHandler() {
     getLimitedOffer(setResponse, "offer");
@@ -20,12 +18,6 @@ const LimitedOffer = () => {
   useEffect(() => {
     fetchHandler();
   }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      getServiceCount(setShowOffer);
-    }
-  }, [isLoggedIn]);
 
   const showDrawer = () => {
     setOpen(true);
@@ -36,14 +28,12 @@ const LimitedOffer = () => {
   };
 
   const OfferComponent = () => {
-    if (showOffer) {
-      if (response?.[0]?.bannerImage) {
-        return (
-          <div className="Limited_offer" onClick={() => showDrawer()}>
-            <ImageLazyLoading img={response?.[0]?.bannerImage} alt={""} />
-          </div>
-        );
-      }
+    if (response?.[0]?.bannerImage) {
+      return (
+        <div className="Limited_offer" onClick={() => showDrawer()}>
+          <ImageLazyLoading img={response?.[0]?.bannerImage} alt={""} />
+        </div>
+      );
     }
   };
 

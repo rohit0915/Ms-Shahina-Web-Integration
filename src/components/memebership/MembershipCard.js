@@ -133,7 +133,7 @@ const MembershipCard = ({
 
               <li>
                 <input type="checkbox" required />
-                <span> I Agree to Membership Terms and Policies</span>
+                <span > I Agree to Membership Terms and Policies</span>
               </li>
             </ul>
           </div>

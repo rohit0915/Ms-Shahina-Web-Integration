@@ -58,10 +58,10 @@ const options = {
   },
 };
 
-const MainStripe = () => {
+const MainStripe = ({hasAppointmentTime}) => {
   return (
     <Elements stripe={stripePromise} options={options}>
-      <StripeComp />
+      <StripeComp hasAppointmentTime={hasAppointmentTime}  />
     </Elements>
   );
 };

@@ -75,3 +75,13 @@ export const DateFormatter = (date) => {
     }-${year}  `
   );
 };
+
+export const DOBFormater = (date) => {
+  const slicedDate = date?.slice(0, 10);
+  const splittedDate = slicedDate?.split("-");
+  const month = splittedDate?.[1];
+  const day = splittedDate?.[2];
+  const year = splittedDate?.[0];
+  const hasAll = month && year && day;
+  return hasAll && `${month}-${day}-${year}`;
+};

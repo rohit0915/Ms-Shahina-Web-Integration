@@ -4,13 +4,32 @@ import React from "react";
 import CheckElement from "../../Checkout/CheckElement";
 import MainStripe from "../../Stripe/MainStripe";
 
-const renderProductCheckout = ({ hasGiftCard, hasProducts }) => {
+const renderProductCheckout = ({
+  hasGiftCard,
+  hasProducts,
+  pickUpFromStore,
+  deliveryAddressPresent,
+}) => {
   if (hasGiftCard || hasProducts) {
-    return <CheckElement />;
+    return (
+      <CheckElement
+        pickUpFromStore={pickUpFromStore}
+        deliveryAddressPresent={deliveryAddressPresent}
+        hasProducts={hasProducts}
+        hasGiftCard={hasGiftCard}
+      />
+    );
   }
 };
 
-const CheckoutSection = ({ hasService, hasGiftCard, hasProducts }) => {
+const CheckoutSection = ({
+  hasService,
+  hasGiftCard,
+  hasProducts,
+  hasAppointmentTime,
+  pickUpFromStore,
+  deliveryAddressPresent,
+}) => {
   return (
     <>
       {hasService && (
@@ -32,12 +51,18 @@ const CheckoutSection = ({ hasService, hasGiftCard, hasProducts }) => {
                 You won't be charged now , payment will be collected in store
                 after your appointment.
               </span>
-              <MainStripe />
+              <MainStripe hasAppointmentTime={hasAppointmentTime} />
             </div>
           </div>
         </div>
       )}
-      {renderProductCheckout({ hasGiftCard, hasProducts })}
+      {renderProductCheckout({
+        hasGiftCard,
+        hasProducts,
+        pickUpFromStore,
+        deliveryAddressPresent,
+        hasProducts
+      })}
     </>
   );
 };

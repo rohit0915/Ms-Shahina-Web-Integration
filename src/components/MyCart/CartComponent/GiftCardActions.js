@@ -2,6 +2,7 @@
 
 import React from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const renderImage = (img) => {
   if (img) {
@@ -16,9 +17,13 @@ const GiftCardActions = ({ hasGiftCard, Items, deleteAction }) => {
       {Items?.map((i, index) => (
         <div className="Item" key={index}>
           <div className="item-container">
-            <div className="img-container">{renderImage(i)}</div>
+            <div className="img-container">
+              <Link to={`/giftcards`}>{renderImage(i)}</Link>
+            </div>
             <div className="content">
-              <p className="title"> {i.giftPriceId?.giftId?.name} </p>
+              <Link to={`/giftcards`}>
+                <p className="title"> {i.giftPriceId?.giftId?.name} </p>
+              </Link>
 
               <button onClick={() => deleteAction(i.giftPriceId?._id)}>
                 {" "}

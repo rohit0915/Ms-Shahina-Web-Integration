@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuOptions from "./MenuOptions";
 import { CartItems } from "../../store/cartSlice";
 import MobileBar from "../Sidebar/MobileBar";
-import { getCart, showMsg } from "../../Repository/Api";
+import { getCart } from "../../Repository/Api";
 import { DummyCartItems } from "../../store/DummyCart";
 import { ServiceItems } from "../../store/DummySerivce";
 import SearchHeader from "../Search/SearchHeader";
@@ -54,7 +54,6 @@ const Navbar = () => {
 
   function LogoutHandler() {
     dispatch(LOGOUT());
-    showMsg("", "Logged Out Successfully", "success");
     navigate("/login");
   }
 

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Modal } from "antd";
 import { cancelSubscription } from "../../Repository/Api";
 
-const SubsModal = ({ open, setOpen, fetchHandler }) => {
+const SubsModal = ({ open, setOpen, fetchHandler, terms }) => {
   const [reason, setReason] = useState("");
   const [type, setType] = useState("");
 
@@ -44,7 +44,19 @@ const SubsModal = ({ open, setOpen, fetchHandler }) => {
           onChange={(e) => setReason(e.target.value)}
           placeholder="Please fill out this field"
         />
+        <div className="input_check">
+          <input aria-describedby="checkHint" type="checkbox" required />
 
+          <span>
+            <a href={terms} target="_blank" rel="">
+              {" "}
+              I Agree to Membership Terms and Policies
+            </a>{" "}
+          </span>
+        </div>
+
+        
+    
         <div className="two_btn">
           <button type="submit" className="first">
             CANCEL MEMBERSHIP

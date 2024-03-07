@@ -121,10 +121,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
     return (
       <div className="Service_Drawer">
         <div className="heading">
-          <p>
-            {" "}
-            {getHead()}
-          </p>
+          <p> {getHead()}</p>
           <img src="/Image/14.png" alt="" onClick={() => onClose()} />
         </div>
 
@@ -167,15 +164,15 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
   };
 
   return (
-    <Drawer
-      placement="bottom"
-      closable={false}
-      onClose={onClose}
-      open={open}
-      size={"large"}
-    >
-      <WithLoader Wrapped={Component} loading={load} />
-    </Drawer>
+      <Drawer
+        placement="bottom"
+        closable={false}
+        onClose={onClose}
+        open={open}
+        size={"large"}
+      >
+        <WithLoader Wrapped={Component} loading={load} />
+      </Drawer>
   );
 };
 

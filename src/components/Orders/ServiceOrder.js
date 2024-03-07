@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getServiceOrder } from "../../Repository/Api";
+import { DateFormatter } from "../../utils/helpingComponent";
 
 const ServiceOrder = ({ isSliced, heading, padded, isMore }) => {
   const [order, setOrder] = useState([]);
@@ -90,9 +91,14 @@ const ServiceOrder = ({ isSliced, heading, padded, isMore }) => {
                             >
                               Order ID : {item?.orderId}
                             </p>{" "}
-                            <p className="orderId" style={{ color: "#A9A9A9" }}>
-                              Date : {item?.date?.slice(0, 10)}
-                            </p>{" "}
+                            {item?.date && (
+                              <p
+                                className="orderId"
+                                style={{ color: "#A9A9A9" }}
+                              >
+                                Date : {DateFormatter(item?.date)}
+                              </p>
+                            )}
                             <p
                               className="orderId "
                               style={{ color: "#A9A9A9" }}
@@ -100,13 +106,7 @@ const ServiceOrder = ({ isSliced, heading, padded, isMore }) => {
                               {" "}
                               Membership Discount : ${item?.memberShip}
                             </p>{" "}
-                            <p
-                              className="orderId "
-                              style={{ color: "#A9A9A9" }}
-                            >
-                              {" "}
-                              Offer Discount : ${item?.offerDiscount}
-                            </p>{" "}
+                          
                             <div className="button-container">
                               <button
                                 onClick={() =>

@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { getCorrectTime2 } from "../Helper/Herlper";
 
 const SwipCal = ({
   selectedDate,
@@ -66,11 +67,11 @@ const SwipCal = ({
       (i) => i.date?.slice(0, 10) === formattedDate && i.allBooked === "yes"
     );
 
+    const isCutted = weekDay === "Sunday" || checkAvailable === true;
+
     return (
       <div
-        className={`date_shower ${
-          checkAvailable === true ? "cutted_date" : ""
-        }`}
+        className={`date_shower ${isCutted ? "cutted_date" : ""}`}
         onClick={() => {
           setDate(formattedDate);
           setCheckDate(date);
@@ -154,14 +155,15 @@ const SwipCal = ({
     return getTime;
   }
 
-  const nextDateDay = new Date(nextDate)?.toLocaleDateString("en-US", {
+  const nextDateDay = getCorrectTime2(nextDate)?.toLocaleDateString("en-US", {
     month: "long",
   });
-  const nextDateDate = new Date(nextDate)?.toLocaleDateString("en-US", {
+
+  const nextDateDate = getCorrectTime2(nextDate)?.toLocaleDateString("en-US", {
     day: "numeric",
   });
 
-  const combinedNextDate = nextDateDate + " " + nextDateDay?.slice(0, 3);
+  const combinedNextDate = nextDateDate + " " + nextDateDay;
 
   useEffect(() => {
     if (checkDate && generatedDates) {

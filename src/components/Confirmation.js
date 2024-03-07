@@ -13,7 +13,7 @@ const Confirmation = () => {
 
   return (
     <div className="Thanks_Container">
-      <p className="title">Card Saved Successfully!</p>
+      <p className="title">You Are All Set.</p>
       <p className="desc">
         Thank you for confirming your appointment. We look forward to seeing you
         soon!

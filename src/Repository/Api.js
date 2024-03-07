@@ -17,7 +17,7 @@ export const showMsg = (title, message, type) => {
     animationIn: ["animate__animated", "animate__fadeIn"],
     animationOut: ["animate__animated", "animate__fadeOut"],
     dismiss: {
-      duration: 2000,
+      duration: 4000,
       onScreen: true,
     },
   });
@@ -43,6 +43,7 @@ const getServiceProduct = async (setResponse, query, setName) => {
     setName(data?.[0]?.categoryId?.name);
   } catch {}
 };
+
 const getServiceProductAuth = async (setResponse, query, setName) => {
   try {
     const response = await axios.get(
@@ -88,7 +89,12 @@ export const getSingleNews = async (setResponse, id) => {
 const getOfferService = async (setResponse) => {
   try {
     const response = await axios.get(
-      `${Baseurl}api/v1/Service/getOnSale/Service`
+      `${Baseurl}api/v1/Service/getOnSaleByToken/Service`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      }
     );
     const data = response.data.data;
     setResponse(data);
@@ -214,8 +220,6 @@ const userRegistration = async (payload, navigate) => {
       `${Baseurl}api/v1/user/registration`,
       payload
     );
-    const msg = response.data.message;
-    showMsg("", msg, "success");
     navigate("/login");
   } catch (e) {
     const msg = e.response.data.message;
@@ -235,7 +239,6 @@ const userLogin = (payload, navigate) => {
       localStorage.setItem("Token", Token);
       dispatch(Login(Details));
       navigate("/my-profile");
-      showMsg("", "Welcome", "success");
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
@@ -283,7 +286,6 @@ const userPassword = async (payload, navigate) => {
     );
     const msg = response.data.message;
     navigate("/password-changed");
-    showMsg("", msg, "success");
   } catch (e) {
     const msg = e.response.data.message;
     showMsg("", msg, "danger");
@@ -961,9 +963,12 @@ const orderSuccess = (payload, navigate, setLoading) => {
         }
       );
       setLoading(false);
+      console.log(response?.data?.data);
+      const isGiftCard = response?.data?.data?.giftOrder;
+      const isProduct = response?.data?.data?.productOrder;
       if (response.status === 200) {
         dispatch(getCart());
-        if (response?.data?.data?.giftOrder) {
+        if (isGiftCard && !isProduct) {
           navigate(`/thanks/success-${response?.data?.data?.orderId}`);
         } else {
           navigate("/thanks/success");
@@ -1014,7 +1019,11 @@ const updateProfile = async (payload) => {
         },
       }
     );
-  } catch {}
+  } catch (e) {
+    if (e?.code === "ERR_NETWORK") {
+      showMsg("", "Image size exceeds 1 MB limit", "danger");
+    }
+  }
 };
 
 const removeAddress = async (payload) => {
@@ -1108,7 +1117,6 @@ const userLogin2 = (payload, navigate) => {
       localStorage.setItem("Token", Token);
       dispatch(Login(Details));
       navigate("/schedule1");
-      showMsg("", "Welcome", "success");
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
@@ -1157,7 +1165,7 @@ const AddServiceBulk = (payload, form) => {
 const getProductReviews = async (payload, setResponse) => {
   try {
     const response = await axios.get(
-      `https://shahina-backend.vercel.app/api/v1/product/getProductReviews/${payload}`,
+      `${Baseurl}api/v1/product/getProductReviews/${payload}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
@@ -1171,7 +1179,7 @@ const getProductReviews = async (payload, setResponse) => {
 const giveReview = async (formData) => {
   try {
     const response = await axios.post(
-      `https://shahina-backend.vercel.app/api/v1/product/createProductReview`,
+      `${Baseurl}api/v1/product/createProductReview`,
       formData,
       {
         headers: {
@@ -1185,7 +1193,7 @@ const giveReview = async (formData) => {
 const getRelatedProduct = async (setResponse) => {
   try {
     const response = await axios.get(
-      `https://shahina-backend.vercel.app/api/v1/getRecentlyProductView`,
+      `${Baseurl}api/v1/getRecentlyProductView`,
 
       {
         headers: {
@@ -1200,14 +1208,11 @@ const getRelatedProduct = async (setResponse) => {
 
 const getProductOrder = async (setResponse) => {
   try {
-    const response = await axios.get(
-      `https://shahina-backend.vercel.app/api/v1/productOrders`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
-        },
-      }
-    );
+    const response = await axios.get(`${Baseurl}api/v1/productOrders`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("Token")}`,
+      },
+    });
     const data = response?.data?.data?.reverse();
     setResponse(data);
   } catch {}
@@ -1216,7 +1221,7 @@ const getProductOrder = async (setResponse) => {
 const trackOrder = async (id) => {
   try {
     const response = await axios.get(
-      `https://shahina-backend.vercel.app/api/v1/getShipmentBy/productOrderId/${id}`
+      `${Baseurl}api/v1/getShipmentBy/productOrderId/${id}`
     );
     const url = response?.data?.data?.tracking_url;
     window.location.href = url;
@@ -1228,7 +1233,7 @@ const trackOrder = async (id) => {
 const getServiceOrder = async (query, setResponse) => {
   try {
     const response = await axios.get(
-      `https://shahina-backend.vercel.app/api/v1/serviceOrders?serviceStatus=${query}`,
+      `${Baseurl}api/v1/serviceOrders?serviceStatus=${query}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
@@ -1243,7 +1248,7 @@ const getServiceOrder = async (query, setResponse) => {
 const RenewMembership = async () => {
   try {
     const response = await axios.post(
-      `https://shahina-backend.vercel.app/api/v1/takeSubscriptionFromWebsiteforRecurring`,
+      `${Baseurl}api/v1/takeSubscriptionFromWebsiteforRecurring`,
       {},
       {
         headers: {
@@ -1275,9 +1280,7 @@ const getAllSlot = async (setResponse, date) => {
     }
   } catch (e) {
     const msg = e?.response?.data?.message;
-    if (msg === "Slots not Found") {
-      setResponse([]);
-    }
+    setResponse([]);
   }
 };
 

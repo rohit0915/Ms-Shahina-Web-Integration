@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getTerms, userRegistration } from "../Repository/Api";
+import { getTerms, showMsg, userRegistration } from "../Repository/Api";
 import PhoneInput from "react-phone-input-2";
 import { FaEye } from "react-icons/fa6";
 import { PiEyeClosedBold } from "react-icons/pi";
@@ -17,6 +17,8 @@ const Signup = () => {
   const [dob, setDob] = useState("");
   const [show, setShow] = useState(false);
   const [response, setResponse] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [show2, setShow2] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,7 +38,15 @@ const Signup = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    userRegistration(payload, navigate);
+    if (password !== confirmPassword) {
+      showMsg(
+        "",
+        "Passwords do not match. Please make sure your password and confirm password entries are identical.",
+        "info"
+      );
+    } else {
+      userRegistration(payload, navigate);
+    }
   };
 
   function BackNavigation() {
@@ -131,9 +141,26 @@ const Signup = () => {
               )}
             </div>
           </div>
+          <div>
+            <p className="required"> Confirm Password</p>
+            <div className="input-div">
+              <input
+                type={show2 ? "text" : "password"}
+                required
+                placeholder=""
+                name="password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              {show2 ? (
+                <FaEye onClick={() => setShow2(false)} />
+              ) : (
+                <PiEyeClosedBold onClick={() => setShow2(true)} />
+              )}
+            </div>
+          </div>
 
           <div>
-            <p className="required">Select your Gender</p>
+            <p>Select your Gender</p>
             <div className="gender_selection" style={{ marginTop: "0" }}>
               <button
                 type="button"

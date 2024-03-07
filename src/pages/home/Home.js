@@ -8,11 +8,11 @@ import Description from "../../components/home/Description";
 import LatestNews from "../../components/home/LatestNews";
 import Testimonials from "../../components/PaymentPlans/Testimonials";
 import GallarySlider from "../../components/Sliders/GallarySlider";
-import { useSelector } from "react-redux";
-import { isBannerOpen } from "../../store/BannerSlice";
+// import { useSelector } from "react-redux";
+// import { isBannerOpen } from "../../store/BannerSlice";
 
 const Home = () => {
-  const isOpen = useSelector(isBannerOpen);
+  // const isOpen = useSelector(isBannerOpen);
 
   useEffect(() => {
     window.scrollTo({

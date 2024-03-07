@@ -3,6 +3,7 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const renderImage = (item) => {
   if (item) {
@@ -41,9 +42,16 @@ const ServiceActions = ({
       {Items?.map((i, index) => (
         <div className="Item" key={index}>
           <div className="item-container">
-            <div className="img-container">{renderImage(i)}</div>
+            <div className="img-container">
+              <Link to={`/indi-services/${i?.serviceId?._id}`}>
+                {renderImage(i)}
+              </Link>
+            </div>
             <div className="content">
-              <p className="title"> {i.serviceId?.name} </p>
+              <Link to={`/indi-services/${i?.serviceId?._id}`}>
+                <p className="title">{i.serviceId?.name} </p>
+              </Link>
+
               <div className="Quantity">
                 <span className="quant">QTY</span>
                 <div className="qty">

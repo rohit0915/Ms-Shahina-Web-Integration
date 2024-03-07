@@ -21,7 +21,6 @@ import { isAuthenticated } from "../store/authSlice";
 import { addToCart } from "../store/DummyCart";
 import { View_description } from "../Helper/Herlper";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import Loader from "./Loader/Loader";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -83,9 +82,10 @@ const ProductDetails = () => {
 
   const navigate = useNavigate();
 
-  const cartHandler = () => {
+  const cartHandler = async () => {
     if (isLoggedIn === true) {
-      dispatch(AddItemCart(id, payload));
+      await dispatch(AddItemCart(id, payload));
+      fetchProduct();
     } else {
       let payload;
       if (size) {
@@ -114,9 +114,9 @@ const ProductDetails = () => {
           sizePrice: price,
         };
       }
-      dispatch(addToCart(payload));
+      await dispatch(addToCart(payload));
+      setInCart(true);
     }
-    fetchProduct();
   };
 
   const FBHandler = (id) => {
@@ -414,7 +414,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      {product?.keyIngredients?.[0]?.length > 0 && (
+      {product?.keyIngredients?.[0]?.length > 15 && (
         <div className="Product_Key_Ingredeints">
           <div className="container">
             <div className="Item">

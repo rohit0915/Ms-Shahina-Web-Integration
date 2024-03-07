@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useStripe,
   useElements,
@@ -8,14 +8,18 @@ import {
 } from "@stripe/react-stripe-js";
 import { showMsg } from "../../Repository/Api";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function StripeComp() {
+export default function StripeComp({ hasAppointmentTime }) {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState();
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
+  const [show, setShow] = useState(false);
+  const [showComplete, setShowComplete] = useState(false);
+
   const navigate = useNavigate();
 
   const handleError = (error) => {
@@ -23,12 +27,10 @@ export default function StripeComp() {
     setErrorMessage(error.message);
   };
 
-  const serviceCheckout = async (event) => {
-    event.preventDefault();
-    setSubmitLoading(true);
+  const saveCarddetails = async (orderId) => {
     try {
       const response = await axios.post(
-        `${process.env.React_App_Baseurl}api/v1/checkoutService`,
+        `${process.env.React_App_Baseurl}api/v1/user/card/updateCardDetailSaved/${orderId}`,
         {},
         {
           headers: {
@@ -39,17 +41,48 @@ export default function StripeComp() {
       if (response.status === 200) {
         handleSubmit();
       }
-    } catch (e) {
-      setSubmitLoading(false);
-      const msg = e.response.data.msg;
-      showMsg("Error !", msg, "danger");
-      if (
-        msg === "This Slot already booked. " ||
-        msg ===
-          "Your service time is greater than 05:00 pm, so move to next date."
-      ) {
-        navigate("/schedule2");
+    } catch {}
+  };
+
+  const serviceCheckout = async (event) => {
+    event.preventDefault();
+    if (hasAppointmentTime) {
+      if (complete === true) {
+        setShowComplete(false);
+        setShow(false);
+        setSubmitLoading(true);
+        try {
+          const response = await axios.post(
+            `${process.env.React_App_Baseurl}api/v1/checkoutService`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("Token")}`,
+              },
+            }
+          );
+          const orderid = response?.data?.data?.orderId;
+          if (response.status === 200) {
+            saveCarddetails(orderid);
+          }
+        } catch (e) {
+          setSubmitLoading(false);
+          const msg = e.response.data.msg;
+          showMsg("Error !", msg, "danger");
+          if (
+            msg === "This Slot already booked. " ||
+            msg ===
+              "Your service time is greater than 05:00 pm, so move to next date."
+          ) {
+            navigate("/schedule2");
+          }
+        }
+      } else {
+        setShowComplete(true);
+        setErrorMessage("Please fill card details first");
       }
+    } else {
+      setShow(true);
     }
   };
 
@@ -78,8 +111,7 @@ export default function StripeComp() {
         elements,
         clientSecret,
         confirmParams: {
-          return_url:
-            "https://main.d3teo2g7vp93hi.amplifyapp.com/service-booked",
+          return_url: `${process.env.React_App_Web_url}service-booked`,
         },
       });
       if (error) {
@@ -105,6 +137,41 @@ export default function StripeComp() {
     marginTop: "15px",
   };
 
+  useEffect(() => {
+    if (!elements) return;
+    const cardElement = elements.getElement(PaymentElement);
+    const onChange = (event) => {
+      setComplete(event.complete);
+    };
+    cardElement.on("change", onChange);
+    return () => {
+      cardElement.off("change", onChange);
+    };
+  }, [elements]);
+
+  const messageCaster = () => {
+    if (!hasAppointmentTime && show) {
+      return (
+        <Link
+          to="/schedule2"
+          style={{
+            color: "blue",
+            textDecoration: "underline",
+            marginTop: "10px",
+          }}
+        >
+          Please select a date for your appointment first !{" "}
+        </Link>
+      );
+    }
+  };
+
+  const showFieldMsg = () => {
+    if (showComplete && !complete) {
+      return <div style={{ color: "red" }}>{errorMessage}</div>;
+    }
+  };
+
   return (
     <>
       {submitLoading && (
@@ -113,7 +180,7 @@ export default function StripeComp() {
         </div>
       )}
       <form onSubmit={serviceCheckout}>
-        <PaymentElement />
+        <PaymentElement id="payment" />
 
         <div className="content" style={{ width: "100%" }}>
           <p>
@@ -157,8 +224,8 @@ export default function StripeComp() {
           />
           <p>Safe & Secure Payments.</p>
         </div>
-
-        {errorMessage && <div>{errorMessage}</div>}
+        {messageCaster()}
+        {showFieldMsg()}
       </form>
     </>
   );

@@ -30,24 +30,24 @@ const ProfileModal = ({ open, setOpen, fetchHandler, data }) => {
     fetchHandler();
   };
 
-  function DOBfetcher(dob) {
-    const original = new Date(dob);
-    const month = original.getMonth() + 1;
-    const date = original.getDate();
-    const year = original.getFullYear();
-    setDob(
-      `${month < 9 ? `0${month}` : month}-${
-        date < 9 ? `0${date}` : date
-      }-${year}`
-    );
-  }
+  const DOBFormater = (date) => {
+    const slicedDate = date?.slice(0, 10);
+    const splittedDate = slicedDate?.split("-");
+    const month = splittedDate?.[1];
+    const day = splittedDate?.[2];
+    const year = splittedDate?.[0];
+    const hasAll = month && year && day;
+    return hasAll && `${month}/${day}/${year}`;
+  };
 
   useEffect(() => {
     if (open && data) {
       setFirstName(data?.firstName);
       setLastName(data?.lastName);
       setGender(data?.gender);
-      DOBfetcher(data?.dob);
+      if (data?.dob) {
+        setDob(DOBFormater(data?.dob));
+      }
       setPhone(data?.phone);
       setEmail(data?.email);
     }
@@ -105,6 +105,7 @@ const ProfileModal = ({ open, setOpen, fetchHandler, data }) => {
           <p>DOB</p>
           <input
             type="text"
+            pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
             value={dob}
             placeholder="MM/DD/YYYY"
             onChange={(e) => setDob(e.target.value)}

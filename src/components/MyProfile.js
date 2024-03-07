@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { View_description } from "../Helper/Herlper";
 import { getAddress, getProfile, removeAddress } from "../Repository/Api";
-import { DateFormatter } from "../utils/helpingComponent";
+import { DateFormatter, DOBFormater } from "../utils/helpingComponent";
 import AddressModal from "./Drawer/AddressModal";
 import ProfileModal from "./Drawer/ProfileModal";
 import SubsModal from "./Drawer/SubsModal";
@@ -95,6 +95,9 @@ const MyProfile = () => {
     }
   }
 
+
+  const membershipTerms = profile?.subscriptionId?.term
+
   return (
     <>
       <AddressModal
@@ -115,6 +118,7 @@ const MyProfile = () => {
         open={subOpen}
         setOpen={setSubOpen}
         fetchHandler={fechProfile}
+        terms={membershipTerms}
       />
       <div style={{ padding: "20px" }}>
         <div className="Backward_Heading step_Heading">
@@ -139,7 +143,9 @@ const MyProfile = () => {
           {QueryHandler(profile?.firstName, "First Name")}
           {QueryHandler(profile?.lastName, "Last Name")}
           {QueryHandler(profile?.gender, "Gender")}
-          {QueryHandler(DateFormatter(profile?.dob), "Date of Birth")}
+
+          {profile?.dob != null &&
+            QueryHandler(DOBFormater(profile?.dob), "Date of Birth")}
           {QueryHandler(profile?.countryCode, "Country Code")}
           {profile?.phone && (
             <div className="two-sec">

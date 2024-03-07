@@ -1,6 +1,5 @@
 /** @format */
 
-
 const DateFormatter = ({ time }) => {
   const toDate = new Date(time);
   const timezoneOffset = new Date().getTimezoneOffset();

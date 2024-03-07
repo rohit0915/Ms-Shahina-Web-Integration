@@ -108,6 +108,10 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.Indivisual-Appointment form div{
+  position: relative;
+}
+
 .Indivisual-Appointment form div p {
   color: #e5d896;
   font-family: Poppins;
@@ -119,6 +123,7 @@
   content: " *";
   color: #d10621;
 }
+
 .Indivisual-Appointment .input-div {
   display: flex;
   align-items: center;
@@ -2975,6 +2980,21 @@
   background: #e5d896;
   padding: 40px;
 }
+.Sub_Modal .input_check{
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  align-items: center;
+}
+.Sub_Modal .input_check span a {
+  color: blue;
+  text-decoration: underline;
+  font-size: 16px;
+}
+.Sub_Modal .input_check  input {
+  width: 20px;
+  height: 20px;
+}
 
 .Sub_Modal .heading {
   display: flex;
@@ -3061,9 +3081,11 @@
 .Mobile_Bar svg {
   color: #e5d896;
 }
-
+.sidebar {
+  background: #042b26 !important;
+}
 .sidebar .ant-drawer-wrapper-body {
-  background: #042b26;
+  background: #042b26 !important;
 }
 .sidebar .Sidebar_Menu {
   padding: 20px;
@@ -3164,6 +3186,13 @@
 .NewsCard .title {
   font-size: 22px;
   margin-top: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+  font-weight: 700;
+margin-bottom: 10px;
 }
 .NewsCard .desc {
   font-size: 18px;
@@ -3197,6 +3226,7 @@
 }
 .news-heading {
   text-align: left;
+  font-weight: 700;
 }
 .All_News_Page section img {
   max-height: 450px;
@@ -3208,6 +3238,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.All_News_Page .title_heading{
+  font-weight: 700;
 }
 
 .All_News_Page section .keyword_cont {

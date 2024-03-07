@@ -14,7 +14,8 @@ const ingredients = ["COSMETICS", "FOOD INGREDIENTS", "BIRTH CONTROL"];
 const CheckIngredients = () => {
   const [selected, setSelected] = useState("COSMETICS");
   const [response, setResponse] = useState([]);
-  const [isMatched, setIsMatched] = useState(false);
+  const [isMatched, setIsMatched] = useState("");
+  // const [content, setContent] = useState([]);
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
@@ -46,18 +47,28 @@ const CheckIngredients = () => {
   };
 
   const highlightWords = () => {
-    const pattern = new RegExp(items?.join("|"), "gi");
-    const matches = value?.match(pattern);
+    const cleanedItems = items?.map((i) =>
+      i?.replace(/[+[\]()<>\/;'\\|]/g, "").trim()
+    );
+    const escapedItems = cleanedItems?.map((item) =>
+      item.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")
+    );
+    const pattern = new RegExp(`\\b(${escapedItems?.join("|")})\\b`, "gi");
+    const replaceValue = value?.replace("&amp;", "&");
+    const matches = replaceValue?.match(pattern);
+    // setContent(matches)
+
     if (matches) {
-      setIsMatched(true);
+      setIsMatched("matched");
     } else {
-      setIsMatched(false);
+      setIsMatched("NotMatched");
     }
-    const highlighted = value?.replace(
+    const highlighted = replaceValue?.replace(
       pattern,
       (match) => `<span style="color: red;">${match}</span>`
     );
     setValue(highlighted);
+    // setContent(highlighted);
   };
 
   return (
@@ -109,10 +120,16 @@ const CheckIngredients = () => {
             <div className="edit-cont">
               <ReactQuill
                 className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl ingre outline-none"
+                style={{ color: "rgb(229 216 150)" }}
                 theme="snow"
                 value={value}
                 onChange={handleChange}
               />
+              {/* <div
+                dangerouslySetInnerHTML={{ __html: content }}
+                className="conten-table"
+              /> */}
+              {/* {content?.map((i) => <p style={{color : "red"}} > {i} </p>)} */}
             </div>
 
             <div className="text-2xl font-semibold flex justify-between items-center my-6 gap-4">
@@ -132,10 +149,16 @@ const CheckIngredients = () => {
               </button>
             </div>
           </form>
-          {isMatched && (
+          {isMatched === "matched" && (
             <p className="text-sl text-[#FF0000] font-normal line-clamp-4 ">
               Unfortunately , there are some comedogenic ingredients.
               Comedogenics ingredients are listed in red .
+            </p>
+          )}
+          {isMatched === "NotMatched" && (
+            <p className="text-sl text-[#fff] font-normal line-clamp-4 ">
+              Congratulations ! This product does not have any comedogenic
+              ingredients.
             </p>
           )}
         </div>
@@ -158,7 +181,7 @@ const CheckIngredients = () => {
                     "flex flex-col pt-6 border-b border-b-primary  pb-6 mb-4"
                   }
                 >
-                  {list?.name}
+                  {list?.isShow === true && list?.name}
                 </p>
               ))}
             </div>

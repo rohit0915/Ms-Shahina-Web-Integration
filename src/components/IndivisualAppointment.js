@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getTerms, userRegistration } from "../Repository/Api";
+import { getTerms, showMsg, userRegistration } from "../Repository/Api";
 import PhoneInput from "react-phone-input-2";
 import { FaEye } from "react-icons/fa6";
 import { PiEyeClosedBold } from "react-icons/pi";
@@ -18,6 +18,7 @@ const IndivisualAppointment = () => {
   const [dob, setDob] = useState("");
   const [show2, setShow2] = useState(false);
   const [response, setResponse] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,7 +37,15 @@ const IndivisualAppointment = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    userRegistration(payload, navigate);
+    if (password !== confirmPassword) {
+      showMsg(
+        "",
+        "Passwords do not match. Please make sure your password and confirm password entries are identical.",
+        "info"
+      );
+    } else {
+      userRegistration(payload, navigate);
+    }
   };
 
   function BackNavigation() {
@@ -57,12 +66,12 @@ const IndivisualAppointment = () => {
 
       <div className="Indivisual-Appointment">
         <p className="title">
-          Enter your Details to continue with Individual Appointment{" "}
+         Please enter your Details to continue with Individual Appointment{" "}
         </p>
 
         <form onSubmit={submitHandler}>
           <div>
-            <p>First Name</p>
+            <p className="required">First Name</p>
             <input
               type="text"
               placeholder="Enter Your First Name"
@@ -72,7 +81,7 @@ const IndivisualAppointment = () => {
           </div>
 
           <div>
-            <p>Last Name</p>
+            <p className="required">Last Name</p>
             <input
               type="text"
               placeholder="Enter Your Last Name"
@@ -82,7 +91,7 @@ const IndivisualAppointment = () => {
           </div>
 
           <div>
-            <p>Email</p>
+            <p className="required">Email</p>
             <input
               type="email"
               name="email"
@@ -93,7 +102,7 @@ const IndivisualAppointment = () => {
           </div>
 
           <div>
-            <p>Contact Number</p>
+            <p className="required">Contact Number</p>
             <PhoneInput country={"us"} onChange={setPhone} />
           </div>
 
@@ -104,37 +113,43 @@ const IndivisualAppointment = () => {
               name="dob"
               placeholder="MM/DD/YYYY (Optional) "
               onChange={(e) => setDob(e.target.value)}
-              required
             />
           </div>
 
-          <div className="check">
-            <input type="checkbox" onClick={() => setShow(!show)} />
-            <div>
-              <p className="title">Create Profile</p>
-              <p className="desc">Mark the Checkbox to Create new Profile </p>
+          <div>
+            <p className="required"> New Password</p>
+            <div className="input-div">
+              <input
+                type={show ? "text" : "password"}
+                required
+                placeholder="Enter Your New Password"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {show ? (
+                <FaEye onClick={() => setShow(false)} />
+              ) : (
+                <PiEyeClosedBold onClick={() => setShow(true)} />
+              )}
             </div>
           </div>
-
-          {show && (
-            <div>
-              <p> New Password</p>
-              <div className="input-div">
-                <input
-                  type={show2 ? "text" : "password"}
-                  required
-                  placeholder="Enter Your New Password"
-                  name="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {show2 ? (
-                  <FaEye onClick={() => setShow2(false)} />
-                ) : (
-                  <PiEyeClosedBold onClick={() => setShow2(true)} />
-                )}
-              </div>
+          <div>
+            <p className="required"> Confirm Password</p>
+            <div className="input-div">
+              <input
+                type={show2 ? "text" : "password"}
+                required
+                placeholder=""
+                name="password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              {show2 ? (
+                <FaEye onClick={() => setShow2(false)} />
+              ) : (
+                <PiEyeClosedBold onClick={() => setShow2(true)} />
+              )}
             </div>
-          )}
+          </div>
 
           <div>
             <p>Select your Gender</p>
