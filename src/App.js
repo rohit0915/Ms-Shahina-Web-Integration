@@ -1,284 +1,160 @@
 /** @format */
-
-import {
-  Outlet,
-  Router,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
-import { Suspense, useEffect } from "react";
-import Quiz from "./components/AcneQuiz/Quiz";
-import {
-  AboutUs,
-  AllProducts,
-  CheckIngredients,
-  Contact,
-  Footer,
-  Gallery,
-  GiftCard,
-  Home,
-  LogIn,
-  Membership,
-  MyCart,
-  Navbar,
-  PaymentPlan,
-  ServiceTab,
-  Shop,
-  TopHeader,
-} from "./pages/Allpages";
-import ServicePage from "./components/Services/ServicePage";
-import Appointment from "./components/Appointment";
-import "./CSS/style.css";
-import IndivisualAppointment from "./components/IndivisualAppointment";
-import Schedule1 from "./components/Schedule/Schedule1";
-import Schedule2 from "./components/Schedule/Schedule2";
-import Thanks from "./components/Thanks";
-import Privacy from "./components/Privacy";
-import Terms from "./components/Terms";
-import FAQ from "./components/FAQ";
-import ForgetPassword from "./components/ForgetPassword";
-import ChangePassword from "./components/ChangePassword";
-import Signup from "./components/Signup";
-import ProductDetails from "./components/ProductDetails";
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./E-CommerceAdmin/forms/Login";
+import Dashboard from "./E-CommerceAdmin/pages/Dashboard";
+import ECategory from "./E-CommerceAdmin/pages/ECategory";
+import Order from "./E-CommerceAdmin/pages/Orders/Order";
+import SingleOrder from "./E-CommerceAdmin/pages/Orders/SingleOrder";
+import Product from "./E-CommerceAdmin/pages/Product/Product";
+import CreateProduct from "./E-CommerceAdmin/pages/Product/CreateProduct";
+import SingleProduct from "./E-CommerceAdmin/pages/Product/SingleProduct";
+import EditProduct from "./E-CommerceAdmin/pages/Product/EditProduct";
+import AboutUs from "./E-CommerceAdmin/pages/AboutUs/AboutUs";
+import CreateAboutUs from "./E-CommerceAdmin/pages/AboutUs/create-about-us";
+import EditAboutUs from "./E-CommerceAdmin/pages/AboutUs/edit-about-us";
+import Query from "./E-CommerceAdmin/pages/Query/Query";
+import Contact from "./E-CommerceAdmin/pages/Contact/Contact";
+import User from "./E-CommerceAdmin/pages/User/User";
+import Blog from "./E-CommerceAdmin/pages/Blog/Blog";
+import Banner from "./E-CommerceAdmin/pages/Banner/Banner";
+import UserData from "./E-CommerceAdmin/pages/User/UserData";
+import Privacy from "./E-CommerceAdmin/pages/PrivacyPolicy/Privacy";
+import Terms from "./E-CommerceAdmin/pages/Terms/Terms";
+import Brand from "./E-CommerceAdmin/pages/Brand";
+import Nutrition from "./E-CommerceAdmin/pages/Nutrition";
+import ProductType from "./E-CommerceAdmin/pages/ProductType";
+import SkinCondition from "./E-CommerceAdmin/pages/SkinCondition";
+import SkinType from "./E-CommerceAdmin/pages/SkinType";
+import Service from "./E-CommerceAdmin/pages/Service/Service";
+import SingleService from "./E-CommerceAdmin/pages/Service/SingleService";
+import CreateService from "./E-CommerceAdmin/pages/Service/CreateService";
+import Editservice from "./E-CommerceAdmin/pages/Service/Editservice";
+import Subscription from "./E-CommerceAdmin/pages/Subscription/Subscription";
+import CreateSubscription from "./E-CommerceAdmin/pages/Subscription/CreateSubscription";
+import EditSubscription from "./E-CommerceAdmin/pages/Subscription/EditSubscription";
+import Reviews from "./E-CommerceAdmin/pages/Reviews/Reviews";
+import Faq from "./E-CommerceAdmin/pages/FAQ/Faq";
+import Ingredeints from "./E-CommerceAdmin/pages/Ingredeints/Ingredeints";
+import GiftCard from "./E-CommerceAdmin/pages/GiftCard/GiftCard";
+import CreateGiftCard from "./E-CommerceAdmin/pages/GiftCard/CreateGiftCard";
+import Acne from "./E-CommerceAdmin/pages/Acne/Acne";
+import AcneSuggestion from "./E-CommerceAdmin/pages/AcneSuggestion/AcneSuggestion";
+import AddOnService from "./E-CommerceAdmin/pages/AddOnService/AddOnService";
+import Gallery from "./E-CommerceAdmin/pages/Gallery/Gallery";
+import SingleBanner from "./E-CommerceAdmin/pages/Banner/SingleBanner";
+import AddHomeBanner from "./E-CommerceAdmin/pages/Banner/AddHomeBanner";
+import AddPartnerBanner from "./E-CommerceAdmin/pages/Banner/AddPartnerBanner";
+import AddShopBanner from "./E-CommerceAdmin/pages/Banner/AddShopBanner";
+import AddServiceBanner from "./E-CommerceAdmin/pages/Banner/AddServiceBanner";
+import AddPromotionBanner from "./E-CommerceAdmin/pages/Banner/AddPromotionBanner";
+import ServiceOrder from "./E-CommerceAdmin/pages/Orders/ServiceOrder";
+import ServiceOrderId from "./E-CommerceAdmin/pages/Orders/ServiceOrderId";
+import Frequently from "./E-CommerceAdmin/pages/Frequently/Frequently";
+import Transaction from "./E-CommerceAdmin/pages/Transaction/Transaction";
+import Rewards from "./E-CommerceAdmin/pages/Rewards/Rewards";
+import ProductReviews from "./E-CommerceAdmin/pages/Product/ProductReviews";
+import ShippingPrivacy from "./E-CommerceAdmin/pages/PrivacyPolicy/ShippingPrivacy";
+import ReturnPolicy from "./E-CommerceAdmin/pages/PrivacyPolicy/ReturnPolicy";
+import Chat from "./E-CommerceAdmin/pages/Chat/Chat";
+import Another from "./E-CommerceAdmin/pages/Scheduler/Another";
+import CalenderNotification from "./E-CommerceAdmin/pages/Scheduler/Notification/CalenderNotification";
 import { ReactNotifications } from "react-notifications-component";
-import "./CSS/mobile.css";
-import MyProfile from "./components/MyProfile";
-import Failed from "./components/Failed";
-import PasswordChanged from "./components/PasswordChanged";
-import VerifySubScription from "./components/VerifySubScription";
-import AllNews from "./components/AllNews";
-import ReturningMember from "./components/ReturningMember";
-import ProductOrder from "./components/Orders/ProductOrder";
-import ServiceOrder from "./components/Orders/ServiceOrder";
-import PastServiceOrder from "./components/Orders/PastServiceOrder";
-import { getSession } from "./Repository/Api";
-import { useDispatch, useSelector } from "react-redux";
-import { isAuthenticated } from "./store/authSlice";
-import OneNews from "./components/News/OneNews";
-import ShippingPrivacy from "./components/ShippingPrivacy";
-import ReturnPrivacy from "./components/ReturnPrivacy";
-import GuestThanks from "./components/GuestThanks";
-import GuestFailed from "./components/GuestFailed";
-import CardSave from "./components/CardSaver/CardSave";
-import Confirmation from "./components/Confirmation";
-import ServiceBooked from "./components/Confirmation/ServiceBooked";
-
-const LazyComponent = (Component) => {
-  return <Suspense fallback={<div></div>}>{Component}</Suspense>;
-};
-
-const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "login",
-        element: LazyComponent(<LogIn />),
-      },
-      {
-        path: "/allproducts/:type/:id/:name",
-        element: LazyComponent(<AllProducts />),
-      },
-
-      {
-        path: "contact",
-        element: LazyComponent(<Contact />),
-      },
-      {
-        path: "aboutus",
-        element: LazyComponent(<AboutUs />),
-      },
-      {
-        path: "membership",
-        element: LazyComponent(<Membership />),
-      },
-      {
-        path: "shop",
-        element: LazyComponent(<Shop />),
-      },
-      {
-        path: "services/:name",
-        element: LazyComponent(<ServiceTab />),
-      },
-      {
-        path: "gallery",
-        element: LazyComponent(<Gallery />),
-      },
-      {
-        path: "paymentplan",
-        element: LazyComponent(<PaymentPlan />),
-      },
-      {
-        path: "giftcards",
-        element: LazyComponent(<GiftCard />),
-      },
-      {
-        path: "acnequiz",
-        element: <Quiz />,
-      },
-      {
-        path: "/checkIngredients",
-        element: LazyComponent(<CheckIngredients />),
-      },
-      {
-        path: "/appointment",
-        element: LazyComponent(<Appointment />),
-      },
-      {
-        path: "/indiAppointment",
-        element: LazyComponent(<IndivisualAppointment />),
-      },
-      {
-        path: "/schedule1",
-        element: LazyComponent(<Schedule1 />),
-      },
-
-      {
-        path: "/schedule2",
-        element: LazyComponent(<Schedule2 />),
-      },
-      {
-        path: "/thanks/:id",
-        element: LazyComponent(<Thanks />),
-      },
-      {
-        path: "/failed/:id",
-        element: LazyComponent(<Failed />),
-      },
-      {
-        path: "/indi-services/:id",
-        element: LazyComponent(<ServicePage />),
-      },
-      {
-        path: "/privacy-policy",
-        element: LazyComponent(<Privacy />),
-      },
-      {
-        path: "/shipping-policy",
-        element: LazyComponent(<ShippingPrivacy />),
-      },
-      {
-        path: "/return-policy",
-        element: LazyComponent(<ReturnPrivacy />),
-      },
-      {
-        path: "/terms",
-        element: LazyComponent(<Terms />),
-      },
-      {
-        path: "/faq",
-        element: LazyComponent(<FAQ />),
-      },
-      {
-        path: "/forget-password",
-        element: LazyComponent(<ForgetPassword />),
-      },
-      {
-        path: "/changePassword",
-        element: LazyComponent(<ChangePassword />),
-      },
-      {
-        path: "/signup",
-        element: LazyComponent(<Signup />),
-      },
-      {
-        path: "/product/:id",
-        element: LazyComponent(<ProductDetails />),
-      },
-      {
-        path: "mycart",
-        element: LazyComponent(<MyCart />),
-      },
-      {
-        path: "/my-profile",
-        element: LazyComponent(<MyProfile />),
-      },
-      {
-        path: "/password-changed",
-        element: LazyComponent(<PasswordChanged />),
-      },
-      {
-        path: "/verifySubscription/:id",
-        element: LazyComponent(<VerifySubScription />),
-      },
-      {
-        path: "/allNews",
-        element: LazyComponent(<AllNews />),
-      },
-      {
-        path: "/news/:id",
-        element: LazyComponent(<OneNews />),
-      },
-      {
-        path: "/returningMember",
-        element: LazyComponent(<ReturningMember />),
-      },
-      {
-        path: "/product-orders",
-        element: LazyComponent(<ProductOrder />),
-      },
-      {
-        path: "/upcoming-orders",
-        element: LazyComponent(<ServiceOrder />),
-      },
-      {
-        path: "/past-orders",
-        element: LazyComponent(<PastServiceOrder />),
-      },
-      {
-        path: "/guestthanks",
-        element: LazyComponent(<GuestThanks />),
-      },
-      {
-        path: "/guestfailed",
-        element: LazyComponent(<GuestFailed />),
-      },
-      {
-        path: "/guest-card-saver/:email/:orderId",
-        element: LazyComponent(<CardSave />),
-      },
-      {
-        path: "/confirmation",
-        element: LazyComponent(<Confirmation />),
-      },
-      {
-        path: "/service-booked",
-        element: LazyComponent(<ServiceBooked />),
-      },
-    ],
-  },
-]);
+import Subadmin from "./E-CommerceAdmin/pages/SubAdmin/Subadmin";
+import { useEffect } from "react";
+import CardDetails from "./E-CommerceAdmin/pages/Card/CardDetails";
+import AcneQuery from "./E-CommerceAdmin/pages/AcneSuggestion/AcneQuery";
 
 function App() {
-  const isLoggedIn = useSelector(isAuthenticated);
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    if (isLoggedIn === true) {
-      dispatch(getSession());
-    }
-  }, [isLoggedIn]);
-
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, []);
   return (
-    <main>
+    <>
+      <ToastContainer
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <ReactNotifications />
-      <TopHeader />
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </main>
+
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/getCard" element={<CardDetails />} />
+        <Route path="/getblog" element={<Blog />} />
+        <Route path="/banner" element={<Banner />} />
+        <Route path="/banner/:id" element={<SingleBanner />} />
+        <Route path="/privacy-policy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/brand" element={<Brand />} />
+        <Route path="/nutrition" element={<Nutrition />} />
+        <Route path="/Product-type" element={<ProductType />} />
+        <Route path="/skin-condition" element={<SkinCondition />} />
+        <Route path="/skinType" element={<SkinType />} />
+        <Route path="/Category" element={<ECategory />} />
+        <Route path="/Product" element={<Product />} />
+        <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/create-product" element={<CreateProduct />} />
+        <Route path="/edit-product/:product" element={<EditProduct />} />
+        <Route path="/service" element={<Service />} />
+        <Route path="/service/:id" element={<SingleService />} />
+        <Route path="/create-service" element={<CreateService />} />
+        <Route path="/edit-service/:id" element={<Editservice />} />
+        <Route path="/subscription" element={<Subscription />} />
+        <Route path="/create-subscription" element={<CreateSubscription />} />
+        <Route path="/edit-subscription/:id" element={<EditSubscription />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/create-about-us" element={<CreateAboutUs />} />
+        <Route path="/edit-about-us/:id" element={<EditAboutUs />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/query" element={<Query />} />
+        <Route path="/ingredients" element={<Ingredeints />} />
+        <Route path="/giftCard" element={<GiftCard />} />
+        <Route path="/creatGift" element={<CreateGiftCard />} />
+        <Route path="/acne" element={<Acne />} />
+        <Route path="/acne-suggestion" element={<AcneSuggestion />} />
+        <Route path="/acne-query" element={<AcneQuery />} />
+        <Route path="/add-on-service" element={<AddOnService />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/create-home-banner" element={<AddHomeBanner />} />
+        <Route path="/create-partner-banner" element={<AddPartnerBanner />} />
+        <Route path="/create-shop-banner" element={<AddShopBanner />} />
+        <Route path="/create-service-banner" element={<AddServiceBanner />} />
+        <Route
+          path="/create-promotion-banner"
+          element={<AddPromotionBanner />}
+        />
+        <Route path="/user" element={<User />} />
+        <Route path="/user-data/:id" element={<UserData />} />
+        <Route path="/Orders" element={<Order />} />
+        <Route path="/order/:id" element={<SingleOrder />} />
+        <Route path="/service-order" element={<ServiceOrder />} />
+        <Route path="/service-order/:id" element={<ServiceOrderId />} />
+        <Route path="/frequently" element={<Frequently />} />
+        <Route path="/transaction" element={<Transaction />} />
+        <Route path="/rewards" element={<Rewards />} />
+        <Route path="/product-review/:id" element={<ProductReviews />} />
+        <Route path="/shipping-privacy" element={<ShippingPrivacy />} />
+        <Route path="/return-privacy" element={<ReturnPolicy />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/another" element={<Another />} />
+        <Route path="/notification" element={<CalenderNotification />} />
+        <Route path="/sub-admin" element={<Subadmin />} />
+      </Routes>
+    </>
   );
 }
 
-export default function MainApp() {
-  return (
-    <RouterProvider router={appRouter}>
-      <Router />
-    </RouterProvider>
-  );
-}
+export default App;

@@ -1,0 +1,20 @@
+{
+    "appointmentInfo": [
+      {
+        "name" : "Info" 
+      },
+      {
+        "name" : "Notes" 
+      },{
+        "name" : "Payments"
+      },{
+        "name" : "Forms"
+      }
+    
+    ]
+    
+  }
+  
+
+
+   
