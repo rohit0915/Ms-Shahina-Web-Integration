@@ -104,7 +104,7 @@ const Shop = () => {
             className="text-4xl font-medium  text-primary text-center my-14"
             id="FAVOURITES"
           >
-            CUSTOMER’S FAVOURITES
+            MY FAVOURITES
           </h2>
           <Products data={fav} />
         </>

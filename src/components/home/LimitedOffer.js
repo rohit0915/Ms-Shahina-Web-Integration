@@ -1,9 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { getLimitedOffer, getServiceCount } from "../../Repository/Api";
-import { isAuthenticated } from "../../store/authSlice";
+import { getLimitedOffer } from "../../Repository/Api";
 import { ImageLazyLoading } from "../../utils/helpingComponent";
 import OfferDrawer from "../Drawer/OfferDrawer";
 

@@ -212,10 +212,13 @@ const SwipCal = ({
                 </li>
               ) : (
                 <>
-                  <div>
+                  <div className="fully_booked_slots">
+                    <img src="./Image/calender.svg" alt="" />
                     <h6>We're fully booked</h6>
-                    <p>but you can book for Mon 8 Jan</p>
-                    <button>Go to {nextDateDay} </button>
+                    <p>but you can book for {combinedNextDate} </p>
+                    <button onClick={() => setDate(nextDate)}>
+                      Go to {combinedNextDate}{" "}
+                    </button>
                   </div>
                 </>
               )

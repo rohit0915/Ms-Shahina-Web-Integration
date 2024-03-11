@@ -117,8 +117,9 @@ const Signup = () => {
           <div>
             <p>Date Of Birth</p>
             <input
-              type="date"
-              name="dob"
+              type="text"
+              pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
+              value={dob}
               placeholder="MM/DD/YYYY (optional)"
               onChange={(e) => setDob(e.target.value)}
             />

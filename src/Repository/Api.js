@@ -101,6 +101,16 @@ const getOfferService = async (setResponse) => {
   } catch {}
 };
 
+export const getOfferServicebeforeLogin = async (setResponse) => {
+  try {
+    const response = await axios.get(
+      `${Baseurl}api/v1/Service/getOnSale/Service`,
+    );
+    const data = response.data.data;
+    setResponse(data);
+  } catch {}
+};
+
 const getSkinType = async (setResponse) => {
   try {
     const response = await axios.get(
@@ -1305,16 +1315,6 @@ const filterProduct = async (payload, setResponse) => {
       `${Baseurl}api/v1/Product/all/paginateProductSearch?search=${payload}`
     );
     const data = res.data.data?.docs;
-    setResponse(data);
-  } catch {}
-};
-
-export const getMembership_terms = async (setResponse) => {
-  try {
-    const response = await axios.get(
-      `${Baseurl}api/v1/static/getMembershipTerm`
-    );
-    const data = response.data.data;
     setResponse(data);
   } catch {}
 };

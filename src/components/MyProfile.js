@@ -95,8 +95,10 @@ const MyProfile = () => {
     }
   }
 
-
-  const membershipTerms = profile?.subscriptionId?.term
+  const membershipTerms = profile?.subscriptionId?.term;
+  const subscriptionDate = new Date(profile?.subscriptionExpiration);
+  subscriptionDate.setMonth(subscriptionDate.getMonth() - 1);
+  const newSubs = subscriptionDate.toISOString();
 
   return (
     <>
@@ -289,22 +291,19 @@ const MyProfile = () => {
                 </div>
                 <div className="right">
                   <div className="two-sec">
-                    <p className="strong">Purchased On : </p>
+                    <p className="strong">Purchased On: </p>
                     <p>
                       {" "}
-                      {profile?.subscriptionId?.updatedAt
-                        ? DateFormatter(profile?.subscriptionId?.updatedAt)
-                        : DateFormatter(
-                            profile?.subscriptionId?.createdAt
-                          )}{" "}
+                      {profile?.subscriptionExpiration &&
+                        DateFormatter(newSubs)}
                     </p>
                   </div>
                   <div className="two-sec">
-                    <p className="strong">Validity : </p>
+                    <p className="strong">Validity: </p>
                     <p> {profile?.subscriptionId?.month} MONTHS</p>
                   </div>
                   <div className="two-sec">
-                    <p className="strong">Details : </p>
+                    <p className="strong">Details: </p>
                   </div>
                   <div className="two-sec">
                     <View_description

@@ -1,13 +1,24 @@
 /** @format */
-import { configureStore } from "@reduxjs/toolkit";
-import dateSlice from "./Slices/dateSlice";
-import modalSlices from "./Slices/modalSlices";
 
-const store = configureStore({
+import { configureStore } from "@reduxjs/toolkit";
+import quiz from "./quizSlice";
+import common from "./commonSlice";
+import user from "./userSlice";
+import authSlice from "./authSlice";
+import cartSlice from "./cartSlice";
+import DummyCart from "./DummyCart";
+import ServiceCart from "./DummySerivce";
+import bannerSlice from "./BannerSlice";
+
+export const store = configureStore({
   reducer: {
-    dates: dateSlice,
-    modal: modalSlices,
+    user,
+    common,
+    quiz,
+    auth: authSlice,
+    cart: cartSlice,
+    dummyCart: DummyCart,
+    serviceCart: ServiceCart,
+    offer: bannerSlice,
   },
 });
-
-export default store;

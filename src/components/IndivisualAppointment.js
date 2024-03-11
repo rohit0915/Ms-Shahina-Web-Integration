@@ -66,7 +66,7 @@ const IndivisualAppointment = () => {
 
       <div className="Indivisual-Appointment">
         <p className="title">
-         Please enter your Details to continue with Individual Appointment{" "}
+          Please enter your Details to continue with Individual Appointment{" "}
         </p>
 
         <form onSubmit={submitHandler}>
@@ -110,8 +110,9 @@ const IndivisualAppointment = () => {
             <p>Date Of Birth</p>
             <input
               type="text"
-              name="dob"
-              placeholder="MM/DD/YYYY (Optional) "
+              pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
+              value={dob}
+              placeholder="MM/DD/YYYY (optional)"
               onChange={(e) => setDob(e.target.value)}
             />
           </div>

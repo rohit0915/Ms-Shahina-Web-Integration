@@ -22,3 +22,5 @@ export const getCorrectTime2 = (time) => {
   const adjustedTime = new Date(updateTime.getTime() + timezoneOffset * 60000);
   return adjustedTime;
 };
+
+

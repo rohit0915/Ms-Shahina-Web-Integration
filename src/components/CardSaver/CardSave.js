@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+
 const stripePromise = loadStripe(process.env.React_App_Stripe_Published_Key);
 
 const options = {
@@ -93,13 +94,22 @@ const CardSave = () => {
       setErrorMessage(error.message);
     };
 
+    // Provided date string
+    const originalDate = new Date();
+    const timeString = originalDate.toTimeString().split(" ")[0];
+    const adjustedDate =
+      originalDate.toISOString().split("T")[0] + "T" + timeString + ".000Z";
+
     const submitHandler = async (e) => {
       e.preventDefault();
       setSubmitLoading(true);
+
       try {
         const response = await axios.post(
           `${process.env.React_App_Baseurl}api/v1/user/card/updateCardDetailSaved/${updateid}`,
-          {},
+          {
+            cardDetailSavedDate: adjustedDate,
+          },
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("Token")}`,

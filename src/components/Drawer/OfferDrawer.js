@@ -3,13 +3,20 @@
 import React, { useEffect, useState } from "react";
 import { Drawer } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { getOfferService } from "../../Repository/Api";
+import {
+  getOfferService,
+  getOfferServicebeforeLogin,
+} from "../../Repository/Api";
 import WithLoader from "../Wrapped/WithLoader";
+import { useSelector } from "react-redux";
+import { isAuthenticated } from "../../store/authSlice";
 
 const OfferDrawer = ({ open, onClose }) => {
   const [response, setResponse] = useState([]);
   const [load, setLoad] = useState(false);
+  const isLoggedIn = useSelector(isAuthenticated);
   const navigate = useNavigate();
+
 
   async function fetchHandler() {
     try {
@@ -23,11 +30,27 @@ const OfferDrawer = ({ open, onClose }) => {
     }
   }
 
+  async function fetchBeforLogin() {
+    try {
+      setLoad(true);
+      await getOfferServicebeforeLogin(setResponse);
+      setLoad(false);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoad(false);
+    }
+  }
+
   useEffect(() => {
     if (open) {
-      fetchHandler();
+      if (isLoggedIn) {
+        fetchHandler();
+      } else {
+        fetchBeforLogin();
+      }
     }
-  }, [open]);
+  }, [open ,isLoggedIn]);
 
   const navigationHandler = (id) => {
     navigate(`/indi-services/${id}`);

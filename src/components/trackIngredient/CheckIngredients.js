@@ -1,13 +1,9 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Header } from "../../utils/helpingComponent";
 import { BiSearch } from "react-icons/bi";
 import { getIngredeints } from "../../Repository/Api";
-
-// --chnages
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 
 const ingredients = ["COSMETICS", "FOOD INGREDIENTS", "BIRTH CONTROL"];
 
@@ -15,7 +11,7 @@ const CheckIngredients = () => {
   const [selected, setSelected] = useState("COSMETICS");
   const [response, setResponse] = useState([]);
   const [isMatched, setIsMatched] = useState("");
-  // const [content, setContent] = useState([]);
+  const [content, setContent] = useState([]);
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
@@ -35,16 +31,9 @@ const CheckIngredients = () => {
 
   function clearPast() {
     setValue("");
-    setIsMatched(false);
   }
 
-  const [value, setValue] = useState(
-    "<p><span>Please insert ingredients here.....</span></p>"
-  );
-
-  const handleChange = (content, delta, source, editor) => {
-    setValue(content);
-  };
+  const [value, setValue] = useState("");
 
   const highlightWords = () => {
     const cleanedItems = items?.map((i) =>
@@ -56,7 +45,6 @@ const CheckIngredients = () => {
     const pattern = new RegExp(`\\b(${escapedItems?.join("|")})\\b`, "gi");
     const replaceValue = value?.replace("&amp;", "&");
     const matches = replaceValue?.match(pattern);
-    // setContent(matches)
 
     if (matches) {
       setIsMatched("matched");
@@ -65,11 +53,23 @@ const CheckIngredients = () => {
     }
     const highlighted = replaceValue?.replace(
       pattern,
-      (match) => `<span style="color: red;">${match}</span>`
+      (match) => `<span style="color : red;" >${match}</span>`
     );
-    setValue(highlighted);
-    // setContent(highlighted);
+    setContent(highlighted);
   };
+
+  // Sorted Response
+  const sortedResponse = response?.sort((a, b) => {
+    const nameA = a?.name?.toUpperCase();
+    const nameB = b?.name?.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
 
   return (
     <section className="bg-primary">
@@ -118,18 +118,12 @@ const CheckIngredients = () => {
           </p>
           <form>
             <div className="edit-cont">
-              <ReactQuill
-                className="w-full text-xl font-bold text-secondary placeholder:text-secondary py-5 px-16  h-72 border border-secondary bg-primary rounded-xl ingre outline-none"
-                style={{ color: "rgb(229 216 150)" }}
-                theme="snow"
+              <textarea
+                className="ingredient-textarea"
                 value={value}
-                onChange={handleChange}
+                onChange={(e) => setValue(e.target.value)}
+                placeholder="Please insert ingredients here....."
               />
-              {/* <div
-                dangerouslySetInnerHTML={{ __html: content }}
-                className="conten-table"
-              /> */}
-              {/* {content?.map((i) => <p style={{color : "red"}} > {i} </p>)} */}
             </div>
 
             <div className="text-2xl font-semibold flex justify-between items-center my-6 gap-4">
@@ -161,6 +155,11 @@ const CheckIngredients = () => {
               ingredients.
             </p>
           )}
+
+          <div
+            dangerouslySetInnerHTML={{ __html: content }}
+            className="conten-table mt-4"
+          />
         </div>
 
         {isEmpty === false && (
@@ -174,16 +173,19 @@ const CheckIngredients = () => {
               className="font-semibold text-sm"
               style={{ overflowY: "auto", maxHeight: "600px" }}
             >
-              {response?.map((list, index) => (
-                <p
-                  key={`list ${index}`}
-                  className={
-                    "flex flex-col pt-6 border-b border-b-primary  pb-6 mb-4"
-                  }
-                >
-                  {list?.isShow === true && list?.name}
-                </p>
-              ))}
+              {sortedResponse?.map(
+                (list, index) =>
+                  list?.isShow === true && (
+                    <p
+                      key={`list ${index}`}
+                      className={
+                        "flex flex-col pt-6 border-b border-b-primary  pb-6 mb-4"
+                      }
+                    >
+                      {list?.name}
+                    </p>
+                  )
+              )}
             </div>
           </div>
         )}

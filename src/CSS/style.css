@@ -2961,8 +2961,8 @@
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  background-color: #fff;
-  text-align: center;
+  background-color: #fff !important;
+  text-align: center; 
   display: flex;
   justify-content: center;
   align-items: center;

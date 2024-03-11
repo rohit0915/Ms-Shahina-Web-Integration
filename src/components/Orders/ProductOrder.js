@@ -71,11 +71,11 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                               fontSize: "20px",
                             }}
                           >
-                            Order ID : {item?.orderId}
+                            Order ID: {item?.orderId}
                           </p>{" "}
                           {item?.date && (
                             <p className="orderId" style={{ color: "#A9A9A9" }}>
-                              Date : {DateFormatter(item?.date)}
+                              Date: {DateFormatter(item?.date)}
                             </p>
                           )}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
@@ -84,7 +84,7 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           </p>{" "}
                           <p className="orderId " style={{ color: "#A9A9A9" }}>
                             {" "}
-                            Membership Discount : ${item?.memberShip}
+                            Membership Discount: ${item?.memberShip}
                           </p>{" "}
                           <div className="button-container">
                             <button
@@ -148,10 +148,10 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                               fontSize: "20px",
                             }}
                           >
-                            Order ID : ${item?.orderId}
+                            Order ID: ${item?.orderId}
                           </p>{" "}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
-                            Date : {item?.date?.slice(0, 10)}
+                            Date: {item?.date?.slice(0, 10)}
                           </p>{" "}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
                             {" "}
@@ -159,7 +159,7 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           </p>{" "}
                           <p className="orderId " style={{ color: "#A9A9A9" }}>
                             {" "}
-                            Membership Discount : ${item?.memberShip}
+                            Membership Discount: ${item?.memberShip}
                           </p>{" "}
                           <div className="button-container">
                             <button
@@ -214,10 +214,10 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                               fontSize: "20px",
                             }}
                           >
-                            Order ID : {item?.orderId}
+                            Order ID: {item?.orderId}
                           </p>{" "}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
-                            Date : {item?.date?.slice(0, 10)}
+                            Date: {item?.date?.slice(0, 10)}
                           </p>{" "}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
                             {" "}
@@ -225,7 +225,7 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           </p>{" "}
                           <p className="orderId " style={{ color: "#A9A9A9" }}>
                             {" "}
-                            Membership Discount : ${item?.memberShip}
+                            Membership Discount: ${item?.memberShip}
                           </p>{" "}
                           <div className="button-container">
                             <button
@@ -289,10 +289,10 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                               fontSize: "20px",
                             }}
                           >
-                            Order ID : ${item?.orderId}
+                            Order ID: ${item?.orderId}
                           </p>{" "}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
-                            Date : {item?.date?.slice(0, 10)}
+                            Date: {item?.date?.slice(0, 10)}
                           </p>{" "}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
                             {" "}
@@ -300,7 +300,7 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           </p>{" "}
                           <p className="orderId " style={{ color: "#A9A9A9" }}>
                             {" "}
-                            Membership Discount : ${item?.memberShip}
+                            Membership Discount: ${item?.memberShip}
                           </p>{" "}
                           <div className="button-container">
                             <button

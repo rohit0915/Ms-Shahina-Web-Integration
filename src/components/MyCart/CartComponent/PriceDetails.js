@@ -221,7 +221,7 @@ const PriceDetails = ({
           {!isSubscriptionActive && (
             <div className="memeber_notification">
               <Link to="/membership">
-                Become a Member & Save upto <br />
+                Become a Member & Save up to <br />
                 20% off on Products & Services
               </Link>
             </div>

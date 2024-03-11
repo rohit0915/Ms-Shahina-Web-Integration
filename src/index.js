@@ -2,23 +2,26 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./Store/store";
-
 import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import App from "./App";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import "react-calendar/dist/Calendar.css";
+import "react-notifications-component/dist/theme.css";
+import "react-phone-input-2/lib/style.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "react-notifications-component/dist/theme.css";
-import "react-quill/dist/quill.snow.css";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { BrowserRouter } from "react-router-dom";
+
+const stripePromise = loadStripe(process.env.React_App_Stripe_Published_Key);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <BrowserRouter>
+  <Elements stripe={stripePromise}>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </Provider>
+    </Provider>
+  </Elements>
 );

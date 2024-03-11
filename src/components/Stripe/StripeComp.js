@@ -27,11 +27,18 @@ export default function StripeComp({ hasAppointmentTime }) {
     setErrorMessage(error.message);
   };
 
+  const originalDate = new Date();
+  const timeString = originalDate.toTimeString().split(" ")[0];
+  const adjustedDate =
+    originalDate.toISOString().split("T")[0] + "T" + timeString + ".000Z";
+
   const saveCarddetails = async (orderId) => {
     try {
       const response = await axios.post(
         `${process.env.React_App_Baseurl}api/v1/user/card/updateCardDetailSaved/${orderId}`,
-        {},
+        {
+          cardDetailSavedDate: adjustedDate,
+        },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("Token")}`,
