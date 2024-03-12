@@ -11,7 +11,7 @@ const CheckIngredients = () => {
   const [selected, setSelected] = useState("COSMETICS");
   const [response, setResponse] = useState([]);
   const [isMatched, setIsMatched] = useState("");
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     getIngredeints(selected, setResponse);
@@ -155,11 +155,12 @@ const CheckIngredients = () => {
               ingredients.
             </p>
           )}
-
-          <div
-            dangerouslySetInnerHTML={{ __html: content }}
-            className="conten-table mt-4"
-          />
+          {content && (
+            <div
+              dangerouslySetInnerHTML={{ __html: content }}
+              className="conten-table mt-4"
+            />
+          )}
         </div>
 
         {isEmpty === false && (

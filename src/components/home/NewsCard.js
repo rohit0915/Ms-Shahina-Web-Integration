@@ -21,7 +21,9 @@ const NewsCard = ({ src, title, content, id }) => {
           <h3 className="font-medium  text-primary title">
             {title?.substr(0, 100)}
           </h3>
-          <ImageLazyLoading img={src} alt={""} className="w-full h-auto" />
+          <Link to={`/news/${id}`}>
+            <ImageLazyLoading img={src} alt={""} className="w-full h-auto" />
+          </Link>
           <p className="font-normal desc">{textTransformation(content)} </p>
         </div>
         <Link to={`/news/${id}`}>

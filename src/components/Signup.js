@@ -6,6 +6,8 @@ import { getTerms, showMsg, userRegistration } from "../Repository/Api";
 import PhoneInput from "react-phone-input-2";
 import { FaEye } from "react-icons/fa6";
 import { PiEyeClosedBold } from "react-icons/pi";
+import { useSelector } from "react-redux";
+import { isAuthenticated } from "../store/authSlice";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -58,6 +60,13 @@ const Signup = () => {
       behavior: "instant",
     });
   }, []);
+
+  const isLoggedIn = useSelector(isAuthenticated);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/my-profile");
+    }
+  }, [isLoggedIn]);
 
   return (
     <>

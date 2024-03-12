@@ -62,3 +62,7 @@ const PaymentPlan = () => {
 };
 
 export default PaymentPlan;
+
+
+
+Complete admin changes and make sure whatever changes share you check on live link as well and then share with me. Do complete testing all tabs fine or not. 

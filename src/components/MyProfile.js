@@ -1,9 +1,11 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { View_description } from "../Helper/Herlper";
 import { getAddress, getProfile, removeAddress } from "../Repository/Api";
+import { isAuthenticated } from "../store/authSlice";
 import { DateFormatter, DOBFormater } from "../utils/helpingComponent";
 import AddressModal from "./Drawer/AddressModal";
 import ProfileModal from "./Drawer/ProfileModal";
@@ -23,6 +25,7 @@ const MyProfile = () => {
   const [bg, setBg] = useState("");
   const [subOpen, setSubOpen] = useState(false);
   const [data, setData] = useState([]);
+  const isLoggedIn = useSelector(isAuthenticated);
 
   const removeHandler = async (id) => {
     await removeAddress(id);
@@ -96,9 +99,21 @@ const MyProfile = () => {
   }
 
   const membershipTerms = profile?.subscriptionId?.term;
-  const subscriptionDate = new Date(profile?.subscriptionExpiration);
-  subscriptionDate.setMonth(subscriptionDate.getMonth() - 1);
-  const newSubs = subscriptionDate.toISOString();
+  const [purchasedOn, setPurchasedOn] = useState(null);
+
+  useEffect(() => {
+    if (profile?.subscriptionExpiration) {
+      const subscriptionDate = new Date(profile.subscriptionExpiration);
+      subscriptionDate.setMonth(subscriptionDate.getMonth() - 1);
+      setPurchasedOn(subscriptionDate.toISOString());
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
 
   return (
     <>
@@ -292,11 +307,7 @@ const MyProfile = () => {
                 <div className="right">
                   <div className="two-sec">
                     <p className="strong">Purchased On: </p>
-                    <p>
-                      {" "}
-                      {profile?.subscriptionExpiration &&
-                        DateFormatter(newSubs)}
-                    </p>
+                    <p>{purchasedOn != null && DateFormatter(purchasedOn)}</p>
                   </div>
                   <div className="two-sec">
                     <p className="strong">Validity: </p>
