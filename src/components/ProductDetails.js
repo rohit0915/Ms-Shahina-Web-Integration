@@ -110,7 +110,6 @@ const ProductDetails = () => {
             name: product.name,
             images: product.productImages,
           },
-          quantity,
           sizePrice: price,
         };
       }
@@ -294,14 +293,14 @@ const ProductDetails = () => {
         greterThan && (
           <div className="Membership_discount">
             <div>
-              <span className="title"> Membership Discount Percentage :</span>
+              <span className="title"> Membership Discount%:</span>
               <span className="desc">
                 {" "}
                 {filtered?.[0]?.membershipDiscountPer}%{" "}
               </span>
             </div>
             <div>
-              <span className="title"> Membership Discount :</span>
+              <span className="title"> Membership Discount:</span>
               <span className="desc">
                 {" "}
                 ${filtered?.[0]?.membershipDiscount}{" "}
