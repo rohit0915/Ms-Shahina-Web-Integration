@@ -24,7 +24,6 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
     });
   }, []);
 
-
   return (
     <div className={`${!padded && "user_product_order_container"}`}>
       <div className="user_product_order">
@@ -150,9 +149,11 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           >
                             Order ID: ${item?.orderId}
                           </p>{" "}
-                          <p className="orderId" style={{ color: "#A9A9A9" }}>
-                            Date: {item?.date?.slice(0, 10)}
-                          </p>{" "}
+                          {item?.date && (
+                            <p className="orderId" style={{ color: "#A9A9A9" }}>
+                              Date:{DateFormatter(item?.date)}
+                            </p>
+                          )}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
                             {" "}
                             Subtotal ${item?.subTotal}
@@ -216,9 +217,11 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           >
                             Order ID: {item?.orderId}
                           </p>{" "}
-                          <p className="orderId" style={{ color: "#A9A9A9" }}>
-                            Date: {item?.date?.slice(0, 10)}
-                          </p>{" "}
+                          {item?.date && (
+                            <p className="orderId" style={{ color: "#A9A9A9" }}>
+                              Date: {DateFormatter(item?.date)}
+                            </p>
+                          )}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
                             {" "}
                             Subtotal ${item?.subTotal}
@@ -291,9 +294,11 @@ const ProductOrder = ({ isSliced, heading, padded, isMore }) => {
                           >
                             Order ID: ${item?.orderId}
                           </p>{" "}
-                          <p className="orderId" style={{ color: "#A9A9A9" }}>
-                            Date: {item?.date?.slice(0, 10)}
-                          </p>{" "}
+                          {item?.date && (
+                            <p className="orderId" style={{ color: "#A9A9A9" }}>
+                              Date: {DateFormatter(item?.date)}
+                            </p>
+                          )}
                           <p className="orderId" style={{ color: "#A9A9A9" }}>
                             {" "}
                             Subtotal ${item?.subTotal}
