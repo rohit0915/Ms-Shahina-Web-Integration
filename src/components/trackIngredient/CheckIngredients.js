@@ -110,12 +110,13 @@ const CheckIngredients = () => {
             ></div>
           </div>
 
-          <p className="text-xl text-white font-normal line-clamp-4 my-16">
+          <p className="check-ingredient-heading">
             If you have acne-prone skin, you need to check skincare, haircare,
             and makeup products for comedogenic (pore-clogging) ingredients.
             Find the ingredients list of the product that you would like to
             check on the Internet, copy and insert it here:
           </p>
+
           <form>
             <div className="edit-cont">
               <textarea

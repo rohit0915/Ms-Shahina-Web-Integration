@@ -108,7 +108,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.Indivisual-Appointment form div{
+.Indivisual-Appointment form div {
   position: relative;
 }
 
@@ -2962,7 +2962,7 @@
   height: 25px;
   border-radius: 100%;
   background-color: #fff !important;
-  text-align: center; 
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2980,7 +2980,7 @@
   background: #e5d896;
   padding: 40px;
 }
-.Sub_Modal .input_check{
+.Sub_Modal .input_check {
   display: flex;
   gap: 10px;
   padding: 10px;
@@ -2991,7 +2991,7 @@
   text-decoration: underline;
   font-size: 16px;
 }
-.Sub_Modal .input_check  input {
+.Sub_Modal .input_check input {
   width: 20px;
   height: 20px;
 }
@@ -3192,7 +3192,7 @@
   max-width: 100%;
   display: block;
   font-weight: 700;
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .NewsCard .desc {
   font-size: 18px;
@@ -3239,7 +3239,7 @@ margin-bottom: 10px;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.All_News_Page .title_heading{
+.All_News_Page .title_heading {
   font-weight: 700;
 }
 
@@ -4648,4 +4648,12 @@ margin-bottom: 10px;
 
 .policy-sem-container p {
   cursor: pointer;
+}
+
+.check-ingredient-heading {
+  margin-bottom: 4rem;
+  margin-top: 4rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #fff;
 }

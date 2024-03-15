@@ -5,11 +5,58 @@ import { Drawer } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated, LOGOUT } from "../../store/authSlice";
-import { Store } from "react-notifications-component";
 import { openQuiz } from "../../store/quizSlice";
 import AcneQuiz from "../AcneQuiz/AcneQuiz";
 import { getProfile } from "../../Repository/Api";
 import { AiOutlineClose } from "react-icons/ai";
+
+const menuOptions = [
+  {
+    link: "/",
+    title: "HOME",
+  },
+  {
+    link: "/shop",
+    title: "SHOP",
+  },
+  {
+    link: "/services/services",
+    title: "SERVICES",
+  },
+
+  {
+    link: "/paymentplan",
+    title: "PAYMENT PLANS",
+  },
+
+  {
+    link: "/membership",
+    title: "Membership",
+  },
+  {
+    link: "/giftcards",
+    title: "GIFT CARDS",
+  },
+  {
+    link: "/checkIngredients",
+    title: "CHECK INGREDIENTS",
+  },
+  {
+    title: "ACNE QUIZ",
+  },
+  {
+    link: "/gallery",
+    title: "GALLERY",
+  },
+  {
+    link: "/contact",
+    title: "CONTACT",
+  },
+  {
+    link: "/aboutus",
+    title: "ABOUT US",
+  },
+];
 
 const Sidebar = ({ open, onClose }) => {
   const navigate = useNavigate();
@@ -17,50 +64,6 @@ const Sidebar = ({ open, onClose }) => {
   const isLoggedIn = useSelector(isAuthenticated);
   const dispatch = useDispatch();
   const { isQuizOpen } = useSelector((store) => store.quiz);
-  
-
-  const menu = [
-    {
-      link: "/",
-      title: "HOME",
-    },
-    {
-      link: "/shop",
-      title: "SHOP",
-    },
-    {
-      link: "/services/services",
-      title: "SERVICES",
-    },
-    {
-      link: "/gallery",
-      title: "GALLERY",
-    },
-    {
-      link: "/paymentplan",
-      title: "PAYMENT PLANS",
-    },
-    {
-      link: "/contact",
-      title: "CONTACT",
-    },
-    {
-      link: "/aboutus",
-      title: "ABOUT US",
-    },
-    {
-      link: "/membership",
-      title: "Membership",
-    },
-    {
-      link: "/giftcards",
-      title: "  GIFT CARDS",
-    },
-    {
-      link: "/checkIngredients",
-      title: "CHECK INGREDIENTS",
-    },
-  ];
 
   function LogoutHandler() {
     onClose();
@@ -80,7 +83,6 @@ const Sidebar = ({ open, onClose }) => {
 
   async function openHandl() {
     await dispatch(openQuiz());
-  
   }
 
   return (
@@ -125,19 +127,23 @@ const Sidebar = ({ open, onClose }) => {
         )}
 
         <ul>
-          {menu?.map((i, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                onClose();
-                navigate(i.link);
-              }}
-            >
-              {i.title}
-            </li>
-          ))}
-
-          <li onClick={() => openHandl()}>ACNE QUIZ</li>
+          {menuOptions?.map((i, index) =>
+            i?.title === "ACNE QUIZ" ? (
+              <li key={index} onClick={() => openHandl()}>
+                {i.title}
+              </li>
+            ) : (
+              <li
+                key={index}
+                onClick={() => {
+                  onClose();
+                  navigate(i.link);
+                }}
+              >
+                {i.title}
+              </li>
+            )
+          )}
 
           {isLoggedIn === true ? (
             <li onClick={() => LogoutHandler()}>Logout</li>
@@ -153,7 +159,7 @@ const Sidebar = ({ open, onClose }) => {
             </li>
           )}
         </ul>
-        {isQuizOpen && <AcneQuiz  onClose={onClose}/>}
+        {isQuizOpen && <AcneQuiz onClose={onClose} />}
       </div>
     </Drawer>
   );

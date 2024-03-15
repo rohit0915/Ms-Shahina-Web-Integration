@@ -1,10 +1,10 @@
 /** @format */
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { View_description } from "../../Helper/Herlper";
-import { getProfile, showMsg, takeVerification } from "../../Repository/Api";
+import { showMsg, takeVerification } from "../../Repository/Api";
 import { isAuthenticated } from "../../store/authSlice";
 import SubsModal from "../Drawer/SubsModal";
 
@@ -35,6 +35,32 @@ const MembershipCard = ({
   }
 
   const subscriptionId = profile?.subscriptionId?._id;
+  const ActivePlan = profile?.subscriptionId?.plan?.toLowerCase();
+  const planName = type?.toLowerCase();
+
+  let btnTitle;
+  switch (ActivePlan) {
+    case "silver":
+      btnTitle = "UPGRADE NOW";
+      break;
+    case "gold":
+      if (planName === "silver") {
+        btnTitle = "UPDATE NOW";
+      } else {
+        btnTitle = "UPGRADE NOW";
+      }
+      break;
+    case "platinum":
+      if (planName === "silver" || planName === "gold") {
+        btnTitle = "UPDATE NOW";
+      } else {
+        btnTitle = "UPGRADE NOW";
+      }
+      break;
+    case "diamond":
+      btnTitle = "UPDATE NOW";
+      break;
+  }
 
   const MembershipBtn = () => {
     if (isLoggedIn) {
@@ -58,7 +84,7 @@ const MembershipCard = ({
               type="submit"
               style={{ display: "block", margin: " auto", marginTop: "20px" }}
             >
-              UPGRADE NOW
+              {btnTitle}
             </button>
           );
         }
@@ -133,7 +159,7 @@ const MembershipCard = ({
 
               <li>
                 <input type="checkbox" required />
-                <span > I Agree to Membership Terms and Policies</span>
+                <span> I Agree to Membership Terms and Policies</span>
               </li>
             </ul>
           </div>

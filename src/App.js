@@ -62,9 +62,10 @@ import GuestFailed from "./components/GuestFailed";
 import CardSave from "./components/CardSaver/CardSave";
 import Confirmation from "./components/Confirmation";
 import ServiceBooked from "./components/Confirmation/ServiceBooked";
+import Loader from "./components/Loader/Loader";
 
 const LazyComponent = (Component) => {
-  return <Suspense fallback={<div></div>}>{Component}</Suspense>;
+  return <Suspense fallback={<Loader />}>{Component}</Suspense>;
 };
 
 const appRouter = createBrowserRouter([

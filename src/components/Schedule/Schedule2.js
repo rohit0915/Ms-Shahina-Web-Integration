@@ -124,7 +124,7 @@ const Schedule2 = () => {
           <img src="/Image/1.png" alt="" onClick={() => BackNavigation()} />
           <p style={{ width: "50%" }}>STEP 2 OF 3</p>
         </div>
-        <p className="title">Select Time & Slot</p>
+        <p className="title">Select Time</p>
       </div>
 
       <div className="schedule_1">

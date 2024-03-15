@@ -105,9 +105,9 @@ const Schedule1 = () => {
 
   const deleteServiceItem = (id, priceId) => {
     if (priceId) {
-      dispatch(deleteServiceCart( id, priceId));
+      dispatch(deleteServiceCart(id, priceId));
     } else {
-      dispatch(deleteServiceCart( id));
+      dispatch(deleteServiceCart(id));
     }
   };
 
@@ -144,7 +144,7 @@ const Schedule1 = () => {
   }
 
   let bookNow;
-  if (cart?.services?.length === 0 || Object.keys(cart).length === 0) {
+  if (cart?.services?.length === 0 || !cart || !cart?.services) {
     const Component = () => {
       return (
         <>
@@ -233,7 +233,7 @@ const Schedule1 = () => {
   }
 
   function packageGetter(i) {
-    if (i.multipleSize === true) {
+    if (i?.multipleSize === true) {
       return (
         <Select
           options={i.sizePrice?.map((i) => ({

@@ -66,7 +66,7 @@ const IndivisualAppointment = () => {
 
       <div className="Indivisual-Appointment">
         <p className="title">
-          Please enter your Details to continue with Individual Appointment{" "}
+          Please enter your details to continue with individual appointment{" "}
         </p>
 
         <form onSubmit={submitHandler}>

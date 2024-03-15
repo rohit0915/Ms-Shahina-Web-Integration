@@ -29,10 +29,10 @@ const VerifySubScription = () => {
     </div>
   ) : (
     <div className="Thanks_Container">
-      <p className="title">Thank You!</p>
+      <p className="title">Congratulations🎉</p>
       <p className="desc">
-        Congratulations🎉 Thanks for becoming a member. <br /> We are looking
-        forward to provide you the best Experience!
+        Thanks for becoming a member. <br /> We are looking forward to provide
+        you the best Experience!
       </p>
       <Link to="/" style={{ cursor: "pointer", marginTop: "20px" }}>
         <button>RETURN TO HOMEPAGE</button>

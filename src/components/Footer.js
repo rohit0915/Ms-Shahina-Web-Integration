@@ -50,10 +50,6 @@ const Footer = () => {
           link: "/shop",
         },
         {
-          title: "FAQ",
-          link: "/faq",
-        },
-        {
           title: "SERVICES",
           link: "/services/services",
         },

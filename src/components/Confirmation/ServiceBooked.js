@@ -54,7 +54,7 @@ const ServiceBooked = () => {
         >
           {date && getCorrectTime(date)}
         </span>{" "}
-        . <br /> Thank you for choosing our services.
+        <br /> Thank you for choosing our services.
       </p>
       <Link to="/mycart" style={{ cursor: "pointer" }}>
         <button>RETURN TO CART</button>

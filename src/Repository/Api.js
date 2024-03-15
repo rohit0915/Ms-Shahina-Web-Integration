@@ -39,8 +39,12 @@ const getServiceProduct = async (setResponse, query, setName) => {
       `${Baseurl}api/v1/Service/all/paginateServiceSearchforWebsite?categoryId=${query}`
     );
     const data = response?.data?.data?.docs;
-    setResponse(data);
-    setName(data?.[0]?.categoryId?.name);
+    if (data) {
+      setResponse(data);
+      setName(data?.[0]?.categoryId?.name);
+    } else {
+      setResponse([]);
+    }
   } catch {}
 };
 
@@ -104,7 +108,7 @@ const getOfferService = async (setResponse) => {
 export const getOfferServicebeforeLogin = async (setResponse) => {
   try {
     const response = await axios.get(
-      `${Baseurl}api/v1/Service/getOnSale/Service`,
+      `${Baseurl}api/v1/Service/getOnSale/Service`
     );
     const data = response.data.data;
     setResponse(data);
@@ -758,9 +762,11 @@ const getServiceforCart = async (setResponse, setId) => {
     const response = await axios.get(
       `${Baseurl}api/v1/admin/Category/allCategory`
     );
-    const data = response.data.data;
-    setResponse(data);
-    setId(data?.[0]?._id);
+    const data = response?.data?.data;
+    if (data) {
+      setResponse(data);
+      setId(data?.[0]?._id);
+    }
   } catch {}
 };
 
@@ -816,8 +822,12 @@ const getOnService = async (setResponse) => {
     const response = await axios.get(
       `${Baseurl}api/v1/admin/AddOnServices/allAddOnServices`
     );
-    const data = response.data.data;
-    setResponse(data);
+    const data = response?.data?.data;
+    if (data) {
+      setResponse(data);
+    } else {
+      setResponse([]);
+    }
   } catch {}
 };
 
@@ -856,7 +866,7 @@ const TimeandSlot = async (formData, navigate) => {
     );
     navigate("/mycart");
   } catch (e) {
-    const msg = e.response.data.message;
+    const msg = e?.response?.data?.message;
     showMsg("", msg, "danger");
   }
 };
@@ -1122,13 +1132,13 @@ const userLogin2 = (payload, navigate) => {
         `${Baseurl}api/v1/user/signin`,
         payload
       );
-      const Token = response.data.accessToken;
-      const Details = response.data.data;
+      const Token = response?.data?.accessToken;
+      const Details = response?.data?.data;
       localStorage.setItem("Token", Token);
       dispatch(Login(Details));
       navigate("/schedule1");
     } catch (e) {
-      const msg = e.response.data.message;
+      const msg = e?.response?.data?.message;
       showMsg("", msg, "danger");
     }
   };
